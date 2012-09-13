@@ -73,7 +73,10 @@ More bug fixes.^
 Release 6 / Serial number 040131^
 Minor bug fixes.^
 Efficiency tweaks.^
-Final release (hopefully).";
+Final release (hopefully).^
+^
+Release 7 / Serial Number 040207^
+Fixed bug in ~burn~ command.^";
 
 
 

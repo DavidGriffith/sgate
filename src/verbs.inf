@@ -138,8 +138,9 @@ Verb "play"
 	* held			-> Play;
 
 Extend "burn" replace
-	* held 'with' noun	-> Burn
-	* noun 'with' held	-> Burn;
+	* noun 'with' noun	-> Burn;
+!	* held 'with' noun	-> Burn
+!	* noun 'with' held	-> Burn;
 
 Extend "notify" replace
 	*			-> Score
