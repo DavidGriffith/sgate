@@ -228,9 +228,6 @@ print "#####    ####    ####    #####   ###^
 ];
 
 
-! These two need to assume the lit torch being held by the player.
-! Work on that problem later.
-!
 [ SnuffSub;
 	<<SwitchOff noun>>;
 ];

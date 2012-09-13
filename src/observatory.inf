@@ -22,7 +22,7 @@ Object -> ObservatoryLadder "ladder"
 	description "It's a wooden ladder",
 	before [;
 	Climb:
-		<<go u_to>>;
+		<<go Observatory.u_to>>;
 	],
 	has scenery;
 

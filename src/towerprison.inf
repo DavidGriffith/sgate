@@ -40,7 +40,7 @@ Object -> Blade "golden blade"
 	];
 ! when blade is placed on the staff:
 !
-! Siddenly, lightning begins to flash in the room!
+! Suddenly, lightning begins to flash in the room!
 !
 ! Then, the golden spike slides smoothly onto the staff and locks into
 ! place.
@@ -84,7 +84,7 @@ Object -> Woman "beautiful woman"
 		rtrue;
 	],
 	attack_msg [;
-		" With a load roar, the wolf pounces on you,
+		" With a loud roar, the wolf pounces on you,
 		taking your life!  The wolf's powerful jaws rip your
 		throat out!";
 	],

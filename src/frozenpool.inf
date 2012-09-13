@@ -21,10 +21,16 @@ Object -> IceSpike "spike"
 	with name "spike",
 	description "It's a rocky spike sticking out of the ice.  A
 		lime-covered skeleton is perched upon it.",
-	capacity 1,
+	before [;
+	Receive:
+		print (The) noun, " slides off.^";
+		move noun to parent(self);
+		rtrue;
+	],
+	capacity 0,
 	has supporter scenery;
 
-Object -> -> LimeSkeleton "skeleton"
+Object -> LimeSkeleton "skeleton"
 	with name "lime-covered" "lime" "covered" "skeleton",
 	describe [;
 		if (parent(self) hasnt general) {
@@ -37,8 +43,12 @@ Object -> -> LimeSkeleton "skeleton"
 		"";
 	],
 	description [;
-		"The lime-covered skeleton stares at your through
+		print "The lime-covered skeleton stares at your through
 		eyeless sockets.";
+		if (BrassKey in self) {
+			print "It clutches a brass key";
+		}
+		".";
 	],
 	before [;
 	Take, Transfer, Push, Pull, Slide:

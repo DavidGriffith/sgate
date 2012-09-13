@@ -110,7 +110,7 @@ Object Troll "troll"
 			shaggy head.";
 
 		if (self.angry) {
-			print "  It's pointing a spear at you and
+			print " It's pointing a spear at you and
 			doesn't seem very happy with you.";
 		}
 		"";
@@ -121,7 +121,7 @@ Object Troll "troll"
 		"The troll laughs at you and returns the favor.";
 
 	Smell:
-		"Ugh!  What stench!";
+		"Ugh! What stench!";
 
 	Attack, ThrownAt:
 		if (noun == self)
@@ -159,14 +159,14 @@ Object Troll "troll"
 			print "The troll catches the coin and pockets it.";
 			if (self.paid == true) {
 				remove weapon;
-				"^^~You already paid the toll.  Thanks
+				"^^~You already paid the toll. Thanks
 				anyway!~";
 			}
 			self.gold_count++;
 			print "^^~Thank you.";
 			remove weapon;
 			if (self.bridge_toll > 1 && self.gold_count < 2) {
-				"  One more gold coin and you may cross.~^
+				" One more gold coin and you may cross.~^
 				^
 				The troll holds out a hand again.";
 			}
@@ -182,7 +182,7 @@ Object Troll "troll"
 			move weapon to Troll;
 			remove Troll;
 			"The spear hits the troll with a glancing blow
-			and he falls silently into the dark chasm.  You
+			and he falls silently into the dark chasm. You
 			listen, but do not hear him crash.";
 		}
 
@@ -193,7 +193,7 @@ Object Troll "troll"
 			move forward. ";
 		} else {
 			print "You swing ", (the) weapon, " at the troll
-			and miss.  "; 
+			and miss."; 
 		}
 
 		"^^
@@ -201,8 +201,9 @@ Object Troll "troll"
 		^
 		The troll then picks up the bridge
 		causing you to fall into the
-		chasm. The Grim Reaper stands below,
-		waiting to catch you.";
+		chasm.
+		^
+		The Grim Reaper stands below, waiting to catch you.";
 	],
 	life [;
 	Show:
@@ -283,11 +284,13 @@ Object Troll "troll"
 			" is the toll to cross.~";
 
 		'gold':
-			"~That's the toll.  Not copper.  Not silver.  Gold.~";
+			"~That's the toll. Not copper. Not silver. Gold.~";
+
+		'silver':
+			"~Nope.  Gold coins only.~";
 
 		'copper':
-			"~You can give me copper, but I won't let you
-			cross.~";
+			"~I'll take it, but I won't let you cross.~";
 
 		'warlock', 'lord':
 			"~You have some kind of problem with him?!?!?~";

@@ -293,7 +293,10 @@ Class Rug
 				something that burns.";
 		}
 		print "The rug quickly catches fire and burns away.";
-		self.reveal_contents();
+		if (self hasnt general)
+			self.reveal_contents();
+		else
+			print "^";		
 		remove self;
 		rtrue;
 
@@ -389,6 +392,7 @@ Class ShinyPotion
 		"Tasting the potion makes you feel a bit like you're
 		floating in the air.";
 	Eat, Drink:
+		remove self;
 		levitating = true; StartTimer(self, 5);
 		"You drink the liquid and immediately begin to rise in 
 		the air.";
@@ -425,6 +429,7 @@ Class SmellyPotion
 		remove self;
 		"The potion dribbles all over the ground.";
 	Taste, Eat, Drink:
+		remove self;
 		deadflag = 1;
 		"As you consume the liquid in the vial, your body
 		convulses and death spasms quickly follow.";
@@ -456,6 +461,7 @@ Class SlimyPotion
 		remove self;
 		"The potion dribbles all over the ground.";
 	Taste, Eat, Drink:
+		remove self;
 		"Glug!  You swallow a bit of the viscous liquid.  It's
 		like drinking tar!";
 	],

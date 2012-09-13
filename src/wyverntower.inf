@@ -29,6 +29,7 @@ Object -> Wyvern "wyvern"
 			weapon = noun;
 
 		if (weapon == Star) {
+			remove weapon;
 			remove self;
 			"The star becomes a flash of light as you
 			launch it.  It strikes the wyvern and it

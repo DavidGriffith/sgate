@@ -65,7 +65,7 @@
 	if (obj == Pool)
 		return 2;
 
-	! In the firey room, we need to make sure the player can examine
+	! In the fiery room, we need to make sure the player can examine
 	! the flames when the fire drake is present.
 	!
 	if (obj == FireDrake)

@@ -134,31 +134,6 @@ Object -> -> ThroneSkeleton "skeleton"
 	has animate transparent static;
 
 
-Object -> fofofof "foo"
-	with name "foobar",
-	description [;
-		<<search self>>;
-	],
-	before [;
-	Search:
-		if (~child(self))
-			"The hands are empty.  It appears as if this
-			fellow was clutching something before he died.";
-		else
-			"A sceptre is clutched in a hand.";
-	Receive:
-		if (noun == Sceptre) {
-			move noun to ThroneSkeleton;
-			move RingHole to ThroneRoom;
-			"As soon as you give the sceptre to the
-			skeleton, the seal on the right pillar lowers,
-			revealing a ring-shaped hole.";
-		}
-		"It doesn't seem to fit anywhere.";
-	],
-	has concealed scenery;
-
-
 Object -> SkeletonCrown "crown"
 	with name "crown",
 	description "Pure beaten gold and rubies.",

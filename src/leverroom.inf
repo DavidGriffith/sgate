@@ -116,7 +116,7 @@ Object -> LeverCylinder "metal cylinder"
 				if (LeverMid.pulled == true)
 					match = true;
 			default:
-				error(1);
+				self.error(1);
 			}
 			if (match == true) {
 				self.lever_stage++;
@@ -139,7 +139,7 @@ Object -> LeverCylinder "metal cylinder"
 				if (LeverRight.pulled == true)
 					match = true;
 			default:
-				error(2);
+				self.error(2);
 			}
 			if (match == true) {
 				self.lever_stage++;
@@ -162,7 +162,7 @@ Object -> LeverCylinder "metal cylinder"
 				if (LeverMid.pulled == false)
 					match = true;
 			default:
-				error(3);
+				self.error(3);
 			}
 			if (match == true) {
 				self.lift_open();

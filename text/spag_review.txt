@@ -1,0 +1,130 @@
+Following is a review of Shadowgate published in SPAG issue #36, March 16, 2004.
+
+SPAG Website: http://www.sparkynet.com/spag
+
+-=-=-=-=-=-=-=-=-=-=-=-=-
+
+From:	Adam Myrow <amyrow SP@G midsouth.rr.com>
+
+TITLE: Shadowgate
+AUTHOR: David Griffith (originally published by Icom for the Nintendo
+        Entertainment System as well as many other platforms)
+EMAIL: dgriffi SP@G cs.csubak.edu
+PARSER: Inform standard
+SUPPORTS: Zcode interpreters
+AVAILABILITY: freeware IF-archive
+URL: ftp://ftp.ifarchive.org/if-archive/games/zcode/sgate.z5
+     Source code is also available at:
+     ftp://ftp.ifarchive.org/if-archive/games/source/sgate.tar.gz
+
+Sometimes, a game grows larger in the mind when it is not played for
+many years. This was the case for a game called Shadowgate which was
+released by Icom for the Nintendo Entertainment System in 1989. I have
+been totally blind since birth. Thus, I was never able to play the
+original game by myself. However, I was able to play it a few times by
+having a friend read the text and I would tell him what I wanted to try.
+The game was a mixed graphical/text game with a menu of verbs which
+could be applied to objects in your inventory. Anyway, I never got very
+far, and eventually, lost access to the game.
+
+Fast forward to late 2003. I was casually browsing rec.games.int-fiction
+when I noticed a post announcing that David Griffith had just released
+an Inform adaptation of Shadowgate based on the Nintendo version. I was
+thrilled. After over a decade, I could now finally play this game by
+myself and get past the puzzles which had previously stumped me. I
+grabbed it immediately.
+
+What I discovered was that this game had become much more exciting in my
+mind than it was in reality. First off, as the original was based on a
+menu of verbs rather than a parser, the puzzles were rather simple. With
+one or two exceptions, one object is used to solve one puzzle. Once the
+puzzle is solved, the object is either removed from play or will never
+be needed again. There are no alternate solutions, and few hints. Either
+you get past the obstacle, or you die. In fact, dying is extremely
+common in this game. There are numerous death traps besides the instant
+death puzzles. Take an object, go through a door, or attack a monster
+with the wrong weapon, and it's curtains for you. As if that weren't bad
+enough, there is the light source problem. When you start the game, you
+have a torch. You will quickly notice lots of torches lying around for
+the taking. Be sure and grab them! Your torches don't last very long, so
+you will find yourself constantly lighting new torches and dropping dead
+torches. The good news is that there is no inventory limit. This was
+fairly minor, as there are more than enough torches to let you finish
+the game. I think I ended up with 10 extra torches at the end of my play
+session. It's just a nuisance to constantly be told that your torch is
+about to go out and having to light one. There are no mazes, and no
+hunger or sleep puzzles, so most of the really annoying puzzles of older
+games are absent. It's just that learning by death is not much fun.
+Here's a typical example of what I mean.
+
+   Tower Prison
+   You are in a bare, round room. A beautiful woman is chained to the
+   wall. Moonlight streams in from a window.
+
+   You can see a golden blade and a beautiful woman here.
+
+   >x blade
+   It's some sort of spike that is made of precious metals. The tips are
+   as sharp as needles.
+
+   >get it
+   As you reach for the golden blade the beautiful lady suddenly
+   transforms into a wolf! With a load [SIC] roar, the wolf pounces on
+   you, taking your life! The wolf's powerful jaws rip your throat out!
+
+
+       *** You have died ***
+
+
+   It's a sad thing that your adventures have ended here.
+
+Examining the girl gives no hint that she is anything other than what
+she seems. So, the only thing you can do is learn by dying, undo, and
+try to figure out how to get rid of the wolf. Another even worse example
+of this.
+
+   Stone Tunnel
+   This hallway is made of large granite slabs. There are exits up,
+   west, and north.
+
+   You can see four unlit torches here.
+
+   >w
+   Without thinking, you jump through the opening and immediately hear a
+   loud click. Suddenly, the granite slab above you gives way and
+   crushes you beneath it. It breaks every bone in your body.
+
+As for plot, it is the standard save-the-world type of plot. You must
+overthrow the evil Warlock Lord before he releases the Behemoth to
+destroy everything. Of course, this involves collecting various items
+and assembling them into a weapon of great power. In other words,
+nothing that hasn't been done before. There are a few spells as well. I
+don't know how spells worked in the original graphical game since I
+didn't get that far, but in this version, the good old Enchanter system
+of using gnusto to copy them into a spell book from a scroll was adopted
+probably because it is readily available. This really isn't a big deal
+as far as I'm concerned since like everything else, the spells each are
+used exactly once.
+
+So, overall, I was a bit let down by the game mainly because it had
+grown into an epic in my mind. What it is, in reality, is a very short
+little fantasy game with loads of death traps and one-use objects. There
+are also plenty of red herrings. However, while the plot is minimal, the
+writing is fairly decent aside from a few spelling errors. I think most
+of the writing comes from the original game, but according to the
+"about" text, many descriptions were made longer to account for the lack
+of graphics. So, it's not all bad. As for coding, I found a few minor
+bugs, but for the most part, things work pretty well. The torches, while
+annoying, have had a lot of work done on them to make dealing with them
+as painless as possible. I would suggest that any game developers have a
+look at this game's source code even if you don't plan on using Inform.
+Bundled with the source code are some transcripts of very early beta
+versions of the game with embedded remarks from the beta testers. These
+serve to illustrate the sorts of bugs to watch out for and the crazy
+things players might try when they get stuck. So, for me, I actually
+found the source code and transcripts very informative despite finding
+the game to be a little annoying. If you treat it like a game from the
+late 1980's rather than a modern piece of IF, I think it will sit much
+better with you than it did with me.
+
+-=-=-=-=-=-=-=-=-=-=-=-=-

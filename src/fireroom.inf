@@ -110,6 +110,7 @@ Object FireDrake "fire drake"
 			StopDaemon(FireRoomHeat);
 			remove self;
 			remove RoomFire;
+			remove CrystalSphere;
 			"The fire drake vanishes as soon as the
 			ice-cold sphere touches it.  The sphere then
 			bounces off the wall into the flames below

@@ -76,15 +76,21 @@ Efficiency tweaks.^
 Final release (hopefully).^
 ^
 Release 7 / Serial Number 040207^
-Fixed bug in ~burn~ command.^";
-
+Fixed bug in ~burn~ command.^
+^
+Release 8 / Serial Number 040716^
+Minor bug fixes.^
+Spelling and grammar errors fixed.^
+SPAG review added to source distribution.^
+Assorted changes to satisfy Inform 6.30's complaints.^
+Absolutely final release.";
 
 
 Option -> "Credits"
 	with description
 "The Inform version of Shadowgate was created by David Griffith
 (dgriffi@@64cs.csubak.edu).  Please visit
-http://www.cs.csubak.edu/@@126dgriffi for more of my stuff, including
+http://www.cs.csubak.edu/@@126dgriffi/ for more of my stuff, including
 the world-famous Frotz, which you may be using right now to play this
 game. Portions of code used are from the 4th Edition of the Inform
 Designer's Manual and are cited where they appear in the source code.^
@@ -102,9 +108,9 @@ redistributable. Do with it what you will, but don't go about claiming
 you wrote it. I do not appreciate plagarism.  Give credit where credit
 is due.^
 ^
-This game may be included in a compilation (ie, a CD set
-containing the whole of the Interactive Fiction Archive), but it SHALL
-NOT be packaged on its own without prior written approval.";
+This game may be included in a compilation (ie, a CD set containing the
+whole of the Interactive Fiction Archive), but it SHALL NOT be packaged 
+on its own without prior written approval.";
 
 
 

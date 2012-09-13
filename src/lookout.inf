@@ -1,7 +1,7 @@
 Outside LookoutPoint "Lookout Point"
 	with name "lookout" "point",
 	description [;
-		print "Lighting lights up the countryside as you stand
+		print "Lightning lights up the countryside as you stand
 		on a lookout point.  You can return to the castle by
 		going east.^";
 	],

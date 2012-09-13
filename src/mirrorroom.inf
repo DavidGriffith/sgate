@@ -55,6 +55,7 @@ UnlitTorch ->;
 
 Object -> Broom "broom"
 	with name "broom",
+!	initial "A broom is propped up against the wall.",
 	description "This broom looks like the one owned by the Sirens
 	of the Isle of Yeklum Iret.",
 	before [;
@@ -125,7 +126,7 @@ Object -> LeftMirror "left mirror"
 		}
 		"The mirror doesn't break.";
 	Search:
-		"A familliar face looks back at you.";
+		"A familiar face looks back at you.";
 	],
 	has scenery;
 
@@ -148,7 +149,7 @@ Object -> RightMirror "right mirror"
 		}
 		"The mirror doesn't break.";
 	Search:
-		"A familliar face looks back at you.";
+		"A familiar face looks back at you.";
 	],
 	has scenery;
 
@@ -176,7 +177,7 @@ Object -> MiddleMirror "middle mirror"
 		"The mirror doesn't break.";
 	Search:
 		if (self hasnt general)
-			"A familliar face looks back at you.";
+			"A familiar face looks back at you.";
 		"Familiar faces look back at you from the shards on the floor.";
 	],
 	has scenery;

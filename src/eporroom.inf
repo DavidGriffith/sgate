@@ -89,7 +89,7 @@ Object -> Rope "rope"
 
 	Climb:
 		if (self has general)
-			<<go u_to>>;
+			<<go EporRoom.u_to>>;
 		"The rope doesn't go anywhere, and neither do you.";
 	],
 	has pluralname scenery;

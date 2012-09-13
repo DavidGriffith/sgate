@@ -71,8 +71,8 @@ Object -> SphinxStairs "stairs"
 	before [;
 	Climb:
 		if (player in SphinxRoom)
-			<<go u_to>>;
-		<<go d_to>>;
+			<<go SphinxRoom.u_to>>;
+		<<go self.d_to>>;
 	],
 	found_in SphinxRoom Observatory,
 	has scenery; 

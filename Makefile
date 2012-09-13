@@ -1,24 +1,24 @@
-INFORM = inform
-SLAG = slag
-
-DEBUG = -~S
-
-GLULX = -~G
-
-VERSION = r7
-
+VERSION = r8
 BINNAME = sgate
 EXTENSION = .z5
+
+
+INFORM = inform
+
+NODEBUG = -~D~S
+DEBUG = -D
+
+SWITCHES = -e
 
 DISTNAME = $(BINNAME)-$(VERSION)
 distdir = $(DISTNAME)
 
 
 $(BINNAME):
-	cd src ; $(INFORM) $(SWITCHES) $(BINNAME).inf ../$(BINNAME)$(EXTENSION)
+	cd src ; $(INFORM) $(SWITCHES) $(DEBUG) $(BINNAME).inf ../$(BINNAME)$(EXTENSION)
 
 nodebug:
-	cd src ; $(INFORM) $(SWITCHES) $(DEBUG) $(BINNAME).inf ../$(BINNAME)$(EXTENSION)
+	cd src ; $(INFORM) $(SWITCHES) $(NODEBUG) $(BINNAME).inf ../$(BINNAME)$(EXTENSION)
 
 abbrev:
 	cd src ; $(INFORM) $(SWITCHES) $(DEBUG) -u $(BINNAME).inf ../$(BINNAME)$(EXTENSION)

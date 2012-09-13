@@ -4,7 +4,7 @@ Inside PoolCavern "Subterranean Pool"
 		print "This subterranean cavern has been carved by
 		centuries of supernatural erosion. You are on the
 		north shore of a large pool filling the entire cavern.
-		A humanoid skeleton is perched a spiky rock out in
+		A humanoid skeleton is perched on a spiky rock out in
 		the middle of the pool.";
 
 		if (BrassKey in LimeSkeleton) {
@@ -64,8 +64,8 @@ Object -> Pool "pool"
 		if (noun == CrystalSphere) {
 			if (CrystalSphere hasnt general) {
 				move CrystalSphere to player;
-				"You pull the sphere out of surface of 
-				the ice.";
+				"You pull the sphere out of the surface
+				of the ice.";
 			}
 			"The sphere is embedded in the ice just below
 			the surface.";

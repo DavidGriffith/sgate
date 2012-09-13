@@ -7,7 +7,7 @@ Outside Garden "Garden"
 		exquisite marble fountain.";
 		if (Flute in Fountain)
 			"  A small wooden flute is bobbing up and down
-			atop a stream of water in fountain.";
+			atop a stream of water in the fountain.";
 
 		"  The sound of the water splashing is music to your ears.";
 	],

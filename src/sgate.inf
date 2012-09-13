@@ -16,14 +16,16 @@ Constant DIALECT_US;
 !Release 4;
 !Release 5;
 !Release 6;
-Release 7;
+!Release 7;
+Release 8;
 
 !Serial "020417";
 !Serial "030821";
 !Serial "030826";
 !Serial "030828";
 !Serial "040131";
-Serial "040209";
+!Serial "040209";
+Serial "040616";
 	
 Constant Story "SHADOWGATE";
 
@@ -35,7 +37,7 @@ Constant DEATH_MENTION_UNDO;
 
 Constant TORCH_COUNT = 18;	! how many torches in the game (good ones)
 Constant TORCH_VARIANCE = 7;	! some randomness
-Constant TORCH_LIFE = 50;	! how many moves a torch will last
+Constant TORCH_LIFE = 45;	! how many moves a torch will last
 Constant TORCH_DECLINE = 5;	! torch starts sputtering
 Constant TORCH_DYING = 1;	! torch is about to go out
 
@@ -53,7 +55,7 @@ replace TasteSub;
 
 Include "abbreviations.inf";
 
-Include "Parser";
+Include "parser";
 
 [ ScoreSub;
 	if (deadflag == 0)
@@ -134,16 +136,17 @@ Include "statusline1.inf";	! Displays just the room name.
 [ DarkToDark;
 	deadflag = 1;
 	print "^With out-stretched arms, you move slowly, looking for a 
-	light.  Suddenly, you trip over something!^
+	light. Suddenly, you trip over something!^
 	^
-	Smash!  You fall face first to the floor!";
+	Smash! You fall face first to the floor!";
 	rfalse;
 ];
 
 
 [ DeathMessage;
 	if (deadflag == 3) {
-		"deadflag 3. You should not see this.";
+		"deadflag 3. You should not see this. You have
+		encountered a serious bug.";
 	}
 ];
 

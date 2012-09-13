@@ -15,7 +15,7 @@ Inside LavaChamber "Lava Chamber"
 		print " A doorway is on the north wall";
 
 		if (LavaStatue hasnt general)
-			print ", surrounded by lava and inaccesible.";
+			print ", surrounded by lava and inaccessible.";
 		else
 			print " with a bridgeway leading from the ring
 			to it.";

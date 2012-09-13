@@ -7,5 +7,5 @@ AFTER the result of actions done in the Hot Room.
 When the player returns to get the Staff of Ages, the troll could
 probably be a bit more talkative rather that just plain pissed off.
 
-Torches last 50 + random(7) moves.  Should this be changed?
+Torches last 45 + random(7) moves.  Should this be changed?
 
