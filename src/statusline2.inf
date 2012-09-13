@@ -1,0 +1,32 @@
+! Display room name and move count, but not score.
+!
+[ DrawStatusLine width posa posb;
+	@split_window 1; @set_window 1; @set_cursor 1 1; style reverse;
+	width = 0->33; posa = width-26; posb = width-13;
+	spaces width;
+	@set_cursor 1 2;
+	if (location == thedark) print (name) location;
+	else {
+		FindVisibilityLevels();
+		if (visibility_ceiling == location)
+			print (name) location;
+		else print (The) visibility_ceiling;
+	}
+	if ((0->1)&2 == 0) {
+		if (width > 76) {
+!			@set_cursor 1 posa;
+!			print (string) SCORE__TX, sline1;
+			@set_cursor 1 posb; 
+			print (string) MOVES__TX, sline2;
+		}
+		if (width > 63 && width <= 76) {
+			@set_cursor 1 posb;
+			print sline1, "/", sline2;
+		}
+	} else {
+		@set_cursor 1 posa;
+		print (string) TIME__TX;
+		LanguageTimeOfDay(sline1, sline2);
+	}
+	@set_cursor 1 1; style roman; @set_window 0;
+];

@@ -1,0 +1,12 @@
+Figure out how long to make torches last.  Right now it's 50 moves +
+random(7);
+
+The troll when returning to get the Staff of Ages could probably be a
+bit more talkative rather that just plain pissed off.
+
+Go over sgate.inf (Initialise()) and statusline1.inf to remove Z-Machine
+specific stuff to allow compilation to Glulx.
+
+The skeleton code in the throne room is a bit odd.  "give sceptre to
+skeleton" returns "(the skeleton)" then the expected text.
+

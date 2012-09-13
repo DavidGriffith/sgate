@@ -1,0 +1,10 @@
+Inside SmallCorridor "Small Corridor"
+	with name "small" "corridor",
+	description "You have entered a small corridor.  Two arched
+		doorways to the east and west wait patiently for you.",
+	s_to BanquetDoor,
+	e_to ThroneRoom,
+	w_to Balcony;
+
+UnlitTorch ->;
+UnlitTorch ->;

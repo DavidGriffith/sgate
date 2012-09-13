@@ -1,0 +1,52 @@
+Inside LavaChamber "Lava Chamber"
+	with name "room",
+	description [;
+		print "Sulfurous fumes rise from the hot molten lava
+		some thirty feet below you.  Swimming would not be
+		wise.  A narrow, stone bridgeway extends halfway
+		across the lava ending in a ring.  A huge grotesque
+		statue stands in the middle of the ring";
+
+		if (LavaStatue hasnt general)
+			print ".";
+		else
+			print " and has sunk nearly up to its eyes.";
+
+		print " A doorway is on the north wall";
+
+		if (LavaStatue hasnt general)
+			print ",surrounded by lava and inaccesable.";
+		else
+			print " with a bridgeway leading from the ring
+			to it.";
+		" You can go back the way you came by going south.";
+	],
+	s_to GargoyleRoom,
+	sw_to GargoyleRoom,
+!	e_to LeverRoom,
+	n_to [;
+		if (LavaStatue hasnt general) {
+			deadflag = 1;
+			"Shouting a battle cry, you catapult yourself
+			off the platform.  You are brave, warrior, but
+			stupid!  Your body explodes as you plunge into
+			the lava.";
+		}
+		StartDaemon(LeverCylinder);
+		return LeverRoom;
+	];
+
+Object -> LavaStatue "statue"
+	with name "statue",
+	description [;
+		print "This huge statue is made of precious metals.  It
+		holds a basin of smoldering coals.";
+		if (self has general)
+			" It has sunk into beneath the level of the
+			bridgeway nearly up to its eyes.";
+	],
+	has scenery supporter;
+
+!Object -> -> LavaBasin "basin of smoldering coals"
+!	with name "basin" "coals" "smoldering",
+!	has static;

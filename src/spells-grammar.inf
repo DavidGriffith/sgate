@@ -1,0 +1,56 @@
+! ----------------------------------------------------------------------------
+!   Grammar extensions needed by the spell-casting and cube-writing rules:
+! ----------------------------------------------------------------------------
+
+! Include this file right after the "Grammar" include.
+
+! cube stuff removed
+![ AnyWord; 
+!	from_char=0;
+!	to_char=0; 
+!	the_named_word = wn++;
+!	return burin;
+!];
+
+! cube stuff removed
+![ QuotedText i j f;
+!   i = WordAddress(wn++); i=i-buffer;
+!   if (buffer->i=='"')
+!   {   for (j=i+1:j<=(buffer->1)+1:j++)
+!           if (buffer->j=='"') f=j;
+!       if (f==0) return -1;
+!       from_char = i+1; to_char=f-1;
+!       if (from_char>to_char) return -1;
+!       while (buffer+f > WordAddress(wn)) wn++; wn++;
+!       return burin;
+!   }
+!   return -1;
+!];
+
+! cube stuff removed
+!Verb "write" "scribe"
+!	* AnyWord "on" held			-> WriteOn
+!	* QuotedText "on" held			-> WriteOn;
+
+! cube stuff removed
+!Verb "copy"
+!	* scope = CopyableSpell "to" noun	-> CopyTo;
+
+Verb "spells" "memory"
+	*					-> Spells;
+
+Verb "learn" "memorise" "memorize"
+	* scope = ReadableSpell			-> Learn;
+
+Extend "examine" first
+	* scope = ReadableSpell			-> Examine;
+
+Verb "c,cast"
+	*					-> CastOne
+	* noun					-> CastOne;
+
+Verb "cast"
+	* is_spell				-> Cast
+	* is_spell "at" noun			-> Cast
+	* is_spell "on" noun			-> Cast;
+

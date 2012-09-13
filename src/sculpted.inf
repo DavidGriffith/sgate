@@ -1,0 +1,115 @@
+Inside SculptedRoom "Sculpted Rock Room"
+	with name "rock" "room",
+	description [;
+		print "Cold water from the limestone drips on your neck,
+		sending shivers down your spine.  A huge, man-made
+		slab of granite seals the north end of the cavern.  On
+		the floor is a raised stone square carefully carved
+		into the stone floor.  In the middle of the square is
+		a small hole.";
+
+		if (GemBlue in BlueHole) {
+			"  A blue gem is nestled in the hole.";
+		}
+		"";
+	],
+	e_to [;
+		if (EporSecret hasnt open) {
+			print "^An Implementor suddenly materializes
+			and speaks to you with a tone of boredom and
+			annoyance.^
+			^
+			~How did you manage to get here while secret
+			passage was closed?  Cheating again, hmm?~^
+			^
+			The Implementor snaps his fingers and
+			you suddenly find yourself in...^";
+		}
+			return EporRoom;
+	];
+
+
+Object -> SculptedSlab "granite slab"
+	with name "granite" "slab",
+	description "It looks like it might be movable, but it's far
+		too heavy for you to move yourself.",
+	has scenery;
+
+
+Object -> SculptedSquare "square"
+	with name "square" "stone",
+	description [;
+		print "Surrounding the hole in the middle are some fancy
+		scrollwork and runes that you don't understand.";
+		if (GemBlue in BlueHole) {
+			"  a blue gem is nestled in the hole.";
+		}
+		"";
+	],
+	has supporter scenery;
+
+
+Object -> -> SculptedRunes "runes"
+	with name "rune" "runes" "writing",
+	description "You have no idea what they say.",
+	has scenery;
+
+
+Object -> -> BlueHole "hole"
+	with name "hole",
+	description [;
+		print "It's a small hole some three inches deep.";
+		if (GemBlue in self)
+			"  A blue gem is inside.";
+		"";
+	],
+	before [;
+	LetGo:
+		if (GemBlue in self) {
+			"Some force prevents you from pulling the gem
+			out of the hole.";
+		}
+	Receive:
+		if (noun ofclass Gem) {
+			if (noun == GemBlue) {
+				move HumanaScroll to SculptedRoom;
+				move noun to self;
+				"As soon as you place the blue
+gem in the hole, you hear the sound of grinding stone.^
+^
+The granite wall slowly rises to reveal a magical image of an old
+wizard.^
+^
+~Listen, warrior!  The Warlock Lord can only be defeated by thy courage
+and the Staff of Ages.  Remember, five to find.  Three for the staff,
+one to be the key, and one to be thy pathway.  Have thy wits about thee,
+warrior!  Fare thee well.~^
+^
+The wall slides back into place, hinding the image from your sight.  A
+scroll appears!";
+
+			}
+			"The gem seems to fit, but nothing happens.";
+		}
+		"It doesn't seem to fit.";
+	],
+	has container open scenery;
+
+
+Scroll HumanaScroll "crumpled scroll"
+	with name "crumpled" "scroll";
+
+Spell -> humana_spell
+	with name "humana",
+	purpose "As the shadow of the wind, thou shalt be!",
+	magic [;
+		if (player in ChasmBridge && Troll.angry == true) {
+			print "As soon as the magic is invoked, you
+			lose sight of yourself.  You're as invisible
+			as the wind!^";
+			PlayerTo(Courtyard);
+			rtrue;
+		}
+		"Uh oh, the wind has suddenly died down.  Nothing
+		happens.  There must be something missing.";
+	];

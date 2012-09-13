@@ -1,0 +1,137 @@
+! There is another exit from this room, but seems to be a red herring.
+
+Inside WraithRoom "Wraith Room"
+	with name "room",
+	description [;
+		print "A stone archway opens into a small chamber.  This
+		room is very cold.  To the west is a small wooden 
+		door. To the east is the stone bridge.";
+		if (Cloak hasnt moved && Cloak in self) {
+			print " A rather plain-looking cloak hangs near
+			the door.";
+		}
+		if (Wraith in self) {
+			print " A wraith is standing in your way,
+			barring your path.";
+		}
+		"";
+	],
+	w_to [;
+		if (Wraith in self)
+			"You're afraid to go past the wraith.";
+		return WraithDoor;
+	],
+	e_to TwoBridges;
+
+Object -> WraithDoor "wooden door"
+	class ObligingDoor,
+	with name "wood" "wooden" "door" "heavy",
+	description "It's a heavy wooden door with iron hinges.",
+	door_to [;
+		if (self in WraithRoom) {
+			return EporRoom;
+		}
+		return WraithRoom;
+	],
+	door_dir [;
+		if (self in WraithRoom) {
+			return w_to;
+		}
+		return e_to;
+	],
+	found_in WraithRoom EporRoom,
+	has scenery static door openable;
+
+Object -> Wraith "wraith"
+	with name "shadow" "shade" "wraith",
+	description "It's a shadow wraith, a hideous spectre, who
+	eternally walks the line between life and death.",
+	before [weapon;
+	FlipOff:
+		"The wraith doesn't seem to understand.";
+	Attack, ThrownAt:
+		! deal with "throw weapon at monster" versus "kill
+		! monster with weapon".
+		if (noun == self)
+			weapon = second;
+		else
+			weapon = noun;
+		if (weapon == 0) {
+			print "The wraith hisses at you as you raise
+			your fist at it.";
+		} else {
+			print "The wraith hisses at you as you
+			brandish ", (the) weapon, ".";
+		}
+		if (weapon == OddTorch) {
+			if (OddTorch has light) {
+				remove Wraith;
+				remove OddTorch;
+				"^^The wraith recoils in horror at
+				the magical torch.  With a blinding
+				flash, the white flame engulfs the
+				undead apparition.  The wraith vanishes
+				in an inky wisp of smoke and a faint
+				scream.";
+			} else {
+				move OddTorch to parent(self);
+				"  It seems afraid of the torch, but
+				you still shrink back in fear.  The
+				odd torch clatters to the floor.";
+			}
+		}
+		"  You shrink back in fear.";
+	],
+	life [;
+	Show:
+		if (noun == OddTorch) {
+			"The wraith hisses at you and motions at you to
+			get rid of it.";
+		}
+		self.moan();
+	Tell, Ask:
+		self.moan();
+	],
+	orders [;
+	Go:
+		"The wraith shakes its head at you.";
+	NotUnderstood:
+		self.moan();
+	],
+	moan [;
+		"The wraith moans unintelligibly.";
+	],
+	has animate neuter;
+
+
+!Clothes -> Cloak "cloak"
+!	with name "cloak" "heavy" "plain",
+!	short_name "cloak",
+!	level 3,
+!	area 1,
+!	covering true,
+!	description "This heavy cloak contains no frivolous adornments
+!		such as pockets or a hood.",
+!	before [;
+!	Take:
+!		if (Wraith in WraithRoom)
+!			"You're afraid to get near it.  The wraith
+!			hisses at you.";
+!	],
+!	has float;
+
+Object -> Cloak "cloak"
+	with name "cloak" "heavy" "plain",
+	description "This heavy cloak contains no frivolous adornments
+		such as pockets or a hood.",
+	before [;
+	Take:
+		if (Wraith in WraithRoom) {
+			"You're afraid to get near it.  The wraith
+			hisses at you.";
+		}
+	],
+	has float clothing;
+
+UnlitTorch ->;
+UnlitTorch ->;

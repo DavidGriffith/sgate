@@ -1,0 +1,191 @@
+! SHADOWGATE
+! Copyright (c) 1989 by Icom.
+! Reimplemented in Inform by David Griffith (c) 2003
+
+
+!Switches xv5sd2;
+Switches d2;
+
+Release 1;
+!Serial "020417";
+Serial "030707";
+
+Constant Story "SHADOWGATE";
+!Reimplemented in Inform by David Griffith in 2002.
+! "^Inform reimplementation by David Griffith.
+
+Constant Headline
+!	"^Copyright (c) 1989 by Icom.^";
+	"^An unauthorized adaptation by David Griffith.^
+Copyright and trademark of Infinite Ventures, Inc.^";
+
+Constant DEATH_MENTION_UNDO;
+
+Constant TORCH_VARIANCE = 7;	! some randomness
+Constant TORCH_LIFE = 50;	! how many moves a torch will last
+Constant TORCH_DECLINE = 5;	! torch starts sputtering
+Constant TORCH_DYING = 1;	! torch is about to go out
+
+Global last_toss_heads = false;	! fun with coins.
+
+Global levitating = false;	! Is the player levitating?
+
+replace DrawStatusLine;		! We don't use a score or count moves
+replace ScoreSub;
+replace FullScoreSub;
+replace BurnSub;
+replace WaveSub;
+
+Include "Parser";
+
+!Include "clothing";
+
+[ ScoreSub;
+	if (deadflag == 0)
+		"There is no score.  Either you defeat the Warlock
+		Lord or you die.";
+	if (deadflag ~= 2)
+		"It's a sad thing that your adventures have ended here.";
+];
+
+[ FullScoreSub;
+	if (deadflag == 0)
+		"There is no score.  Either you defeat the Warlock Lord
+		or you die.";
+
+	if (deadflag ~= 2)
+		"It's a sad thing that your adventures have ended here.";
+];
+
+[ WinMessage;
+"^You pray, as you raise the Staff of Ages, that
+it has the power that the prophets claimed.^
+^
+The staff pulsates with power and a beam of light explodes from it
+striking the behemoth.  The creature screams in agony, thrashing back
+and forth in great pain!  In his rage, he grabs the Warlock Lord, and
+descends into the depths forever.  You can hear the Warlock Lord's
+screams fade into silence.  Suddenly it is very quiet.^
+^
+A beautiful light seems to fill the cavern.  ~The morning sun,~ you say
+to yourself, ~It is over.~^
+^
+Although exhausted, you lean on the Staff of Ages and begin your long
+journey home.^
+^
+Word of your historic quest has already reached the farthest parts of
+the land!^
+^
+You are triumphantly greeted as you enter the royal city of Stormhaven.^
+^
+Moments later, you are ushered into the royal palace where you are
+greeted by the King!^
+^
+~I know what thou hast done, brave one.  The world would be dark forever
+without thee!~^
+^
+You are bestowed a kingdom to rule and the king's fair daughter's hand!^
+^
+As you leave the throne room, you know that although this quest is over,
+others await.^
+^
+After all, the bards will need new legends to sing of and new tales to
+tell!^
+^
+The first story's end.^";
+];
+
+
+
+! Fix a stupid problem.
+!#ifndef DEBUG;
+!Global debug_flag;
+!#endif;
+
+
+Include "VerbLib";
+Include "Menus";
+!Include "hints";
+
+Class Outside
+	has light;
+
+Class Inside
+	has ~light;
+
+Include "objects.inf";
+
+! The entire magic system
+Include "spells.inf";
+
+Include "rooms.inf";
+
+
+Include "statusline1.inf";	! Displays just the room name.
+!Include "statusline2.inf";	! Displays the room name and move count.
+
+!Include "center.h";
+!Include "altmenu.h";
+!Include "domenu.h";
+
+
+[ DarkToDark;
+	deadflag = 1;
+	print "^With out-stretched arms, you move slowly, looking for a 
+	light.  Suddenly, you trip over something!^
+	^
+	Smash!  You fall face first to the floor!";
+	rfalse;
+];
+
+
+[ DeathMessage;
+	if (deadflag == 3) {
+		"deadflag 3";
+	}
+];
+
+[ Initialise dummy;
+
+	location = Entrance;
+
+	move players_torch to player;
+	players_torch.power = TORCH_LIFE;
+	StartDaemon(players_torch);
+
+	move players_book to player;
+
+	players_book.learn_spell(gnusto_spell);
+	give gnusto_spell known_about;
+
+
+	print "The last thing that you remember is standing before the
+	wizard Lakmir as he waved his hands.  Now you find yourself
+	staring at an entryway which lies at the edge of a forest.  The
+	druid's words ring in your ears:^
+	^
+	~Within the castle Shadowgate lies your quest.  The dreaded
+	Warlock Lord will use his black magic to raise the Behemoth
+	from the dark depths.  The combination of his evil arts and the
+	great titan's power will surely destroy us all!  You are the
+	last of the line of kings, the seed of prophecy that was 
+	foretold eons ago.  Only you can stop the evil one from
+	darkening our world forever!  Fare thee well.~^
+	^
+	Gritting your teeth, you swear by your god's name that you will 
+	destroy the Warlock Lord!
+	^
+	^
+	[Press any key to begin.] ";
+
+	@read_char 1 dummy;
+	@erase_window 0;
+	"^";
+];
+
+Include "Grammar";
+Include "help.inf";
+Include "verbs.inf";
+Include "spells-grammar.inf";	
+
+BurningTorch players_torch;

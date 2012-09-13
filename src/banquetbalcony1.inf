@@ -1,0 +1,49 @@
+Inside BanquetBalcony1 "Banquet Hall Balcony"
+	with name "balcony",
+	description [;
+		print "You are standing on a balcony stretching across
+		the north end of the banquet hall.  As big as this hall
+		is, you don't see much more than you did on the
+		floor.  Stairs leading down to the floor are to the
+		east.  To the west is more balcony.  To the north is a
+		large wooden door.";
+
+		if (Crest in self && Crest hasnt moved)
+			print " A family crest of some sort hangs by
+			the door.";
+
+		if (Tapestry in self)
+			" A silk tapestry hangs over the stairs.";
+	],
+	n_to	SphinxDoor,
+	w_to	BanquetBalcony2,
+	e_to	BanquetHall,
+	d_to	BanquetHall;
+
+
+Object -> Crest "crest"
+	with name "crest",
+	description "It's the family crest of Sir Dugan himself.",
+	after [;
+	Take:
+		give self ~concealed;
+	],
+	has concealed;
+	
+
+ObligingDoor -> SphinxDoor "door"
+	with name "door",
+	description "It's a heavy wooden door with iron hinges.",
+	door_to [;
+		if (self in BanquetBalcony1)
+			return SphinxRoom;
+		return BanquetBalcony1;
+	],
+	door_dir [;
+		if (self in BanquetBalcony1)
+			return n_to;
+		return s_to;
+	],
+	found_in BanquetBalcony1 SphinxRoom,
+	with_key TarnishedKey,
+	has scenery static door openable lockable locked;

@@ -1,0 +1,121 @@
+Inside WaterfallRoom "Waterfall"
+	with name "room",
+	description [;
+		if (Pool hasnt general) {
+			print "Water cascades over a subterranean cliff
+			to the east and into a cool, clean stream which
+			flows west into a large pool.";
+		} else {
+			print "A frozen waterfall hangs over a
+			subterranean cliff to the east and into a
+			frozen stream which leads west into a large
+			frozen pool.";
+		}
+
+		"  A stairway cut into the cliff beside the waterfall is
+		obstructed by a landslide.";
+	],
+
+	in_to FallCave,
+	w_to PoolCavern,
+	e_to "The stairway is blocked by a landslide.";
+
+Object -> FallCave "small cave"
+	with name "small" "cave",
+	description [;
+		print "If you weren't paying attention, you wouldn't
+		notice the cave behind the ";
+
+		if (Pool has general) {
+			print "now frozen";
+		}
+		
+		" waterfall.  However, you can't tell what's in
+		the cave.";
+	],
+
+	door_to [;
+		return BehindFalls;
+	],
+	door_dir [;
+		return in_to;
+	],
+	has scenery static door open;
+
+
+Object -> Landslide "huge pile of rubble"
+	with name "huge" "pile" "landslide" "rubble",
+	description "This landslide looks like it occurred ages ago.  It
+	would take months to clear it away.",
+	before [;
+	Take, Slide, Push, Attack:
+		"It would take months to clear the rubble away.";
+	],
+	has static;
+
+Stone ->;
+Stone ->;
+Stone ->;
+Stone ->;
+Stone ->;
+
+Object -> Falls "falls"
+	with name "cascade" "falls" "waterfall" "small" "cold" "stream" "fall" "water",
+	description "Cold water cascades down a cliff and into a small
+	stream.",
+	door_dir [;
+		return in_to;
+		],
+	door_to [;
+		return BehindFalls;
+	],
+	before [ newthing;
+	Search:
+		"There seems to be a small cave behind the waterfall.";
+	Receive:
+
+		if (Pool has general) {
+			"The ice resists your effort to put ", (the)
+			noun, " into it.";
+		}
+
+		print "You throw ", (the) noun, " into the water";	
+		
+
+		if (noun has is_torch && noun has on) {
+			remove noun;
+			newthing = DeadTorch.create();
+			move newthing to Pool;
+			" which is snuffed out.  The stream deposits
+			the torch into the pool.";
+		}
+
+		if (noun == CrystalSphere) {
+			give Pool general;
+			give CrystalSphere general;
+			move CrystalSphere to Pool;
+
+			".  The waterfall turns instantly to ice.  The sphere
+			freezes the stream as it travels down to the pool.  A
+			few seconds after the sphere disappears through the 
+			west passage, the pool freezes.";
+		}
+		if (noun has float) {
+			give noun ~worn;
+			move noun to parent(Pool);
+		}
+		else {
+			give noun ~worn;
+			move noun to Pool;
+		}
+
+		print ".  The stream carries away ", (the) noun, " and
+			deposits";
+		if (noun has pluralname)
+			print " them";
+		else
+			print " it";
+
+		" into the pool.";
+	],
+	has door open scenery;

@@ -1,0 +1,85 @@
+Inside BanquetHall "Banquet Hall"
+	with name "banquet" "hall",
+	description [;
+		print "You are awed by the majestic beauty of this
+		immense banquet hall.  Tables, chairs, and benches are
+		oddly missing.  A small door is in the north
+		wall.  A staircase leads up to a balcony
+		overlooking the hall.";
+		if (BanquetRug in self) {
+			print "  A ";
+			if (BanquetRug hasnt general)
+				print "beautifully woven rug";
+			else
+				print "rolled up rug";
+
+			print " lies in front of where the lord's table
+			should be.";
+		}
+		if (Tapestry in self)
+			"  A silk tapestry hangs over the stairs.";
+		"";
+	],
+	n_to	BanquetDoor,
+	s_to	BanquetCorridor,
+	u_to	BanquetBalcony1;
+
+! Key 4 is found here
+Rug -> BanquetRug "rug"
+	with description [;
+		if (self hasnt general) {
+			print "It's a beautifully woven rug.";
+
+			if (child(self)) 
+				" It seems that something is underneath.";
+			"";
+		} else
+			"It's a rolled up rug.";
+	];
+
+Key -> -> RustyKey "rusty key"
+	with name "rusty",
+	short_name "rusty key",
+	description "This rusty key doesn't seem to have been used
+	for a long time.",
+	has is_tiny;
+
+Object -> Tapestry "silk tapestry"
+	with name "silk" "tapestry",
+	description "It's an exquisite silk tapestry of an abstract
+		design.",
+	before [;
+	Take:
+		print (The) self, " is too high to reach.";
+		"";
+	Burn:
+		if (second ~= nothing) {
+			if (second hasnt ignition)
+				"You can't burn ", (the) self,
+				" with", (the) second, ".";
+		}
+		remove self;
+		"You've torched the tapestry.";
+	],
+	found_in BanquetHall BanquetBalcony1,
+	has scenery;
+
+
+ObligingDoor -> BanquetDoor "banquet hall door"
+	with name "banquet" "hall" "door",
+	description [;
+		"It's a finely crafted wooden door.";
+	],
+	door_to [;
+		if (self in BanquetHall)
+			return SmallCorridor;
+		return BanquetHall;
+	],
+	door_dir [;
+		if (self in BanquetHall)
+			return n_to;
+		return s_to;
+	],
+	found_in BanquetHall SmallCorridor,
+	with_key RustyKey,
+	has scenery static door openable lockable locked;

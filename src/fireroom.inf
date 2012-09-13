@@ -1,0 +1,167 @@
+Inside FireRoom "Fire Room"
+	with name "fire" "room",
+	description [;
+		if (self hasnt visited) {
+			print "This room is incredibly hot.  This must
+			be what the lower levels of Gehenna are like.^^";
+		}
+		if (self hasnt general) {
+			"Except for the long, thin bridge in the middle of
+			this room, the floor of this room is covered in
+			roaring flames.  To the north is a heavy wooden 
+			door.  To the south is the iron door leading
+			back to the mirror room.";
+		}
+		"You are on a long, thin bridge which spans a floor
+		covered in a thick, black oil.";
+	],
+	before [;
+		if (self hasnt general)
+			StartDaemon(FireRoomHeat);
+	],
+	s_to [;
+		if (self hasnt general)
+			StopDaemon(FireRoomHeat);
+		return MirrorRoom;
+	],
+	n_to [;
+		if (FireDrake in self)
+			"The fire drake blocks your path.";
+		else
+			return FireDoor;
+	];
+
+
+Object -> FireBridge "firebridge"
+	with name "long" "thin" "metal" "bridge",
+	description "It's a long, thin bridge forged of fine metal.",
+	has scenery;
+
+
+Object -> RoomFire "fire"
+	with name "fire" "flames" "flame" "floor",
+	description "This tireless fire burns with such heat that this
+		room seems to be in the belly of hell itself.",
+	before [;
+	Search:
+		"You see nothing but roaring flames.";
+
+	Receive, ThrownAt:
+		if (noun == CrystalSphere) {
+			give parent(self) general;
+			move FireOil to parent(self);
+			remove noun;
+			remove self;
+			StopDaemon(FireRoomHeat);
+			print "The hell-spawned flames quickly vanish as
+			soon as the ice-cold sphere touches them.";
+			if (FireDrake in FireRoom) {
+				remove FireDrake;
+				"^^With nothing to feed itself
+				on, the fire drake immediately follows
+				suit.";
+			}
+			"";
+		}
+		remove noun;
+		"You toss ", (the) noun, " into the flames, never to be
+		seen again.";
+	],
+	has container open scenery;
+
+
+ObligingDoor -> FireDoor "door"
+	with name "wooden" "door",
+	description "It's a heavy wooden door with iron hinges.",
+	before [;
+	Close:
+		if (FireDrake in FireRoom) {
+			"The fire drake blocks your path.";
+		}
+	],
+	after [;
+	Open:
+		if (FireRoom hasnt general) {
+			move FireDrake to FireRoom;
+			"Suddenly, you feel a gust of wind.  A searing
+			blast of heat knocks you across the room.  A flaming
+			horror in the form of a fire drake bursts through the
+			open doorway and eyes you menacingly.";
+		}
+	],
+	door_dir n_to,
+	door_to ChasmBridge,
+	has openable scenery;
+
+		
+Object FireDrake "fire drake"
+	with name "horror" "fire" "drake" "dragon" "creature" "monster",
+	description "The creature appears to be made of flames and is 
+		blocking the north exit.",	
+	before [;
+	Attack:
+		if (second == CrystalSphere) {
+			give parent(self) general;
+			move FireOil to parent(self);
+			StopDaemon(FireRoomHeat);
+			remove self;
+			remove RoomFire;
+			"The fire drake vanishes as soon as the
+			ice-cold sphere touches it.  The sphere then
+			bounces off the wall into the flames below
+			which then vanish.";
+		} else {
+			deadflag = 1;
+			"The fire drake screams and triumphantly gives you an
+			eternal sunburn.";
+		}
+	ThrownAt:
+		if (noun == CrystalSphere) {
+			give parent(self) general;
+			move FireOil to parent(self);
+			StopDaemon(FireRoomHeat);
+			remove self;
+			remove RoomFire;
+			"The fire drake vanishes as soon as the
+			ice-cold sphere touches it.  The sphere then
+			bounces off the wall into the flames below which
+			then vanish.";
+		} else {
+			deadflag = 1;
+			"The fire drake screams and triumphantly gives you an
+			eternal sunburn.";
+		}
+	Smell:
+		"The thing smells of burning sulphur.";
+	Take, Touch, Taste:
+		deadflag = 1;
+		"The fire drake screams and triumphantly gives you an
+		eternal sunburn.";
+	],
+	life [;
+		"It doesn't seem to understand what you say.";
+	],
+	has animate neuter;
+
+Object FireOil "oil"
+	with name "hot" "thick" "black" "oil" "floor",
+	description "A thick, black oil covers the floor below
+		you.  It's not burning anymore, but it's still very
+		hot.",
+	before [;
+	Take:	"It's too hot to handle.";
+	],
+	has scenery;
+
+
+Object FireRoomHeat "heat"
+	with daemon [;
+		if (player in FireRoom && Cloak hasnt worn) {
+			deadflag = 1;
+			"^Without the cloak, the heat is
+			unbearable.  Without thinking, you begin to turn
+			back.  Before you reach the nearest exit, you
+			pass out from the extreme heat.";
+		}
+	];
+

@@ -1,0 +1,203 @@
+Inside LeverRoom "Lever Room"
+	with name "room",
+	description "Stalagmites surround this room like the cavernous 
+		jaws of a huge beast.  A chain hangs from the ceiling
+		ending in a strong-looking metal cylinder on the
+		floor.  Beside the cylinder on one side is a pit.  On
+		the other side are three wooden levers side by side on
+		a mechanism of some sort.^",
+	before [;
+		if (self hasnt general) {
+			give self general;
+			LeverCylinder.lever_stage = 1;
+		}
+	],
+	d_to [;
+		deadflag = 1;
+		"You woke the sleeping guard from his beauty sleep.  He
+		decides to eat you for breakfast.";
+	],
+	s_to LavaChamber;
+
+Object -> LeverPit "pit"
+	with name "pit",
+	description "It looks like a large, very deep pit.",
+	before [;
+	Enter:
+		deadflag = 1;
+		"You woke the sleeping guard from his beauty sleep.  He
+		decides to eat you for breakfast.";
+	Search:
+		"The pit is too dark to see anything within.";
+
+	Receive:
+		remove noun;
+		"You drop ", (the) noun, " into the pit";
+	],
+	has scenery container open enterable;
+
+
+Object -> Levers "levers"
+	with name "levers" "mechanism",
+	article "three",
+	description "Three wooden levers side by side",
+	before [;
+	Pull:
+		LeverLeft.pulled = true;
+		LeverMid.pulled = true;
+		LeverRight.pulled = true;
+		LeverCylinder.flip();
+		"You pulled all the levers down.";
+	Push:
+		LeverLeft.pulled = false;
+		LeverMid.pulled = false;
+		LeverRight.pulled = false;
+		LeverCylinder.flip();
+		"You pushed all the levers up.";
+	],
+	has scenery;
+
+Lever -> LeverLeft "left lever"
+	with name "left" "lever";
+
+Lever -> LeverMid "middle lever"
+	with name "middle" "mid" "lever";
+
+Lever -> LeverRight "right lever"
+	with name "right" "lever";
+
+
+Object -> LeverChain "chain"
+	with name "chain",
+	description "It's a heavy chain suspended from some sort of
+		mechanism in the ceiling and connected to the top of
+		the metal cylinder.",
+	has scenery;
+
+Object -> LeverCylinder "metal cylinder"
+	with name "metal" "cylinder",
+	description "It's a strong-looking metal cylinder.",
+	describe [;
+		print "^The metal cylinder is ";
+		if (self has open)
+			"open.";
+		"closed.";	
+	],
+	lever_stage 0,
+	error [num;
+		"Error in LeverCylinder in leverroom.inf
+		(stage ", num, ").";
+	],
+	flipcheck [;
+		if (LeverLeft.pulled == false && 
+		LeverMid.pulled == false && 
+		LeverRight.pulled == false) {
+			self.lever_stage = 1;
+		}
+	],
+	flip [match;
+		match = false;
+		switch (self.lever_stage) {
+		0:
+			self.flipcheck();
+		1:
+			switch (SphinxStairs.lever_pattern) {
+			1:
+				if (LeverRight.pulled == true)
+					match = true;
+			2:
+				if (LeverLeft.pulled == true)
+					match = true;
+			3:
+				if (LeverMid.pulled == true)
+					match = true;
+			4:
+				if (LeverMid.pulled == true)
+					match = true;
+			default:
+				error(1);
+			}
+			if (match == true) {
+				self.lever_stage++;
+				break;
+			}
+			self.lever_stage = 0;
+			self.flipcheck();
+		2:
+			switch (SphinxStairs.lever_pattern) {
+			1:
+				if (LeverMid.pulled == true)
+					match = true;
+			2:
+				if (LeverMid.pulled == true)
+					match = true;
+			3:
+				if (LeverLeft.pulled == true)
+					match = true;
+			4:
+				if (LeverRight.pulled == true)
+					match = true;
+			default:
+				error(2);
+			}
+			if (match == true) {
+				self.lever_stage++;
+				break;
+			}
+			self.lever_stage = 0;
+			self.flipcheck();
+		3:
+			switch (SphinxStairs.lever_pattern) {
+			1:
+				if (LeverRight.pulled == false)
+					match = true;
+			2:
+				if (LeverLeft.pulled == false)
+					match = true;
+			3:
+				if (LeverMid.pulled == false)
+					match = true;
+			4:
+				if (LeverMid.pulled == false)
+					match = true;
+			default:
+				error(3);
+			}
+			if (match == true) {
+				self.lift_open();
+				break;
+			}
+			self.lever_stage = 0;
+			self.flipcheck();
+		default:
+			"Error in LeverCylinder in leverroom.inf
+			(no such stage ", self.lever_stage, ").";	
+		}
+	],
+	lift_open [;
+		give self open;
+		LeverLeft.pulled = false;
+		LeverMid.pulled = false;
+		LeverRight.pulled = false;
+		self.lever_stage = 1;
+		print "^SCREEE!!!  A shuddering sound is heard as the
+			cylinder is lifted by the chain.  The levers all
+			flip back to the up position.";
+		if (SilverOrb in self) {
+			" You're momentarily dazzled as the darkness is
+			lit by a blinding flash.  The silver orb is
+			revealed!";
+		}
+	],
+	after [;
+	LetGo:
+		give self ~open;
+		"As soon as you remove ", (the) noun, ", the cylinder
+		closes.";
+	],
+	has container static;
+
+Object -> -> SilverOrb "silver orb"
+	with name "silver" "orb",
+	description "Aha!  It's an orb made of silver.  Its glowing
+		surface causes your skin to tingle.";

@@ -1,0 +1,121 @@
+Inside Observatory "Observatory"
+	with name "observatory",
+	description [;
+			print "A telescope is beside the window.  A star
+			map is on the wall beside the ladder.";
+
+			if (Star in self && Star hasnt moved)
+				print " A silver ornament of some sort
+				is hanging in front of the map.";
+
+			print " A round wooden table is in the middle of
+			the room. Stairs lead down and a ladder leads
+			up.";
+			"";
+	],
+	d_to SphinxRoom,
+	u_to TowerPrison;
+
+Object -> ObservatoryLadder "ladder"
+	with name "ladder",
+	description "It's a wooden ladder",
+	before [;
+	Climb:
+		<<go u_to>>;
+	],
+	has scenery;
+
+Object -> ObservatoryTable "table"
+	with name "table",
+	description "It's a round wooden table.",
+	has supporter scenery;
+
+! Scroll5
+Scroll -> -> Scroll5 "folded scroll"
+	with name "folded" "scroll",
+	description "It's an ancient, leather bound parchment.",
+	before [;
+	Examine:
+		"The scroll reads:^
+		^
+		~Observing the stars:^
+		The Throne contellation appears once every five
+		summers.  Legend says that it is a portal to another
+		land.~";
+	],
+	has float nonmagic;
+
+Object -> Telescope "telescope"
+	with name "telescope",
+	description "As you peer through the telescope, you are amazed
+		by the clarity of the night sky.",
+	before [;
+	Search:
+		<<examine self>>;
+	],
+	has scenery;
+
+! It's an ornate carving of a shooting star.  The object is made of
+! silver and is extremely heavy.
+
+Object -> Star "silver star"
+	with name "silver" "star" "ornament",
+	description "It's an ornate carving of a shooting star.  The
+		object is made of silver and is extremely heavy.",
+	after [;
+	Take:
+		give self ~concealed;
+	],
+	has concealed;
+
+Object -> StarMap "star map"
+	with name "map" "star",
+	description [;
+		if (self has open) {
+			print "The map has been moved aside revealing a
+			tiny hollow";
+			if (IronRod in self)
+				print " which contains a cast iron rod";
+			".";
+		} else {
+			"It's a map of the known galaxy.  You can see
+			billions and billions of stars.  The map seems to be
+			only loosely attached to the wall.";
+		}
+	],
+	before [;
+	Search:
+		if (IronRod in self && self hasnt open)
+			"There's something long and thin behind the map.";
+	Pull, Push, Turn:
+		if (self hasnt open)
+			<<open self>>;
+		else
+			<<close self>>;
+
+	Take:
+		"The map is actually fastened quite firmly to the wall
+		on only one edge.";
+
+	Receive:
+		"It's not clear how even the iron rod fit back there.";
+	],
+	after [;
+	Open:
+		print "You pull back a corner of the map revealing ";
+		if (IronRod in self)
+			"a cast iron rod.";
+		else
+			"nothing.";
+	Close:
+		"You smooth the map back against the wall.";
+	],
+	capacity 0,
+	has scenery container openable;
+
+
+Object -> -> IronRod "iron rod"
+	with name "iron" "rod",
+	description "This iron rod is about as long as your arm and a
+		baby's finger.",
+	has is_tiny;

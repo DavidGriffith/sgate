@@ -1,0 +1,249 @@
+! Second description "You're inside a small room"
+
+Inside EporRoom "EPOR room"
+	with name "epor" "room",
+	description [;
+		print "This small stone chamber is lined on one side by
+		a low barred portal.  Above the portal is a long shelf
+		carved into the wall.  To the right of the shelf is a
+		sign that reads ~EPOR~.  There is a hole in the ceiling.";
+		if (rope has general) {
+			print "  A thick rope hangs from the hole.";
+		} else
+			print "  A coil of rope lies on the floor.";
+
+		if (EporSecret notin self || EporSecret hasnt open) {
+			"  A slight draft can be felt coming from the
+				west.";
+		}
+		"";
+	],
+	before [;
+	Examine:
+		if (noun == w_obj) {
+			move EporSecret to self;
+			"Damp air is blowing out of a gap in the stone
+			wall.  Hmm..  It looks like there's a hidden
+			door here.";
+		}
+	],
+	u_to [;
+		if (Rope hasnt general) {
+			"The hole is too high to reach.";
+		}
+		return MirrorRoom;
+	],
+	w_to [;
+		if (EporSecret in self) {
+			return EporSecret;
+		}
+		rfalse;
+	],
+	e_to WraithDoor;
+
+UnlitTorch ->;
+
+Object -> EporPortal "portal"
+	with name "portal",
+	description [num;
+		print "Sturdy bars seal this cage.  ";
+		num = random(2);
+		if (num == 1) {
+			"Your nose detects the presence of a concealed
+			animal.";
+		}
+		"You can hear a faint scratching from within the dark
+		depths behind the bars.";
+	],
+	before [;
+	Search:
+		"Whatever is in there is hiding in the shadows.";
+	],
+	has scenery;
+
+Object -> Rope "rope"
+	with name "coil" "rope",
+	description [;
+		print "The rope is about as thick as your wrist
+			and is ";
+		if (self hasnt general) {
+			"coiled up on the floor.";
+		}
+			"hanging from the portal in the ceiling.";
+	],
+	before [;
+	Take:
+		"It's too heavy.";
+
+	Climb:
+		if (self has general)
+			<<go u_to>>;
+		"The rope doesn't go anywhere, and neither do you.";
+	],
+	has pluralname scenery;
+
+
+Object -> EporSign "sign"
+	with name "sign",
+	description [;
+		if (self has general && epor_spell notin memory) {
+			move epor_spell to memory;
+			players_book.learn_spell(epor_spell);
+			epor_spell.number = 100;
+			epor_spell.purpose = "unknown";
+			"EPOR.  EPOR.  EPOR...  You got it!  It seems
+			to be some sort of magic word!^^
+			You've learned a magic spell.";
+
+		}
+		if (self hasnt moved) {
+			give self general;
+		}
+
+		print "This sign reads ~EPOR~.";
+		if (self has general)
+			" It's a strange sounding word, indeed!";
+		"";
+
+	],
+	has scenery;
+
+
+Object -> EporShelf "shelf"
+	with name "shelf",
+	description [;
+		<<search EporShelf>>;
+	],
+	capacity 3,
+	has scenery supporter;
+
+
+Scroll -> -> Scroll1 "dusty scroll"
+	with name "dusty" "scroll",
+	description "It's an ancient, leather bound parchment.",
+	before [;
+	Examine:
+		"The scroll reads:^
+		^
+		~Five to find, three are one.^
+		One gives access, the bladed sun.^
+		The silver orb, to banish below.^
+		The Staff of Ages, to vanquish the foe.^
+		Joining two, the golden blade.^
+		The last to invoke, the platinum horn.~";
+	],
+	has float nonmagic;
+
+
+!Bottle -> -> SmellyBottle "smelly bottle"
+!	with name "smelly",
+!	description "It's a small silver bottle.  It sure smells
+!	terrible!",
+!	before [;
+!	Empty:
+!		if (self hasnt open) {
+!			give self open;
+!			print "(first opening ", (the) self, ")^";
+!		}
+!		remove SmellyPotion;
+!		"The contents dribble out and evaporates.";
+!	Receive:
+!		if (noun hasnt liquid or is_tiny) {
+!			print (The) noun, " is too big to fit in ",
+!			(the) self, ".";
+!			rtrue;
+!		}
+!	],
+!	capacity 1;
+
+!Object -> -> -> SmellyPotion "smelly potion"
+!	with name "smelly" "potion",
+!	description "The potion is a nauseating mixture of brown and
+!			yellow.",
+!	before [;
+!	Smell:
+!		"It smells like sewage.";
+!	Drop, Take:
+!		remove self;
+!		"The potion dribbles all over the ground.";
+!	Taste, Eat, Drink:
+!		deadflag = 1;
+!		"As you consume the liquid in the vial, your body
+!		convulses and death spasms quickly follow.";
+!	],
+!	has liquid edible;
+
+SmellyBottle -> ->;
+SmellyPotion -> -> ->;
+
+ShinyBottle -> ->;
+ShinyPotion -> -> ->;
+
+
+
+!Bottle -> -> ShinyBottle "shiny bottle"
+!	with name "shiny" "light" "bottle",
+!	description [;
+!		print "This small silver bottle glows with a lustrous
+!		shine.";
+!		if (ShinyPotion in self) {
+!			"  You notice that the bottle is impossibly
+!			light.";
+!		}
+!		rtrue;
+!	],
+!	before [;
+!	Empty:
+!		if (self hasnt open) {
+!			give self open;
+!			print "(first opening ", (the) self, ")^";
+!		}
+!		remove ShinyPotion;
+!		"The contents dribble out and evaporates.";
+!	Receive:
+!		if (noun hasnt liquid or is_tiny) {
+!			print (The) noun, " is too big to fit in ",
+!			(the) self, ".";
+!			rtrue;
+!		}
+!	],
+!	capacity 1;
+
+!Object -> -> -> ShinyPotion "shiny potion"
+!	with name "shiny" "potion",
+!	description "It looks like faintly-glowing water.",
+!	before [;
+!	Smell:
+!		"It doesn't seem to have a smell.";
+!	Drop, Take:
+!		remove self;
+!		"The potion dribbles all over the ground.";
+!	Taste:
+!		"Tasting the potion makes you feel a bit like you're
+!		floating in the air.";
+!	Eat, Drink:
+!		levitating = true; StartTimer(self, 5);
+!		"You drink the liquid and immediately begin to rise in 
+!		the air.";
+!	],
+!	time_left 0,
+!	time_out [;
+!		levitating = false;
+!		"You slowly sink back to the floor.";
+!	],
+!	has liquid edible;
+
+
+Object EporSecret "secret passage"
+	with name "secret" "passage" "door" "hidden",
+	description [;
+		if (self hasnt open) {
+			"Damp air is blowing out of the gap in the
+			stone wall.";
+		}
+		"The wall is open.";
+	],      
+        door_to SculptedRoom,
+	door_dir w_to,
+	has scenery door openable;
+

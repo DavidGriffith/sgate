@@ -1,0 +1,78 @@
+Outside WyvernTower "Wyvern Tower"
+	with name "tower",
+	description [;
+		if (Wyvern in self) {
+			print "As you stand on the turret, an eerie blue
+			dragon (a wyvern!) appears in the clear starry
+			sky.";
+		} else {
+			print "You can see all around for miles on this
+			clear starry night.";
+		}
+		" There is a low metal pedestal standing near the
+			wall of the turret.";
+	],
+	d_to CircularRoom;
+
+
+Object -> Wyvern "wyvern"
+	with name "wyvern" "dragon",
+	description "It's a wyvern!  This beastie is a distant cousin
+	of a dragon, but is smaller and fiercer!",
+	before [weapon;
+	Attack, ThrownAt:
+		if (noun == self)
+			weapon = second;
+		else
+			weapon = noun;
+
+		if (weapon == Star) {
+			remove self;
+			"The star becomes a flash of light as you
+			launch it.  It strikes the wyvern and it
+			explodes into a million pieces!";
+		}
+		deadflag = 1;
+		self.attack_msg();
+		rtrue;
+	],
+	attack_msg[;
+		"With the speed of lightning, the wyvern wraps
+		its tail around your neck.^
+		^
+		You die screaming silently.";
+	],				
+	has animate;
+
+
+Object -> TalismanPedestal "pedestal"
+	with name "pedestal",
+	description "This pedestal is some thirteen inches tall and
+		made of some unknown metal.",
+	has scenery supporter;
+
+Object -> -> Talisman "talisman"
+	with name "talisman" "bladed" "sun",
+	description "This rather heavy talisman is in the shape of a
+		stretched six-pointed star.  It's made of gold and is
+		extremely sharp along its edges.  It shines with an
+		incredible brilliance.",
+	before [;
+	Take:
+		if (Wyvern in WyvernTower) {
+			deadflag = 1;
+			print "The wyvern sees you reach for ", (the)
+			self, ".^^";
+			Wyvern.attack_msg();
+			rtrue;
+		}
+	],
+	bad_placement [;
+		"You have placed the bladed sun in the wrong hole.^
+		^
+		You did not heed the warnings and now the Warlock
+		Lord's defenses end your life.  Shafts of red light
+		light shoot out of the eye sockets of the skull and
+		burn you to a crisp.";
+	];
+

@@ -1,0 +1,45 @@
+Inside BanquetBalcony2 "West End of Balcony"
+	with name "balcony",
+	description [;
+		print "This is the extreme west end of the balcony
+		overlooking the banquet hall.  It ends at a large
+		wooden door leading north.";
+
+		if (Mirror in self && Mirror hasnt moved)
+			"  A smallish mirror hangs on the wall here.";
+		"";
+	],
+	e_to BanquetBalcony1,
+	n_to HellhoundDoor;
+
+Object -> Mirror "mirror"
+	with name "hall" "mirror",
+	description "The frame of this fine mirror is laces with silver
+	and gold.",
+	before [;
+	Search:
+		"In the mirror you see a handsome warrior.";
+	],
+	after [;
+	Take:
+		give self ~concealed;
+	],
+	has concealed;
+
+ObligingDoor -> HellhoundDoor "door"
+	with name "door",
+	description "This door seems to be made of solid oak.",
+	door_to [;
+		if (self in BanquetBalcony2)
+			return CircularRoom;
+		return BanquetBalcony2;
+	],
+	door_dir [;
+		if (self in BanquetBalcony2)
+			return n_to;
+		return s_to;
+	],
+	found_in BanquetBalcony2 CircularRoom,
+	with_key JetKey,
+	has scenery static door openable lockable locked;
+

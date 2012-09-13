@@ -1,0 +1,256 @@
+Inside StonePassage "Stone passage"
+	with name "passage" "stone",
+	description [;
+		print "This is an L-shaped stone passage which winds
+		off to the east.  To the south is the entry hall.  Set
+		into the west wall is a small shelf.";
+
+		if (StoneSecret has concealed) {
+			"  Bits of stone are flaking off the north wall.";
+		} else {
+			"  Stones have fallen away to reveal a secret
+			passage leading north.";
+		}
+	],
+	before [;
+	Examine:
+		if (noun == n_obj) {
+			if (StoneSecret has concealed) {
+				move WeakSpot to StonePassage;
+				"There is a spot in this wall that
+				doesn't feel particularly solid.";
+			}
+			"Stones have fallen away to reveal a secret 
+			passage leading north.";
+		}
+	Attack:
+			if (verb_word == 'kill') {
+				"It's not alive.";
+			}
+			if (noun ~= WeakSpot) {
+				"The wall remains standing.";
+			}
+	],
+	s_to HallDoor,
+	e_to FourWay,
+	n_to [;
+		if (StoneSecret in self) {
+			return StoneSecret;
+		}
+		rfalse;
+	],
+
+	out_to HallDoor;
+
+!UnlitTorch ->;
+
+Torch -> OddTorch "odd torch"
+	with name "odd" "torch" "looking",
+	short_name "unlit torch",
+	before [;
+	Examine:
+		self.short_name = "odd torch";
+		print "There is a skull carved into the shaft of this
+		torch.  Above and below that are symbols representing
+		power over the undead";
+		if (self has light) {
+			".  The torch burns with a strange white light";
+		}
+		".";
+
+	Burn:
+		if (second ~= nothing) {
+			if (second hasnt ignition)
+				"You can't burn ", (the) self, " with ", (the)
+				second, ".";
+		}
+		<<SwitchOn self>>;
+	],
+	after [;
+	Take:
+		if (self hasnt moved) {
+			self.short_name = "odd torch";
+			move self to player;
+			"As you pull the torch off the
+			wall, you notice something out of the ordinary
+			about it.";
+ 		}
+	SwitchOn:
+		if (player in WraithRoom) {
+			give self light;
+			"The odd-looking torch burns with a
+			strange white flame.";
+		}
+		give self ~on;
+		"That's probably not a good idea right now.";
+	SwitchOff:
+		"But it's not burning.";
+	],
+	has good;
+
+
+Object -> Shelf "shelf"
+	with name "shelf",
+	description "It's a shelf set into the west wall.",
+	after [;
+	Examine:
+		print "^";
+		<<search self>>;
+	],
+	capacity 3,
+	has static scenery supporter;
+
+Object -> -> TrapCandle "candle"
+	with name "candle",
+	before [;
+	Examine:
+		print "It's a small candle, perfect for reading.";
+		if (self has on) {
+			"  The candle is burning brightly.";
+		} else {
+			if (self has general) {
+				"  The candle looks like it was
+				burning a short time ago.";
+			}
+			"  It has been several years, perhaps
+			decades or even centuries, since this
+			candle was last lit.";
+		}
+
+	Burn:	
+		if (second hasnt ignition)
+			"You can't burn ", (the) self, " with ", (the)
+			second, ".";
+		<<SwitchOn self>>;
+	],
+
+	after [;
+	Take:
+		deadflag = 1;
+		"When you remove the candle from its 
+		pedestal, the floor collapses, and you fall to
+		your death.";
+
+	SwitchOn:
+		give self light;
+		give self general;
+		"The candle burns brightly.";
+
+	SwitchOff:
+		give self ~light;
+		"The candle is extinguished.";
+	],
+	has switchable;
+
+
+Object -> -> trapbook "ancient tome"
+	with name "old" "ancient" "book" "tome",
+	description [;
+		print "It's an ancient tome.  It seems that no one";
+		if (self has general) {
+			print ", except for you,";
+		}
+		print " has disturbed its pages for centuries.";
+
+		if (self has open && child(self)) {
+			print "^^In ", (the) self, " is ", (a)
+			child(self), ".^";
+		}
+		"";
+	],
+	before [;
+	Take:
+		deadflag = 1;
+		"When you remove the book from its
+		pedestal, the floor collapses, and you fall to
+		your death.";
+	Close:
+		give self ~container;
+	Open:
+		give self general;
+		give self container;
+		give self open;
+		print "The book is opened and examined.  A
+		rectangular hole has been cut out of the
+		inside of the book.";
+
+		if (child(self)) {
+			"^^In ", (the) self, " is ", 
+			(a) child(self), ".";
+		}
+	Receive:
+		if (second hasnt is_tiny) {
+			"There is no room in ", (the) noun, ".";
+		}
+	],
+	invent [;
+		switch (inventory_stage) {
+		1:	"my ancient tome";
+		2:	if (self has open)
+				print " (which is open)";
+			else
+				print " (wibble)";
+		}
+
+	],
+	capacity 1,
+!	has container openable;
+	has openable;
+
+Key -> -> -> skullkey "skull key"
+	with name "skull",
+	short_name "skull key",
+	description "This key bears a skull.  This must be a skeleton key."
+	has is_tiny;	
+
+Object -> WallBits "bits of stone"
+	with name "bits" "of" "stone",
+	short name "bits of stone",
+	description "Bits of stone flaked off the north wall.",
+	before [;
+	Take:
+		"The bits of stone aren't much larger than particles of
+		dust.";
+	],
+	has scenery;
+
+Object WeakSpot "weak spot"
+	with name "weak" "spot",
+	short name "weak spot",
+	description "The north wall sounds hollow here.",
+	before [;
+	Attack:
+		if (verb_word == 'kill') {
+			"It's not alive.";
+		}
+		move StoneSecret to StonePassage;
+		move SecretStones to StonePassage;
+		give StoneSecret ~concealed;
+		remove self;
+		"A strong blow to the weak spot in the north wall
+		knocks a couple stones loose.  Then more stones
+		collapse revealing a previously hidden passage.";
+        ],
+        has static scenery;
+
+
+Object SecretStones "stone blocks littering the passage"
+	with name "stone" "stones" "block" "blocks" "pile" "fallen"
+	"jumble",
+	description "It's a jumble of large stones that once concealed
+	the secret passage.",
+	before [;
+	Take:
+		"The stone blocks are too heavy to move.";
+	],
+	has static pluralname;
+
+
+Object StoneSecret "secret passage"
+	with name "secret" "hidden" "passage",
+	description "A narrow passage leading north which was once
+	concealed by a thin wall of stone blocks.",
+	door_to ArrowRoom,
+        door_dir n_to,
+	has scenery door concealed open;
+

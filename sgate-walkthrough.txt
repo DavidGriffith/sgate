@@ -1,0 +1,284 @@
+This walkthrough neglects things like varying solutions to certain
+puzzles and torches dying.
+
+
+open skull
+get iron key
+n
+get all
+unlock hall door with iron key
+drop iron key
+n
+get torch
+open tome
+get skull key
+s
+unlock closet door with skull key
+e
+get all
+w
+drop skull key
+n
+examine north wall
+hit spot
+n
+get arrow
+pull torch
+w
+w
+light odd torch
+throw it at wraith
+get all
+wear cloak
+w
+get dusty scroll
+read it
+get shiny bottle
+read sign
+read sign
+get torch
+cast epor
+e
+e
+e
+s
+e
+s
+e
+get stone
+look in waterfall
+in
+hit boulder
+open pouch
+get gems
+out
+w
+n
+n
+put white gem in hole
+get torches
+get sphere
+s
+s
+put sphere in pool
+s
+get key
+n
+melt ice with torch
+burning
+get sphere
+n
+n
+n
+get shield
+get hammer
+get spear
+s
+n
+get torch
+s
+s
+e
+examine coffins
+open dragon scale coffin
+burn mummy with burning torch
+get sceptre
+e
+get all
+d
+examine west wall
+open hidden door
+w
+put blue gem in hole
+get scroll
+read it
+gnusto crumpled scroll
+e
+u
+hit middle mirror with hammer
+drop hammer
+unlock door with brass key
+n
+throw sphere into fire
+n
+n
+throw spear at troll
+n
+put stone in sling
+kill cyclops with sling
+kill cyclops with sword
+examine well
+turn windlass
+look in bucket
+get gauntlet
+wear it
+n
+get torch
+w
+examine desk
+open drawers
+get shiny scroll
+read it
+gnusto it
+get dirty scroll
+read it
+gnusto it
+get tarnished key
+get glasses 
+wear them
+read red book
+read green book
+read blue book
+get skull
+get map
+put red gem in hole
+n
+get bellows
+learn terrakk
+cast terrakk
+open globe
+get black key
+s
+e
+e
+get horseshoe
+pull ring
+get vial
+n
+get flute
+play flute
+look in hole
+get ring
+examine sapphire ring
+drop flute
+s
+w
+n
+burn rug
+get rusty key
+up
+unlock door with tarnished key
+n
+up
+
+[Exactly which item you need to show the Sphinx will vary.]
+
+show broom to sphinx
+up
+get folded scroll
+get ornament
+examine map
+move map
+get rod
+up
+kill woman with arrow
+get blade
+d
+d
+examine stairs
+s
+w
+get mirror
+unlock door with black key
+n
+get horn
+throw vial at hellhound
+get horn
+up
+throw star at wyvern
+get talisman
+d
+s
+e
+d
+unlock door with rusty key
+n
+get all
+w
+get stone
+put rod in hole
+examine hand
+get wand
+w
+open pouch
+get pouch
+e
+e
+e
+give sceptre to skeleton
+put ring in hole
+d
+get all
+n
+ne
+learn motari
+motari
+n
+
+[ The lever manipulation will vary.  Refer to what's written on the
+stairs in the Sphinx Room.]
+
+pull left lever
+pull middle lever
+push left lever
+push middle
+pull right
+pull middle
+push right
+get orb
+s
+s
+s
+s
+u
+w
+s
+s
+s
+s
+s
+s
+d
+e
+e
+open shiny bottle
+drink shiny potion
+n
+wave wand at snake
+get staff
+s
+w
+w
+up
+n
+n
+n
+learn humana
+humana
+n
+n
+n
+e
+d
+n
+learn illumina
+illumina
+n
+open lid
+get big coin
+drop it in well
+d
+get mallet
+hit gong with mallet
+drop mallet
+give gold coin to ferryman
+board raft
+examine slabs
+examine left slab
+put talisman in left niche
+play horn
+put blade on staff
+put orb on staff
+w
+point staff at behemoth
+quit

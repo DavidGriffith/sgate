@@ -1,0 +1,164 @@
+Inside SphinxRoom "Sphinx Room"
+	with name "room",
+	description [;
+		"You are in a small circular room.  A narrow stairway
+		leads up.  The banquet hall is south.";
+	],
+	s_to SphinxDoor,
+	u_to [;
+		if (Sphinx hasnt general) {
+			Sphinx.ask_riddle();
+			rtrue;
+		}
+		give Sphinx ~general;
+		print "As you climb the stairs, you notice odd
+		markings scratched on them.^";
+		return Observatory;
+	];
+
+
+Object -> SphinxStairs "stairs"
+	with name "stairs" "stair" "stairway" "steps",
+	lever_pattern 1,
+	description [;
+		if (self hasnt general) {
+			give self general;
+			self.lever_pattern = random(4);
+		}
+		if (self notin SphinxRoom) {
+			"You can see odd markings on the sides, but not
+			very easily from here.";
+		}
+		print "Inscribed on the sides of the steps you see
+			strange markings:^^";
+
+		switch (self.lever_pattern) {
+		1:
+		print 	"                  |_ _|^",
+			"                    |  ^",
+			"            |_ _       ^",
+			"              | |      ^",
+			"      |_|_             ^",
+			"          |            ^",
+			"|_|_|                  ^";
+		2:
+		print 	"                  |_ _|^",
+			"                    |  ^",
+			"             _ _|      ^",
+			"            | |        ^",
+			"       _|_|            ^",
+			"      |                ^",
+			"|_|_|                  ^";
+		3:
+		print 	"                   _|_|^",
+			"                  |    ^",
+			"             _ _|      ^",
+			"            | |        ^",
+			"      |_ _|            ^",
+			"        |              ^",
+			"|_|_|                  ^";
+		4:
+		print 	"                  |_|_ ^",
+			"                      |^",
+			"            |_ _       ^",
+			"              | |      ^",
+			"      |_ _|            ^",
+			"        |              ^",
+			"|_|_|                  ^";
+		default:
+		print "Bad pattern.  Error in sphinxroom.inf.^^";
+		}
+	],
+	before [;
+	Climb:
+		if (player in SphinxRoom)
+			<<go u_to>>;
+		<<go d_to>>;
+	],
+	found_in SphinxRoom Observatory,
+	has scenery; 
+
+
+Object -> Sphinx "sphinx"
+	with name "sphinx",
+	description "This is a sphinx.  It has the body of a lion and
+		the head of a man.  It looks at you indifferently.",
+	riddle_obj,
+	riddle_num,
+	repeat false,
+	before [weapon;
+	Attack, ThrownAt:
+		if (noun == self)
+			weapon = second;
+		else
+			weapon = noun;
+		print "Suddenly the room begins to fade!  It seems that
+		the sphinx's magic has taken you to...^";
+
+		if (weapon == nothing)
+			PlayerTo(ChasmBridge);
+		else
+			PlayerTo(BanquetCorridor);
+
+		rtrue;
+	],
+	ask_riddle [;
+		print "As you move, the sphinx speaks:^
+		^
+		~Who are you?  No one may pass without my permission.
+		To pass, you must answer a riddle!~^^";
+		self.pick_riddle();
+		"^^~Dost thou know?  Bring me the answer to my riddle
+		and I shall let thee pass.~";
+	],
+	pick_riddle [;
+		if (self.repeat == false) {
+			self.riddle_num = random(6);
+			self.repeat = true;
+		}
+		switch(self.riddle_num) {
+		1:
+		print "~I'm a fire's friend, my body swells with 
+			wind.  With my nose I blow, how the embers
+			glow!~";
+		self.riddle_obj = Bellows;
+
+		2:
+		print "~I've no eyes, but once did see, thought had I
+		but now I'm white, and empty.~";
+		self.riddle_obj = Skull;
+
+		3:
+		print "~First burnt and beaten, drowened and pierced
+		with nails, then stepped on by long-faced animals.~";
+		self.riddle_obj = Horseshoe;
+
+		4:
+		print "~Long neck, no hands, 100 legs, cannot
+		stand. Born of forest nest, against a wall I rest.~";
+		self.riddle_obj = Broom;
+
+		5:
+		print "~It has towns, but no houses.  Forests, but no
+		trees.  Rivers, but no fish.~";
+		self.riddle_obj = Map;
+
+		6:
+		print "~You look at me, I look back.  Your right hand
+		raises, I my left.  You speak, but I in vain.~";
+		self.riddle_obj = Mirror;
+		}
+	],
+	life [;
+	Show:
+		if (noun == self.riddle_obj) {
+			give self general;
+			self.repeat = false;
+			"~You have correctly answered my riddle,
+			warrior.  Thou may now pass.~";
+		}
+	],
+	has animate;
+
+
+

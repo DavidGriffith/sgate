@@ -1,0 +1,132 @@
+Outside Entrance "Entrance"
+	with name "entrance",
+	description
+		"You are standing just south of the Castle
+		Shadowgate.  In front of you is a heavy wooden door set
+		in the stone wall of the castle.  A skull hangs over
+		the door.",
+	before [;
+	Examine:
+		if (noun == n_obj || noun == ne_obj || noun == nw_obj) {
+			"It's a stone wall.";
+		}
+	],
+	in_to OuterDoor,
+	n_to OuterDoor,
+	e_to EastWall,
+	ne_to EastWall,
+	w_to WestWall,
+	nw_to WestWall,
+	u_to "Scaling the wall is impossible.",
+	d_to "The ground is hard-packed and you don't have a shovel.",
+	cant_go "You have no idea what's out there.  Besides, your job
+		involves being inside the castle.",
+	has scenery;
+
+Object -> DoorSkull "skull"
+	with name "skull" "tiny" "hollow",
+	description [; 
+		if (self has open) {
+			print "The skull has been slid up revealing a
+			tiny hollow";
+			if (ironkey in self) {
+				print " which contains an iron key";
+			}
+			".";
+		} else {
+			"It's the skull of some unknown creature.  Its
+			meaning seems quite clear: death lurks
+			inside.";
+		}
+	],
+	before [;
+	Search:
+		if (ironkey in self && self hasnt open) {
+			"You can see something slightly rusty behind the
+			skull.";
+		}
+	Push:
+		if (verb_word == 'push') {
+			<<take noun>>;
+		}
+		if (verb_word == 'slide' || 'move') {
+			if (self has open) {
+				<<close noun>>;
+			}
+			<<open noun>>;
+		}
+	Turn, Take, Pull:
+		"The skull rattles a bit, but remains fixed to the wall.";
+	Receive:
+		if (noun has is_key && ironkey notin self) {
+			"It's not clear how even a key fit in
+			there.";
+		}
+		"The hollow is far too small to accept ", (the) noun, ".";
+	],
+	after [;
+	Open:
+		if (ironkey in self) {
+			"As if by magic, the skull rises, revealing an
+			iron key nestled in a tiny hollow.";
+		}
+		"As if by magic, the skull rises, revealing nothing but dust.";
+	Close:
+		"The skull slides back down.";
+	],
+	capacity 0,
+	has scenery container openable;
+
+Key -> -> ironkey "iron key"
+	with name "iron",
+	short_name "iron key",
+	description "It's a small iron key.",
+	has is_tiny;
+
+Object -> -> dust "dust"
+	with name "dust",
+	description "Dust blown around by the wind has collected behind
+		the skull.",
+	before [;
+	Smell:
+		"AAAAAACHOOOOOO!!!";
+
+	Taste, Take:
+		if (verb_word == 'eat' or 'taste') {
+			"Bleah!  Ptooey!";
+		}
+		"You get take a bit of dust which immediately 
+		blows away.";
+	],
+	has scenery;
+
+Object -> OuterDoor "wooden door"
+	class ObligingDoor,
+	with name "wood" "wooden" "door" "heavy",
+	description "It's a heavy wooden door with iron hinges.",
+	when_open [;
+		if (self in Entrance) {
+			"The door is open.";
+		}
+!		"The door leading outside is open.";
+	],
+	when_closed [;
+		if (self in Entrance) {
+			"The door is closed.";
+		}
+!		"The door leading outside is closed.";
+	],
+	door_to [;
+		if (self in Entrance) {
+			return Hall;
+		}
+		return Entrance;
+	],
+	door_dir [;
+		if (self in Entrance) {
+			return n_to;
+		}
+		return s_to;
+	],
+	found_in Entrance Hall,
+	has scenery static door openable;

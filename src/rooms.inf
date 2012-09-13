@@ -1,0 +1,54 @@
+Inside NullRoom "Null Room"
+	with name "null" "room",
+	description "You should not be here.";
+
+Include "entrance.inf";
+Include "eastwall.inf";
+Include "westwall.inf";
+Include "northwall.inf";
+Include "hall.inf";
+Include "closet.inf";
+Include "stonepassage.inf";
+Include "arrowroom.inf";
+Include "fourway.inf";
+Include "coldroom.inf";		
+Include "hotroom.inf";
+Include "poolcavern.inf";
+Include "frozenpool.inf";
+Include "waterfall.inf";
+Include "behindfalls.inf";
+Include "twobridges.inf";
+Include "wraithroom.inf";
+Include "eporroom.inf";
+Include "sculpted.inf";
+Include "coffinroom.inf";
+Include "mirrorroom.inf";
+Include "fireroom.inf";
+Include "chasmbridge.inf";	! still needs extra testing
+Include "courtyard.inf";	! the well still needs work.
+Include "banquetcorridor.inf";
+Include "library.inf";		! need to add Motori spell effects
+Include "study.inf";
+Include "laboratory.inf";
+Include "garden.inf";
+Include "banquethall.inf";
+Include "banquetbalcony1.inf";
+Include "banquetbalcony2.inf";
+Include "circularroom.inf";
+Include "sphinxroom.inf";	! check back here when doing the lever room
+Include "wyverntower.inf";
+Include "observatory.inf";
+Include "towerprison.inf";
+Include "smallcorridor.inf";
+Include "balcony.inf";
+Include "lookout.inf";		! Maybe need to add more coins.
+Include "snakeroom.inf";
+Include "throneroom.inf";	! probably done
+Include "stonetunnel.inf";
+Include "gargoyleroom.inf";
+Include "lavachamber.inf";
+Include "leverroom.inf";
+Include "wellroom.inf";
+Include "riverstyx.inf";
+Include "skullgate.inf";
+Include "warlockcave.inf";

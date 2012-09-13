@@ -1,0 +1,109 @@
+Inside Study "Study"
+	with name "study",
+	description [;
+		print "This room is dominated by a large fireplace set
+		in a red brick wall.  A window faces north.  The only
+		exit is south.";
+
+		if (StudyRug in self) {
+			print "  A beautifully woven rug is in
+			the middle of the room.  A globe on a
+			stand is in the middle of it.";		
+			if (StudyRug has general)
+				"  One end of the rug is rolled up.";
+			"";
+		}
+	],
+	before [;
+	Examine:
+		if (noun == n_obj)
+			<<examine StudyWindow>>;
+	],
+	s_to	Library;
+	
+Rug -> StudyRug "rug";
+
+
+Object -> StudyWindow "window"
+	with name "window",
+	description "Through this portal, you can see the moon hovering
+	over the darkened mountains.",
+	has scenery;
+
+Object -> Globe "globe"
+	with name "globe",
+	description [;
+		print "It is a globe mounted on a stand for display.  It
+		shows all the known lands.";
+		if (self hasnt open) {
+			"  Looking closely, you can see a seam
+			along the equator.";
+		}
+		"";
+	],
+	describe [;
+		if (self has open)
+			"^The top hemisphere of the globe has been
+			tilted open.";
+		else rtrue;
+	],
+	before [;
+	Take:
+		"It's far too heavy for one person to move.";
+	],
+	has container static;
+
+! Key6
+Key -> -> JetKey "black key"
+	with name "black" "key",
+	description "It's a jet black skeleton key.",
+	has is_tiny;
+
+! Bottle 5
+Bottle -> -> BlackBottle "black bottle"
+	with name "black" "bottle",
+	description "It's a small black bottle with a cork on top.",
+	capacity 1;
+
+Object -> -> -> SweetPotion "sweet-smelling potion"
+	with name "sweet" "smelling" "potion",
+	description "The potion has a strong sweet smell.",
+	before [;
+	Smell:
+		"It smells very sweet.";
+	Drop, Take:
+		remove self;
+		"The liquid dribbles all over the ground.";
+	Taste, Eat, Drink:
+		"You drink the liquid in the bottle.  It's as sweet as
+		sugar.";	
+	],
+	has liquid edible;
+
+Object -> Fireplace "fireplace"
+	with name "fireplace",
+	description "This fireplace is quite large.",
+	has container open transparent scenery;
+
+Object -> StudyBrick "brick"
+	with name "brick" "bricks",
+	description "It's just a red brick wall.",
+	has scenery;
+
+Object -> Mantel "mantelpiece"
+	with name "shelf" "mantel" "mantelpiece",
+	description "This is a red brick shelf over the fireplace.",
+	has supporter scenery;
+
+Object -> -> Goblet "pewter goblet"
+	with name "pewter" "goblet" "cup",
+	description "The pewter goblet glows with a lustrous shine.";
+
+Object -> -> Bellows "bellows"
+	with name "bellows",
+	description "This wooden bellows has stoked many a floundering fire.";
+
+Object -> -> Poker "poker"
+	with name "poker" "iron",
+	description "It's a black iron poker.  It's used to stir the
+	embers of an ongoing fire.";

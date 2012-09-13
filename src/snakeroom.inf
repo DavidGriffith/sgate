@@ -1,0 +1,112 @@
+! A giant snake confronts you in this cave.
+
+! It's a giant snake.  It doesn't move.  Perhaps it's getting ready to
+! strike!
+
+! You wait for the creature to kill you but it still has yet to move.
+
+! Upon close inspection, you laugh at your foolishness.  It is only a
+! statue!
+
+
+! This huge state is carved in the shape of a giant snake.  It is
+! extremely life-like,
+
+Inside SnakeRoom "Snake Room"
+	with name "snake" "room",
+	description [;
+		if (Snake in self)
+			print "A giant snake confronts you in this small cave.";
+		else
+			print "You are in a small cave.";
+		" The only exit is south.";
+	],
+	s_to TwoBridges;
+
+
+! You wait for the creature to kill you, but it still has yet to move.
+!
+! Upon closer inspection, you laugh at your foolishness.  It is only a
+! statue!
+
+Object -> Snake "large green snake"
+	with name "large" "green" "snake",
+	look_count 0,
+	description [;
+		if (self.look_count <= 0) {
+			self.look_count++;
+			"It doesn't move. Perhaps it's getting ready to
+			strike.";
+		}
+		if (self.look_count == 1) {
+			self.look_count++;
+			"Upon closer inspection, you laugh at your
+			foolishness.  It is only a statue!";
+		}
+		"This huge statue is carved in the shape of a giant
+		snake.  It is extremely lifelike.";
+	],
+	before [;
+	Attack, ThrownAt:
+		if (self.look_count < 2) {
+			self.look_count = 2;
+			"As you strike the snake, you notice it's
+			not a real snake at all, but an extremely
+			lifelike stone statue.";
+		}
+		"It's still a stone statue.";
+	],
+	has static;
+
+
+Object Staff "staff"
+	with name "staff",
+	short_name "staff",
+	article "a",
+	description [;
+		if (Blade in self) {
+			if (SilverOrb in self) {
+				"Power emanates from the staff!  The
+				three are, now and forever, one.";
+			}
+			"The Golden Thorn is permanently bonded onto
+			the staff.";
+		}
+		"Druidic script winds its way around this staff.
+		You can feel power emenating from it!";
+	],
+	before [;
+	Receive:
+		if (noun == Blade) {
+			move noun to self;
+			"The golden spike slides smoothly onto the
+			staff and locks into place.";
+		}
+		if (noun == SilverOrb) {
+			if (Blade notin self) {
+				"It doesn't fit.";
+			}
+			move noun to self;
+			self.short_name = "Staff of Ages";
+			self.article = "the";
+			give self general;
+			"Light cascades through the room as the staff
+			becomes a living entity!  The Staff of Ages is 
+			now complete.";
+		}
+		"It doesn't fit.";
+	Wave, Point:
+		if (second ~= Behemoth && Behemoth in parent(player)) {
+			Warlock.killplayer();
+			rtrue;
+		}
+		if (second == Behemoth && Behemoth in parent(player)) {
+			if (self has general) {
+				Behemoth.victory();
+				rtrue;
+			}
+			Warlock.killplayer();
+			rtrue;
+		}
+	];
+

@@ -1,0 +1,103 @@
+Inside SkullGate "Skull Gate"
+	with name "room",
+	description "A stone skull stands against the west wall,
+		screaming silently.  For some reason, you get the
+		feeling you are standing on sacred ground.  Three
+		stone slabs hang on the north wall.  Above them are
+		three symbols.  The River Styx lies to the south.",
+	s_to RiverStyx,
+	w_to GateDoor;
+
+! This chamber has been hewn out of solid rock and is very hot.
+
+Object -> GateDoor "skull gate"
+	with name "skull" "gate",
+	description "The jaw of the skull is made of polished stone and
+		forms a door.  Hot, dry air emanates from the eye
+		sockets and nose.",
+	describe [;
+		print "^The skull gate is ";
+		if (self has open)
+			"open.";
+		"closed.";
+	],
+	door_to WarlockCave,
+	door_dir w_to,
+	before [;
+	Open:
+		"While it's obviously a door, it isn't obvious how to
+		open it.";
+	],
+	has static door;
+
+
+Object -> SlabSymbols "symbols"
+	with name "symbols" "shapes",
+	description "From left to right you see carved shapes of a
+		sword, a crown, and a jewel.",
+	has scenery;
+
+
+Object -> Slabs "slabs"
+	with name "slabs",
+	description "Polished stone slabs side by side, each with a
+		star-shaped niche cut out of it.  Above each is a
+		carved symbol.",
+	has scenery;
+
+
+Object -> LeftNiche "left slab"
+	with name "left" "niche" "slab" "symbol",
+	description [;
+		print "It's a polished stone slab with a star-shaped
+		niche cut out of it.";
+		if (Talisman in self)
+			print "The Bladed Sun is tightly nestled in the niche.";
+		" A carving of a sword is above the niche.";
+	],
+	before [;
+	Receive:
+		if (noun == Talisman) {
+			move noun to self;
+			"The artifact, known as the Bladed Sun, is now
+			secured and in place.";
+		}
+		"It won't fit.";
+	],
+	has container scenery;
+
+
+Object -> MidNiche "middle slab"
+	with name "middle" "mid" "niche" "slab" "symbol",
+	description "It's a polished stone slab with a star-shaped
+		niche cut out of it.  A carving of a crown is above
+		the niche.",
+	before [;
+	Receive:
+		if (noun == Talisman) {
+			deadflag = 1;
+			Talisman.bad_placement();
+			rtrue;
+		}
+		"It won't fit.";
+	],
+	has container scenery;
+
+
+Object -> RightNiche "right slab"
+	with name "right" "niche" "slab" "symbol",
+	description "It's a polished stone slab with a star-shaped
+		niche cut out of it.  A carving of a jewel is above
+		the niche.",
+	before [;
+	Receive:
+		if (noun == Talisman) {
+			deadflag = 1;
+			Talisman.bad_placement();
+			rtrue;
+		}
+		"It won't fit.";
+	],
+	has container scenery;
+
+

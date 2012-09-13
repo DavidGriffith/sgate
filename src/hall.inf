@@ -1,0 +1,92 @@
+Inside Hall "Hall"
+	with name "hall",
+	description [;
+		print "You stand in a long corridor.  Huge stone
+		archways line the entire hall.  A large wooden door
+		covered with sheets of steel is at the north end of the
+		hall.  A small closet is to the east.  ";
+
+		if (HallRug in self) {
+			if (HallRug hasnt general) {
+				print "A beautifully woven";
+			} else {
+				print "A rolled up";
+			}
+			print " rug is in the middle of the room.";
+		}
+
+		if (self hasnt visited) {
+"^^A huge pair of disembodied eyes appear high in the air above
+you, glaring angrily.  The booming voice of the Warlock Lord bursts
+forth from nowhere.^
+^
+~That pitiful wizard Lakmir was a fool to send a buffoon like you to
+stop me.  Your will surely regret it for the only thing here for you is
+a horrible death!~^
+^
+The eyes fade away as if made of smoke.  Maniacal laughter echos in your
+ears.^";
+		}
+		"";
+	],
+	n_to HallDoor,
+	e_to HallClosetDoor,
+	s_to OuterDoor;
+
+
+UnlitTorch ->;
+UnlitTorch ->;
+Rug -> HallRug "rug";
+
+
+ObligingDoor -> HallClosetDoor "closet door"
+	with name "closet" "door" "small" "narrow",
+	description "The closet door is very narrow.  Even
+		though it's only an inch thick, it is very sturdy.",
+	door_to [;
+		if (self in Hall) {
+			return HallCloset;
+		}
+		return Hall;
+	],
+	door_dir [;
+		if (self in Hall) {
+			return e_to;
+		}
+		return w_to;
+	],
+	found_in Hall HallCloset,
+	with_key skullkey,
+	has scenery static door openable lockable locked;
+
+
+ObligingDoor -> HallDoor "hall door"
+	with name "door" "hall" "steel",
+	description "This wooden door is reinforced with heavy sheets 
+		of steel.",
+
+!	when_open [;
+!		if (self in Hall)
+!			"The hall door is open.";
+!		"The door leading back to the hall is open.";
+!	],
+!	when_closed [;
+!		if (self in Hall)
+!			"The hall door is closed.";
+!		"The door leading back to the hall is closed.";
+!	],
+	door_to [;
+		if (self in Hall)
+			return StonePassage;
+		return Hall;
+	],
+	door_dir [;
+		if (self in Hall)
+			return n_to;
+		return s_to;
+	],
+	found_in Hall StonePassage,
+	with_key ironkey,
+	has scenery static door openable lockable locked;
+
+

@@ -1,0 +1,102 @@
+Outside Balcony "Balcony"
+	with name "balcony",
+	description [;
+		"From this windy ledge you can get an idea of the
+		size and strength of the castle.  A low, wide wall
+		runs about the perimeter of the balcony.  It continues
+		on to the west.";
+	],
+
+	e_to SmallCorridor,
+	w_to LookoutPoint;
+
+
+Object -> BalconyWall "wall"
+	with name "balcony" "wall",
+	description "It's a stone wall running around the perimeter of
+		the balcony.",
+	before [;
+	LetGo:
+		if (noun hasnt moved && self hasnt general) {
+			give self general;
+			give RodHole ~concealed;
+			move noun to player;
+			"As you pick up ", (the) noun, " you
+			notice it was concealing a small hole.";
+		}
+	],
+	has scenery supporter;
+
+Stone -> ->;
+
+Object -> RodHole "hole"
+	with name "hole" "mount" "corner",
+	describe [;
+		print "^In a corner of the wall, you can see a small
+		hole";
+		if (child(self))
+			print " (in which is ", (a) child(self), ")";
+		".";
+	],
+	description "This appears to be a mount of some sort, perhaps
+		for a flagpole.  It points straight up.",
+	after [;
+		give self ~concealed;
+	Receive:
+		if (noun hasnt is_tiny)
+			print_ret (The) noun, " won't fit.";
+		if (noun == IronRod) {
+			move SkelHand to Balcony;
+			"You put ", (the) noun, " into ", (the)
+			self, ".^
+			^
+			Suddenly the sky seems to be on fire as
+			a bolt of pure lightning strikes the rod.^
+			^
+			You are startled to see a skeletal hand
+			holding a wand rise from a hole that has
+			formed at your feet.";
+		}
+	LetGo:
+		if (noun == IronRod) {
+			"The lightning strike seems to have fused the
+			rod to the stone wall.";
+		}
+	],
+	capacity 1,
+	has concealed static container open;
+
+
+Object SkelHand "skeletal hand"
+	with name "skeletal" "hand",
+	description "Although the hand is skeletal, it holds the wand
+		rather tightly.",
+	before [;
+	LetGo:
+		print "As you take ", (the) child(self), " from ",
+		(the) self, ", it begins to descend.  The hole then
+		closes up as if it had never been.^";
+		move child(self) to player;
+		remove self;
+		rtrue;
+	],
+	capacity 0,
+	has static container open;
+
+Object -> Wand "wand"
+	with name "wand",
+	description "It's a wand of sorts.  Carved on the side of the
+		wand is a small picture of a serpent.",
+	before [;
+	Wave, Point:
+		if (second == Snake && Snake in parent(player)) {
+			remove Snake;
+			move Staff to parent(player);
+			"The snake begins to shake and shudder.  Is it
+			just your eyes or is it shrinking?  The
+			serpentine statue begins to change!  It grows
+			smaller and smaller!  It dematerializes and
+			forms anew as a staff of tremendous beauty!";
+		}
+	];
+

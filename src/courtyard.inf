@@ -1,0 +1,271 @@
+Outside Courtyard "Courtyard"
+	with name "courtyard" "court" "yard",
+	description "The moon casts a brilliant shadow over the
+		grounds of the courtyard.  In the middle of the
+		courtyard is a stone well.  There are exits to the
+		north and south.",
+	d_to [;
+		deadflag = 1;
+		"With a mighty leap, you jump head first into the well.
+		On the way down, you see no water below.^
+		^
+		The well was deeper than you imagined.  You have just
+		broken every bone in your body.";
+	],
+	s_to [;
+		give Cyclops ~general;
+		return ChasmBridge;
+	],
+	n_to [;
+		if (Cyclops.alive == true) {
+			if (Cyclops hasnt general)
+				"The cyclops bars your way.";
+			else
+				return BanquetCorridor;
+		}		
+		return BanquetCorridor;
+	],
+	u_to	"You are unable to fly.",
+	cant_go "You cannot scale the courtyard walls.";
+
+
+! If cyclops has general, but is not dead, then it's stunned and will
+! return.
+!
+! Note: it seems impossible to get past the troll without throwing the
+! spear at it.  Perhaps I should make it possible to kill the cyclops
+! with the spear anyhow.
+!
+Object -> Cyclops "cyclops"
+	with name "cyclops" "giant",
+	alive true,
+	killed_with,
+	describe [;
+		if (self.alive == true && self hasnt general) {
+			"^A cyclops is standing here in front of the
+			 north exit.";
+		} else {
+			print "^A cyclops is lying flat on his back";
+			if (self.alive == false)
+				print " in a pool of blood";
+			else
+
+			print " in front of the north exit.";
+			if (self.alive == true)
+				print "  He makes an occasional pained
+				groan.";
+			"";
+		}
+	],
+	description [;
+		if (self.alive) {
+			if (self hasnt general) {
+				"The cyclops stands before you, ready for
+				battle!";
+			}
+			"You can almost see the stars revolving around
+			the cyclops' head.  He is down, but not out.";
+		} else {
+			"It's a dead cyclops.  What do you expect after
+			stabbing him with your ", (name) self.killed_with, "?";
+		}
+	],
+	before [weapon;
+	Attack:
+		if (noun == self)
+			weapon = second;
+		else
+			weapon = noun;
+
+		if (weapon == nothing) {
+			print "You raise an angry fist at ", (the)
+			self, " and move forward.^^";
+			self.attack_msg();
+			rtrue;
+		}
+
+		if (self.alive == false)
+			"But ", (the) self, " is already dead.";
+
+		if (weapon == Sling) {
+			if (child(Sling) == nothing)
+				"But the sling isn't loaded.";
+			else {
+				if (self has general) {
+					"You smack the cyclops once
+					again with ", (a) child(Sling),
+					" from your sling, but he's
+					still not dead.";
+				}
+				print "As soon as you start twirling the
+				sling, a magical influence takes over
+				your body!^
+				^
+				You cry out, ~Death to the
+				Philistine!~, and release ", (the)
+				child(Sling), ".^
+				^
+				Bull's-eye!^
+				^
+				The cyclops staggers, then falls flat
+				on his back.^
+				";
+				move child(Sling) to parent(self);
+				give self general;
+				rtrue;
+			}
+		}
+
+		print "You raise ", (the) weapon, " and move
+		forward.^^";
+
+		if (weapon == sword) {
+			if (self has general) {
+				self.alive = false;
+				self.killed_with = weapon;
+				"You drive the sword deep into the
+				cyclops.  Blood pours out of the wound
+				and onto the grass.";
+			}
+			self.attack_msg();
+			rtrue;
+		}
+
+		self.attack_msg();
+		rtrue;
+	],
+	attack_msg [;
+		deadflag = 1;
+		"A battle cry dies in your throat as the cyclops
+		crushes your skull with his club.";
+	],		
+	has animate;
+
+
+Object -> CyclopsWell "well"
+	with name "well",
+	description "It's a finely crafted well made of stone and
+		mortar.  A weathered rope, nibbled by water rats, hangs
+		from the windlass down into the well.",
+	before [;
+	Receive:
+		print "You drop ", (the) noun, " down the well.";
+		remove noun;
+		"";
+	Search:
+		if (CyclopsRope has general) {
+			if (child(CyclopsRope))
+				print_ret "A ", (name) child(CyclopsRope),
+				" is tied to the rope and is just
+				within reach.";
+			else
+				"The end of the rope hangs free a short
+				length from the windlass.";
+		}
+		"A rope tied to the windlass goes down into the depths
+		of the well.";
+	],
+	has container open scenery;
+
+
+Object -> -> CyclopsRope "rope"
+	with name "rope",
+	description [;
+!		print "The teeth marks of water rats are evident on this
+!		rope.  ";
+		if (CyclopsRope hasnt general) {
+			print "It seems as if ";
+			if (child(DownWell)) {
+				print "there's something";
+			} else
+				print "nothing";
+			" at the end of the rope out of sight far
+			down the well.";
+		}
+		print "It's almost completely wound around the
+			windlass.";
+		if (child(self)) {
+			"  Hanging from it is ", (a) child(self), "."; 
+		}
+	],
+	before [;
+	Take:
+		deadflag = 1;
+		"The rope is loose.  You reach out for it, but as you
+		do, you slip and fall down the well!";
+	Pull:
+		if (CyclopsRope hasnt general) {
+			print "(turning the crank on the windlass)^^";
+			<<turn CyclopsWindlass>>;
+		}
+		"But the rope is pulled in all the way.";
+	Untie, LetGo:
+		print "You pull in ", (the) child(self), " and remove
+		it from ", (the) self, ".";
+		move child(self) to player;
+		"";
+	Receive:
+		move noun to self;
+		"You tie ", (the) self, " to ", (the) child(self), ".";
+	Tie:
+		move second to self;
+		"You tie ", (the) self, " to ", (the) child(self), ".";
+	],
+	capacity 1,
+	has supporter scenery;
+
+
+Object -> -> CyclopsWindlass "windlass"
+	with name "windlass" "crank",
+	description "It's a round wooden beam with a crank on one 
+		end.  It sits on top of two metal supports sticking out from
+		the body of the well.",
+	before [;
+	Turn:
+		if (CyclopsRope hasnt general) {
+			give CyclopsRope general;
+			move child(DownWell) to CyclopsRope;
+			print "The crank turns rather easily.  At the
+			end of the rope is ", (a) child(CyclopsRope),
+				".";
+			"";
+		} else {
+			give CyclopsRope ~general;
+			print "You turn the crank.  The rope ";
+			if (child(CyclopsRope)) {
+				move child(CyclopsRope) to DownWell;
+				print "and ", (name) child(DownWell),
+				" lower ";
+			} else
+				print "lowers ";
+			"to the bottom of the well";
+		}
+	],
+	has scenery;
+
+! Just a place to keep the stuff at the end of the rope.
+!
+Object DownWell "down the well"
+	with description "You should not be here.";
+
+Object -> CyclopsBucket "bucket"
+	with name "bucket" "pail",
+	description "This small bucket is used to fetch water from the
+		depths.",
+	capacity 5,
+	has container open;
+
+!Clothes -> -> Gauntlet "gauntlet"
+!	with name "gauntlet" "glove",
+!	short_name "gauntlet",
+!	level 0,
+!	area 4,
+!	description "It's a gauntlet of silver plate.  It bears the
+!		symbol of the Circle of Twelve.";
+
+Object -> -> Gauntlet "gauntlet"
+	with name "gauntlet" "glove",
+	short_name "gauntlet",
+	description "It's a gauntlet of silver plate.  It bears the
+		symbol of the Circle of Twelve.",
+	has clothing;

@@ -1,0 +1,142 @@
+Inside HotRoom "Hot Room"
+	with name "hot" "room",
+	description "Fear grips you as you enter this hot room.  This is 
+	a long north-south passage.  A pair of reptillian eyes peer out 
+	of the darkness beyond an archway at the north end of the 
+	passage.  A large wooden chest bound with iron stands against
+	the east wall.",
+	s_to [;
+		Dragon.power = 0;
+		return ColdRoom;
+	],
+	n_to [;
+		deadflag = 1;
+		"You step past the archway and face a none-too-happy
+		dragon.  Flames shoot from the dragon's mouth and
+		engulf your body.  You pay for your curiosity with your
+		life.";
+	];
+
+
+! This code is rather clunky, but does work as intended.
+!
+! Player has three moves to do anything.  Not even "TAKE ALL" will
+! thwart this rule.  However, the player can exit the room and reenter,
+! just like in the original game.
+
+Object -> Dragon "hall dragon"
+	with name "hall" "dragon",
+	short_name "hall dragon",
+	power 0,
+	before [;
+	Examine, Smell:
+		if (self in player) {
+			"How did you manage to pick up this 
+			dragon?  The Implementors aren't going to like
+			this.";
+		}
+		if (verb_word == 'smell') {
+			"The dragon smells of burning sulfur.";
+		}
+		"All you can see are two burning eyes peering
+		out of the darkness.";
+	],
+	react_after [;
+		self.blast();
+	],
+	blast [;
+		if (self.power < 2) {
+			self.power++;
+			rtrue;
+		}
+
+		if (shield notin player) {
+			deadflag = 1;
+			"^WOOOOOSH!!!!  A jet of flame shoots out
+			from beyond the archway.  Dragon flame engulfs
+			your body.  You pay for your curiosity with your
+			life.^";
+		}
+		switch (self.power++) {
+		2:
+			"^WOOOOOSH!!!!  A jet of flame shoots out
+			from beyond the archway.  Your raise your
+			shield just in time to block the dragon flame.^";
+		3:
+			"^Again flame spews forth.  You use the shield
+			for protection.^
+			The shield is getting warm.^";
+		4:	
+			"^Again flame spews forth.  You use the shield
+			for protection.^
+			The shield is getting intolerably hot.  You
+			don't know how much longer you can stand it.^";
+		5:
+			deadflag = 1;
+			"^The shield melts under the intensity of the
+			dragon flame.  Your body fares no better.  Not
+			even your best friend could recognize your
+			burning body.^
+			^
+			Dragon flame engulfs your body.  You pay for
+			your curiosity with your life.^";
+		6:
+			"You should not have survived that blast.
+			There is a serious bug in hotroom.inf.^";
+		}
+	],
+	has animate scenery;
+
+UnlitTorch ->;
+
+Object -> Shield "shield"
+	with name "shield",
+	description "It's a heavy shield.  There are only a few dents in it.";
+	
+!Clothes -> Helmet "helmet"
+!	with name "helmet" "helm",
+!	area 0,
+!	level 4,
+!	conceal false,
+!	description "This seems to be a helmet of the sort commonly worn 
+!	by hobgoblins.";
+
+Object -> Helmet "helmet"
+	with name "helmet" "helm",
+	description "This seems to be a helmet of the sort commonly worn 
+	by hobgoblins.",
+	has clothing;
+
+Object -> Bone "bone"
+	with name "bone",
+	description "This bone has been picked clean.",
+	has float;
+
+Object -> Hammer "hammer"
+	with name "hammer",
+	description "It's an ancient dwarvish war hammer.  This weapon
+	does not show the signs of battle.",
+	has weapon;
+
+Object -> Spear "spear"
+	with name "spear",
+	description "This spear is some seven feet long.  The tip seems to 
+	be made of finely forged silver.",
+	has weapon;
+
+Object -> DriedSkull "dried skull"
+	with name "skull" "dried",
+	description "It seems to be the skull of some unfortunate 
+	individual.  It looks like it has been dried and cracked by 
+	extreme heat.",
+	has float;
+
+Object -> DummyChest "iron-bound chest"
+	with name "chest" "iron" "bound" "iron-bound",
+	description "This is an extremely heavy iron-bound chest.",
+	before [;
+	Take:
+		"The chest is far too heavy to move.";
+	],
+	has container openable lockable locked;
+

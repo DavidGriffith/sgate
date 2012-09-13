@@ -1,0 +1,189 @@
+! Note: The player is not supposed to be able to reach this place via the 
+! passage to the EPOR room.  If the player takes that passage without 
+! first casting EPOR in the EPOR room, the player will die.  The only 
+! way to get here is through the secret passage from the StonePassage.
+
+Inside ArrowRoom "Arrow Room"
+	with name "room",
+	description [;
+		print "Cold air rushes into this narrow chamber from an 
+		opening some ten feet above the floor on the north wall.";
+
+		if (BrokenLedge in self) {
+			print "  A broken stone ledge lies in pieces on 
+			the floor directly beneath the opening.";
+		} else {
+			print "  A ledge projects from below the 
+			opening and is just low enough for you to reach.";
+		}
+
+		if (SilverArrow in self && SilverArrow hasnt moved) {
+			"  Attached to the wall, directly below the 
+			opening is a silver arrow pointing west.";
+		} else {
+			"";
+		}
+	],
+	to_ledge [;
+		if (BrokenLedge in self) {
+			"The opening is too high for you to reach.";
+		} else {
+			remove Ledge;
+			move BrokenLedge to ArrowRoom;
+			"The ledge wasn't strong enough to hold you.  You 
+			fall to the ground and land hard on your 
+			rump.  The ledge is smashed to pieces.";
+		}
+	],
+	n_to [;
+		self.to_ledge();
+		rtrue;
+	],
+	u_to [;
+		self.to_ledge();
+		rtrue;
+	],
+	w_to [;
+		if (ArrowSecretDoor in self) return TwoBridges;
+		rfalse;
+	],
+	d_to [;
+		if (ArrowSecretDoor in self) return TwoBridges;
+		rfalse;
+	],
+	s_to [;
+		if (StoneSecret notin StonePassage) {
+			print "^An Implementor suddenly materializes 
+			and speaks to you with a tone of boredom and
+			annoyance.^
+			^
+			~How did you get here?  The only normal way
+			to get here is through that door to the south,
+			which is currently blocked.  Oh well...~^
+			^
+			The Implementor snaps his fingers and you
+			suddenly find yourself in...^";
+		}
+			return StonePassage;
+	];
+
+Object -> Ledge "ledge"
+	with name "ledge",
+	description "It doesn't look strong.",
+	has scenery;
+
+
+! Yes, I know there were two torches here originally.
+!Object -> ArrowTorch "wet torch"
+Object -> ArrowTorch "unlit torch"
+	with name "wet" "torch" "soaked" "soaking" "handle",
+	before [;
+	Examine:
+		print "The torch is soaked in smelly water dripping
+		from the ceiling";
+		if (self has general) {
+			" and is pointed down.";
+		}
+		".";
+	Take:
+		"The torch stubbornly remains in its holder.";
+	Burn:
+		if (second hasnt ignition)
+			"You can't burn ", (the) self, " with ", (the)
+			second, ".";
+		<<SwitchOn self>>;
+
+	Smell:
+		"It smells like rotting vegetation.";
+
+	Taste:
+		"The thought of doing so repels you.";
+
+	Pull:
+		if (ArrowSecretDoor notin self) {
+			move ArrowSecretDoor to ArrowRoom;
+		}
+		if (ArrowSecretDoor hasnt open) {
+			give ArrowSecretDoor open;
+			"You pull on the torch, which swings downward
+			with a loud click.  A door hidden in the
+			stonework opens up to the west.  Through the
+			doorway is a spiral staircase leading down";
+		}
+		"Nothing happens.";
+	Push:
+		if (ArrowSecretDoor has open) {
+			give ArrowSecretDoor ~open;
+			"You push the torch back into place.  The
+			previously hidden door slides closed again.";
+		}
+		"Nothing happens.";
+	],
+	after [;
+		SwitchOn:
+			give self ~on;
+			"The torch is wet and won't burn";
+		SwitchOff:
+			"But it's not burning.";
+
+	],
+	has switchable;
+
+
+Object -> SilverArrow "silver arrow"
+	with name "arrow" "silver",
+	description "A finely-crafted siver arrow.  Such things are not 
+	uncommon in these elvish lands.",
+	after [;
+	Take:
+		give self ~concealed;
+		if (self hasnt moved) {
+			"You pull the arrow off the wall.  It's not 
+			clear how it was stuck on there.";
+		}
+	],
+	has concealed;
+
+
+!It's a hidden door.  There is a spiral staircase leading down.
+
+!The wall is closed.
+
+
+Object BrokenLedge "pieces of a broken stone ledge"
+	with name "broken" "stone" "ledge" "rubble" "pieces",
+	description "Jagged pieces of stone from the broken ledge.",
+	before [;
+	Take:
+		"The rubble is too heavy to move.";
+	],
+	has static pluralname;
+
+
+Object ArrowSecretDoor "secret passage"
+	with name "secret" "hidden" "door" "passage",
+	description [;
+		if (self hasnt open) {
+			"The edges blend perfectly with the joints in
+			the stonework.  If you didn't know any better,
+			you wouldn't suspect there was a secret door
+			here.";
+		} else {
+			"If closed, this door's edges would blend
+			perfectly with the joints in the stonework.";
+		}
+	],
+	when_open [;
+		"The secret door leading down and to the west is open.";
+	],
+	when_closed [;
+		"The secret door leading down and to the west is closed.";
+	],
+	before [;
+	Open, Close:
+		"You can't get a grip on the door.";
+	],
+	door_to TwoBridges,
+        door_dir w_to,
+	has static door openable;
+

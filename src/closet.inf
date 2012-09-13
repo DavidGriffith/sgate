@@ -1,0 +1,101 @@
+Inside HallCloset "Hall Closet"
+	with name "hall" "closet",
+	description "You are in a small, cramped closet.",
+	out_to HallClosetDoor,
+	w_to HallClosetDoor;
+
+
+Object -> Sword "sword"
+	with name "sword" "broadsword" "weapon" "weapons",
+	description
+		"It's a double-edged broadsword.  The handle has
+		Druidic script written upon it.",
+	before [;
+	Examine:
+		if (verb_word == 'read')
+			"You can't read the writing.  Lakmir probably
+			could.";
+	],
+	has weapon;
+
+
+! Need to code the wraith, troll, and other creatures to react properly
+! to this weapon.
+!
+Object -> Sling "sling"
+	with name "sling" "slingshot" "weapon" "weapons",
+	capacity 1,
+	invent [;
+		if (inventory_stage == 2) {
+			if (child(self)) {
+				print " (loaded with ", (a) child(self), ")";
+			} else
+				rtrue;
+		}
+	],
+	description [;
+		print "It's a small leather sling.  This would come in
+		handy for long-range battles!";
+
+		if (child(self)) {
+			print_ret "  It's loaded with ", (a)
+			child(self), ".";
+		}
+		"";
+	],
+	before [i;
+	Load:
+		if (second ofclass Stone or Gem) {
+			if (child(self)) {
+				print_ret (The) self, " can contain
+				only one projectile at a time.";
+			}
+
+			move second to self;
+			"You put ", (the) second, " in the sling.";
+		} else {
+			print_ret (The) second, " isn't quite right to
+			used for ammunition.";
+		}
+
+	Unload:
+		i = child(self);
+		move child(self) to player;
+		"You take ", (the) i, " out of ", (the) self, ".";
+
+	Receive:
+		if (noun ofclass Stone or Gem) {
+			if (child(self)) {
+				print_ret (The) self, " can contain
+				only one projectile at a time.";
+			}
+			move noun to self;
+			"You put ", (the) noun, " in ", (the) self, ".";
+		} else {
+			print_ret (The) second, " isn't quite right to
+			be used for ammunition.";
+		}
+	Search:
+		if (child(self)) {
+			print_ret (The) self, " is loaded with ", (a)
+			child(self), ".";
+		}
+		print_ret (The) self, " is unloaded.";
+
+	Swing:
+		i = verb_word;
+		print_ret "You whirl the sling above your head.";
+
+	Drop:
+		move self to parent(player);
+		print "Dropped.";
+		if (child(self)) {
+			i = child(self);
+			move child(self) to parent(player);
+			move self to parent(player);
+			"^", (The) i, " falls out of ", 
+				(the) self, ".";
+		}
+		"";
+	],
+	has float weapon transparent;

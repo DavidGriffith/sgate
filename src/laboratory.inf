@@ -1,0 +1,156 @@
+Inside Laboratory "Laboratory"
+	with name "laboratory" "lab",
+	description [;
+		print "It smells like a kennel in here and there are no
+		windows through which to circulate fresh air.  A
+		stairway leads down.  A steel mesh cage door is set in 
+		the wall beneath a large shelf.  Next to these is a
+		large green pot.  One of the stones in the floor has a 
+		steel ring embedded in it";
+
+		if (LabStone has open) {
+			print " and has been pulled out a few inches
+			from the floor.  Nestled inside is ", (a)
+			child(LabStone);
+		}
+
+		print ".  To the north is a staircase leading down.";
+
+		if (Horseshoe hasnt moved)
+			print "  Over that staircase hangs a horseshoe."; 
+
+		"  You may also exit to the west.";
+	],
+	w_to BanquetCorridor,
+	n_to Garden,
+	d_to Garden;
+
+Object -> LabStone "stone"
+	with name "steel" "ring" "stone",
+	description "Lab animals can be chained to this ring while
+		performing experiements on them.",
+	before [;
+	Pull:
+		<<open self>>;
+	Push:
+		<<close self>>;
+	],
+	after [;
+	Pull, Open:
+		print "As you pull the ring, the stone rises slowly out
+		of the floor.";
+		if (HolyBottle in self)
+			"  A shining vial is inside it.";
+		"";
+	Push, Close:
+		"The stone descends back into place.";	
+
+	LetGo:
+		print "Taken.^";
+		<<close self>>;
+	],
+	capacity 1,
+	has scenery container openable;
+
+Vial -> -> HolyBottle "shining vial"
+	with name "shining" "cross",
+	short_name "shining vial",
+	description "The glass vial is filled with clear liquid.  The
+		sign of the cross is on it.",
+	capacity 1,
+	has transparent;
+
+Object -> -> -> HolyWater "holy water"
+	with name "holy" "water",
+	description "Looks just like ordinary water.",
+	has pluralname liquid edible;
+
+Object -> LabCage "cage"
+	with name "mesh" "cage" "door",
+	description "This steel mesh cage rattles constantly.  A simple
+		latch secures it.",
+	before [;
+	Open:
+		deadflag = 1;
+		"You remove the latch and a mutated dog pounces on you!^
+		^
+		It looks like the doctor put something strange in the
+		dog's water.^
+		^
+		Before you can do anything else, the mutation quickly
+		rips you apart!";
+	],
+	has container openable scenery;
+
+
+Object -> LabPot "pot"
+	with name "green" "pot",
+	description "It's a large green pot.",
+	before [;
+	Take:
+		"It's far too heavy to move.";
+	],
+	has concealed container open;
+
+Object -> -> BluePotion "blue potion"
+        
+with name "blue" "potion",
+	short_name "blue potion",
+	description "It's a strange poisonous-looking liquid.",
+	before [;
+	Smell:
+		"It really stinks.";
+	Drop:      
+		remove self;
+		"The potion dribbles all over the ground.";
+	Take:
+		"The potion dribbles all over the ground.";
+	Taste, Eat, Drink:
+		"Slurp!  You taste the poisonous-looking liquid in the
+		pot.  You notice small blue hairs begin to grow on the
+		palms on your hands.  The viscous liquid seems to
+		contain body altering ingredients.";
+	],
+	has liquid edible;
+
+
+
+Object -> Horseshoe "horseshoe"
+	with name "horseshoe" "horse" "shoe",
+	description "This horseshoe seems to have taken quite a
+		beating.",
+	after [;
+	Take:
+		give self ~concealed;
+		if (self hasnt moved)
+			"You pull the horseshoe off the wall.";
+	],
+	has concealed;
+
+Object -> LabShelf "shelf"
+	with name "shelf",
+	has supporter scenery;
+
+ShinyBottle -> ->;
+ShinyPotion -> -> ->;
+
+ShinyBottle -> ->;
+ShinyPotion -> -> ->;
+
+SlimyBottle -> ->;
+SlimyPotion -> -> ->;
+
+Object -> -> TestTube "test tube"
+	with name "test" "tube",
+	description "It's an ordinary test tube.",
+	before [;
+	Receive:
+		if (noun hasnt liquid or is_tiny) {
+			print (The) noun, " is too big to fit in ",
+			(the) self, ".";
+			"";
+		}
+	],
+	capacity 1,
+	has open container;
+

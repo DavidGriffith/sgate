@@ -1,0 +1,184 @@
+! This room full of mirrors reminds you of the elven fun house at King
+! Otto's fair.
+
+! This broom looks remarkably like the one owned by the Sirens of the
+! Isle of Yeklum Iret.
+!
+
+Inside MirrorRoom "Mirror Room"
+	with name "room",
+	description [;
+		print "This room full of mirrors reminds you of the
+		elvish fun house at King Otto's fair.";
+
+		if (CoffinSlime in CoffinRoom) {
+			print "  A puddle of green slime blocks the
+			west exit.";
+		} else {
+			print "  An exit lies to the west.";
+		}
+
+		print "  In the floor is a hole";
+
+		if (rope has general) {
+			print " from which a rope about as
+			thick as your wrist is sticking out.";
+		}
+
+		if (Broom hasnt moved) {
+			"  A broom is propped up against the wall.";
+		}
+
+		".";
+	],
+	d_to MirrorHole,
+	w_to [;
+		if (CoffinSlime in CoffinRoom) {
+			deadflag = 1;
+			"You try to pass the slime but it
+			engulfs your body, dissolving it in
+			seconds.^
+			^
+			You die instantly.  No pain.  No nothing.  You
+                       	were slimed.";
+		}
+		return CoffinRoom;
+	],
+	n_to [;
+		if (MirrorDoor in self) {
+			if (MirrorDoor has open && Cloak hasnt worn && RoomFire in FireRoom) {
+				"The heat beyond the door is
+				unbearable.";
+			}
+			return MirrorDoor;
+		}
+		rfalse;
+	];
+
+
+UnlitTorch ->;
+UnlitTorch ->;
+
+Object -> Broom "broom"
+	with name "broom",
+	description "This broom looks like the one owned by the Sirens
+	of the Isle of Yeklum Iret.",
+	before [;
+	Enter:
+		"You mount the broom and try to kick off and take to
+		the air.  Unfortunately, this isn't a magic broom, so
+		you dismount it.";
+	],
+	has float;
+
+
+Object -> MirrorHole "hole"
+	with name "hole",
+	description "It is very dark",
+	door_to [;
+		if (rope has general) {
+			return EporRoom;
+		}
+		deadflag = 1;
+		"You jump down the hole and after a couple of
+		moments, hit the floor.^
+		^
+		It seems that you have broken both of your
+		legs!^
+		It's only a matter of time before you die!";
+        ],
+	door_dir d_to,
+	has container scenery door open;
+
+
+Object -> -> MirrorDark "long, dark passage"
+	with name "long" "dark" "passage",
+	before [;
+	Examine:
+		"Well, there's a bit of light at the end, but it's not
+		clear how far away it is.";
+	],
+	has static;
+
+
+Object -> Mirrors "mirrors"
+	with name "mirrors",
+	description "There are three mirrors side-by-side on the north
+	wall here.",
+	has scenery;
+
+
+Object -> LeftMirror "left mirror"
+	with name "left" "mirror",
+	description "The mirror has a carved oak frame.",
+	before [;
+	Attack:
+		if (second == Hammer) {
+			deadflag = 1;
+			"As soon as you break the mirror, shards of
+			glass fly through the air and slice into your
+			body!^
+			^
+			Blood pours from your wounds and your body
+			slumps to the floor.";
+		}
+		"The mirror doesn't break.";
+	],
+	has scenery;
+
+
+Object -> RightMirror "right mirror"
+	with name "right" "mirror",
+	description "The mirror has a carved oak frame.",
+	before [;
+	Attack:
+		if (second == Hammer) {
+			deadflag = 1;
+			"By smashing the mirror, you have opened a
+			magic portal into deep space.  You are
+			immediately sucked through.^
+			^
+			The lack of air causes you to quickly lose
+			consciousness.^
+			^
+			The Grim Reaper quickly embraces you!";
+		}
+		"The mirror doesn't break.";
+	],
+	has scenery;
+
+
+Object -> MiddleMirror "middle mirror"
+	with name "middle" "mirror",
+	description [;
+		if (self hasnt general)
+			"This mirror throws back a fine reflection.";
+		"A solid iron door lies beyond the broken edges of the
+		mirror.";
+	],
+	before [;
+	Attack:
+		if (self has general)
+			"It's already broken.";
+
+		if (second == Hammer) {
+			give self general;
+			move MirrorDoor to MirrorRoom;
+			"Bellowing like some Norse god, you smash ",
+			(the) second, " into the mirror.  You shatter
+			the mirror revealing an iron door!";
+		}
+		"The mirror doesn't break.";
+	],
+	has scenery;
+
+
+ObligingDoor MirrorDoor "iron door"
+	with name "door" "iron",
+	description "A solid iron door lies beyond the broken edges of
+		the mirror.",
+	door_dir n_to,
+	door_to FireRoom,
+	with_key BrassKey,
+	has scenery door openable lockable locked;
+

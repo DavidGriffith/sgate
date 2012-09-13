@@ -1,0 +1,96 @@
+Menu about_menu "Shadowgate Info";
+
+Option -> "About this game"
+	with description
+"This game is an unauthorized reimplementation of Shadowgate Classic as
+it appeared on the Nintendo Entertainment System (NES).  No source code
+to Shadowgate was used (I've never seen it), nor was any decompilation
+done. The NES version was repeatedly played and referred to in the
+process of creating the Inform code that creates this reimplementation. 
+Every effort has been made to make sure this version remains faithful to
+the NES version. Hints and walkthroughs prepared for the NES version
+will, for the most part, work on this one.  Hints and walkthroughs for
+other versions may work, but are untested.  No Invisiclues-style hints
+are included in this version.^
+^
+This game was written in Inform (http://www.inform-fiction.org) compiled
+by hand from the package (version 6.21.4) created by Glenn Hutchings.
+That package is available from the Interactive Fiction Archive
+(http://www.ifarchive.org).^
+^
+Here is a list of how this version of Shadowgate differs from the NES
+version.^
+^
+1) Descriptions have been expanded and/or completely rewritten to 
+compensate for lack of graphics.^
+^
+2) Grammatical errors such as ~It's a hemp of rope.~ have been corrected.^
+^
+3) Some room exits have been moved around to make it easier for the
+player to visualize and for the author to describe in words.^
+^
+4) The exact solutions to some puzzles have been randomized.^
+^
+5) The NES version prints a hint if SELECT is pressed.  Type ~HINT~ for
+the same function here.
+";
+
+
+
+Option -> "Playing Shadowgate"
+	with description !"Playing Shadowgate stuff.";
+
+"Assuming you know how to play Interactive Fiction, there really isn't
+anything more you need to know.  Just make sure you examine EVERYTHING.
+The solutions to puzzles are usually hidden in the scenery.  If you get
+stuck, any of the assorted walkthroughs for ~Shadowgate~ one can find on
+the Internet will work as long as you keep in mind that some directions
+have changed and that some solutions have been randomized.";
+
+
+Option -> "Release History"
+	with description
+"Release 1 / Serial number 030707^
+Initial private release.  Limited distribution for beta testing and
+debugging purposes.";
+
+!^
+!Release 2 / Serial Number 0307??^
+!First public release.";
+
+
+
+Option -> "Credits"
+	with description
+"The Inform version of Shadowgate was created by David Griffith
+(dgriffi@@64cs.csubak.edu).  Please visit
+http://www.cs.csubak.edu/@@126dgriffi for more of my stuff, including
+the world-famous Frotz, which you may be using right now to play this
+game.^
+^
+Copyright is claimed on the source code,
+but not the name ~Shadowgate~ nor the game content.  The latter two rest
+with Infinite Ventures (http://www.infiniteventures.com/).
+";
+
+
+
+Option -> "License"
+	with description "The tentative license for this adaptation of
+~Shadowgate~ is this:^
+^
+The source code is freely redistributable.  Do with it what you will,
+but don't go about claiming you wrote it.^
+^
+This will probably be changed for the formal release.";
+
+
+[ HelpAboutSub;
+	about_menu.select();
+];
+
+Verb 'help'
+	*	-> HelpAbout;
+Verb 'about' = 'help';
+
+SwitchOption switchdummy;

@@ -1,0 +1,107 @@
+Inside TowerPrison "Tower Prison"
+	with name "tower" "prison",
+	description [;
+		print "You are in a bare, round room.";
+		if (Woman in self) {
+			print " A beautiful woman is chained to the 
+			wall.";
+		}
+		" Moonlight streams in from a window.";
+	],
+	d_to Observatory;
+
+Object -> Blade "golden blade"
+	with name "golden" "gold" "blade" "spike",
+	description "It's some sort of spike that is made of precious
+		metals.  The tips are as sharp as needles.",
+	before [;
+	Take:
+		if (DeadWolf notin TowerPrison) {
+			deadflag = 1;
+			print "As you reach for ", (the) self, " the
+			beautiful lady suddenly transforms into a
+			wolf!";
+			Woman.attack_msg();
+			rtrue;
+		}
+	];
+! when blade is placed on the staff:
+!
+! Siddenly, lightning begins to flash in the room!
+!
+! Then, the golden spike slides smoothly onto the staff and locks into
+! place.
+
+
+Object -> Woman "beautiful woman"
+	with name "beautiful" "woman",
+	description "This fine lass lies upon the floor, chained to the
+		wall.  She is extremely beautiful.",
+	before [weapon;
+	Attack, ThrownAt:
+		if (noun == self)
+			weapon = second;
+		else
+			weapon = noun;
+		if (weapon == SilverArrow) {
+			move DeadWolf to parent(self);
+			move self to NullRoom;
+			move weapon to DeadWolf;
+			"Your aim is true as you plunge the silver
+			arrow into the beautiful woman.  Her scream is 
+			oddly lupine.  She changes into a wolf; a dead
+			one.";
+		}
+		deadflag = 1;
+		if (weapon == nothing)
+			print "As you raise your fist";
+		else
+			print "As you brandish ", (the) weapon;
+		print " at ", (the) Woman, " and step forward, she
+		suddenly transforms into a wolf!";
+		self.attack_msg();
+		rtrue;
+	],
+	attack_msg [;
+		" With a load roar, the wolf pounces on you,
+		taking your life!  The wolf's powerful jaws rip your
+		throat out!";
+	],
+	life [;
+		"She says nothing, but her expression pleads you to
+		free her.";
+	],
+	has animate;
+
+
+! You are so captivated by the woman's beauty that you momentarily
+! forget her predicament.
+!
+! Yes, even in the moonlight, she is even more beautiful.
+!
+! This fine lass lies upon the floor, chained to the wall.  She is
+! extremely beautiful.
+
+Object DeadWolf "dead wolf"
+	with name "dead" "wolf",
+	description [;
+		print "It looks like your typical dead werewolf.";
+		if (SilverArrow in self)
+			" Your arrow is deeply lodged in its body.";
+		"";
+	],
+	before [;
+	Take:
+		print_ret (The) self, " is too heavy to carry.^";
+	Search:
+		if (SilverArrow in self)
+			"Your arrow is deeply lodged in its body.";
+		"Nothing is in the wolf except a fatal arrow wound";
+	Receive:
+		"It's already dead.  Leave it alone.";
+	LetGo:
+		give self ~container;
+		rfalse;
+	],
+	capacity 0,
+	has static container open;

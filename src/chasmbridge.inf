@@ -1,0 +1,341 @@
+Inside ChasmBridge "Chasm Bridge"
+	with name "chasm" "bridge",
+	description "You are standing on a sturdy wooden bridge that
+		 spans a deep, dark chasm.  A sharp, cold wind whips up
+		over the ledge.",
+	s_to [;
+		if (Cloak hasnt worn && RoomFire in FireRoom)
+			"The heat is unbearable.";
+		move Troll to NullRoom;
+		return FireRoom;
+	],
+	n_to [;
+		if (Troll.paid == true) {
+			Troll.paid = false;
+			print "The troll watches as you pass.^";
+			return Courtyard;
+		}
+		if (Troll notin self) {	
+			if (Troll.angry == false) {
+				print "As you step forward, a troll
+				appears and blocks your path.^^";
+				if (self hasnt general) {
+					give self general;
+					move Troll to self;
+					print "~This bridge is
+						mine!  It'll cost you a
+						gold coin to cross!~";
+				} else {
+					move Troll to self;
+					print "~Oh, you again.  ";
+					if (Troll.bridge_toll > 1)
+						print "Two gold coins";
+					else 
+						print "One gold coin";
+
+					print " to cross.~";
+				}
+					"^^The troll holds out a hand
+					expectantly.";
+			} else {
+				move Troll to self;
+				"As you step forward, the troll
+				reappears and blocks your path.  He is
+				holding ", (the) child(Troll), " you
+				tried to kill him with.^
+				^			
+				~I have nothing more to say to you.~";
+			}
+		} else {
+			deadflag = 1;
+			if (Troll.angry == false) {
+				"~You can't trick me!~^
+				^
+				The troll then picks up the bridge
+				causing you to fall into the
+				chasm.^
+				^
+				The Grim Reaper stands below, waiting
+				to catch you.";
+			} else {
+				"The troll blows up like a volcano and
+				throws his spear at your chest.  The
+				spear pierces your chest and exits 
+				through your back.";
+ 			}
+		}
+	];
+
+
+
+Object Troll "troll"
+	with name "troll",
+	bridge_toll 1,
+	gold_count 0,
+	copper_count 0,
+	paid false,
+	angry false,
+	description [;
+		print "The troll is yellow and smelly with horns and a
+			shaggy head.";
+
+		if (self.angry) {
+			print "  It's pointing a spear at you and
+			doesn't seem very happy with you.";
+		}
+		"";
+	],
+
+	before [weapon;
+	FlipOff:
+		"The troll laughs at you and returns the favor.";
+
+	Smell:
+		"Ugh!  What stench!";
+
+	Attack, ThrownAt:
+		if (noun == self)
+			weapon = second;
+		else
+			weapon = noun;
+
+		if (weapon ofclass CopperCoin) {
+			if (self.copper_count == 0) {
+				self.copper_count++;
+				self.bridge_toll = 2;
+				remove weapon;
+				"The troll catches the coin, looks at
+				it distainfully, then pockets it.^
+				^
+				~The toll has just been raised to two
+				gold coins.~";
+			}
+			deadflag = 1;
+			"~Hey!  What's this?  This isn't gold!!!  Are
+			you trying to cheat me?~^
+			^
+			The troll then picks up the bridge, causing you
+			to fall into the chasm.^
+			^
+			The Grim Reaper stands below, waiting to catch 
+			you.";
+		}
+
+		if (weapon ofclass GoldCoin) {
+			if (verb_word == 'kill' or 'attack')
+				print "You throw ", (the) weapon, " at
+				the troll.  ";
+
+			print "The troll catches the coin and pockets it.";
+			if (self.paid == true) {
+				remove weapon;
+				"^^~You already paid the toll.  Thanks
+				anyway!~";
+			}
+			self.gold_count++;
+			print "^^~Thank you.";
+			remove weapon;
+			if (self.bridge_toll > 1 && self.gold_count < 2) {
+				"  One more gold coin and you may cross.~^
+				^
+				The troll holds out a hand again.";
+			}
+			self.paid = true;
+			"~^^The troll moves aside to let you pass.";
+		}
+
+		if (weapon == Spear) {
+			self.paid = true;
+			self.angry = true;
+			move weapon to Troll;
+			move Troll to NullRoom;
+			"The spear hits the troll with a glancing blow
+			and he falls silently into the dark cavern.  You
+			listen, but do not hear him crash.";
+		}
+
+		deadflag = 1;
+
+		if (weapon == troll) {
+			print "You raise an angry fist at the troll and 
+			move forward. ";
+		} else {
+			print "You swing ", (the) weapon, " at the troll
+			and miss.  "; 
+		}
+
+		"^^
+		The troll cries, ~You can't trick me!~^
+		^
+		The troll then picks up the bridge
+		causing you to fall into the
+		chasm. The Grim Reaper stands below,
+		waiting to catch you.";
+	],
+
+	life [;
+	Show:
+		if (self.angry)
+			"~I have nothing to say to you.~";
+
+		if (noun ofclass CopperCoin)
+			"~I said gold, not copper, you idiot!~";
+
+		if (noun ofclass GoldCoin) {
+			if (self.paid == true)
+				"~You've paid the toll.  Move along!~";
+
+			if (self.bridge_toll == 1)
+				print"~Give me";
+			else
+				print "~One more like";
+
+			" that and I'll let you pass.~";
+		}
+
+	Give:
+!		if (self.angry)
+!			rfalse;
+
+		if (noun ofclass CopperCoin) {
+			if (self.copper_count == 0) {
+				self.copper_count++;
+				self.bridge_toll = 2;
+				remove noun;
+				"The troll snorts distainfully and
+				pockets the coin.^
+				^
+				~The toll has just been raised to two
+				gold coins.~";
+			}
+			deadflag = 1;
+			"~Hey!  What's this?  This isn't gold!!!  Are
+			you trying to cheat me?~^
+			^
+			The troll then picks up the bridge, causing you
+			to fall into the chasm.^
+			^
+			The Grim Reaper stands below, waiting to catch 
+			you.";
+		}
+
+		if (noun ofclass GoldCoin) {
+			print "The troll takes the coin and pockets it.";
+			if (self.paid == true) {
+				remove noun;
+				"^^~You already paid the toll.  Thanks
+				anyway!~";
+			}
+			self.gold_count++;
+			print "^^~Thank you.";
+			remove noun;
+			if (self.bridge_toll > 1 && self.gold_count < 2) {
+				"  One more gold coin and you may cross.~^
+				^
+				The troll holds out a hand again.";
+			}
+			self.paid = true;
+			"~^^The troll moves aside to let you pass.";
+		}
+
+	Tell, Ask:
+		if (self.angry)
+			"~I have nothing to say to you.~";
+
+		switch (second) {
+		'bridge', 'bridges', 'coin', 'coins': 
+			if (self.bridge_toll == 1) {
+				print "~One gold coin";
+
+			} else {
+				print "~Two gold coins";
+			}
+
+			" is the toll to cross.~";
+
+		'gold':
+			"~That's the toll.  Not copper.  Not silver.  Gold.~";
+
+		'copper':
+			"~You can give me copper, but I won't let you
+			cross.~";
+
+		'warlock', 'lord':
+			"~You have some kind of problem with him?!?!?~";
+
+		'lakmir':
+			"~Oh, that oaf?  He's robably dead by now.  Who
+			knows?  Why should I care?~";
+
+		'me', 'myself':
+			print "~Well, you'll give me ";
+
+			if (self.bridge_toll == 1)
+				print "a gold coin";
+			else
+				print "two gold coins";
+
+			" if you know what's good for you.  Or you can
+			just turn right back around.~";
+
+		'you', 'yourself', 'troll':
+			"~None of your business.~";
+
+		'shit', 'piss', 'urine', 'stink', 'smell', 'stench',
+		'odor', 'scent', 'crap', 'poo', 'poop', 'feces':
+			"~What?  You don't like the scent?~^
+			^
+			The troll indicates a smear of some foul-looking
+			substance on his chest and sniffs the air 
+			delicately.";
+
+		'xyzzy', 'plugh':
+			"~Fool!~";
+
+		'fuck':
+			"The troll laughs at you and makes an
+			obscene gesture.";
+
+		default:
+			"~What about it?~";
+		}
+	],
+	orders [;
+		if (self.angry)
+			"~Shut up!~";
+
+		print "The troll peers down his nose at you";
+		if (verb_word == 'fuck')
+			print " and makes an obscene gesture.";
+		else
+			".";
+		"^^~No toll, no bridge!~";
+	],
+	has animate transparent;
+
+Object -> TrollHand "hand"
+	with name "trolls" "troll^s" "hand" "hands",
+	short_name "troll's hand",
+	mangle_count 0,
+	description "Whatever that troll has been up to, it's all over
+	his hands and smells disgusting.",
+	before [;
+	Smell:
+		"Ugh!  What stench!";
+
+	Take, Taste, Touch, Push, Pull:
+		if (self.mangle_count == 1) {
+			deadflag = 1;
+			"You bravely stride forward, intent on
+			manhandling the troll.  Unfortunately for you,
+			he is stronger and more agile than you are.  He
+			casually flicks you aside and you fall off
+			the bridge into the chasm below.^
+			^
+			The Grim Reaper stands below, waiting to catch
+			you.";
+		}
+		self.mangle_count = 1;
+		"Messing with the troll's appendages will probably get
+		you killed, so you wisely abstain.";
+	];

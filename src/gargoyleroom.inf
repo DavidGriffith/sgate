@@ -1,0 +1,33 @@
+Inside GargoyleRoom "Gargoyle Room"
+	with name "room",
+	description "A pair of stone beasts perched on the wall are
+		guarding a dark archway to the north.  A small path
+		leads northeast.",
+	s_to [;
+		give Gargoyle ~general;
+		return StoneTunnel;
+	],
+	ne_to [;
+		give Gargoyle ~general;
+		return LavaChamber;
+	],
+	n_to [;
+		if (Gargoyle hasnt general) {
+			deadflag = 1;
+			"Suddenly the beasts begin to shudder and
+			their eyes begin to glow red.  The
+			gargoyles, angered at your presence, spring
+			from their frozen state and rip you to pieces.
+			There's not enough left of you to even feed the
+			birds.";
+		}
+		give Gargoyle ~general;
+		return WellRoom;
+	];
+
+Object -> Gargoyle "gargoyle"
+	with name "gargoyle",
+	description "This stone statue is some three and a half feet
+	tall and ugly as all heck.  It is very cold to the touch.",
+	has scenery;
+

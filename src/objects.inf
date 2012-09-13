@@ -1,0 +1,641 @@
+Attribute is_key;
+Attribute is_tiny;
+Attribute is_coin;
+Attribute is_torch;
+Attribute good;
+Attribute bad;
+Attribute weapon;
+Attribute liquid;
+Attribute nonmagic;
+Attribute float;
+Attribute ignition;
+
+
+
+! See _The Inform Designer's Manual, Fourth Edition_, pages 239 and 431.
+!
+[ ChooseObjects obj code retval;
+	if (code < 2) { 
+		if (obj has scenery) return 2; 
+		if (obj has static) return 2;
+		rfalse;
+	}
+
+	if (action_to_be == ##Eat && obj has edible) {
+		 return 3;
+	}
+
+	! Prefer to take a non-held object
+	!
+	if (action_to_be == ##Take) {
+		retval = 1;
+		if (obj notin player) retval++;
+		return retval;
+	}
+
+	! Prefer to light a held torch.
+	!
+	if (action_to_be == ##Burn && obj has is_torch) {
+		retval = 1;
+		if (obj hasnt on) retval++;
+		if (obj has good) retval++;
+		if (obj in player) retval++;
+		return retval;
+	}
+
+	! Prefer to snuff a burning torch that's being held.
+	!
+	if (action_to_be == ##SwitchOff or 
+			##Snuff or ##Extinguish && obj has is_torch) {
+		retval = 1;
+		if (obj has on) retval++;
+		if (obj in player) retval++;
+		return retval;
+	}
+
+!	if (obj == PoolIce)
+!		return 5;
+
+	if (obj == Pool)
+		return 2;
+
+	! In the firey room, we need to make sure the player can examine
+	! the flames when the fire drake is present.
+	!
+	if (obj == FireDrake)
+		return 1;
+	if (obj == RoomFire)
+		return 3;
+
+	if (obj hasnt scenery) return 2;
+	if (obj hasnt static) return 2;
+	return 1;
+];
+
+! From exercise 3 in the Inform Designers Manual 4th ed.
+!
+! Errata:
+! The parenthesis in calling noun.door_dir() and self.door_dir() were
+! missing from the DM4 example.  Omitting them caused the routine to not
+! work.
+!
+Class ObligingDoor
+	with name "door",
+		react_before [;
+		Go:
+			if (noun.door_dir() == self.door_dir()) {
+				return self.open_by_myself();
+			}
+
+		Enter:
+			if (noun == self) {
+				return self.open_by_myself();
+			}
+		],
+		open_by_myself [ ks;
+			if (self has open) rfalse;
+			print "(first opening ", (the) self, ")^";
+			ks = keep_silent;
+			keep_silent = true;
+			<Open self>; 
+			keep_silent = ks;
+			if (self hasnt open) rtrue;
+		],
+		has door;
+! Maybe we don't want to make it lockable.
+!	has door openable static lockable;
+
+
+
+! The torch code here simulates the differences between a good torch, a
+! burning torch, and one that has burned out.  Having to count the
+! number of torches in the game, then set that number here is a bit of a
+! drag.  Torch creation and removal is also rather clunky.
+!
+
+! Since it looks like there's a chance that something will fall through
+! the cracks...
+!
+[ abnormal_torch;
+	print "--- Unexpected attribute on torch.  Check objects.inf.^";
+];
+
+! Since you're dead if your torch goes out, checking to make sure we
+! have one in hand before allowing one to be lit is superfluous.
+!
+! Later on:
+! 1) determine how many moves a torch lasts before it goes out.
+! 2) determine how many normal torches there are in the game.
+!
+Class Torch
+	with name "torch",
+	power,
+	short_name [;
+		if (self has good) print "unlit";
+		if (self has bad) print "dead";
+		if (self has on) print "burning";
+		print " torch";
+		rtrue;
+	],
+	plural [;
+		if (self has good) print "unlit";
+		if (self has bad) print "dead";
+		if (self has on) print "burning";
+		print " torches";
+		rtrue;
+	],
+	parse_name [ i j w;
+		if (parser_action == ##TheSame) {
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0) {
+				return -1;
+			}
+			return -2;
+		}
+		w = (self.&name)-->0;
+		for (:: i++) {
+			j = NextWord();
+			if (j == 'torches') parser_action=##PluralFound;
+			else if (j~='torch' or w) return i;
+		}
+	],
+	daemon [ t; 
+		t = --(self.power);
+		if (t == 0) give self ~on ~light ~good bad;
+		if (self in player || self in location) {
+			if (t == TORCH_DECLINE + 1) {
+				"^Your torch is beginning to flicker.";
+			}
+			if (t <= TORCH_DECLINE && t > TORCH_DYING) {
+				"^Your torch is flickering and sputtering.";
+			}
+			if (t <= TORCH_DYING && t > 0) {
+				"^Your torch is going out.";
+			}
+			if (t == 0) {
+				"^Your torch goes out with a fizzle.";
+			}
+		}
+	],
+	before [newthing;
+	Smell:
+		print "Smells like ";
+		if (self has good) print "oil and dirt";
+		if (self has bad) print "oily soot";
+		if (self has on) print "burning oil and dirt";
+		".";
+	Examine:
+		if (self has good) { 
+			"It's a torch.  An oil-soaked rag is wrapped
+			around it.";
+		}
+		if (self has bad) "It's a burned out and useless torch.";
+		if (self has on) {
+			print "The torch throws ";
+			if (self.power < TORCH_DECLINE) {
+				print "feeble";
+			} else {
+				print "dancing";
+			}
+			" shadows about the room.";
+		}
+		abnormal_torch();
+	Burn:
+		if (second ~= nothing) {
+			if (second hasnt ignition) 
+				"You can't burn ", (the) self, " with ", (the)
+				second, ".";
+		}
+		if (self has on) "But it's already lit!";
+		<<SwitchOn self>>;
+	SwitchOff:
+		if (self has good)	"But it's not burning.";
+		if (self has bad)	"";
+		if (self has on or light) {
+			give self ~good ~light bad;
+			newthing = DeadTorch.create();
+			move newthing to parent(self);
+			remove self;
+			"You snuff out the torch.";
+		}
+		abnormal_torch();
+	],
+	after [newthing;
+	Take:
+		if (self hasnt moved)
+			"You pull ", (the) noun, " off the wall.";
+	SwitchOn: 
+		if (self has good) {
+			give self ~good on light;
+			newthing = BurningTorch.create();
+			if (newthing == nothing) {
+				"Can't light the torch.";
+			}
+			move newthing to parent(self);
+			newthing.power = TORCH_LIFE + random(TORCH_VARIANCE);
+			remove self;
+			StartDaemon(newthing);
+			"The torch burns brightly.";
+		}
+		if (self has bad) {
+			print "The dead torch sputters a bit but
+			refuses to light.";
+			<<SwitchOff self>>;
+		}
+		abnormal_torch();
+	],
+	has switchable is_torch float;
+
+Class UnlitTorch (20)
+	class Torch
+	with name "unlit" "good" "torch",
+	short_name "unlit torch",
+	plural "unlit torches",
+	has good;
+
+Class BurningTorch (20)
+	class Torch
+	with name "burning" "torch",
+	short_name "burning torch",
+	plural "burning torches",
+	has on light ignition;
+
+Class DeadTorch (20)
+	class Torch
+	with name "dead" "bad" "torch",
+	short_name "dead torch",
+	plural "dead torches",
+	has bad;
+
+Class Stone
+	with name "small" "stone" "rock",
+	short_name "small stone",
+	description "This stone would not be good for skipping.",
+	plural "stones",
+	parse_name [i j w;
+		if (parser_action == ##TheSame) {
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0) return -1;
+			return -2;
+		}
+		w = (self.&name)-->0;
+		for (::i++) {
+			j = NextWord();
+			if (j == 'stones') parser_action=##PluralFound;
+			else if (j~='stone' or w) return i;
+		}
+	],
+	has weapon;
+
+
+Class Bottle
+	with name "bottle",
+	parse_name
+	[ i j w;
+		if (parser_action == ##TheSame) {
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0) return -1;
+			return -2;
+		}
+		w = (self.&name)-->0;
+		for (::i++) {
+			j = NextWord();
+			if (j == 'bottles') parser_action=##PluralFound;
+			else if (j~='bottle' or w) return i;
+		}
+	], 
+	before [;
+        Empty:
+		if (self hasnt open) {
+			give self open;
+			print "(first opening ", (the) self, ")^";
+		}
+		if (child(self) has liquid) {
+			remove child(self);
+			"The contents dribble out and evaporates.";
+		}
+	Receive:
+		if (noun hasnt liquid or is_tiny) {
+			print (The) noun, " is too big to fit in ",
+			(the) self, ".";
+			"";
+		}
+	],
+	has container openable;
+
+Class Vial
+	with name "vial",
+	parse_name
+	[ i j w;
+		if (parser_action == ##TheSame) {
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0) return -1;
+			return -2;
+		}
+		w = (self.&name)-->0;
+		for (::i++) {
+			j = NextWord();
+			if (j == 'vials') parser_action=##PluralFound;
+			else if (j~='vial' or w) return i;
+		}
+	], 
+	before [;
+        Empty:
+		if (self hasnt open) {
+			give self open;
+			print "(first opening ", (the) self, ")^";
+		}
+		if (child(self) has liquid) {
+			remove child(self);
+			"The contents dribble out and evaporates.";
+		}
+	Receive:
+		if (noun hasnt liquid or is_tiny) {
+			print (The) noun, " is too big to fit in ",
+			(the) self, ".";
+			"";
+		}
+	],
+	capacity 1,
+	has container openable;
+
+
+Class Gem
+	with name "gem",
+	parse_name [i j w;
+		if (parser_action == ##TheSame) {
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0) return -1;
+			return -2;
+		}
+		w = (self.&name)-->0;
+		for (::i++) {
+			j = NextWord();
+			if (j == 'gems') parser_action=##PluralFound;
+			else if (j~='gem' or w) return i;
+		}
+	];
+
+Class Coin
+	with name "coin",
+	parse_name
+	[ i j w;
+		if (parser_action == ##TheSame) {
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0) return -1;
+			return -2;
+		}
+		w = (self.&name)-->0;
+		for (::i++) {
+			j = NextWord();
+			if (j == 'coins') parser_action=##PluralFound;
+			else if (j~='coin' or w) return i;
+		}
+	],
+	has is_coin is_tiny;
+
+Class CopperCoin
+	class Coin,
+	with name "copper",
+	short_name "copper coin",
+	description "It's a copper coin of some sort.",
+	plural "copper coins";
+
+Class GoldCoin
+	class Coin
+	with name "gold" "golden",
+	short_name "gold coin",
+	description "This coin has a mark on it that looks like a human skull.",
+	plural "gold coins";
+
+Class Key
+	with name "key",
+	parse_name [i j w;
+		if (parser_action == ##TheSame) {
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0)
+				return -1;
+			return -2;
+		}
+		w = (self.&name)-->0;
+		for (::i++) {
+			j = NextWord();
+			if (j == 'keys') parser_action=##PluralFound;
+			else if (j~='key' or w) return i;
+		}
+	],
+	has is_key;
+
+Class Burnable
+	with name "burnable",
+	before [;
+	Burn:
+		if (second hasnt ignition)
+			"You can't burn ", (the) self, " with ", (the)
+			second, ".";
+		remove self;
+		print_ret (The) self, " quickly catches fire and burns away.";
+	];
+
+Class Book
+	class Burnable
+	with name "book",
+	parse_name [i j w;
+		if (parser_action == ##TheSame) {
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0)
+				return -1;
+			return -2;
+		}
+		w = (self.&name)-->0;
+		for (::i++) {
+			j = NextWord();
+			if (j == 'books') parser_action=##PluralFound;
+			else if (j~='book' or w) return i;
+		}
+	];
+
+! It would be nice if the player could put objects under the rug.
+!
+Class Rug
+	with name "rug" "carpet",
+	description [;
+		if (self hasnt general)
+			"It's a beautifully woven rug.";
+		else
+			"It's a rolled up rug.";
+	],
+	before [;
+	Burn:
+		if (second ~= nothing) {
+			if (second hasnt ignition)
+				"You can't burn ", (the) self, 
+				" with ", (the) second, ".";
+		}
+		print "The rug quickly catches fire and burns away.";
+		if (child(self)) {
+			print "^^Ah!  It looks as if ", 
+			(a) child(self), " was hidden
+			underneath ",
+			(the) self, ".  Fortunately ", (the)
+			child(self), " wasn't damaged by the fire.";
+			move child(self) to parent(self);
+		}
+		remove self;
+		"";
+	Take:
+		print "The rug is far too heavy and cumbersome for one
+		person to carry";
+		if (self has general)
+			print ", even when rolled up";
+		".";
+	Roll:
+		if (self hasnt general) {
+			print "You roll up the rug.";
+			if (child(self)) {
+				print "^^Ah!  It looks as if ", 
+				(a) child(self), " was hidden
+				underneath ",
+				(the) self, ".";
+				move child(self) to parent(self);
+			}
+			give self general;
+			"";
+		}
+		"It's already rolled up.";
+	Open, Unroll:
+		if (self has general) {
+			give self ~general;
+			"You unroll the rug.";
+		}
+		"It's already unrolled.";
+	],
+	has scenery;
+
+
+Class ShinyBottle
+	class Bottle,
+	with name "shiny" "light" "bottle",
+	short_name "shiny bottle",
+	description [;
+		print "This small silver bottle glows with a lustrous
+		shine.";
+		if (child(self) ofclass ShinyPotion) {
+			"  You notice that the bottle is impossibly
+			light.";
+		}
+		rtrue;
+	],
+	capacity 1;
+
+Class ShinyPotion
+	with name "shiny" "potion",
+	short_name "shiny potion",
+	description "It looks like faintly-glowing water.",
+	before [;
+	Smell:
+		"It doesn't seem to have a smell.";
+	Drop, Take:
+		remove self;
+		"The potion dribbles all over the ground.";
+	Taste:
+		"Tasting the potion makes you feel a bit like you're
+		floating in the air.";
+	Eat, Drink:
+		levitating = true; StartTimer(self, 5);
+		"You drink the liquid and immediately begin to rise in 
+		the air.";
+	],
+	time_left 0,
+	time_out [;
+		levitating = false;
+		"You slowly sink back to the floor.";
+	],
+	has liquid edible;
+
+
+Class SmellyBottle
+	class Bottle,
+	with name "smelly",
+	short_name "smelly bottle",
+	description "It's a small silver bottle.  It sure smells
+		terrible!",
+	capacity 1;
+
+Class SmellyPotion
+	with name "smelly" "potion",
+	short_name "smelly potion",
+	description "The potion is a nauseating mixture of brown and
+		yellow.",
+	before [;
+	Smell:
+		"It smells like sewage.";
+	Drop, Take:
+		remove self;
+		"The potion dribbles all over the ground.";
+	Taste, Eat, Drink:
+		deadflag = 1;
+		"As you consume the liquid in the vial, your body
+		convulses and death spasms quickly follow.";
+	],
+	has liquid edible;
+
+
+! Bottle 4
+Class SlimyBottle
+	class Bottle,
+	with name "slimy",
+	short_name "slimy bottle",
+	description "This bottle is extremely slimy.",
+	capacity 1;
+
+
+Class SlimyPotion
+	with name "slimy" "potion",
+	short_name "slimy potion",
+	description "The potion is a viscous black substance.",
+	before [;
+	Smell:
+		"It smells like tar.";
+	Drop, Take:
+		remove self;
+		"The potion dribbles all over the ground.";
+	Taste, Eat, Drink:
+		"Glug!  You swallow a bit of the viscous liquid.  It's
+		like drinking tar!";
+	],
+	has liquid edible;
+
+! For leverroom.inf
+!
+Class Lever
+	with name "lever",
+	pulled false,
+	describe [;
+		print (The) self, " is in the ";
+		if (self.pulled)
+			print "down";
+		else
+			print "up";
+		" position.";
+	],		
+	description [;
+		print "A wooden lever, currently in the ";
+		if (self.pulled)
+			print "down";
+		else
+			print "up";
+		" position.";
+	],
+	before [;
+	Pull:
+		if (LeverCylinder has open)
+			"It won't budge.";
+		if (self.pulled)
+			"But it's already been pulled down.";
+		self.pulled = true;
+		print "You pulled ", (the) self, " down.^";
+		LeverCylinder.flip();
+		rtrue;
+	Push:
+		if (self.pulled) {
+			self.pulled = false;
+			print "You pushed ", (the) self, " up.^";
+			LeverCylinder.flip();
+			rtrue;
+		}
+		"But it's already been pushed up.";
+	],
+	has static;

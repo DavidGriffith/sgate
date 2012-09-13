@@ -1,0 +1,51 @@
+Outside LookoutPoint "Lookout Point"
+	with name "lookout" "point",
+	description [;
+		print "Lighting lights up the countryside as you stand
+		on a lookout point.  You can return to the castle by
+		going east.^";
+	],
+	e_to Balcony;
+
+Object -> CanvasPouch "canvas pouch"
+	with name "canvas" "pouch" "bag",
+	description "This canvas bag looks to be quite light.  Close
+		inspection reveals some Druidic script on it.",
+	has container openable;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+
+GoldCoin -> -> BigCoin "big gold coin"
+	with name "big",
+	short_name "big gold coin",
+	description "This is a large gold coin with a well engraved on it.";
+
+Object -> PotOfGold "pot of gold"
+	with name "pot" "gold",
+	description "It's a pot of gold.  The leprechaun must have
+		skipped town.",
+	before [;
+	Take, LetGo, Turn, Push, Pull:
+		deadflag = 1;
+		"As you reach for the pot, you realize that you have
+		fallen for the oldest trick in the book.  The balcony
+		floor beneath you gives way and you fall into the moat.
+		It seems that the alligators really enjoy your
+		company.";
+	],
+	has container open;
+
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;
+GoldCoin -> ->;

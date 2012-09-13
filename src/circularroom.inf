@@ -1,0 +1,89 @@
+Inside CircularRoom "Circular Room"
+	with name "circular" "room",
+	description "Although the evening air is cool, this small
+		circular room radiates a fervent heat.  A ladder leads 
+		up.  A door to the south leads back to the banquet hall.",
+	before [;
+	Take:
+		if (Hellhound in self) {
+			Hellhound.killplayer();
+			rtrue;
+		}
+
+		if (self hasnt general && noun == PlatinumHorn) {
+			Hellhound.summon();
+			rtrue;
+		}
+	],
+	u_to [;
+		if (self hasnt general && Hellhound notin self) {
+			Hellhound.summon();
+			rtrue;
+		}
+		return WyvernTower;
+	],
+	s_to	HellhoundDoor;
+
+! There must be a way to cool the room off before you roast!
+
+
+Object -> HoundBrazier "brazier"
+	with name "brazier",
+	description "A flame burns within this brazier, lighting the
+		entire room.",
+	has light scenery;
+
+Object -> PlatinumHorn "platinum horn"
+	with name "platinum" "horn",
+	description "This horn is forged of flawless platinum.  Its
+		beauty is unbelievable.",
+	before [;
+	Play:
+		if (Talisman in LeftNiche && player in SkullGate) {
+			give GateDoor open;
+			"The sound of the horn echos loudly in your
+			ears.  Suddenly, you hear the sound of grinding
+			rock.  The jaw of the skull begins to descend.
+			Hot wind erupts from the mouth creating the
+			illusion that the skull is alive.";
+		}
+		"Toot toot!";
+	];
+
+Object Hellhound "hellhound"
+	with name "dog" "hound" "hellhound" "beast",
+	description "The hellhound makes this hot room even hotter.",
+	killplayer [;
+		deadflag = 1;
+		"The demon dog snarls and pounces on you.  Its teeth
+		sink deep into your flesh.";
+	],
+	summon [;
+		move self to CircularRoom;
+		"As you step forward to pick up the horn, a large
+		fireball suddenly appears in the room and causes you to
+		shield your eyes.  When you open them, you notice that
+		the fire has changed into something far more menacing.^
+		^
+		A hellhound is standing in the middle of the room in
+		front of the platinum horn.  The beast doesn't seem
+		very friendly.";
+	],
+	before [weapon;
+	Attack, ThrownAt:
+		if (noun == self)
+			weapon = second;
+		else
+			weapon = noun;
+
+		if (weapon == HolyBottle or HolyWater) {
+			give CircularRoom general;
+			remove self;
+			"You hurl the holy water at the beast.  In a
+			burst of flame, the hellhound is sent back to
+			the place where it was spawned.  The room is
+			now quiet as though nothing had happened.";
+		}
+		self.killplayer();
+	],
+	has animate neuter;

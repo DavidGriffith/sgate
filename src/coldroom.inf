@@ -1,0 +1,134 @@
+Inside ColdRoom "Cold Room"
+	with name "cold" "room",
+	description [;
+		print "You enter a cold room.  The stench of flesh in
+		decay pervades the chamber.  You begin to shiver.  This
+		room is really cold!  In the north wall is a 
+		finely-crafted wooden door.  Next to it is a stone
+		pedestal about waist height.  In the wall, between
+		the door and pedestal is a small hole";
+
+		if (GemWhite in WhiteHole)
+			print " which contains a white gem";
+
+		".  In the northeast corner is a small metal trap
+		door.";
+	],
+	n_to ColdRoomDoor,
+	s_to FourWay,
+	in_to ColdTrapDoor,
+	d_to ColdTrapDoor;
+
+
+! After the first entrance, we see "This room stinks of rotten meat."
+
+UnlitTorch ->;
+UnlitTorch ->;
+
+! A small crystal sphere magically appears on the stand.
+!
+Object -> Pedestal "pedestal"
+	with name "pedestal",
+	description "The pedestal is roughly waist height.  It's carved
+	out of granite and has iron trim around the edges.  A shallow
+	depression is on top.",
+	capacity 1,
+	has supporter scenery;
+
+Object -> WhiteHole "hole"
+	with name "hole",
+	description [;
+		print "It's a small hole in the wall some three inches
+		deep.";
+		if (GemWhite in self)
+			"  A white gem is inside.";
+	],
+	before [;
+	LetGo:
+		if (GemWhite in self) {
+			"Some force prevents you from pulling the gem
+			out of the hole.";
+		}
+	Receive:
+		if (noun ofclass Gem) {
+			if (noun == GemWhite) {
+				move CrystalSphere to Pedestal;
+				move noun to WhiteHole;
+				"The gem fits perfectly.  A small
+				crystal sphere magically appears on
+				the pedestal.";
+			}
+			"The gem seems to fit, but nothing happens.";
+		}
+		"It doesn't seem to fit.";
+	],
+	has container open scenery;
+
+
+Object -> ColdRoomDoor "wooden door"
+	class ObligingDoor,
+	with name "wood" "wooden" "door" "fine",
+	description "It's a finely crafted wooden door.",
+!	when_open [;
+!		"The wooden door is open.";
+!	],
+!	when_closed [;
+!		"The wooden door is closed.";
+!	],
+	door_to [;
+		if (self in ColdRoom) {
+			return HotRoom;
+		}
+		return ColdRoom;
+	],
+	door_dir [;
+		if (self in ColdRoom) {
+			return n_to;
+		}
+		return s_to;
+	],
+	found_in ColdRoom HotRoom,
+	has scenery door openable;
+
+
+
+Object -> ColdTrapDoor "trap door"
+	with name "trap" "door",
+	description "It's a small trap door made of polished metal.",
+	when_open [;
+		"The trap door is open.";
+	],
+	when_closed [;
+		"The trap door is closed.";
+	],
+	door_to [;
+		deadflag = 1;
+		"A broken fragment of a wooden ladder hangs from
+		the opening.^^As you go down the trap door, you realize
+		you took a big step.  The fall is quite fatal.";
+	],
+	door_dir [;
+		return d_to;
+	],
+	has static door openable container;
+
+Object -> -> ColdRoomLadder "rickety ladder descending into the gloom"
+	with name "rickety" "ladder",
+	description "It's greasy, dirty, and full of splinters.",
+	before [;
+	Take, Push:
+		"The ladder remains fixed to the wall of the shaft.";
+	],
+	has static;
+
+
+! If a torch is used on the sphere, the torch will be snuffed out.
+! Still need to code that.
+Object CrystalSphere "crystal sphere"
+	with name "crystal" "sphere" "ball",
+	description "This crystal sphere is as cold as ice.",
+	before [;
+	Search:
+		"It's perfectly clear.";
+	];
+

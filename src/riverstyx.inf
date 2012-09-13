@@ -1,0 +1,96 @@
+Inside RiverStyx "River Styx"
+	with name "river",
+!	description "You stand above a beach, looking down upon a
+!		river.",
+	description "You're standing on the bank of the River Styx.
+		Its still waters support no life.",
+	u_to WellRoom;
+
+Object -> Gong "gong"
+	with name "gong",
+	description "It's a great gold gong.  Its beauty is enhanced by
+		the intricate stand that supports it.",
+	before [;
+	Take:
+		"It's far too heavy to carry.";
+	Attack:
+		if (verb_word == 'hit') {
+			switch (second) {
+			mallet:
+				move Raft to RiverStyx;
+				"After the gong sounds, a spectre
+				piloting a tiny wooden raft materializes
+				before your eyes.^
+				^
+				The ghostly ferryman doesn't look
+				friendly.  You hear a faint voice ask
+				for a fare.";
+			Sword, Hammer:
+				"The gong makes a faint ringing sound.";
+
+			default:
+				self.ring_fail();
+				rtrue;
+			}
+		}
+		self.ring_fail();
+		rtrue;
+	],
+	ring_fail [;
+		"The gong makes a dull thudding sound.";
+	],
+	has static;
+
+Object -> GongSupport "support"
+	with name "support" "stand",
+	description "Quite intricate.",
+	has scenery;
+
+Object -> Mallet "mallet"
+	with name "mallet",
+	description "This mallet is made from, what appears to be,
+		centaur hide.";
+
+Object -> River "river"
+	with name "river" "styx",
+	description "The river's water is dead calm.",
+	has scenery;
+
+
+Object Raft "raft"
+	with name "tiny" "wooden" "raft",
+	description "It's a wooden raft.",
+	before [;
+	Enter:
+		if (Spectre has general) {
+			print "You climb aboard the tiny raft.  The
+				ferryman pushes off the shore.  Soon
+				you reach the opposite bank.^";
+			PlayerTo(SkullGate);
+			rtrue;
+		}
+		"The ferryman will not let you board.  He is still
+		waiting for a fare.";
+	],
+	has static supporter enterable;
+
+Object -> Spectre "spectral ferryman"
+	with name "spectre" "specter" "spectral" "ferryman"
+		"ferry" "charon" "man" "skeleton",
+	description "The spectral ferryman is wrapped in tattered rags.
+		You can see a skeleton within the cloak.",
+	life [;
+	Show:
+		if (noun ofclass GoldCoin) {
+			"The ferryman reaches out a hand towards the
+			coin and moans softly.";
+		}
+	Give:
+		if (noun ofclass GoldCoin) {
+			move noun to self;
+			give self general;
+			"The ferryman takes the coin and gestures you
+			to board quickly.";
+		}
+	],
+	has animate;

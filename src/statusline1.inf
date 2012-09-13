@@ -1,0 +1,16 @@
+! Display just the room name.
+!
+Array printed_text --> 64;
+[ DrawStatusLine i j;
+	i = 0->33;
+	font off;
+	@split_window 1; @buffer_mode 0; @set_window 1;
+	style reverse; @set_cursor 1 1; spaces(i);
+	@output_stream 3 printed_text;
+	print (name) location;
+	@output_stream -3;
+	j = (i-(printed_text-->0))/2;
+	@set_cursor 1 j; print (name) location; spaces(j-1);
+	style roman;
+	@buffer_mode 1; @set_window 0; font on;
+];

@@ -1,0 +1,318 @@
+Inside Library "Library"
+	with name "library",
+	description [;
+		print "You stand in a small library.  A desk is pushed
+		up against the north wall.";
+
+		if (Map hasnt moved)
+			print "  Above that hangs a map.";
+
+		print "  Most of the west wall is covered by a
+		bookcase.  Just to the right of the bookcase is a
+		small hole";
+
+		if (GemRed in RedHole) {
+			" which contains a red gem.  The bookcase
+			has slid open revealing a hidden passage.";
+		}
+		".";
+	],
+	before [;
+		! All the drawer contents start off in the left drawer.
+		! For added flavor, some might be found in the other
+		! drawer.
+		!
+		if (self hasnt general) {
+			give self general;
+			if (random(2) == 1)
+				move Glasses to DrawerRight;
+
+			if (random(2) == 1)
+				move TarnishedKey to DrawerRight;
+
+			if (random(2) == 1)
+				move TerrakkScroll to DrawerRight;
+
+			if (random(2) == 1)
+				move IlluminaScroll to DrawerRight;
+		}
+	Examine:
+		if (noun == n_obj)
+			<<examine Bookcase>>;
+	],
+	e_to	BanquetCorridor,
+	n_to [;
+		if (GemRed in RedHole)
+			return Study;
+	];
+
+
+Object -> RedHole "hole"
+	with name "hole",
+	description [;
+		print "It's a small hole in the wall some three inches
+		deep.";
+		if (GemRed in self)
+			"  A red gem is inside.";
+		"";
+	],
+	before [;
+	LetGo:
+		if (GemRed in self) {
+			"Some force prevents you from pulling the gem
+			out of the hole.";
+		}
+
+	Receive:
+		if (noun ofclass Gem) {
+			if (noun == GemRed) {
+				move noun to RedHole;
+				"The gem fits perfectly.  The bookcase
+				slowly slides open revealing a hidden
+				passage.";
+			}
+		}
+		"It doesn't seem to fit.";
+	],
+	has container open scenery;
+
+
+Object -> Map "map"
+	with name "map",
+	description "This fine map of the lands of Tarkus is quite
+		detailed, although incomplete.",
+	before [;
+	Take:
+		give self ~concealed;
+	],
+	has concealed;
+
+
+! This is a complete twelve-volume set of the Encyclopedia Druidica.
+
+Object -> Bookcase "bookcase"
+	with name "bookcase" "bookshelf" "case",
+	description [;
+		"This bookcase is full of dry and arcane volumes.  Only
+		the three you found sitting alone are of any
+		interest.";
+	],
+	has supporter scenery;
+
+Object -> -> Skull "skull"
+	with name "white" "skull",
+	description "It seems to be the skull of some unfortunate
+		individual.",
+	has float;
+
+Book -> -> "red book entitled ~The Castle Shadowgate~"
+	with name "red" "castle" "shadowgate",
+	description "You open the book and read it.^
+	^
+	~The Castle Shadowgate is not the largest castle on Tarkus, but
+	it is the most powerful.  The castle is surrounded by an
+	impenetrable mountain known as Gatekeeper.  Only members of
+	the now lost circle of twelve can enter it.  It is said that
+	the walls of Shadowgate themselves are quite alive.~",
+	before [;
+	Open:
+		give self ~open;
+		<<examine self>>;
+	Search:
+		<<examine self>>;
+	];
+	
+Book -> -> "green book entitled ~The Circle of Twelve~"
+	with name "green" "circle" "of" "twelve",
+	description "This book's title is ~The Circle of Twelve~.  You
+	open the book and read it.^
+	^
+	~The Circle of Twelve was formed before most things began to
+	be.  Their names are...  Framas, Garolin, Talotin, Ronlin,
+	Talimar, Magnas, Wontave, Bitwik, Tenmakk, Sharnir, Lakmir, and
+	Turgor.  The circle was broken when Talimar took a new name:
+	The Warlock Lord!~",
+	before [;
+	Open:
+		give self ~open;
+		<<examine self>>;
+	Search:
+		<<examine self>>;
+	];
+
+Object -> Desk "desk"
+	with name "wooden" "desk",
+	description [;
+		"It's a strong wooden desk fit for a
+		king.  There are two drawers in it: one on the left
+		and one on the right.";
+	],
+	before [;
+	Open, Close:
+		"You must refer to which drawer you wish to ",
+		(address) verb_word, ".";
+	],
+	has scenery supporter;
+
+
+
+! Wow!  With these glasses, you can understand and read what you could
+! not before!^
+
+Book -> -> "blue book entitled ~The Prophecy~"
+	with name "blue" "prophecy",
+	description [;
+		if (Glasses hasnt worn)
+			"This book is quite old.  You can't read the
+			strange writing in the book.";
+		else {
+			print "^
+			~The light grows faint, the path winds round.^
+			Where life is lost, wisdom is found.^
+			The seed of the dream, for the evil is free.^
+			Where the sword is hung, he must place the key.^
+			A bridge from, amidst burning death.^
+			A demon to guard.^
+			^
+			Motari Riseth~";
+
+			if (motari_spell notin memory) {
+				move motari_spell to memory;
+				players_book.learn_spell(motari_spell);
+				motari_spell.number = 100;
+				"^^You've learned a magic spell.";
+			}
+			"";
+		}
+	],
+	before [;
+	Open:
+		give self ~open;
+		<<examine self>>;
+	Search:
+		<<examine self>>;
+	];
+
+
+Spell -> -> -> motari_spell 
+	with name "motari", 
+	purpose "A bridge from, amidst burning death.  A demon to guard.",
+	magic [;
+		if (player in LavaChamber) {
+			give LavaStatue general;
+			"The statue lowers and a large platform rises
+			out of the lava.  You now have a way across.";
+		}
+		"Nothing happens.";
+	];
+
+Object -> Drawers "drawers"
+	with name "drawers",
+	description "Strong wooden drawers that slide perfectly into
+		the strong wooden desk.",
+	before [;
+	Open:
+		<open DrawerLeft>;
+		<open DrawerRight>;
+		rtrue;
+	Close:
+		<close DrawerLeft>;
+		<close DrawerRight>;
+		rtrue;
+	Search:
+		<search DrawerLeft>;
+		<search DrawerRight>;
+		rtrue;
+	],
+	has pluralname scenery;
+
+Object -> DrawerRight "right drawer"
+	with name "drawer" "right",
+	description "It's a strong wooden drawer that slides perfectly
+		into the strong wooden desk.",
+	has scenery container openable;
+
+Object -> DrawerLeft "left drawer"
+	with name "drawer" "left",
+	description "It's a strong wooden drawer that slides perfectly
+		into the strong wooden desk.",
+	has scenery container openable;
+
+! You try the glasses on and they fit perfectly.  Hmmm, you can see very
+! well.
+!Clothes -> -> Glasses "glasses"
+!	with name "glasses" "spectacles",
+!	area 0,
+!	level 4,
+!	conceal false,
+!	article "a pair of",
+!	description "These glasses are worn.  They've probably been
+!		used for a long time.",
+!	after [;
+!	Wear:
+!		"The glasses fit perfectly.  It seems as if you can see
+!		much better than a normal person should.";
+!	],
+!	has pluralname;
+
+
+Object -> -> Glasses "glasses"
+	with name "glasses" "spectacles",
+	article "a pair of",
+	description "These glasses are worn.  They've probably been
+		used for a long time.",
+	after [;
+	Wear:
+		"The glasses fit perfectly.  It seems as if you can see
+		much better than a normal person should.";
+	],
+	has pluralname clothing;
+
+! key5
+!
+Key -> -> TarnishedKey "tarnished key"
+	with name "tarnished",
+	short_name "tarnished key",
+	description "It's a small tarnished key.",
+	has is_tiny;
+
+! Scroll 3
+Scroll -> -> TerrakkScroll "dirty scroll"
+	with name "dirty" "scroll" "terrakk";
+
+! "Terra Terrakk"
+Spell -> -> -> terrakk_spell
+	with name "terrakk",
+	purpose "Lands under the heavens; the key to the world.",
+	magic [;
+		if (player in Study && Globe hasnt openable) {
+			give Globe openable;
+			"As you chant the spell, a large crack appears
+			around the equator of the globe.";
+		}
+		"Nothing happens.";
+	];
+
+! Scroll 4
+Scroll -> -> IlluminaScroll "shiny scroll"
+	with name "shiny" "scroll" "illumina";
+
+! Instantum Illumina
+Spell -> -> -> illumina_spell
+	with name "illumina",
+	purpose "To move the sun from far to near, light is what the
+		darkness fears.",
+	magic [;
+		if (player in GargoyleRoom) {
+			give Gargoyle general;
+			"Suddenly the cavern is so bright that you have
+			to shade your eyes.  It takes you a few
+			moments to regain your senses from the nova
+			burst.  It seems that the gargoyles were also
+			affected and haven't yet recovered from the
+			spell.";
+		}
+		"The room suddenly seems to be lit by a millions
+		torches as the spell is released.  The magical light
+		then quickly dies out.";
+	];

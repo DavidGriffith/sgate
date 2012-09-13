@@ -1,0 +1,97 @@
+Inside BehindFalls "Behind the falls"
+	with name "room",
+	description [;
+		print "The damp walls of this tiny cave are rough and 
+		irregular.";
+		print "  A small boulder";
+		if (FallsNiche notin BehindFalls) {
+			" sticks out from the wall.";
+		} else {
+			" sits beneath a niche in the wall it once occupied.";
+		}
+	],
+	out_to WaterfallRoom,
+	w_to WaterfallRoom;
+
+Object -> fallsgravel "wet gravel"
+	with name "wet" "gravel" "pebbles" "pebble",
+	description "These pea-sized pebbles have been smoothed and
+		rounded by centuries of being churned by the
+		waterfall.",
+	before [;
+	Take:
+		"The gravel is too slippery to get a decent handful.";
+	],
+	has scenery;
+
+Object -> FallRock "small boulder"
+	with name "small" "rock" "boulder" "stone",
+	description [;
+		if (FallsNiche in BehindFalls) {
+			"It seems to sit loosely in the wall.";
+		} else {
+			"It sits right beneath the niche in the wall.";
+		}
+	],
+	before [;
+	Slide, Push:
+		"It rocks back and forth a bit.";
+	Attack:
+		if (verb_word == 'kill') {
+			"It's not alive.";
+		}
+		move FallsNiche to BehindFalls;
+		"You hit the rock as hard as you can.  The loose rock 
+		falls down as if hinged to the wall.  In the niche, you
+		see a dirty leather pouch partially buried in wet gravel.";
+	],
+	has scenery;
+
+
+
+Object FallsNiche "niche"
+	with name "niche" "hole",
+	description [;
+		"It's a small hole in the wall previously concealed by a
+		boulder.";
+	],
+	describe [;
+		print "^In ", (the) self, " is ";
+		if (child(self)) {
+			print (a) child(self), ".^";
+			rtrue;
+		}
+		"nothing but wet gravel.";
+	],
+	before [;
+	Receive:
+		if (noun hasnt is_tiny) {
+			"It won't fit.";
+		}
+	],
+	capacity 1,
+	has static container open;
+
+Object -> GemPouch "leather pouch"
+	with name "leather" "pouch" "bag",
+	capacity 3,
+	description "It's a leather pouch.",
+	has container openable;
+
+Gem -> -> GemWhite "white gem"
+	with name "white" "diamond",
+	description "It's a white gem of unknown origin.  A fine thing
+	to gamble away in a good card game.",
+	has is_tiny;
+
+Gem -> -> GemRed "red gem"
+	with name "red" "ruby",
+	description "It's a fine red ruby.  Its color reminds you of
+	your adventure across the Sea of Blood.",
+	has is_tiny;
+
+Gem -> -> GemBlue "blue gem"
+	with name "blue" "sapphire",
+	description "It's a dark blue gem that is as big as the pommel
+	of a sword.",
+	has is_tiny;

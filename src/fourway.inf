@@ -1,0 +1,11 @@
+Inside FourWay "Four-way Passage"
+	with name "4-way" "four-way" "passage",
+	description "The stones in these walls were probably cut by the 
+	hands of enslaved dwarves.  ^^There are four exits: north, south, 
+	east, and west.",
+	n_to ColdRoom,
+	s_to PoolCavern,
+	e_to CoffinRoom,
+	w_to StonePassage;
+
+

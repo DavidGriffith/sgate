@@ -1,0 +1,452 @@
+! This spell system is taken mostly verbatim from Graham Nelson's 
+! "Balances".  The business with the burin and cubes, however has
+! removed.
+!
+! This file should be included just after Verblib is included.
+! The code should be reasonably generic and portable to whatever
+! scenario you have in mind.  Edit only below the heading "player's
+! spellbook and spells".
+
+
+Attribute known_about;		! Player has seen this spell somewhere.
+Attribute reversed;		! Effect of this known spell reversed
+Attribute is_spell;
+Attribute unmagic;
+
+Class Spell
+	with name "spell" "spells", article "the",
+		number 0,
+		word_name
+		[;  
+			print (address) (self.&name)-->0;
+		],
+       
+	short_name [;  
+		self.word_name(); print " spell";
+		give self known_about;
+		rtrue;
+	],
+	specification [;
+		self.short_name();
+		print ": ", (string) self.purpose, "";
+	],
+	before [;
+	Examine:
+		self.specification();
+		rtrue;
+	],
+	has	is_spell;
+
+
+Object memory
+	with capacity 5,
+	number_known 1,
+	describe_contents [ i j k;
+		objectloop (i in self) if (i.number==100) j++;
+		if (j>0) {
+			print "The ";
+			objectloop (i in self)
+			if (i.number==100) {
+				k++; i.word_name();
+				if (k==j-1) print " and ";
+				if (k<j-1) print ", ";
+			}
+			if (j==1) print " spell is"; else print " spells are";
+			print " yours forever.  Other than that, y";
+		} else print "Y";
+
+		print "ou have ";
+		j=0; k=0;
+		objectloop (i in self) if (i.number<100) j++;
+		if (j>0) {
+			print "the ";
+			objectloop (i in self)
+			if (i.number<100) {
+				k++;
+				print (name) i;
+				if (i.number==2) print " (twice)";
+				if (i.number==3) print " (thrice)";
+				if (i.number==4) print " (four times)";
+				if (i.number>=5) print " (many times)";
+				if (k==j-1) print " and ";
+				if (k<j-1) print ", ";
+			}
+		}
+		else print "no spells";
+		" memorised.";
+	],
+	learn_spell [ sp;
+		if (sp.number==100) "You always know that spell.";
+		print "Using your best study habits, you commit the ";
+		sp.word_name();
+		print " spell to memory";
+		if (sp notin self) sp.number=0;
+		move sp to self;
+		self.number_known++;
+		sp.number++;
+		if (sp.number==1) print ".";
+		if (sp.number==2) print " once again.";
+		if (sp.number==3) print " a third time.";
+		if (sp.number>3) print " yet another time.";
+		if (self.number_known <= self.capacity) { new_line; rtrue; }
+		self.forget_spell(sibling(child(self)));
+		"  You have so much buzzing around in your head, though,
+		that it's likely something may have been forgotten
+		in the shuffle.";
+	],
+
+	forget_spell [ sp;
+		if (sp notin self || sp.number==100) rtrue;
+		self.number_known--;
+		sp.number--;
+		if (sp.number==0) remove sp;
+		rtrue;
+	];
+
+Spell -> gnusto_spell
+	with name "gnusto",
+	number 100,
+	purpose "Copy a scroll into your spell book.",
+	magic [ i a_book;
+		if (second ofclass SpellBook) {
+			"Unlike scrolls, spell books are magically guarded 
+			against the 'theft' of their lore.";
+		}
+
+		if (second == 0 || ~~(second ofclass Scroll)) {
+			"Your spell fizzles vaguely out.";
+		}
+
+		if (second notin player) {
+			"A gnusto spell would require close scrutiny of 
+			the scroll it is to copy: which you do not seem 
+			to be holding.";
+		}
+
+		objectloop (i in player) {
+			if (i ofclass SpellBook) a_book = i;
+		}
+
+		if (a_book == 0) {
+			"Your spell fails, as you have no spell book.";
+		}
+		i = child(second);
+
+		if (second has nonmagic) {
+			print_ret "You spell fails, as ", (the) second,
+				" isn't actually magical.";
+		}
+
+		if (i == 0 || ~~(i ofclass Spell)) {
+			print_ret "Your spell fails, as ", (the) second,
+				" is illegible.";
+		}
+		a_book.learn_spell(i); remove second;
+		print_ret "Your spell book begins to glow softly.  Slowly, 
+			ornately, the words of ", (the) i, " are  
+			inscribed, glowing even more brightly then the 
+			book itself.  The book's brightness fades, but
+			the spell remains!  However, the scroll on
+			which it was written vanishes as the last word
+			is copied.";
+	];
+
+
+Class SpellBook
+	with array_of_spells 0 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0,
+	capacity 16,
+	learn_spell [ sp p i;
+		p = self.&array_of_spells;
+		for (i=0:i<self.capacity && (p-->i)~=0:i++) ;
+		if (i==self.capacity) rtrue;
+		p-->i = sp;
+	],
+	before [;
+	Open, Close:
+		print_ret
+		(The) self, " is always open to the right place, but it
+		is also always closed. This eliminates tedious leafing and
+		hunting for spells.  Many lives have been saved by this
+		magical innovation.";
+	Attack:
+		print_ret "When you are done, ", (the) self, " remains
+		unmarred.";
+	],
+	after [ p i j;
+	Examine:
+		p = self.&array_of_spells;
+		for (i=0:i<self.capacity && (p-->i)~=0:i++) {
+			j=p-->i;
+			<Examine j>;
+			print "^";
+		}
+		rtrue;
+	],
+	has float;
+
+class Scroll
+	with parse_name [ i j k;
+		j = -1;
+		if (self has general) {
+			if (child(self) ~= 0 && child(self) ofclass Spell) {
+				j = (child(self).&name)-->0;
+			} else {
+				j = 'illegible';
+			}
+		}
+		for (::) {
+			k = NextWord();
+			if (k == 'scrolls') {
+				parser_action = ##PluralFound;
+			}
+			if ((k == 'scrolls' or 'scroll' or j) || 
+				k == (self.&name)-->0) {
+				i++;
+			}
+			else return i;
+		}
+	],
+	before [ i;
+	Examine:
+		i = child(self);
+		give self general;
+		if (i == 0 || ~~(i ofclass Spell)) {
+			"The scroll has faded, and you cannot read it.";
+		}
+		print "The scroll reads ~"; i.specification(); "~.";
+	],
+	invent [;
+		if (inventory_stage == 2 && self has general) {
+			if (child(self) == 0 || ~~(child(self) ofclass Spell)) {
+				print " (which is illegible)";
+			} else {
+				print " (of ", (the) child(self), ")";
+			}
+		}
+	],
+	has float;
+
+[ ReadableSpell i j k;
+	if (scope_stage == 1) {
+		if (action_to_be == ##Examine) rfalse;
+		rtrue;
+	}
+	if (scope_stage == 2) {
+		objectloop (i in player) {
+			if (i ofclass SpellBook) {
+				for (k = 0: k < i.capacity && 
+					(i.&array_of_spells)-->k ~= 0: k++) {
+					j = (i.&array_of_spells)-->k;
+					PlaceInScope(j);
+				}
+			}
+		}
+		rtrue;
+	}
+	! No need for scope_stage 3 (the error stage), because our
+	! ParserError routine handles that case instead
+];
+
+
+! cube stuff removed
+![ CopyableSpell i j k;
+!	if (scope_stage==1) return 1;
+!	if (scope_stage==2) {
+!		objectloop (i in player) {
+!			if (i ofclass SpellBook) {
+!				for (k = 0: k < i.capacity && 
+!				(i.&array_of_spells)-->k~=0:k++) {
+!					j=(i.&array_of_spells)-->k; 
+!					PlaceInScope(j);
+!				}
+!			}
+!		}
+!		rfalse;
+!	}
+!	! No need for scope_stage 3 (the error stage), because our
+!	! ParserError routine handles that case instead
+!];
+
+[ SpellsSub;
+	memory.describe_contents();
+];
+
+[ LearnSub;
+	if (location==thedark) {
+		print "(The magic writing of the spells casts enough 
+			light that you can read them.)^";
+	}
+	memory.learn_spell(noun);
+];
+
+Global the_spell_was = gnusto_spell;
+
+[ CastOneSub; <Cast the_spell_was noun>; ];
+
+
+[ CastSub;
+	the_spell_was = noun; memory.forget_spell(noun);
+	if (noun has reversed) {
+		give noun ~reversed;
+		if (noun.unmagic() ~= 0) return;
+		"Nothing happens.";
+	}
+	if (second ~= 0) {
+		ResetVagueWords(second);	! Set "it", "him", "her"
+		if (second provides before &&
+		  second.before() ~= 0) return;	! Run before routine(s)
+	}
+	if (noun.magic() ~= 0) return;
+	"Nothing happens.";
+];
+
+[ InScope i ;
+	if (verb_word == 'c, cast' or 'cast') {
+		objectloop (i in memory) {
+			PlaceInScope(i);
+		}
+	}
+	rfalse;
+];
+
+
+[ ParserError x i flag vb;
+	if (etype == VERB_PE or ASKSCOPE_PE) {
+		if (etype == ASKSCOPE_PE) {
+			if (verb_word=='cast') vb=1;
+			if (verb_word=='learn' or 'memorise' or 'memorize') vb=2;
+			if (verb_word=='copy') vb=3;
+			if (vb==0) {
+				etype=CANTSEE_PE;
+				rfalse;
+			}
+		}
+	wn = verb_wordnum;
+	if (vb ~= 0) wn++;
+	x = NextWordStopped();
+
+	! command or spell is unrecognized.
+	if (x == 0) {
+		rfalse;
+	}
+
+	if (x == comma_word) {
+		print "comma^";
+	}
+
+	if (x == THEN1__WD) {
+		print "full stop^";
+	}
+
+	for (i = player + 1: i <= top_object: i++) {
+		if (i ofclass Spell
+			&& Refers(i,x)==1
+			&& i has known_about
+			) {
+			flag = 1;
+		}
+	}
+
+	      for (i=player+1:i<=top_object:i++)
+          if (i ofclass Spell && Refers(i,x)==1
+              && i has known_about) flag=1;
+
+
+	if (flag==1) {
+		if (vb==0 or 1) {
+			"You haven't got that spell committed to
+			memory.  [Type ~spells~ to see what you do
+			remember.]";
+		}
+		if (vb==2) {
+			"Your training is such that you can only
+			memorise such a spell with the aid of a spell
+			book containing it.";
+		}
+		if (vb==3) {
+			"You have no text of that spell to copy.";
+		}
+	}
+
+	if (vb==1)
+	"You haven't learned that spell, if indeed it is a spell.";
+
+	if (vb==2 or 3)
+	"You haven't access to that spell, if indeed it is a spell.";
+
+	}
+	rfalse;
+];
+
+! Duplicated in objects.inf
+!
+![ ChooseObjects code;
+!	if (code < 2)
+!		rfalse;
+!	return 0;
+!];
+
+
+[ UnknownVerb word i;
+	objectloop (i in memory)
+		if (word==(i.&name)-->0) { the_spell_was = i; return 'c,cast'; }
+	rfalse;
+];
+
+
+[ PrintVerb v;
+	if (v=='c,cast') { print "cast a spell at"; rtrue; }
+	rfalse;
+];
+
+
+
+!----------------------------------------------------------------------------
+!   The player's spell book and spells
+!----------------------------------------------------------------------------
+
+SpellBook players_book "spell book"
+	with name "spell" "book" "my" "spellbook",
+	article "your",
+	short name "spell book",
+	description "My Spell Book^";
+
+
+! Once this spell is cast in Epor Room, its purpose becomes clear
+!
+! There are many strange things in this world!
+! When you said the magic spell, the rope moved.
+! Having stretched up to the hole, the rope stops moving.
+!
+Spell epor_spell
+	with name "epor",
+	! purpose becomes known when used where it was found.
+	purpose "purpose unknown",
+	magic [;
+		if (player in EporRoom) {
+			if (Rope hasnt general) {
+				print "The rope stretches up through the
+				hole in the ceiling.";
+				if (self.purpose ~= "animate rope") {
+					print "^^Ah!  So that's what the
+					Epor spell does!";
+				}
+				self.purpose = "animate rope";
+				give Rope general;
+				"";
+			} else {
+				give Rope ~general;
+				"The rope sinks back to the floor,
+				coiling itself up as it goes.";
+			}
+		}
+		"Nothing happens.";
+	];
+
+Spell kickle_spell
+	with name "kickle",
+	purpose "kickle",
+	magic [;
+		"Kickle effect goes here.";
+	];
+

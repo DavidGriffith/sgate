@@ -1,0 +1,133 @@
+Inside WarlockCave "Warlock Cave"
+	with name "room",
+	description [;
+		print "The cavern that you have entered is by far the
+		largest your eyes have ever gazed upon.  A path and
+		steps lined with flaming braziers leads to a stone
+		platform jutting out over an enormous pit.";
+	
+		print "^^From the depths ";
+		if (Behemoth has moved) {
+			give Behemoth moved;
+			print "has risen";
+		} else
+			print "rises";
+
+		" the most powerful creature that has ever
+		existed: The Behemoth!  Your stomach knots up as you
+		stare at this new horror.  The beast is indeed
+		incredible.  You wonder, for a moment, how you can
+		defeat such a creature as this.^
+		^
+		The Warlock Lord is on a huge stone platform
+		that extends into the pit.  He stands with his arms
+		outstretched holding his staff aloft and facing the
+		Behemoth.";
+	],
+	e_to SkullGate,
+	n_to [;
+		print "You step forward through the braziers and onto
+		the steps leading to the stone platform.  ";
+		Warlock.killplayer();
+		rtrue;
+	];
+
+
+Object -> Behemoth "Behemoth"
+	with name "behemoth",
+	description "Your jaw drops and you stare in awed silence at
+		the sight of the great titan.  Acid drips from his
+		jaws and sizzles on the ledge below.",
+	before [ weapon;
+	Attack:
+		if (noun == self)
+			weapon = second;
+		else
+			weapon = noun;	
+
+		if (weapon == Staff && Staff has general)
+			self.victory();
+			rtrue;
+	],
+	victory [;
+		deadflag = 2;
+		WinMessage();
+		rtrue;
+	],
+	article "the",
+	has animate;
+
+
+Object -> Warlock "Warlock Lord"
+	with name "warlock" "lord",
+	description "Although his back is turned, you know beyond a
+		shadow of a doubt that it's the Warlock Lord.  It
+		seems that his staff is controlling the creature,
+		keeping it at bay.",
+	describe [;
+	],
+	before [;
+	Attack, Smell, Touch, Receive, Wave, Point:
+		self.killplayer();
+		rtrue;
+	],
+	killplayer [;
+		deadflag = 1;
+		"The Warlock Lord feels your presence and knows that
+		you are the seed that must be destroyed.  Flame shoots
+		forth from his staff and engulfs your body.  You have
+		failed!";
+	],		
+	article "the",
+	has animate;
+
+Object -> WarlockPlatform "stone platform"
+	with name "stone" "platform",
+	description "It's a huge stone platform with stairs descending
+		from it.",
+	has scenery;
+
+Object -> WarlockStairs "stairs"
+	with name "stairs",
+	description "Stone stairs leading from the brazier-lined path
+		to the stone platform.",
+	before [;
+	Climb, Enter:
+		Warlock.killplayer();
+		rtrue;
+	],
+	has scenery;
+
+Object -> WarlockBraziers "braziers"
+	with name "braziers",
+	description "Many braziers line the path to the stone platform.
+		They seem to be there in celebration of the Dark One's
+		victory.",
+	has scenery;
+
+Object -> WarlockBrazier "brazier"
+	with name "brazier",
+	description "Flame burns intensely within this brazier as if in
+		celebration of the Dark One's victory.",
+	has scenery;
+
+Object -> WarlockPit "pit"
+	with name "pit" "abyss" "chasm" "void",
+	description "It goes a long way down.",
+	has scenery;
+
+Object -> BehemothAcid "acidic spittle"
+	with name "acid" "spittle" "saliva" "spit",
+	description "It's a puddle of acidic spittle from the jaws of
+		the Behemoth.  It sizzles and fumes as it dissolves the
+		stone of the ledge.",
+	before [;
+	Take, Touch, Attack:
+		"The spittle can dissolve stone.  It will probably
+		dissolve your flesh or anything else you touch it
+		with.";
+	Smell:
+		"The fumes are painful to inhale.";
+	],
+	has scenery;
+	

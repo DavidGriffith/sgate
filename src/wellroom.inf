@@ -1,0 +1,59 @@
+Inside WellRoom "Well Room"
+	with name "room",
+	description "This room seems to be made solely for the
+		purpose of housing a well.  An archway leads south and 
+		a door leads west.",
+	w_to WellDoor,
+	s_to GargoyleRoom,
+	d_to WishingWell;
+
+Object -> WishingWell "well"
+	with name "well" "lid" "cover",
+	description [;
+		print "This fine well is made of both stone and
+		mortar.";
+		if (self has open)
+			" Its wooden lid has been lifted up.";
+		" A wooden lid covers the opening.";
+	],
+	describe [;
+		if (self has open)
+			"^The well's wooden lid has been lifted.";
+		"^A wooden lid covers the well.";
+	],
+	door_to [;
+		if (self hasnt general) {
+			deadflag = 1;
+			"With a mighty leap, you jump head first into
+			the well.  On the way down, you see no water
+			below.  The well was deeper than you imagined.
+			You have just broken every bone in your body.";
+		}
+		print "The swirling winds carry you down the deep well
+		and set you gently into the cavern below.^";
+		return RiverStyx;
+	],
+	door_dir d_to,
+	before [;
+	Receive:
+		if (noun == BigCoin) {
+			give self general;
+			remove noun;
+			"As soon as you drop the coin down the well,
+			a huge wind erupts from within it.  It reminds 
+			you of the small ~dust devils~ you see in the
+			autumn months.";
+		}
+		move noun to RiverStyx;
+		"You drop ", (the) noun, " down the well.";
+	Search:
+		"It goes a long way down.";
+	],
+	has openable static door;
+
+ObligingDoor -> WellDoor "door"
+	with name "door",
+	description "This door is covered with dust and dirt.",
+	door_dir w_to,
+	has scenery static door openable lockable locked;
+

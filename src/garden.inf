@@ -1,0 +1,106 @@
+Outside Garden "Garden"
+	with name "garden",
+	description [;
+		print "You stand in a small garden.  The only sound is
+		of falling water in the night.  In the center of the
+		garden is a small tree with golden leaves and an
+		exquisite marble fountain.";
+		if (Flute in Fountain)
+			"  A small wooden flute is bobbing up and down
+			atop a stream of water in fountain.";
+
+		"  The sound of the water splashing is music to your ears.";
+	],
+	u_to	Laboratory,
+	s_to	Laboratory;
+
+
+Object -> Tree "tree"
+	with name "tree",
+	description [;
+		"The bark on this tree shows no hint of disease
+		and its leaves are an awesome gold color.";
+	],
+	has scenery;
+
+
+Object -> Leaves "leaves"
+	with name "leaf" "leaves",
+	description "The leaves are almost the same hue as real gold.",
+	before [;
+	Take:
+		"Leave the leaves alone.";
+	],
+	has scenery;
+
+
+Object -> Fountain "fountain"
+	with name "fountain",
+	description [;
+		print "This exquisite marble fountain is shaped into the
+		image of a sea serpent.";
+		if (Flute in self) {
+			if (Flute hasnt moved) 
+				"  A small wooden flute is
+				supported on a stream of acidic
+				liquid spewing from its mouth.";
+		}
+		"  From its mouth spews an acidic liquid.";
+	],
+	before [;
+	LetGo:
+		if (Gauntlet hasnt worn) {
+			"As you reach for ", (the) noun, ", you touch
+			the water and pain explodes through your
+			hand.  The water is extremely acidic and
+			obviously not good for drinking.";
+		}
+	],
+	has container open scenery;
+
+
+Object -> -> Flute "wooden flute"
+	class Burnable,
+	with name "wooden" "flute",
+	description "It's a small wooden flute.  It looks like it could
+		make wonderful music.",
+	before [;
+	Play:
+		if (player in Garden) {
+			move TreeNiche to Garden;
+			"The sound of the flute is very pretty,
+			indeed.  It seems like you wake from a dream
+			only to find a hole in the tree!  Is it
+			real?  The flute's music is like magic.";
+		}
+		"The flute's music could possibly lead you to an
+		endless dream.";
+	];
+
+
+Object TreeNiche "niche in the tree"
+	with name "niche" "hole",
+	description [;
+		"It's a small hole in the tree, apparently of magical
+		origin.";
+	],
+	before [;
+	Receive:
+		if (noun hasnt is_tiny)
+			"It won't fit.";
+	],
+	capacity 1,
+	has static container open;
+
+
+!Clothes -> SapphireRing "sapphire ring"
+!	with name "sapphire" "ring",
+!	description "It's a ring set with a large, black sapphire.",
+!	area 5
+!	level 0,
+!	has is_tiny;
+
+Object -> SapphireRing "sapphire ring"
+	with name "sapphire" "ring",
+	description "It's a ring set with a large, black sapphire.",
+	has is_tiny clothing;

@@ -1,0 +1,166 @@
+Inside PoolCavern "Subterranean Pool"
+	with name "cavern",
+	description [;
+		print "This subterranean cavern has been carved by
+		centuries of supernatural erosion.  You are on the
+		north shore of a large pool filling the entire cavern.";
+		print "  A humanoid skeleton is draped over a spiky rock
+		out in the middle of the pool.";
+
+		if (BrassKey in LimeSkeleton) {
+			print "  It seems to be holding a key of some
+			sort.";
+		}
+		"  Exits lie to the north and east.";
+
+	],
+	e_to WaterfallRoom,
+	n_to FourWay,
+
+	s_to [;
+		if (pool hasnt general) {
+			"Swimming in the shark-infested pool would
+			be suicidal.";
+		} else {
+			return FrozenPool;
+		}
+	];
+
+!Object -> PoolIce "ice"
+!	with name "ice",
+!	description "You can't see any such thing.",
+!	has scenery;
+
+
+! I'd like that "ice" to be valid only if the pool is actually frozen.
+! Can't figure out how to make that work.
+Object -> Pool "pool"
+	with name "pool" "lake" "water" "ice",
+	describe [;
+		if (self has general) {
+			"^The pool is frozen solid.";
+		} else {
+			"^A shark swims by as if patrolling this calm
+			pool.";
+		}
+	],
+	description [;
+		if (self hasnt general) {
+			"The waters of this subterranean lake are
+			as still as a corpse.";
+		} else {
+			"The lake is a solid sheet of ice.  A
+			crystal sphere is embedded in it.";
+		}
+	],
+	release_sphere [;
+		if (CrystalSphere notin self || CrystalSphere hasnt general) {
+			"You put the burning torch close to the	 
+			surface of the frozen pool.  Nothing
+			seems to happen.";
+		}
+		give CrystalSphere ~general;
+		print "You put the burning torch close to the surface
+		of the frozen pool.  The torch melts away the ice over
+		the sphere, allowing it to float to the surface.  Not
+		surprisingly, the pool quickly refreezes.";
+	],
+	before [newthing;
+	LetGo:
+		if (noun == CrystalSphere) {
+			if (CrystalSphere hasnt general) {
+				move CrystalSphere to player;
+				"You pull the sphere out of surface of 
+				the ice.";
+			}
+			"The sphere is embedded in the ice just below
+			the surface.";
+		}
+
+		if (noun hasnt float) {
+			if (self hasnt general) {
+				print (The) noun, " lies out of reach at the
+				bottom of the pool";
+			} else {
+				print (The) noun, " is embedded in the ice
+				below the surface";
+			}
+			".";
+		}
+
+	Melt:
+		if (self has general) {
+			if (second has is_torch && second has on) {
+				self.release_sphere();
+				"";
+			}
+		}
+
+	Attack:
+		if (self has general) {
+			if (verb_word == 'kill')
+				"The ice isn't alive.";
+			if (self has general) {
+				"The ice won't break.";
+			}
+		}
+	Receive:
+		if (self has general) {
+			if (noun has is_torch && noun has on) {
+				self.release_sphere();
+				"";
+			}
+			"The ice resists your effort to put ", (the)
+			noun, " into it.";
+		}
+
+		move noun to self;
+		print "You throw ", (the) noun," into the pool";
+		if (noun == CrystalSphere) {
+			give self general;
+			give CrystalSphere general;
+!			move CrystalSphere to self;
+
+			" and notice the ripples disappear as
+			the water turns to ice.";
+		}
+		if (noun has is_torch) {
+			remove noun;
+			newthing = DeadTorch.create();
+			move newthing to self;
+		}
+		if (noun hasnt float)
+			" and it sinks to the bottom.";
+		else {
+			move noun to parent(self);
+			" and it gradually floats to the shore.";
+		}
+
+	Burn:
+		if (second hasnt ignition)
+			"You can't burn ", (the) self, " with ", (the)
+			second, ".";
+		if (self hasnt general) {
+			"Burn water?  What an odd concept!";
+		} else {
+			self.release_sphere();
+			"";
+		}
+	],
+	has container open static;
+
+
+Object -> -> Shark "shark"
+	with name "shark",
+	before [;
+	Examine:
+		"It's a small one, but still capable of ruining your
+		day.  It seems oblivious to your presence.";
+	],
+	has animate;
+
+
+!Object -> ice "ice"
+!	with name "ice",
+!	description "foo You can't see any such thing.",
+!	has scenery;

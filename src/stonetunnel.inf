@@ -1,0 +1,18 @@
+Inside StoneTunnel "Stone Tunnel"
+	with name "tunnel",
+	description "This hallway is made of large granite slabs.  There
+		are exits up, west, and north.",
+	u_to ThroneRoom,
+	w_to [;
+		deadflag = 1;
+		"Without thinking, you jump through the openening and
+		immediately hear a loud click.  Suddenly, the granite
+		slab above you gives way and crushes you beneath it.
+		It breaks every bone in your body.";
+	],
+	n_to	GargoyleRoom;
+
+UnlitTorch ->;
+UnlitTorch ->;
+UnlitTorch ->;
+UnlitTorch ->;

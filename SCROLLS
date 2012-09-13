@@ -1,0 +1,37 @@
+Epor spell
+	Acquired by reading the EPOR sign twice.
+
+
+Scroll 1	dusty
+
+	"The scroll reads ~Five to find, three are one.  One
+	gives access, the bladed sun.  The silver orb, to
+	banish below.  The Staff of Ages, to vanquish the foe.
+	Joining two, the golden blade.  The last to invoke, the
+	platinum horn.~.";
+
+	Found in EPOR Room.
+
+
+Scroll 2	crumpled
+	Humana spell
+	"As the shadow of the wind, thou shalt be!"
+	Found in the Sculped Rock Room.
+
+Scroll 3	dirty
+	Terrakk spell
+	Found in Library.
+	
+Scroll 4	shiny
+	Illumina spell
+	Found in Library.
+
+Scroll 5	folded
+	Found in Observatory.
+
+Key 1	iron key	entrance.inf
+Key 2	skull key	stonepassage.inf
+Key 3	brass key	frozenpool.inf
+Key 4	rusty key	banquethall.inf
+Key 5	tarnished key	library.inf
+Key 6	jet key		study.inf
