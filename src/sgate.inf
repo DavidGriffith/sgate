@@ -13,11 +13,13 @@ Constant DIALECT_US;
 !Release 1;
 !Release 2;
 !Release 3;
-Release 4;
+!Release 4;
+Release 5;
 
 !Serial "020417";
 !Serial "030821";
-Serial "030826";
+!Serial "030826";
+Serial "030828";
 
 Constant Story "SHADOWGATE";
 

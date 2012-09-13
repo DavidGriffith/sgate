@@ -158,7 +158,7 @@ Class Torch
 				second, ".";
 		}
 		if (self has on) "But it's already lit!";
-		<<SwitchOn self>>;
+		<<SwitchOn self second>>;
 
 	SwitchOff:
 		if (verb_word == 'turn' or 'switch')
@@ -181,9 +181,11 @@ Class Torch
 		if (self hasnt moved)
 			"You pull ", (the) noun, " off the wall.";
 	SwitchOn: 
-		if (second == nothing)
+		if (second == nothing) {
+			give self ~on;
 			"Perhaps lighting the torch with something
 			would be more useful.";
+		}
 
 		if (self ofclass UnlitTorch) {
 			newthing = BurningTorch.create();
