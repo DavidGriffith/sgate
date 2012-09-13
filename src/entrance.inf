@@ -2,9 +2,9 @@ Outside Entrance "Entrance"
 	with name "entrance",
 	description
 		"You are standing just south of the Castle
-		Shadowgate.  In front of you is a heavy wooden door set
-		in the stone wall of the castle.  A skull hangs over
-		the door.",
+		Shadowgate.  In front of you, to the north, is a heavy
+		wooden door set in the stone wall of the castle.  A
+		skull hangs over the door.",
 	before [;
 	Examine:
 		if (noun == n_obj || noun == ne_obj || noun == nw_obj) {
@@ -95,8 +95,7 @@ Object -> -> dust "dust"
 		if (verb_word == 'eat' or 'taste') {
 			"Bleah!  Ptooey!";
 		}
-		"You get take a bit of dust which immediately 
-		blows away.";
+		"You take a bit of dust which immediately blows away.";
 	],
 	has scenery;
 

@@ -1,9 +1,8 @@
 Inside CoffinRoom "Coffin Room"
 	with name "room",
 	description [;
-		print "This long, cold hallway is lines on either side
-		by half a dozen coffins.  Exits lie to the west and
-		east.";
+		print "This long, cold hallway is lined on either side
+		by five coffins.  Exits lie to the west and east.";
 		if (CoffinSlime in self) {
 			"  A puddle of green slime blocks the east exit.";
 		}
@@ -216,7 +215,7 @@ Object -> -> -> sceptre "sceptre"
 	
 Object CoffinSlime "puddle of green slime"
 	with name "green" "slime" "puddle",
-	description "This green slime is is very thick and is radiantly
+	description "This green slime is very thick and is radiantly
 		warm.",
 	before [;
 	Smell:

@@ -30,7 +30,7 @@ Inside SnakeRoom "Snake Room"
 ! statue!
 
 Object -> Snake "large green snake"
-	with name "large" "green" "snake",
+	with name "large" "green" "snake" "statue",
 	look_count 0,
 	description [;
 		if (self.look_count <= 0) {
@@ -73,7 +73,7 @@ Object Staff "staff"
 			the staff.";
 		}
 		"Druidic script winds its way around this staff.
-		You can feel power emenating from it!";
+		You can feel power emanating from it!";
 	],
 	before [;
 	Receive:

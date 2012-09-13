@@ -36,6 +36,8 @@ replace FullScoreSub;
 replace BurnSub;
 replace WaveSub;
 
+replace NotifySub;
+
 Include "Parser";
 
 !Include "clothing";

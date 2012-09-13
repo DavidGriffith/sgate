@@ -58,7 +58,7 @@ Object -> -> Talisman "talisman"
 		extremely sharp along its edges.  It shines with an
 		incredible brilliance.",
 	before [;
-	Take:
+	Take, Transfer:
 		if (Wyvern in WyvernTower) {
 			deadflag = 1;
 			print "The wyvern sees you reach for ", (the)
@@ -72,7 +72,7 @@ Object -> -> Talisman "talisman"
 		^
 		You did not heed the warnings and now the Warlock
 		Lord's defenses end your life.  Shafts of red light
-		light shoot out of the eye sockets of the skull and
+		shoot out of the eye sockets of the skull and
 		burn you to a crisp.";
 	];
 

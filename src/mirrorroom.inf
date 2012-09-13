@@ -65,9 +65,9 @@ Object -> Broom "broom"
 	of the Isle of Yeklum Iret.",
 	before [;
 	Enter:
-		"You mount the broom and try to kick off and take to
-		the air.  Unfortunately, this isn't a magic broom, so
-		you dismount it.";
+		"You mount the broom and try to take to the air.
+		Unfortunately, this isn't a magic broom, so you
+		dismount.";
 	],
 	has float;
 
@@ -105,6 +105,10 @@ Object -> Mirrors "mirrors"
 	with name "mirrors",
 	description "There are three mirrors side-by-side on the north
 	wall here.",
+	before [;
+	Attack, ThrownAt:
+		"All of them?";
+	],
 	has scenery;
 
 

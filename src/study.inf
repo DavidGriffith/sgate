@@ -48,7 +48,7 @@ Object -> Globe "globe"
 		else rtrue;
 	],
 	before [;
-	Take:
+	Take, Transfer:
 		"It's far too heavy for one person to move.";
 	],
 	has container static;

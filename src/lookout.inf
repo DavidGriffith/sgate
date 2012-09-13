@@ -17,7 +17,7 @@ GoldCoin -> ->;
 GoldCoin -> ->;
 
 GoldCoin -> -> BigCoin "big gold coin"
-	with name "big",
+	with name "big" "large",
 	short_name "big gold coin",
 	description "This is a large gold coin with a well engraved on it.";
 
@@ -26,7 +26,7 @@ Object -> PotOfGold "pot of gold"
 	description "It's a pot of gold.  The leprechaun must have
 		skipped town.",
 	before [;
-	Take, LetGo, Turn, Push, Pull:
+	Take, LetGo, Turn, Push, Pull, Transfer:
 		deadflag = 1;
 		"As you reach for the pot, you realize that you have
 		fallen for the oldest trick in the book.  The balcony

@@ -52,7 +52,11 @@ Object -> SculptedSquare "square"
 Object -> -> SculptedRunes "runes"
 	with name "rune" "runes" "writing",
 	description "You have no idea what they say.",
-	has scenery;
+	before [;
+	Take, Transfer:
+		"They're inscribed on the slab!";
+	],
+	has pluralname scenery;
 
 
 Object -> -> BlueHole "hole"
@@ -85,11 +89,12 @@ and the Staff of Ages.  Remember, five to find.  Three for the staff,
 one to be the key, and one to be thy pathway.  Have thy wits about thee,
 warrior!  Fare thee well.~^
 ^
-The wall slides back into place, hinding the image from your sight.  A
+The wall slides back into place, hiding the image from your sight.  A
 scroll appears!";
 
 			}
-			"The gem seems to fit, but nothing happens.";
+			"The gem seems to fit, but nothing happens, so 
+			you take it back out again.";
 		}
 		"It doesn't seem to fit.";
 	],

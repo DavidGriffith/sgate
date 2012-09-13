@@ -28,7 +28,27 @@ Outside Courtyard "Courtyard"
 	u_to	"You are unable to fly.",
 	cant_go "You cannot scale the courtyard walls.";
 
+Object -> CyclopsMoon "moon"
+	with name "moon",
+	description "It's full",
+	has scenery;
 
+Object -> CyclopsShadows "shadows"
+	with name "shadow" "shadows",
+	description "The moon casts sharp shadows of the castle into
+		the courtyard.",
+	has scenery pluralname;
+
+Object -> CyclopsGrass "grass"
+	with name "grass",
+	description [;
+		if (CyclopsBlood in Courtyard) {
+			"The grass surrounding the cyclops is soaked in
+			blood.";
+		}
+	],
+	has scenery;
+			
 ! If cyclops has general, but is not dead, then it's stunned and will
 ! return.
 !
@@ -123,6 +143,7 @@ Object -> Cyclops "cyclops"
 			if (self has general) {
 				self.alive = false;
 				self.killed_with = weapon;
+				move CyclopsBlood to parent(self);
 				"You drive the sword deep into the
 				cyclops.  Blood pours out of the wound
 				and onto the grass.";
@@ -252,7 +273,7 @@ Object -> CyclopsBucket "bucket"
 	with name "bucket" "pail",
 	description "This small bucket is used to fetch water from the
 		depths.",
-	capacity 5,
+	capacity 1,
 	has container open;
 
 !Clothes -> -> Gauntlet "gauntlet"
@@ -269,3 +290,8 @@ Object -> -> Gauntlet "gauntlet"
 	description "It's a gauntlet of silver plate.  It bears the
 		symbol of the Circle of Twelve.",
 	has clothing;
+
+
+Object CyclopsBlood
+	with name "cyclops" "blood",
+	has scenery;

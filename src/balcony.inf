@@ -4,9 +4,8 @@ Outside Balcony "Balcony"
 		"From this windy ledge you can get an idea of the
 		size and strength of the castle.  A low, wide wall
 		runs about the perimeter of the balcony.  It continues
-		on to the west.";
+		on to the west. You can enter the castle by going east.";
 	],
-
 	e_to SmallCorridor,
 	w_to LookoutPoint;
 

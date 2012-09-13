@@ -1,6 +1,11 @@
 Inside BanquetHall "Banquet Hall"
 	with name "banquet" "hall",
 	description [;
+		if (SphinxStairs hasnt general) {
+			give SphinxStairs general;
+			SphinxStairs.lever_pattern = random(4);
+		}
+
 		print "You are awed by the majestic beauty of this
 		immense banquet hall.  Tables, chairs, and benches are
 		oddly missing.  A small door is in the north
@@ -17,7 +22,7 @@ Inside BanquetHall "Banquet Hall"
 			should be.";
 		}
 		if (Tapestry in self)
-			"  A silk tapestry hangs over the stairs.";
+			" A silk tapestry hangs over the stairs.";
 		"";
 	],
 	n_to	BanquetDoor,
@@ -42,14 +47,14 @@ Key -> -> RustyKey "rusty key"
 	short_name "rusty key",
 	description "This rusty key doesn't seem to have been used
 	for a long time.",
-	has is_tiny;
+	has is_tiny concealed;
 
 Object -> Tapestry "silk tapestry"
 	with name "silk" "tapestry",
 	description "It's an exquisite silk tapestry of an abstract
 		design.",
 	before [;
-	Take:
+	Take, Transfer:
 		print (The) self, " is too high to reach.";
 		"";
 	Burn:

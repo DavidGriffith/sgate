@@ -55,6 +55,8 @@ Object -> Fountain "fountain"
 			hand.  The water is extremely acidic and
 			obviously not good for drinking.";
 		}
+		print "As you reach for ", (the) noun, " the gauntlet
+			protects your skin from the caustic water.^^";
 	],
 	has container open scenery;
 

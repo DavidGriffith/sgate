@@ -160,6 +160,35 @@ Object -> -> Shark "shark"
 	has animate;
 
 
+Object -> PoolSpike "spike"
+	with name "spike",
+	description [;
+		print "It's a rocky spike sticking out of the ";
+		if (Pool has general)
+			print "ice";
+		else
+			print "water";
+
+		". A lime-covered skeleton is perched upon it.";
+	],
+	has scenery;
+
+
+Object -> PoolSkeleton "skeleton"
+	with name "lime-covered" "lime" "covered" "skeleton" "humanoid",
+	description [;
+		if (BrassKey in LimeSkeleton)
+			"It's holding a key of some sort.";
+		"It's encrusted with decades or perhaps centuries 
+		of lime deposits.";
+	],
+	before [;
+	Take, Transfer:
+		"It's too far away.";
+	],
+	has scenery;
+
+
 !Object -> ice "ice"
 !	with name "ice",
 !	description "foo You can't see any such thing.",

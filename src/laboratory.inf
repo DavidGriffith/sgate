@@ -28,7 +28,7 @@ Inside Laboratory "Laboratory"
 Object -> LabStone "stone"
 	with name "steel" "ring" "stone",
 	description "Lab animals can be chained to this ring while
-		performing experiements on them.",
+		performing experiments on them.",
 	before [;
 	Pull:
 		<<open self>>;
@@ -87,7 +87,7 @@ Object -> LabPot "pot"
 	with name "green" "pot",
 	description "It's a large green pot.",
 	before [;
-	Take:
+	Take, Transfer:
 		"It's far too heavy to move.";
 	],
 	has concealed container open;

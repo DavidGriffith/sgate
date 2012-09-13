@@ -7,7 +7,7 @@ Inside FireRoom "Fire Room"
 		}
 		if (self hasnt general) {
 			"Except for the long, thin bridge in the middle of
-			this room, the floor of this room is covered in
+			this room, the floor below is covered in
 			roaring flames.  To the north is a heavy wooden 
 			door.  To the south is the iron door leading
 			back to the mirror room.";
@@ -149,7 +149,7 @@ Object FireOil "oil"
 		you.  It's not burning anymore, but it's still very
 		hot.",
 	before [;
-	Take:	"It's too hot to handle.";
+	Transfer, Take:	"It's too hot to handle.";
 	],
 	has scenery;
 

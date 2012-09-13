@@ -3,10 +3,10 @@ Inside ThroneRoom "Throne Room"
 	description [;
 		print "You're in a small throne room.  A skeleton
 		wearing a gold crown sits on a throne in front of you
-		between two pillars.";
+		between two pillars. The hallway is to the west.";
 		if (Throne has general)
 			" Some mechanism has lifted the throne off the
-			floor revealing a hidden passageway.";
+			floor revealing a hidden passageway in the floor.";
 		"";
 	],
 	d_to [;
@@ -31,13 +31,12 @@ Object -> Throne "throne"
 	
 
 Object -> -> ThroneSkeleton "skeleton"
-	with name "skeleton",
+	with name "skeleton" "king",
 	description [;
 		print "Although he looks dead enough, this royal
-		skeleton
-		sends shivers down your spine.";
+		skeleton sends shivers down your spine. ";
 		if (Sceptre in self)
-			" The skeleton is holding a sceptre.";
+			"The skeleton is holding a sceptre.";
 		"There seems to be something in his hand.";
 	],
 	before [;
@@ -62,6 +61,14 @@ Object -> -> ThroneSkeleton "skeleton"
 	],
 	has animate static;
 
+Object -> -> SkeletonCrown "crown"
+	with name "skeletons" "skeleton^s" "crown",
+	description "Pure beaten gold and rubies.",
+	before [;
+	Take, Transfer:
+		"It seems glued to the skeleton's skull by time and rot.";
+	],
+	has scenery;
 
 Object -> -> SkeletonHand "hand"
 	with name "skeletons" "skeleton^s" "hand" "hands",
@@ -144,7 +151,8 @@ Object -> RingHole "ring-shaped hole"
 			move noun to RingHole;
 			give Throne general;
 			"The ring fits perfectly.  The throne magically
-			rises, revealing a secret passageway.";
+			rises, revealing a secret passageway leading
+			down.";
 		}
 		"It doesn't seem to fit.";
 	],

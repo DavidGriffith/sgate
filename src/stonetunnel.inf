@@ -5,7 +5,7 @@ Inside StoneTunnel "Stone Tunnel"
 	u_to ThroneRoom,
 	w_to [;
 		deadflag = 1;
-		"Without thinking, you jump through the openening and
+		"Without thinking, you jump through the opening and
 		immediately hear a loud click.  Suddenly, the granite
 		slab above you gives way and crushes you beneath it.
 		It breaks every bone in your body.";

@@ -3,7 +3,8 @@ Inside RiverStyx "River Styx"
 !	description "You stand above a beach, looking down upon a
 !		river.",
 	description "You're standing on the bank of the River Styx.
-		Its still waters support no life.",
+		Its still waters support no life.  You can go back up
+		the well, if you wish.",
 	u_to WellRoom;
 
 Object -> Gong "gong"

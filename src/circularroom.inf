@@ -4,7 +4,7 @@ Inside CircularRoom "Circular Room"
 		circular room radiates a fervent heat.  A ladder leads 
 		up.  A door to the south leads back to the banquet hall.",
 	before [;
-	Take:
+	Take, Transfer:
 		if (Hellhound in self) {
 			Hellhound.killplayer();
 			rtrue;
@@ -38,10 +38,10 @@ Object -> PlatinumHorn "platinum horn"
 	description "This horn is forged of flawless platinum.  Its
 		beauty is unbelievable.",
 	before [;
-	Play:
+	Play, Blow:
 		if (Talisman in LeftNiche && player in SkullGate) {
 			give GateDoor open;
-			"The sound of the horn echos loudly in your
+			"The sound of the horn echoes loudly in your
 			ears.  Suddenly, you hear the sound of grinding
 			rock.  The jaw of the skull begins to descend.
 			Hot wind erupts from the mouth creating the
@@ -60,10 +60,10 @@ Object Hellhound "hellhound"
 	],
 	summon [;
 		move self to CircularRoom;
-		"As you step forward to pick up the horn, a large
-		fireball suddenly appears in the room and causes you to
-		shield your eyes.  When you open them, you notice that
-		the fire has changed into something far more menacing.^
+		"As you step forward, a large fireball suddenly appears
+		in the room and causes you to shield your eyes.  When
+		you open them, you notice that the fire has changed
+		into something far more menacing.^
 		^
 		A hellhound is standing in the middle of the room in
 		front of the platinum horn.  The beast doesn't seem
@@ -78,6 +78,8 @@ Object Hellhound "hellhound"
 
 		if (weapon == HolyBottle or HolyWater) {
 			give CircularRoom general;
+			remove HolyBottle;
+			remove HolyWater;
 			remove self;
 			"You hurl the holy water at the beast.  In a
 			burst of flame, the hellhound is sent back to

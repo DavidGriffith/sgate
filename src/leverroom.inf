@@ -47,13 +47,13 @@ Object -> Levers "levers"
 		LeverMid.pulled = true;
 		LeverRight.pulled = true;
 		LeverCylinder.flip();
-		"You pulled all the levers down.";
+		"You pull all the levers down.";
 	Push:
 		LeverLeft.pulled = false;
 		LeverMid.pulled = false;
 		LeverRight.pulled = false;
 		LeverCylinder.flip();
-		"You pushed all the levers up.";
+		"You push all the levers up.";
 	],
 	has scenery;
 
@@ -188,6 +188,10 @@ Object -> LeverCylinder "metal cylinder"
 			lit by a blinding flash.  The silver orb is
 			revealed!";
 		}
+	],
+	before [;
+	Open:
+		"The lid is far too heavy to lift.";
 	],
 	after [;
 	LetGo:

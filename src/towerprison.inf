@@ -15,7 +15,7 @@ Object -> Blade "golden blade"
 	description "It's some sort of spike that is made of precious
 		metals.  The tips are as sharp as needles.",
 	before [;
-	Take:
+	Take, Transfer:
 		if (DeadWolf notin TowerPrison) {
 			deadflag = 1;
 			print "As you reach for ", (the) self, " the

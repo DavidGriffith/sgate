@@ -10,6 +10,11 @@ Inside ChasmBridge "Chasm Bridge"
 		return FireRoom;
 	],
 	n_to [;
+		if (Spear in Troll && Troll.attacked == true) {
+			Troll.attacked = false;
+			return Courtyard;
+		}
+
 		if (Troll.paid == true) {
 			Troll.paid = false;
 			print "The troll watches as you pass.^";
@@ -66,6 +71,10 @@ Inside ChasmBridge "Chasm Bridge"
 		}
 	];
 
+Object -> Chasm "chasm"
+	with name "chasm" "gorge",
+	description "It goes a long way down.  You can't see the bottom.",
+	has scenery;
 
 
 Object Troll "troll"
@@ -75,6 +84,7 @@ Object Troll "troll"
 	copper_count 0,
 	paid false,
 	angry false,
+	attacked false,
 	description [;
 		print "The troll is yellow and smelly with horns and a
 			shaggy head.";
@@ -105,7 +115,7 @@ Object Troll "troll"
 				self.bridge_toll = 2;
 				remove weapon;
 				"The troll catches the coin, looks at
-				it distainfully, then pockets it.^
+				it disdainfully, then pockets it.^
 				^
 				~The toll has just been raised to two
 				gold coins.~";
@@ -145,12 +155,13 @@ Object Troll "troll"
 		}
 
 		if (weapon == Spear) {
+			self.attacked = true;
 			self.paid = true;
 			self.angry = true;
 			move weapon to Troll;
 			move Troll to NullRoom;
 			"The spear hits the troll with a glancing blow
-			and he falls silently into the dark cavern.  You
+			and he falls silently into the dark chasm.  You
 			listen, but do not hear him crash.";
 		}
 
@@ -202,7 +213,7 @@ Object Troll "troll"
 				self.copper_count++;
 				self.bridge_toll = 2;
 				remove noun;
-				"The troll snorts distainfully and
+				"The troll snorts disdainfully and
 				pockets the coin.^
 				^
 				~The toll has just been raised to two
@@ -264,7 +275,7 @@ Object Troll "troll"
 			"~You have some kind of problem with him?!?!?~";
 
 		'lakmir':
-			"~Oh, that oaf?  He's robably dead by now.  Who
+			"~Oh, that oaf?  He's probably dead by now.  Who
 			knows?  Why should I care?~";
 
 		'me', 'myself':

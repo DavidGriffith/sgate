@@ -26,7 +26,7 @@ Inside GargoyleRoom "Gargoyle Room"
 	];
 
 Object -> Gargoyle "gargoyle"
-	with name "gargoyle",
+	with name "gargoyle" "gargoyles",
 	description "This stone statue is some three and a half feet
 	tall and ugly as all heck.  It is very cold to the touch.",
 	has scenery;

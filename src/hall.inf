@@ -21,7 +21,7 @@ you, glaring angrily.  The booming voice of the Warlock Lord bursts
 forth from nowhere.^
 ^
 ~That pitiful wizard Lakmir was a fool to send a buffoon like you to
-stop me.  Your will surely regret it for the only thing here for you is
+stop me.  You will surely regret it for the only thing here for you is
 a horrible death!~^
 ^
 The eyes fade away as if made of smoke.  Maniacal laughter echos in your
@@ -31,7 +31,8 @@ ears.^";
 	],
 	n_to HallDoor,
 	e_to HallClosetDoor,
-	s_to OuterDoor;
+	s_to OuterDoor,
+	cant_go "You can only go north, east, or south.";
 
 
 UnlitTorch ->;
@@ -62,7 +63,7 @@ ObligingDoor -> HallClosetDoor "closet door"
 
 ObligingDoor -> HallDoor "hall door"
 	with name "door" "hall" "steel",
-	description "This wooden door is reinforced with heavy sheets 
+	description "This door is reinforced with heavy sheets 
 		of steel.",
 
 !	when_open [;

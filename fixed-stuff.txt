@@ -1,0 +1,32 @@
+
+
+Coffin room:
+
+typos fixed.
+
+The "half dozen" room description yet only five coffins is directly from
+the original game.  This is one of those goofy constructs (like "it's a
+hemp of rope") that I failed to catch.
+
+
+Cold room:
+
+
+
+
+Hot room:
+
+Typos fixed.
+
+After taking the torch and dying, the game still mentions pulling the
+torch after the death message.  I can't seem to fix this.\
+
+
+Cold room again:
+
+when a torch burns out, it's called a "dead torch"
+
+
+EPOR room:
+
+I don't know how to make "take all" refer to stuff on a supporter.

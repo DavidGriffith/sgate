@@ -15,7 +15,7 @@ Inside LavaChamber "Lava Chamber"
 		print " A doorway is on the north wall";
 
 		if (LavaStatue hasnt general)
-			print ",surrounded by lava and inaccesable.";
+			print ", surrounded by lava and inaccesible.";
 		else
 			print " with a bridgeway leading from the ring
 			to it.";
@@ -44,6 +44,7 @@ Object -> LavaStatue "statue"
 		if (self has general)
 			" It has sunk into beneath the level of the
 			bridgeway nearly up to its eyes.";
+		"";
 	],
 	has scenery supporter;
 

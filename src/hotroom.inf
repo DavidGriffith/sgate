@@ -1,7 +1,7 @@
 Inside HotRoom "Hot Room"
 	with name "hot" "room",
 	description "Fear grips you as you enter this hot room.  This is 
-	a long north-south passage.  A pair of reptillian eyes peer out 
+	a long north-south passage.  A pair of reptilian eyes peer out 
 	of the darkness beyond an archway at the north end of the 
 	passage.  A large wooden chest bound with iron stands against
 	the east wall.",
@@ -11,10 +11,10 @@ Inside HotRoom "Hot Room"
 	],
 	n_to [;
 		deadflag = 1;
-		"You step past the archway and face a none-too-happy
-		dragon.  Flames shoot from the dragon's mouth and
-		engulf your body.  You pay for your curiosity with your
-		life.";
+		"You step past the archway and face a
+		none-too-happy dragon.  Flames shoot from the dragon's
+		mouth and engulf your body.  You pay for your curiosity
+		with your life.";
 	];
 
 
@@ -135,7 +135,7 @@ Object -> DummyChest "iron-bound chest"
 	with name "chest" "iron" "bound" "iron-bound",
 	description "This is an extremely heavy iron-bound chest.",
 	before [;
-	Take:
+	Transfer, Take:
 		"The chest is far too heavy to move.";
 	],
 	has container openable lockable locked;

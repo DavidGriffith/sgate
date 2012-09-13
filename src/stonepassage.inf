@@ -65,6 +65,17 @@ Torch -> OddTorch "odd torch"
 				second, ".";
 		}
 		<<SwitchOn self>>;
+	Wave, Point:
+		if (second == Wraith) {
+			print "You look ridiculous ";
+			if (verb_word == 'wave')
+				print "waving";
+			else
+				print "pointing";
+			print " ", (the) self, " at ", (the) second, 
+			" but ", (the) second, " seems afraid.";
+		}
+		rtrue;
 	],
 	after [;
 	Take:
@@ -86,8 +97,18 @@ Torch -> OddTorch "odd torch"
 	SwitchOff:
 		"But it's not burning.";
 	],
-	has good;
+	has good transparent;
 
+Object -> -> OddSkull "skull"
+	with name "skull",
+	description "It's a stylized picture of a skull carved into the
+		shaft of the torch.",
+	has scenery;
+
+Object -> -> OddSymbols "symbols"
+	with name "symbols" "glyphs",
+	description "Assorted holy symbols and symbols of fire.",
+	has scenery pluralname;
 
 Object -> Shelf "shelf"
 	with name "shelf",
@@ -118,18 +139,18 @@ Object -> -> TrapCandle "candle"
 		}
 
 	Burn:	
-		if (second hasnt ignition)
-			"You can't burn ", (the) self, " with ", (the)
-			second, ".";
+		if (second) {
+			if (second hasnt ignition)
+				"You can't burn ", (the) self, " with ", (the)
+				second, ".";
+		}
 		<<SwitchOn self>>;
 	],
-
 	after [;
 	Take:
 		deadflag = 1;
-		"When you remove the candle from its 
-		pedestal, the floor collapses, and you fall to
-		your death.";
+		"When you remove the candle from the shelf, the floor
+		collapses, and you fall to your death.";
 
 	SwitchOn:
 		give self light;
@@ -161,9 +182,8 @@ Object -> -> trapbook "ancient tome"
 	before [;
 	Take:
 		deadflag = 1;
-		"When you remove the book from its
-		pedestal, the floor collapses, and you fall to
-		your death.";
+		"When you remove the book from the shelf, the floor
+		collapses, and you fall to your death.";
 	Close:
 		give self ~container;
 	Open:

@@ -21,10 +21,10 @@ Object -> SphinxStairs "stairs"
 	with name "stairs" "stair" "stairway" "steps",
 	lever_pattern 1,
 	description [;
-		if (self hasnt general) {
-			give self general;
-			self.lever_pattern = random(4);
-		}
+!		if (self hasnt general) {
+!			give self general;
+!			self.lever_pattern = random(4);
+!		}
 		if (self notin SphinxRoom) {
 			"You can see odd markings on the sides, but not
 			very easily from here.";
@@ -157,6 +157,18 @@ Object -> Sphinx "sphinx"
 			"~You have correctly answered my riddle,
 			warrior.  Thou may now pass.~";
 		}
+	Give:
+		if (noun == self.riddle_obj) {
+			give self general;
+			self.repeat = false;
+			"~You have correctly answered my riddle,
+			warrior.  Thou may now pass.~^
+			^
+			The sphinx gives back ", (the) noun, ".";
+		}
+
+
+
 	],
 	has animate;
 

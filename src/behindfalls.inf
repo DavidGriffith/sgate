@@ -34,7 +34,7 @@ Object -> FallRock "small boulder"
 		}
 	],
 	before [;
-	Slide, Push:
+	Slide, Push, Pull:
 		"It rocks back and forth a bit.";
 	Attack:
 		if (verb_word == 'kill') {

@@ -15,7 +15,6 @@ Inside WaterfallRoom "Waterfall"
 		"  A stairway cut into the cliff beside the waterfall is
 		obstructed by a landslide.";
 	],
-
 	in_to FallCave,
 	w_to PoolCavern,
 	e_to "The stairway is blocked by a landslide.";

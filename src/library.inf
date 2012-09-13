@@ -2,12 +2,12 @@ Inside Library "Library"
 	with name "library",
 	description [;
 		print "You stand in a small library.  A desk is pushed
-		up against the north wall.";
+			up against the west wall.";
 
 		if (Map hasnt moved)
 			print "  Above that hangs a map.";
 
-		print "  Most of the west wall is covered by a
+		print "  Most of the north wall is covered by a
 		bookcase.  Just to the right of the bookcase is a
 		small hole";
 
@@ -71,6 +71,8 @@ Object -> RedHole "hole"
 				slowly slides open revealing a hidden
 				passage.";
 			}
+			"The gem seems to fit, but nothing happens, so
+			you take it back out again.";
 		}
 		"It doesn't seem to fit.";
 	],

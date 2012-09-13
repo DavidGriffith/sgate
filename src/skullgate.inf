@@ -11,7 +11,7 @@ Inside SkullGate "Skull Gate"
 ! This chamber has been hewn out of solid rock and is very hot.
 
 Object -> GateDoor "skull gate"
-	with name "skull" "gate",
+	with name "skull" "gate" "mouth" "jaw",
 	description "The jaw of the skull is made of polished stone and
 		forms a door.  Hot, dry air emanates from the eye
 		sockets and nose.",

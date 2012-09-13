@@ -1,0 +1,370 @@
+===============================================================================
+Entrance
+[...]
+
+>x dust
+Dust blown around by the wind has collected behind the skull.
+
+>! dust is not mentioned anywhere in description or anything
+
+>get dust
+You get take a bit of dust which immediately blows away.
+
+>! 'get take' ?
+
+===============================================================================
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+A huge pair of disembodied eyes appear high in the air above you, glaring
+angrily. The booming voice of the Warlock Lord bursts forth from nowhere.
+
+"That pitiful wizard Lakmir was a fool to send a buffoon like you to stop me.
+Your will surely regret it for the only thing here for you is a horrible death!"
+
+The eyes fade away as if made of smoke. Maniacal laughter echos in your ears.
+
+>! "Your will surely regret it" should be "You will surely regret it"
+
+>get rug
+The rug is far too heavy and cumbersome for one person to carry.
+
+>move rug to pouch
+That's hardly portable.
+
+>! should consider capturing transfer for your scenery and static objects
+
+>! so that you get the same 'The rug is far too heavy...' message
+
+===============================================================================
+Arrow Room
+[...]
+>n
+The ledge wasn't strong enough to hold you. You fall to the ground and land hard
+on your rump. The ledge is smashed to pieces.
+
+>get pieces
+The rubble is too heavy to move.
+
+>move pieces to pouch
+They're fixed in place.
+
+===============================================================================
+Cold Room
+[...]
+The trap door is closed.
+
+>open trapdoor
+You can't see any such thing.
+
+>! might be nice if 'trapdoor' was a syn. for trap door
+
+===============================================================================
+Hot Room
+[...]
+
+You can see a bone, a spear, a dried skull and an iron-bound chest (which is
+closed) here.
+
+>get chest
+The chest is far too heavy to move.
+
+>move chest to pouch
+
+WOOOOOSH!!!! A jet of flame shoots out from beyond the archway. Your raise your shield just in time to block the dragon flame.
+
+You put the iron-bound chest into the leather pouch.
+
+>! OOPS.  Should capture transfer for chest too.
+
+===============================================================================
+Frozen pool
+[...]
+
+A lime-covered skeleton is perched on a rocky spike sticking out of the ice.  It
+clutches a brass key.
+
+>x lime-covered skeleton
+You can't see any such thing.
+
+>! lime-covered should be in synonyms for skeleton
+
+>x spike
+You can't see any such thing.
+
+>x shore
+You can't see any such thing.
+
+>! maybe some scenery for spike and shore?
+
+===============================================================================
+Sculpted Rock Room
+[...]
+>get slab
+That's hardly portable.
+
+>x runes
+You have no idea what they say.
+
+>get runes
+That's hardly portable.
+
+>move runes to pouch
+That's hardly portable.
+
+>! might be better to have a different message for both of these actions with
+
+>! the runes, e.g. "They're inscribed on the slab!"
+
+===============================================================================
+Fire Room
+Except for the long, thin bridge in the middle of this room, the floor of this
+room is covered in roaring flames. To the north is a heavy wooden door. To the
+south is the iron door leading back to the mirror room.
+
+[first sentence scans a little awkwardly: ".. in the middle of this room, the
+floor of this room..."
+
+[... drake defeated with sphere ... ]
+
+>x oil
+A thick, black oil covers the floor below you. It's not burning anymore, but
+it's still very hot.
+
+>get oil
+It's too hot to handle.
+
+>move oil to pouch
+That's hardly portable.
+
+>! should repeat "too hot to handle" for transfer
+
+===============================================================================
+Chasm Bridge
+You are standing on a sturdy wooden bridge that spans a deep, dark chasm. A
+sharp, cold wind whips up over the ledge.
+
+>x chasm
+You can't see any such thing.
+
+>! scenery object for chasm?
+
+>jump
+You jump on the spot, fruitlessly.
+
+>! jump here should perhaps plummet me into the chasm
+
+>kill troll with spear
+The spear hits the troll with a glancing blow and he falls silently into the
+dark cavern. You listen, but do not hear him crash.
+
+>! falls into the cavern?  Do you mean chasm?
+
+===============================================================================
+Courtyard
+The moon casts a brilliant shadow over the grounds of the courtyard. In the
+middle of the courtyard is a stone well. There are exits to the north and south.
+
+A cyclops is standing here in front of the north exit.
+
+>x moon
+You can't see any such thing.
+
+>x shadow
+You can't see any such thing.
+
+>! scenery objects for moon and shadow?
+
+[ killing cyclops ]
+>kill cyclops with sword
+You raise the sword and move forward.
+
+You drive the sword deep into the cyclops. Blood pours out of the wound and onto
+the grass.
+
+>x blood
+You can't see any such thing.
+
+>x grass
+You can't see any such thing.
+
+>l
+
+A cyclops is lying flat on his back in a pool of blood
+
+You can also see a small stone here.
+
+>x pool of blood
+You can't see any such thing.
+
+>! scenery objects, perhaps?
+
+===============================================================================
+Laboratory
+[...]
+>get pot
+It's far too heavy to move.
+
+>move pot to pouch
+You put the pot into the leather pouch.
+
+>! oops, need to capture transfer for pot
+
+===============================================================================
+Garden
+[...]
+>x fountain
+This exquisite marble fountain is shaped into the image of a sea serpent.  From
+its mouth spews an acidic liquid.
+
+>x acidic liquid
+You can't see any such thing.
+
+>x liquid
+You can't see any such thing.
+
+===============================================================================
+Study
+[...]
+>get globe
+It's far too heavy for one person to move.
+
+>move globe to pouch
+That's fixed in place.
+
+>! again, might want to capture transfer to have consistent message with
+
+>! 'get globe'
+
+===============================================================================
+Banquet Hall
+[...]
+>burn rug
+The rug quickly catches fire and burns away.
+
+>! seems I can burn rugs in game even without holding a torch, e.g. I can drop
+
+>! the torch and then just type 'burn rug'
+
+===============================================================================
+Banquet Hall Balcony
+[...]
+
+>x crest
+It's the family crest of Sir Dugan himself.
+
+>get it
+Taken.
+
+>x tapestry
+It's an exquisite silk tapestry of an abstract design.
+
+>get it
+The silk tapestry is too high to reach.
+
+>move tapestry to pouch
+That's hardly portable.
+
+>! capture transfer for tapestry
+
+===============================================================================
+Circular Room
+[...]
+You can see a platinum horn here.
+
+>x horn
+This horn is forged of flawless platinum. Its beauty is unbelievable.
+
+>move horn to pouch
+You put the platinum horn into the leather pouch.
+
+>! capture transfer for horn
+
+>u
+As you step forward to pick up the horn, a large fireball suddenly appears in
+the room and causes you to shield your eyes. When you open them, you notice that
+the fire has changed into something far more menacing.
+
+A hellhound is standing in the middle of the room in front of the platinum horn.
+The beast doesn't seem very friendly.
+
+>! I already have the horn via 'transfer'. In any case, if you enter this room
+
+>! and just type 'up' the game always assumes you want to pick up the horn if
+
+>! you haven't taken care of the hellhound
+
+===============================================================================
+Wyvern Tower
+As you stand on the turret, an eerie blue dragon (a wyvern!) appears in the
+clear starry sky. There is a low metal pedestal standing near the wall of the
+turret.
+
+On the pedestal is a talisman.
+
+You can see a wyvern here.
+
+>move talisman to pouch
+You put the talisman into the leather pouch.
+
+>d
+
+Of course, if I then try to do something with these later, when I'm in a
+different room:
+
+>get talisman
+The wyvern sees you reach for the talisman.
+
+With the speed of lightning, the wyvern wraps its tail around your neck.
+
+You die screaming silently.
+
+>! Hmmm, that's odd, given that I was in the cold room when I did this : )
+
+===============================================================================
+Lookout Point
+[...]
+
+You can see a canvas pouch (which is closed) and a pot of gold (in which are
+thirteen gold coins) here.
+
+>get pot
+[kills you as usual, nothing odd there]
+
+>move pot to pouch
+
+You put the pot of gold into the leather pouch.
+
+>! Need to capture transfer
+
+===============================================================================
+Tower Prison
+[...]
+
+You can see a golden blade and a beautiful woman here.
+
+>get blade
+[kills you as usual, nothing odd there]
+
+>move blade to pouch
+
+You put the golden blade into the leather pouch.
+
+>! oops, need to capture transfer
+>d
+
+Observatory
+[...]
+
+>get blade
+As you reach for the golden blade the beautiful lady suddenly transforms into a
+wolf! With a load roar, the wolf pounces on you, taking your life! The wolf's
+powerful jaws rip your throat out!
+
+[ Of course, she's upstairs : ) ]
+
+===============================================================================
+

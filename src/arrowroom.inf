@@ -132,7 +132,7 @@ Object -> ArrowTorch "unlit torch"
 
 Object -> SilverArrow "silver arrow"
 	with name "arrow" "silver",
-	description "A finely-crafted siver arrow.  Such things are not 
+	description "A finely-crafted silver arrow.  Such things are not 
 	uncommon in these elvish lands.",
 	after [;
 	Take:
@@ -154,7 +154,7 @@ Object BrokenLedge "pieces of a broken stone ledge"
 	with name "broken" "stone" "ledge" "rubble" "pieces",
 	description "Jagged pieces of stone from the broken ledge.",
 	before [;
-	Take:
+	Transfer, Take:
 		"The rubble is too heavy to move.";
 	],
 	has static pluralname;

@@ -3,7 +3,7 @@ Inside TwoBridges "Two Bridges"
 	description "You stand in a small cave roughly hewn at the edge
 	of a deep chasm.  From the darkness below arise the screams of
 	the undead.  Two bridges, one leading west, the other leading
-	north, and lead to seperate passages.  The one to the west is
+	north, and lead to separate passages.  The one to the west is
 	made of stone.  The other, to the north is a rickety suspension
 	bridge made of rope and planks.",
 	w_to WraithRoom,

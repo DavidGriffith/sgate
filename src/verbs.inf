@@ -16,6 +16,11 @@ Verb 'bar'
 Verb 'baz'
 	*	->	Baz;
 
+[ NullSub;
+	rtrue;
+];
+Verb '!'
+	* noun	->	Null;
 
 
 [ PlaySub;
@@ -360,3 +365,8 @@ Extend "put" last
 Verb "play"
 	*			-> Play
 	* held			-> Play;
+
+Extend "notify" replace
+	*			-> Score
+	* 'on'			-> Score
+	* 'off'			-> Score;

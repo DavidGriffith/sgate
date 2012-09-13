@@ -11,8 +11,19 @@ Object -> Ice "ice"
 	description "The pool is frozen solid.",
 	has scenery;
 
+Object -> IceShore "shore"
+	with name "shore" "beach",
+	description "A coarse, sandy beach.",
+	has scenery;
+
+Object -> IceSpike "spike"
+	with name "spike",
+	description "It's a rocky spike sticking out of the ice.  A
+		lime-covered skeleton is perched upon it.",
+	has scenery;
+
 Object -> LimeSkeleton "skeleton"
-	with name "skeleton",
+	with name "lime-covered" "lime" "covered" "skeleton",
 	describe [;
 		if (parent(self) hasnt general) {
 			print "^A lime-covered skeleton is perched on a
@@ -26,6 +37,10 @@ Object -> LimeSkeleton "skeleton"
 	description [;
 		"The lime-covered skeleton stares at your through
 		eyeless sockets.";
+	],
+	before [;
+	Take, Transfer, Push, Pull, Slide:
+		"Leave him to rest in peace.";
 	],
 	has supporter static;
 

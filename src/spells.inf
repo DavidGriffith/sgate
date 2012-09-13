@@ -162,6 +162,8 @@ Class SpellBook
 		p-->i = sp;
 	],
 	before [;
+	Search:
+		<<examine self>>;
 	Open, Close:
 		print_ret
 		(The) self, " is always open to the right place, but it

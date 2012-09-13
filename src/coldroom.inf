@@ -42,6 +42,8 @@ Object -> WhiteHole "hole"
 		deep.";
 		if (GemWhite in self)
 			"  A white gem is inside.";
+		else
+			"";
 	],
 	before [;
 	LetGo:
@@ -58,7 +60,8 @@ Object -> WhiteHole "hole"
 				crystal sphere magically appears on
 				the pedestal.";
 			}
-			"The gem seems to fit, but nothing happens.";
+			"The gem seems to fit, but nothing happens, so 
+			you take it back out again.";
 		}
 		"It doesn't seem to fit.";
 	],
@@ -93,7 +96,7 @@ Object -> ColdRoomDoor "wooden door"
 
 
 Object -> ColdTrapDoor "trap door"
-	with name "trap" "door",
+	with name "trap" "door" "trapdoor",
 	description "It's a small trap door made of polished metal.",
 	when_open [;
 		"The trap door is open.";
@@ -118,6 +121,11 @@ Object -> -> ColdRoomLadder "rickety ladder descending into the gloom"
 	before [;
 	Take, Push:
 		"The ladder remains fixed to the wall of the shaft.";
+	Climb:
+		deadflag = 1;
+		"A broken fragment of a wooden ladder hangs from
+		the opening.^^As you go down the trap door, you realize
+		you took a big step.  The fall is quite fatal.";
 	],
 	has static;
 

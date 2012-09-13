@@ -5,7 +5,7 @@ DEBUG = "-~S"
 
 GLULX = "-~G"
 
-VERSION = r1pre2
+VERSION = r1pre4
 
 BINNAME = sgate
 EXTENSION = .z5

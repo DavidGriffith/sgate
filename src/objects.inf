@@ -158,9 +158,14 @@ Class Torch
 			else if (j~='torch' or w) return i;
 		}
 	],
-	daemon [ t; 
+	daemon [ t newthing; 
 		t = --(self.power);
-		if (t == 0) give self ~on ~light ~good bad;
+		if (t == 0) {
+			give self ~on ~light ~good bad;
+			newthing = DeadTorch.create();
+			move newthing to parent(self);
+			remove self;
+		}
 		if (self in player || self in location) {
 			if (t == TORCH_DECLINE + 1) {
 				"^Your torch is beginning to flicker.";
@@ -448,6 +453,7 @@ Class Book
 	];
 
 ! It would be nice if the player could put objects under the rug.
+! Stuff hidden under the rug must be given concealed.
 !
 Class Rug
 	with name "rug" "carpet",
@@ -458,7 +464,12 @@ Class Rug
 			"It's a rolled up rug.";
 	],
 	before [;
+	Enter:
+		"You walk around on the rug a bit.";
 	Burn:
+		if (player in self)
+			print "(First getting off the rug).^";
+
 		if (second ~= nothing) {
 			if (second hasnt ignition)
 				"You can't burn ", (the) self, 
@@ -471,17 +482,21 @@ Class Rug
 			underneath ",
 			(the) self, ".  Fortunately ", (the)
 			child(self), " wasn't damaged by the fire.";
+			give child(self) ~concealed;
 			move child(self) to parent(self);
 		}
 		remove self;
 		"";
-	Take:
+	Transfer, Take:
 		print "The rug is far too heavy and cumbersome for one
 		person to carry";
 		if (self has general)
 			print ", even when rolled up";
 		".";
 	Roll:
+		if (player in self)
+			"That's hard to do when you're standing on the rug.";
+
 		if (self hasnt general) {
 			print "You roll up the rug.";
 			if (child(self)) {
@@ -496,13 +511,15 @@ Class Rug
 		}
 		"It's already rolled up.";
 	Open, Unroll:
+		if (player in self)
+			"That's hard to do when you're standing on the rug.";
 		if (self has general) {
 			give self ~general;
 			"You unroll the rug.";
 		}
 		"It's already unrolled.";
 	],
-	has scenery;
+	has scenery supporter enterable;
 
 
 Class ShinyBottle
@@ -552,6 +569,10 @@ Class SmellyBottle
 	short_name "smelly bottle",
 	description "It's a small silver bottle.  It sure smells
 		terrible!",
+	before [;
+	Smell:
+		"It smells like sewage.";
+	],
 	capacity 1;
 
 Class SmellyPotion
@@ -579,6 +600,10 @@ Class SlimyBottle
 	with name "slimy",
 	short_name "slimy bottle",
 	description "This bottle is extremely slimy.",
+	before [;
+	Smell:
+		"It smells like swamp water.";
+	],
 	capacity 1;
 
 
@@ -626,13 +651,13 @@ Class Lever
 		if (self.pulled)
 			"But it's already been pulled down.";
 		self.pulled = true;
-		print "You pulled ", (the) self, " down.^";
+		print "You pull ", (the) self, " down.^";
 		LeverCylinder.flip();
 		rtrue;
 	Push:
 		if (self.pulled) {
 			self.pulled = false;
-			print "You pushed ", (the) self, " up.^";
+			print "You push ", (the) self, " up.^";
 			LeverCylinder.flip();
 			rtrue;
 		}
