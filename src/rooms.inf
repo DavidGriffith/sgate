@@ -17,7 +17,7 @@ Include "sculpted.inf";
 Include "coffinroom.inf";
 Include "mirrorroom.inf";
 Include "fireroom.inf";
-Include "chasmbridge.inf";	! still needs extra testing
+Include "chasmbridge.inf";
 Include "courtyard.inf";
 Include "banquetcorridor.inf";
 Include "library.inf";

@@ -1,0 +1,837 @@
+Start of a transcript of
+SHADOWGATE
+An unauthorized adaptation by David Griffith.
+Copyright and trademark of Infinite Ventures, Inc.
+Release 1 / Serial number 030707 / Inform v6.21 Library 6/10 SD
+Standard interpreter 1.0 (6F) / Library serial number 991113
+
+>restore
+Enter file name (".sav" will be added).
+Default is "sgate-b2.sav": 006
+Ok.
+
+>n
+
+Cold Room
+
+The trap door is closed.
+
+>n
+(first opening the wooden door)
+
+Hot Room
+Fear grips you as you enter this hot room. This is a long north-south passage. A
+pair of reptilian eyes peer out of the darkness beyond an archway at the north
+end of the passage. A large wooden chest bound with iron stands against the east
+wall.
+
+You can see an unlit torch, a shield, a helmet, a bone, a hammer, a spear, a
+dried skull and an iron-bound chest (which is closed) here.
+
+>s
+
+Cold Room
+
+The trap door is closed.
+
+>look
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is closed.
+
+>EXAMINE WOODEN DOOR
+It's a finely crafted wooden door.
+
+>N
+
+Hot Room
+
+You can see an unlit torch, a shield, a helmet, a bone, a hammer, a spear, a
+dried skull and an iron-bound chest (which is closed) here.
+
+>CLOSE DOOR
+
+WOOOOOSH!!!! A jet of flame shoots out from beyond the archway. Dragon flame
+engulfs your body. You pay for your curiosity with your life.
+
+You close the wooden door.
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> RESTORE
+Enter file name (".sav" will be added).
+Default is "006.sav": 
+Ok.
+
+>W
+
+Stone passage
+
+On the shelf are a candle and an ancient tome (which is empty).
+
+>EXAMINE DOOR
+This door is reinforced with heavy sheets of steel.
+
+>CLOSE IT
+You close the hall door.
+
+>S
+(first opening the hall door)
+
+Hall
+
+>N
+
+Stone passage
+
+On the shelf are a candle and an ancient tome (which is empty).
+
+>!!! MAYBE THE DESCRIPTIONS OF THE DOOR SHOULD SAY IF THE DOOR IS OPEN OR NOT
+That's not a verb I recognise.
+
+>EXAMINE CANDLE
+It's a small candle, perfect for reading.  It has been several years, perhaps
+decades or even centuries, since this candle was last lit.
+
+>RESTORE
+Enter file name (".sav" will be added).
+Default is "006.sav": 
+Ok.
+
+>.E
+full stop
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+
+[** Programming error: tried to read from -->3945 in the (->) array "
+[** Programming error: tried to print (string) on something not a string **]
+", which has entries 0 up to 64 **]
+That's not a verb I recognise.
+
+>!!! I SUPPOSE I FOUND SOMETHING I SHOULDN'T HAVE FOUND :P
+That's not a verb I recognise.
+
+>E
+
+Coffin Room
+This long, cold hallway is lined on either side by five coffins. Exits lie to
+the west and east.
+
+>EXAMINE HALLWAY
+You can't see any such thing.
+
+>!!! ROOM DESCRIPTION
+That's not a verb I recognise.
+
+>EXAMINE COFFINS
+You can see a marble coffin, a silver coffin, a stone coffin, a gold coffin, and
+a coffin made of dragon scales.
+
+>EXAMINE COFFIN
+Which do you mean, the marble coffin, the silver coffin, the stone coffin, the
+gold coffin or the dragon scale coffin?
+
+>EXAMINE MARBLE COFFIN
+The cold, marble coffin lid seals an ancient death bed.
+
+>EXAMINE SILVER COFFIN
+This tomb is sealed with a silver lid.
+
+>EXAMINE STONE COFFIN
+It's a cold stone coffin.
+
+>LOOK IN STONE COFFIN
+You can't see inside, since the stone coffin is closed.
+
+>EXAMINE GOLD COFFIN
+The lid of this coffin is made of solid gold. It must be worth a fortune.
+
+>EXAMINE DRAGON SCALE COFFIN
+This standing sarcophagus is sealed with a dragon scale cover.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "006.sav": 007
+Ok.
+
+>OPEN MARBLE COFFIN
+As you open the coffin a banshee flies out, emits an ear-shattering scream, and
+pulls the coffin closed again.
+
+You're all right, but it is very hard to hear.
+
+>OPEN STONE COFFIN
+You open the stone coffin.
+
+>LOOK IN IT
+The stone coffin is empty.
+
+>OPEN GOLD COFFIN
+You open the gold coffin, revealing three copper coins.
+
+>EXAMINE COINS
+You can't see any such thing.
+
+>!!! THE COINS SHOULD BE VISIBLE
+That's not a verb I recognise.
+
+>LOOK IN GOLD COFFIN
+In the gold coffin are three copper coins.
+
+>TAKE COINS
+copper coin: Taken.
+copper coin: Taken.
+copper coin: Taken.
+
+>LOOK
+
+Coffin Room
+This long, cold hallway is lined on either side by five coffins. Exits lie to
+the west and east.
+
+>EXAMINE COFFINS
+You can see a marble coffin, a silver coffin, a stone coffin, a gold coffin, and
+a coffin made of dragon scales.
+
+>OPEN DRAGON SCALES COFFIN
+I only understood you as far as wanting to open the dragon scale coffin.
+
+>!!! MAYBE THE PLURAL SHOULD BE ALLOWED
+That's not a verb I recognise.
+
+>OPEN DRAGON SCALE COFFIN
+You open the dragon scale coffin, revealing a mummy.
+
+>EXAMINE MUMMY
+This carefully-embalmed six-footer stands straight and still.
+
+>TAKE MUMMY
+I don't suppose the mummy would care for that.
+
+>PUSH MUMMY
+That would be less than courteous.
+
+>MUMMY, HELLO
+There is no reply.
+
+>RESTORE
+Enter file name (".sav" will be added).
+Default is "007.sav": 006
+Ok.
+
+>E
+
+Coffin Room
+This long, cold hallway is lined on either side by five coffins. Exits lie to
+the west and east.
+
+>OPEN GOLD COFFIN
+You open the gold coffin, revealing three copper coins.
+
+>TAKE COINS
+copper coin: Taken.
+copper coin: Taken.
+copper coin: Taken.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "006.sav": 007
+Overwrite existing file? (y/n) >y
+Ok.
+
+>OPEN DRAGON SCALE COFFIN
+You open the dragon scale coffin, revealing a mummy.
+
+>OPEN SILVER COFFIN
+A disgusting green slime flows out of the silver coffin and puddles all over the
+eastern end of this hallway.
+
+>EXAMINE SLIME
+This green slime is very thick and is radiantly warm.
+
+>RESTORE
+Enter file name (".sav" will be added).
+Default is "007.sav": 
+Ok.
+
+>E
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  An exit lies to the west.  In the floor is a hole  A broom is propped up
+against the wall.
+
+You can see two unlit torches and a broom here.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "007.sav": 008
+Ok.
+
+>!!! THERE'S A FULL STOP MISSING IN THE ROOM DESCRIPTION
+That's not a verb I recognise.
+
+>EXAMINE TORCHES
+You can't see any such thing.
+
+>!!! (USUAL TORCHES PROBLEM)
+That's not a verb I recognise.
+
+>EXAMINE BROOM
+This broom looks like the one owned by the Sirens of the Isle of Yeklum Iret.
+
+>TAKE BROOM
+Taken.
+
+>RIDE BROOM
+You mount the broom and try to take to the air. Unfortunately, this isn't a
+magic broom, so you dismount.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "008.sav": 
+Overwrite existing file? (y/n) >y
+Ok.
+
+>LOOK
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  An exit lies to the west.  In the floor is a hole.
+
+You can see two unlit torches here.
+
+>TAKE TORCHES
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "008.sav": 
+Overwrite existing file? (y/n) >y
+Ok.
+
+>EXAMINE HOLE
+It is very dark
+
+>!!! FULL STOP MISSING AGAIN
+That's not a verb I recognise.
+
+>EXAMINE MIRRORS
+There are three mirrors side-by-side on the north wall here.
+
+>LOOK IN MIRRORS
+You find nothing of interest.
+
+>EXAMINE MIRROR
+Which do you mean, the left mirror, the right mirror or the middle mirror?
+
+>EXAMINE LEFT MIRROR
+The mirror has a carved oak frame.
+
+>EXAMINE RIGHT MIRROR
+The mirror has a carved oak frame.
+
+>EXAMINE MIDDLE MIRROR
+This mirror throws back a fine reflection.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "008.sav": 009
+Ok.
+
+>D
+You jump down the hole and after a couple of moments, hit the floor.
+
+It seems that you have broken both of your legs!
+It's only a matter of time before you die!
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> RESTORE
+Enter file name (".sav" will be added).
+Default is "009.sav": 
+Ok.
+
+>BREAK MIRROR WITH SWORD
+Which do you mean, the left mirror, the right mirror or the middle mirror?
+
+>BREAK MIDDLE MIRROR WITH SWORD
+The mirror doesn't break.
+
+>BREAK LEFT MIRROR WITH SWORD
+The mirror doesn't break.
+
+>BREAK RIGHT MIRROR WITH SWORD
+The mirror doesn't break.
+
+>ENTER MIDDLE MIRROR
+That's not something you can enter.
+
+>LOOK IN MIDDLE MIRROR
+You find nothing of interest.
+
+>LOOK THROUGH MIDDLE MIRROR
+You find nothing of interest.
+
+>!!! DO THE MIRRORS REFLECT THE ROOM, OR MYSELF, OR...?
+You seem to want to talk to someone, but I can't see whom.
+
+>W
+
+Coffin Room
+
+>LOOK
+
+Coffin Room
+This long, cold hallway is lined on either side by five coffins. Exits lie to
+the west and east.
+
+Your torch is beginning to flicker.
+
+>!!! IN THE MIRROR ROOM DESCRIPTION, THE SPACE BETWEEN FULL STOP AND
+You seem to want to talk to someone, but I can't see whom.
+
+>!!! THE NEXT CAPITAL LETTER IS 2 SPACES
+That's not a verb I recognise.
+
+>!!! (I DON'T KNOW IF IT IS OF ANY IMPORTANCE...)
+That's not a verb I recognise.
+
+>W
+
+Four-way Passage
+
+Your torch is flickering and sputtering.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "009.sav": 010
+Ok.
+
+>S
+
+Subterranean Pool
+This subterranean cavern has been carved by centuries of supernatural erosion.
+You are on the north shore of a large pool filling the entire cavern.  A
+humanoid skeleton is draped over a spiky rock out in the middle of the pool.  It
+seems to be holding a key of some sort.  Exits lie to the north and east.
+
+A shark swims by as if patrolling this calm pool.
+
+Your torch is flickering and sputtering.
+
+>!!! THE NUMBER OF SPACES AFTER THE DOT VARIES FROM ROOM TO ROOM
+That's not a verb I recognise.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "010.sav": 
+Overwrite existing file? (y/n) >y
+Ok.
+
+>EXAMINE CAVERN
+You can't see any such thing.
+
+>EXAMINE POOL
+The waters of this subterranean lake are as still as a corpse.
+
+Your torch is flickering and sputtering.
+
+>EXAMINE LAKE
+The waters of this subterranean lake are as still as a corpse.
+
+Your torch is flickering and sputtering.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "010.sav": 
+Overwrite existing file? (y/n) >y
+Ok.
+
+>EXAMINE SKELETON
+It's holding a key of some sort.
+
+Your torch is going out.
+
+>LIGHT UNLIT TORCH WITH LIT TORCH
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "010.sav": 
+Overwrite existing file? (y/n) >y
+Ok.
+
+>EXAMINE KEY
+Which do you mean, the skull key or the iron key?
+
+>EXAMINE IRON KEY
+It's a small iron key.
+
+>I
+You are carrying:
+  a dead torch
+  a burning torch (providing light)
+  five unlit torches
+  a broom
+  three copper coins
+  an odd torch
+  a sling
+  a sword
+  a skull key
+  an iron key
+  your spell book
+
+>N
+
+Four-way Passage
+
+>DROP DEAD TORCH, SKULL KEY AND IRON KEY
+dead torch: Dropped.
+skull key: Dropped.
+iron key: Dropped.
+
+>S
+
+Subterranean Pool
+
+A shark swims by as if patrolling this calm pool.
+
+>LOOK
+
+Subterranean Pool
+This subterranean cavern has been carved by centuries of supernatural erosion.
+You are on the north shore of a large pool filling the entire cavern.  A
+humanoid skeleton is draped over a spiky rock out in the middle of the pool.  It
+seems to be holding a key of some sort.  Exits lie to the north and east.
+
+A shark swims by as if patrolling this calm pool.
+
+>EXAMINE KEY
+You can't see any such thing.
+
+>!!! I CAN'T SEE THE KEY...
+That's not a verb I recognise.
+
+>TAKE KEY
+You can't see any such thing.
+
+>!!! I CAN'T TAKE IT EITHER!
+That's not a verb I recognise.
+
+>TAKE SKELETON
+It's too far away.
+
+>!!! MAYBE THAT EXPLAINS IT...
+That's not a verb I recognise.
+
+>EXAMINE SHARK
+It's a small one, but still capable of ruining your day. It seems oblivious to
+your presence.
+
+>EXAMINE SPIKY ROCK
+You can't see any such thing.
+
+>LOOK
+
+Subterranean Pool
+This subterranean cavern has been carved by centuries of supernatural erosion.
+You are on the north shore of a large pool filling the entire cavern.  A
+humanoid skeleton is draped over a spiky rock out in the middle of the pool.  It
+seems to be holding a key of some sort.  Exits lie to the north and east.
+
+A shark swims by as if patrolling this calm pool.
+
+>EXAMINE ROCK
+You can't see any such thing.
+
+>!!! THE ROCK SHOULD DEFINITELY BE VISIBLE
+That's not a verb I recognise.
+
+>EXAMINE SHORE
+You can't see any such thing.
+
+>!!! I DON'T KNOW IF THE SHORE SHOULD HAVE A DESCRIPTION, TOO
+You seem to want to talk to someone, but I can't see whom.
+
+>E
+
+Waterfall
+Water cascades over a subterranean cliff to the east and into a cool, clean
+stream which flows west into a large pool.  A stairway cut into the cliff beside
+the waterfall is obstructed by a landslide.
+
+You can see a huge pile of rubble and five stones here.
+
+>RESTORE
+Enter file name (".sav" will be added).
+Default is "010.sav": 
+Ok.
+
+>I
+You are carrying:
+  a dead torch
+  a burning torch (providing light)
+  five unlit torches
+  a broom
+  three copper coins
+  an odd torch
+  a sling
+  a sword
+  a skull key
+  an iron key
+  your spell book
+
+>N
+
+Four-way Passage
+
+>DROP DEAD TORCH, SKULL KEY AND IRON KEY
+dead torch: Dropped.
+skull key: Dropped.
+iron key: Dropped.
+
+>S
+
+Subterranean Pool
+
+A shark swims by as if patrolling this calm pool.
+
+>E
+
+Waterfall
+Water cascades over a subterranean cliff to the east and into a cool, clean
+stream which flows west into a large pool.  A stairway cut into the cliff beside
+the waterfall is obstructed by a landslide.
+
+You can see a huge pile of rubble and five stones here.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "010.sav": 011
+Ok.
+
+>I
+You are carrying:
+  a burning torch (providing light)
+  five unlit torches
+  a broom
+  three copper coins
+  an odd torch
+  a sling
+  a sword
+  your spell book
+
+>EXAMINE LANDSLIDE
+This landslide looks like it occurred ages ago. It would take months to clear it
+away.
+
+>EXAMINE STAIRWAY
+You can't see any such thing.
+
+>!!! IT APPEARS IN THE DESCRIPTION
+That's not a verb I recognise.
+
+>LOOK
+
+Waterfall
+Water cascades over a subterranean cliff to the east and into a cool, clean
+stream which flows west into a large pool.  A stairway cut into the cliff beside
+the waterfall is obstructed by a landslide.
+
+You can see a huge pile of rubble and five stones here.
+
+>EXAMINE WATER
+Cold water cascades down a cliff and into a small stream.
+
+>EXAMINE CLIFF
+You can't see any such thing.
+
+>EXAMINE STREAM
+Cold water cascades down a cliff and into a small stream.
+
+>!!! THE CLIFF SHOULD BE VISIBLE
+That's not a verb I recognise.
+
+>EXAMINE POOL
+You can't see any such thing.
+
+>!!! THE POOL IS DISTANT, BUT VISIBLE (IT'S MENTIONED IN THE ROOM DESC.)
+You seem to want to talk to someone, but I can't see whom.
+
+>EXAMINE WATERFALL
+Cold water cascades down a cliff and into a small stream.
+
+>EXAMINE RUBBLE
+This landslide looks like it occurred ages ago. It would take months to clear it
+away.
+
+>SEARCH RUBBLE
+You find nothing of interest.
+
+>EXAMINE STONES
+You can't see any such thing.
+
+>!!! THE STONES ARE HERE, TOO
+You seem to want to talk to someone, but I can't see whom.
+
+>TAKE STONES
+small stone: Taken.
+small stone: Taken.
+small stone: Taken.
+small stone: Taken.
+small stone: Taken.
+
+>I
+You are carrying:
+  five stones
+  a burning torch (providing light)
+  five unlit torches
+  a broom
+  three copper coins
+  an odd torch
+  a sling
+  a sword
+  your spell book
+
+>HINT
+It looks like something is behind the waterfall.
+
+>LOOK
+
+Waterfall
+Water cascades over a subterranean cliff to the east and into a cool, clean
+stream which flows west into a large pool.  A stairway cut into the cliff beside
+the waterfall is obstructed by a landslide.
+
+You can see a huge pile of rubble here.
+
+>SWEEP
+(the huge pile of rubble)
+You achieve nothing by this.
+
+>SWEEP THE RUBBLE WITH BROOM
+I only understood you as far as wanting to sweep the huge pile of rubble.
+
+>SWEEP RUBBLE WITH BROOM
+I only understood you as far as wanting to sweep the huge pile of rubble.
+
+>SWEEP RUBBLE
+You achieve nothing by this.
+
+>I
+You are carrying:
+  five stones
+  a burning torch (providing light)
+  five unlit torches
+  a broom
+  three copper coins
+  an odd torch
+  a sling
+  a sword
+  your spell book
+
+>W
+
+Subterranean Pool
+
+A shark swims by as if patrolling this calm pool.
+
+>HINT
+Some things have more than one use!
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "011.sav": 012
+Ok.
+
+>RIDE BROOM
+You mount the broom and try to take to the air. Unfortunately, this isn't a
+magic broom, so you dismount.
+
+>I
+You are carrying:
+  five stones
+  a burning torch (providing light)
+  five unlit torches
+  a broom
+  three copper coins
+  an odd torch
+  a sling
+  a sword
+  your spell book
+
+>!!! END OF THE SECOND TRANSCRIPT (THE NEXT TIME I'LL USE A WALKTHROUGH :P)
+That's not a verb I recognise.
+
+>UNSCRIPT
+
+End of transcript.

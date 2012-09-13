@@ -100,6 +100,7 @@ Object -> Falls "falls"
 		if (noun ofclass BurningTorch) {
 			remove noun;
 			newthing = DeadTorch.create();
+			give newthing moved;
 			move newthing to parent(Pool);
 			" which is snuffed out.  The stream deposits
 			the now useless torch into the pool.";

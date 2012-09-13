@@ -80,15 +80,18 @@ Torch -> OddTorch "odd torch"
 		<<SwitchOn self>>;
 	Wave, Point:
 		if (second == Wraith) {
-			print "You look ridiculous ";
-			if (verb_word == 'wave')
-				print "waving";
-			else
-				print "pointing";
-			print " ", (the) self, " at ", (the) second, 
-			" but ", (the) second, " seems afraid.";
+			noun = OddTorch;
+			Wraith.getrid();
+			rtrue;
 		}
-		rtrue;
+		rfalse;
+!			print "You look ridiculous ";
+!			if (verb_word == 'wave')
+!				print "waving";
+!			else
+!				print "pointing";
+!			" ", (the) self, " at ", (the) second, 
+!			", but ", (the) second, " seems afraid.";
 	],
 	after [;
 	Take:

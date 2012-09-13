@@ -1,0 +1,995 @@
+Start of a transcript of
+SHADOWGATE
+An unauthorized adaptation by David Griffith.
+Copyright and trademark of Infinite Ventures, Inc.
+Release 1 / Serial number 030707 / Inform v6.21 Library 6/10 SD
+Standard interpreter 1.0 (6F) / Library serial number 991113
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "sgate-b2.sav": 001
+Ok.
+
+>LOOK
+
+Entrance
+You are standing just south of the Castle Shadowgate. In front of you, to the
+north, is a heavy wooden door set in the stone wall of the castle. A skull hangs
+over the door.
+
+>EXAMINE CASTLE
+You can't see any such thing.
+
+>!!! THE CASTLE SHOULD PROBABLY BE VISIBLE FROM HERE
+That's not a verb I recognise.
+
+>EXAMINE DOOR
+It's a heavy wooden door with iron hinges.
+
+>EXAMINE HINGES
+You can't see any such thing.
+
+>!!! MAYBE THEY'RE NOT IMPORTANT, BUT SHOULD BE VISIBLE
+You seem to want to talk to someone, but I can't see whom.
+
+>EXAMINE WALL
+Which do you mean, the north wall, the south wall, the east wall, the west wall,
+the northeast wall, the northwest wall, the southeast wall or the southwest
+wall?
+
+>WOW!
+You can't see any such thing.
+
+>EXAMINE NORTH WALL
+It's a stone wall.
+
+>EXAMINE SOUTH WALL
+You see nothing special about the south wall.
+
+>EXAMINE EAST WALL
+You see nothing special about the east wall.
+
+>EXAMINE SOUTHWEST WALL
+You see nothing special about the southwest wall.
+
+>LOOK
+
+Entrance
+You are standing just south of the Castle Shadowgate. In front of you, to the
+north, is a heavy wooden door set in the stone wall of the castle. A skull hangs
+over the door.
+
+>S
+You have no idea what's out there. Besides, your job involves being inside the
+castle.
+
+>!!! SO, ARE THERE WALLS IN ALL DIRECTIONS FROM HERE?
+You seem to want to talk to someone, but I can't see whom.
+
+>EXAMINE SKULL
+It's the skull of some unknown creature. Its meaning seems quite clear: death
+lurks inside.
+
+>PUSH SKULL
+The skull rattles a bit, but remains fixed to the wall.
+
+>PULL SKULL
+The skull rattles a bit, but remains fixed to the wall.
+
+>CLIMB WALL
+Which do you mean, the north wall, the south wall, the east wall, the west wall,
+the northeast wall, the northwest wall, the southeast wall or the southwest
+wall?
+
+>CLIMB NORTH WALL
+I don't think much is to be achieved by that.
+
+>OPEN SKULL
+As if by magic, the skull rises, revealing an iron key nestled in a tiny hollow.
+
+>EXAMINE SKULL
+The skull has been slid up revealing a tiny hollow which contains an iron key.
+
+>TAKE KEY
+Taken.
+
+>EXAMINE KEY
+It's a small iron key.
+
+>PUT KEY IN HOLLOW
+It's not clear how even a key fit in there.
+
+>!!! NOT SURE IF THIS IS A BUG OR NOT
+That's not a verb I recognise.
+
+>EXAMINE HOLLOW
+The skull has been slid up revealing a tiny hollow.
+
+>CLOSE SKULL
+The skull slides back down.
+
+>OPEN SKULL
+As if by magic, the skull rises, revealing nothing but dust.
+
+>CLOSE IT
+The skull slides back down.
+
+>OPEN DOOR
+You open the wooden door.
+
+>LOOK
+
+Entrance
+You are standing just south of the Castle Shadowgate. In front of you, to the
+north, is a heavy wooden door set in the stone wall of the castle. A skull hangs
+over the door.
+
+>EXAMINE DOOR
+It's a heavy wooden door with iron hinges.
+
+>!!! THE DOOR IS OPEN NOW
+That's not a verb I recognise.
+
+>OPEN DOOR
+That's already open.
+
+>N
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+A huge pair of disembodied eyes appear high in the air above you, glaring
+angrily. The booming voice of the Warlock Lord bursts forth from nowhere.
+
+"That pitiful wizard Lakmir was a fool to send a buffoon like you to stop me.
+You will surely regret it for the only thing here for you is a horrible death!"
+
+The eyes fade away as if made of smoke. Maniacal laughter echos in your ears.
+
+
+You can see two unlit torches here.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "001.sav": 002
+Ok.
+
+>EXAMINE ARCHWAYS
+You can't see any such thing.
+
+>!!! ANOTHER NOT IMPORTANT BUT VISIBLE THING
+That's not a verb I recognise.
+
+>LOOK
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+You can see two unlit torches here.
+
+>EXAMINE CORRIDOR
+You can't see any such thing.
+
+>EXAMINE HALL
+This door is reinforced with heavy sheets of steel.
+
+>!!! I SUPPOSE IT'S AN ADJECTIVE FOR THE DOOR
+That's not a verb I recognise.
+
+>EXAMINE DOOR
+Which do you mean, the wooden door, the closet door or the hall door?
+
+>EXAMINE CLOSET
+The closet door is very narrow. Even though it's only an inch thick, it is very
+sturdy.
+
+>!!! EXAMINING THE CLOSET MEANS EXAMINING ITS DOOR
+That's not a verb I recognise.
+
+>LOOK
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+You can see two unlit torches here.
+
+>EXAMINE TORCHES
+You can't see any such thing.
+
+>examine torches
+You can't see any such thing.
+
+>!!! THE TORCHES ARE DEFINITELY IN THE ROOM
+That's not a verb I recognise.
+
+>TAKE TORCHEST
+You can't see any such thing.
+
+>TAKE TORCHES
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>I
+You are carrying:
+  two unlit torches
+  an iron key
+  your spell book
+  a burning torch (providing light)
+
+>EXAMINE BURNING TORCH
+The torch throws dancing shadows about the room.
+
+>EXAMINE KEY
+It's a small iron key.
+
+>EXAMINE SPELL BOOK
+My Spell Book
+
+gnusto spell: Copy a scroll into your spell book.
+
+>OPEN BOOK
+The spell book is always open to the right place, but it is also always closed.
+This eliminates tedious leafing and hunting for spells. Many lives have been
+saved by this magical innovation.
+
+>READ BOOK
+My Spell Book
+
+gnusto spell: Copy a scroll into your spell book.
+
+>I
+You are carrying:
+  two unlit torches
+  an iron key
+  your spell book
+  a burning torch (providing light)
+
+>INV
+You are carrying:
+  two unlit torches
+  an iron key
+  your spell book
+  a burning torch (providing light)
+
+>LOOK
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+>EXAMINE WOODEN DOOR
+It's a heavy wooden door with iron hinges.
+
+>EXAMINE HALL DOOR
+This door is reinforced with heavy sheets of steel.
+
+>!!! THE HALL DOOR IS A WOODEN DOOR TOO
+That's not a verb I recognise.
+
+>EXAMINE CLOSET
+The closet door is very narrow. Even though it's only an inch thick, it is very
+sturdy.
+
+>LOOK BEHIND IT
+You find nothing of interest.
+
+Your torch is beginning to flicker.
+
+>OPEN CLOSET
+It seems to be locked.
+
+Your torch is flickering and sputtering.
+
+>LIGHT TORCH WITH TORCH
+(the unlit torch with the unlit torch)
+You can't burn the unlit torch with the unlit torch.
+
+Your torch is flickering and sputtering.
+
+>LIGHT UNLIT TORCH WITH LIT TORCH
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>UNLOCK CLOSET WITH KEY
+That doesn't seem to fit the lock.
+
+Your torch is flickering and sputtering.
+
+>OPEN DOOR
+Which do you mean, the wooden door, the closet door or the hall door?
+
+>OPEN HALL DOOR
+It seems to be locked.
+
+Your torch is going out.
+
+>UNLOCK HALL DOOR WITH KEY
+You unlock the hall door.
+
+>W
+You can only go north, east, or south.
+
+>LOOK
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+>!!! I CAN GO EAST? I SUPPOSE I CAN ENTER THE CLOSET
+That's not a verb I recognise.
+
+>E
+(first opening the closet door)
+It seems to be locked.
+
+>OPEN HALL DOOR
+You open the hall door.
+
+>RESTORE
+Enter file name (".sav" will be added).
+Default is "002.sav": 001
+Ok.
+
+>OPEN SKULL AND TAKE KEY
+You can't use multiple objects with that verb.
+
+>OPEN SKULL
+As if by magic, the skull rises, revealing an iron key nestled in a tiny hollow.
+
+>TAKE KEY
+Taken.
+
+>OPEN DOOR
+You open the wooden door.
+
+>N
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+A huge pair of disembodied eyes appear high in the air above you, glaring
+angrily. The booming voice of the Warlock Lord bursts forth from nowhere.
+
+"That pitiful wizard Lakmir was a fool to send a buffoon like you to stop me.
+You will surely regret it for the only thing here for you is a horrible death!"
+
+The eyes fade away as if made of smoke. Maniacal laughter echos in your ears.
+
+
+You can see two unlit torches here.
+
+>TAKE TORCHEST
+You can't see any such thing.
+
+>TAKE TORCHES
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>UNLOCK HALL DOOR WITH KEY
+You unlock the hall door.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "001.sav": 002
+Overwrite existing file? (y/n) >y
+Ok.
+
+>N
+(first opening the hall door)
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Bits of stone are
+flaking off the north wall.
+
+On the shelf are a candle and an ancient tome.
+
+You can see an unlit torch here.
+
+>EXAMINE SHELF
+It's a shelf set into the west wall.
+
+On the shelf are a candle and an ancient tome.
+
+>EXAMINE CANDLE
+It's a small candle, perfect for reading.  It has been several years, perhaps
+decades or even centuries, since this candle was last lit.
+
+>EXAMINE TOME
+It's an ancient tome. It seems that no one has disturbed its pages for
+centuries.
+
+>TAKE CANDLE
+When you remove the candle from the shelf, the floor collapses, and you fall to
+your death.
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> RESTORE
+Enter file name (".sav" will be added).
+Default is "002.sav": 
+Ok.
+
+>N
+(first opening the hall door)
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Bits of stone are
+flaking off the north wall.
+
+On the shelf are a candle and an ancient tome.
+
+You can see an unlit torch here.
+
+>TAKE TOME
+When you remove the book from the shelf, the floor collapses, and you fall to
+your death.
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> RESTORE
+Enter file name (".sav" will be added).
+Default is "002.sav": 
+Ok.
+
+>N
+(first opening the hall door)
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Bits of stone are
+flaking off the north wall.
+
+On the shelf are a candle and an ancient tome.
+
+You can see an unlit torch here.
+
+>EXAMINE NORTH WALL
+There is a spot in this wall that doesn't feel particularly solid.
+
+>PUSH NORTH WALL
+You are unable to.
+
+>I
+You are carrying:
+  two unlit torches
+  an iron key
+  your spell book
+  a burning torch (providing light)
+
+>OPEN TOME
+The book is opened and examined. A rectangular hole has been cut out of the
+inside of the book.
+
+In the ancient tome is a skull key.
+
+>TAKE SKULL KEY
+Taken.
+
+>EXAMINE IT
+This key bears a skull. This must be a skeleton key.
+
+>EXAMINE TOME
+It's an ancient tome. It seems that no one, except for you, has disturbed its
+pages for centuries.
+
+>LOOK IN TOME
+The ancient tome is empty.
+
+>LIGHT CANDLE
+The candle burns brightly.
+
+>TAKE CANDLE
+When you remove the candle from the shelf, the floor collapses, and you fall to
+your death.
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> RESTORE
+Enter file name (".sav" will be added).
+Default is "002.sav": 
+Ok.
+
+>N
+(first opening the hall door)
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Bits of stone are
+flaking off the north wall.
+
+On the shelf are a candle and an ancient tome.
+
+You can see an unlit torch here.
+
+>OPEN TOME
+The book is opened and examined. A rectangular hole has been cut out of the
+inside of the book.
+
+In the ancient tome is a skull key.
+
+>EXAMINE SKULL KEY
+This key bears a skull. This must be a skeleton key.
+
+>EXAMINE HOLE
+You can't see any such thing.
+
+>!!! PROBABLY NOT IMPORTANT
+That's not a verb I recognise.
+
+>TAKE SKULL KEY
+Taken.
+
+>RESTORE
+Enter file name (".sav" will be added).
+Default is "002.sav": 
+Ok.
+
+>N
+(first opening the hall door)
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Bits of stone are
+flaking off the north wall.
+
+On the shelf are a candle and an ancient tome.
+
+You can see an unlit torch here.
+
+>OPEN TOME
+The book is opened and examined. A rectangular hole has been cut out of the
+inside of the book.
+
+In the ancient tome is a skull key.
+
+>TAKE SKULL KEY
+Taken.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "002.sav": 003
+Ok.
+
+>LIGHT CANDLE
+The candle burns brightly.
+
+>SCORE
+There is no score. Either you defeat the Warlock Lord or you die.
+
+>THAT'S GREAT
+That's not a verb I recognise.
+
+>S
+
+Hall
+
+>UNLOCK CLOSET DOOR WITH SKULL KEY
+You unlock the closet door.
+
+>OPEN CLOSET DOOR
+You open the closet door.
+
+>E
+
+Hall Closet
+You are in a small, cramped closet.
+
+You can see a sword and a sling here.
+
+>EXAMINE SWORD
+It's a double-edged broadsword. The handle has Druidic script written upon it.
+
+>READ SWORD
+You can't read the writing. Lakmir probably could.
+
+>EXAMINE SLING
+It's a small leather sling. This would come in handy for long-range battles!
+
+>TAKE SLING
+Taken.
+
+>TAKE SWORD
+Taken.
+
+>RESTORE
+Enter file name (".sav" will be added).
+Default is "003.sav": 
+Ok.
+
+>S
+
+Hall
+
+>UNLOCK CLOSET DOOR WITH SKULL KEY
+You unlock the closet door.
+
+>E
+(first opening the closet door)
+
+Hall Closet
+You are in a small, cramped closet.
+
+You can see a sword and a sling here.
+
+>TAKE ALL
+sword: Taken.
+sling: Taken.
+
+>W
+
+Hall
+
+>N
+
+Stone passage
+
+On the shelf are a candle and an ancient tome (which is empty).
+
+You can see an unlit torch here.
+
+>TAKE TORCK
+You can't see any such thing.
+
+>TAKE TORCH
+(the unlit torch)
+As you pull the torch off the wall, you notice something out of the ordinary
+about it.
+
+>EXAMINE TORCH
+Which do you mean, the odd torch, an unlit torch or the burning torch?
+
+>EXAMINE ODD TORCH
+There is a skull carved into the shaft of this torch. Above and below that are
+symbols representing power over the undead.
+
+>RESTORE
+Enter file name (".sav" will be added).
+Default is "003.sav": 
+Ok.
+
+>S
+
+Hall
+
+>UNLOCK CLOSET DOOR WITH SKULL KEY
+You unlock the closet door.
+
+>E
+(first opening the closet door)
+
+Hall Closet
+You are in a small, cramped closet.
+
+You can see a sword and a sling here.
+
+>TAKE ALL
+sword: Taken.
+sling: Taken.
+
+>W
+
+Hall
+
+>N
+
+Stone passage
+
+On the shelf are a candle and an ancient tome (which is empty).
+
+You can see an unlit torch here.
+
+>TAKE TORCH
+(the unlit torch)
+As you pull the torch off the wall, you notice something out of the ordinary
+about it.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "003.sav": 
+Overwrite existing file? (y/n) >y
+Ok.
+
+>E
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "003.sav": 
+Overwrite existing file? (y/n) >y
+Ok.
+
+>N
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is closed.
+
+You can also see two unlit torches here.
+
+>EXAMINE TORCHES
+You can't see any such thing.
+
+>!!! AGAIN...
+That's not a verb I recognise.
+
+>EXAMINE TORCH
+(the unlit torch)
+It's a torch. An oil-soaked rag is wrapped around it.
+
+>TAKE TORCHES
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "003.sav": 004
+Ok.
+
+>LOOK
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is closed.
+
+>SMELL
+You smell nothing unexpected.
+
+>!!! THERE SHOULD BE STENCH
+That's not a verb I recognise.
+
+>EXAMINE WOODEN DOOR
+It's a finely crafted wooden door.
+
+>EXAMINE PEDESTAL
+The pedestal is roughly waist height. It's carved out of granite and has iron
+trim around the edges. A shallow depression is on top.
+
+>EXAMINE HOLE
+It's a small hole in the wall some three inches deep.
+
+>EXAMINE TRAP DOOR
+It's a small trap door made of polished metal.
+
+>OPEN TRAP DOOR
+You open the trap door, revealing a rickety ladder descending into the gloom.
+
+>EXAMINE LADDER
+It's greasy, dirty, and full of splinters.
+
+>D
+A broken fragment of a wooden ladder hangs from the opening.
+
+As you go down the trap door, you realize you took a big step. The fall is quite
+fatal.
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> RESTORE
+Enter file name (".sav" will be added).
+Default is "004.sav": 
+Ok.
+
+>LOOK
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is closed.
+
+>OPEN WOODEN DOOR
+You open the wooden door.
+
+>STAND ON PEDESTAL
+That's not something you can stand on.
+
+>N
+
+Hot Room
+Fear grips you as you enter this hot room. This is a long north-south passage. A
+pair of reptilian eyes peer out of the darkness beyond an archway at the north
+end of the passage. A large wooden chest bound with iron stands against the east
+wall.
+
+You can see an unlit torch, a shield, a helmet, a bone, a hammer, a spear, a
+dried skull and an iron-bound chest (which is closed) here.
+
+>EXAMINE ARCHWAY
+You can't see any such thing.
+
+>!!! SHOULD BE VISIBLE
+That's not a verb I recognise.
+
+>OPEN CHEST
+It seems to be locked.
+
+>EXAMINE EYES
+You can't see any such thing.
+
+>!!! THE EYES ARE VISIBLE AS WELL
+That's not a verb I recognise.
+
+>TAKE ALL
+unlit torch: 
+WOOOOOSH!!!! A jet of flame shoots out from beyond the archway. Dragon flame
+engulfs your body. You pay for your curiosity with your life.
+
+You pull the unlit torch off the wall.
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> RESTORE
+Enter file name (".sav" will be added).
+Default is "004.sav": 
+Ok.
+
+>N
+(first opening the wooden door)
+
+Hot Room
+Fear grips you as you enter this hot room. This is a long north-south passage. A
+pair of reptilian eyes peer out of the darkness beyond an archway at the north
+end of the passage. A large wooden chest bound with iron stands against the east
+wall.
+
+You can see an unlit torch, a shield, a helmet, a bone, a hammer, a spear, a
+dried skull and an iron-bound chest (which is closed) here.
+
+>N
+You step past the archway and face a none-too-happy dragon. Flames shoot from
+the dragon's mouth and engulf your body. You pay for your curiosity with your
+life.
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> RESTORE
+Enter file name (".sav" will be added).
+Default is "004.sav": 
+Ok.
+
+>N
+(first opening the wooden door)
+
+Hot Room
+Fear grips you as you enter this hot room. This is a long north-south passage. A
+pair of reptilian eyes peer out of the darkness beyond an archway at the north
+end of the passage. A large wooden chest bound with iron stands against the east
+wall.
+
+You can see an unlit torch, a shield, a helmet, a bone, a hammer, a spear, a
+dried skull and an iron-bound chest (which is closed) here.
+
+>EXAMINE TORCH
+(the unlit torch)
+It's a torch. An oil-soaked rag is wrapped around it.
+
+>EXAMINE SHIELD
+It's a heavy shield. There are only a few dents in it.
+
+WOOOOOSH!!!! A jet of flame shoots out from beyond the archway. Dragon flame
+engulfs your body. You pay for your curiosity with your life.
+
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> RESTORE
+Enter file name (".sav" will be added).
+Default is "004.sav": 
+Ok.
+
+>N
+(first opening the wooden door)
+
+Hot Room
+Fear grips you as you enter this hot room. This is a long north-south passage. A
+pair of reptilian eyes peer out of the darkness beyond an archway at the north
+end of the passage. A large wooden chest bound with iron stands against the east
+wall.
+
+You can see an unlit torch, a shield, a helmet, a bone, a hammer, a spear, a
+dried skull and an iron-bound chest (which is closed) here.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "004.sav": 005
+Ok.
+
+>S
+
+Cold Room
+
+The trap door is closed.
+
+>s
+
+Four-way Passage
+
+>look
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+>SAVE
+Enter file name (".sav" will be added).
+Default is "005.sav": 006
+Ok.
+
+>!!! HERE ENDS THE FIRST SCRIPT
+That's not a verb I recognise.
+
+>UNSCRIPT
+
+End of transcript.

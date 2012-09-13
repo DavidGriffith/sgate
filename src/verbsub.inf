@@ -1,0 +1,334 @@
+[ CommentSub; ];
+
+
+[ TasteSub;
+	"The thought of doing so is revolting.";
+];
+
+
+[ UnchainSub;
+	if (noun)
+		"But ", (the) noun, " isn't chained to anything.";
+	"Unchaining nothing. Brilliant.";
+];
+
+
+[ FreeSub;
+	if (noun)
+		"But ", (the) noun, " doesn't seem to need freeing.";
+	"Freeing nothing. Brilliant.";
+];
+
+
+[ UseSub;
+	if (noun)
+		"You'll have to say how you want to use ", (the) noun, ".";
+	"I beg your pardon?";
+];
+
+
+[ TalkSub;
+	if (noun == player)
+		"Talking to yourself is said to be a sign of impending
+			mental collapse.";
+
+	if (noun)
+		"Try ~", (object) noun, ", hello~ instead.";
+	"You babble incoherently.";
+];
+
+
+[ FooSub;
+	"Bar.";
+];
+
+[ BarSub;
+	"Baz.";
+];
+
+[ BazSub;
+	"Foo.";
+];
+
+
+[ PlaySub;
+	if (noun == nothing)
+		"Aren't you doing that already?";
+
+	print_ret (The) noun, " isn't something you can play.";
+];
+
+
+[ UntieSub;
+	if (noun == nothing)
+		"Untying nothing.  Brilliant.";
+	"But ", (the) noun, " isn't tied to anything.";
+];
+
+
+[ FlipOffSub;
+	"Real adventurers do not use such gestures.";
+];
+
+[ FlipSub;
+	if (noun == nothing or player)
+		"Now is not the time for acrobatics.";
+
+	"Flipping ", (the) noun, " doesn't seem to accomplish
+		anything.";
+];
+
+[ BurnSub;
+	print_ret "This dangerous act would achieve little.";
+];
+
+[ MeltSub;
+	print_ret "You can't melt ", (the) noun, ".";
+];
+
+[ LoadSub;
+	print_ret (The) noun, " isn't something that can be loaded.";
+];
+
+[ UnloadSub;
+	print_ret (The) noun, " isn't something that can be unloaded.";
+];
+
+
+Global dootflag = 0;
+[ DootSub;
+
+	dootflag = random(9);
+
+	switch (dootflag) {
+	1:
+		"Look!  A doot!";
+	2:
+print "#####    ####    ####    #####   ###^
+#    #  #    #  #    #     #     ###^
+#    #  #    #  #    #     #     ###^
+#    #  #    #  #    #     #      #^
+#    #  #    #  #    #     #^
+#    #  #    #  #    #     #     ###^
+#####    ####    ####      #     ###^";
+	3:
+		"Reading Erma Bombeck again, eh?";
+	4:
+		"Cheating at Scrabble again, eh?";
+	5:
+		"Using infodump to see what's in the dictionary, eh?";
+	6:
+		"Don't you just love these trick verbs that serve
+			absolutely no useful purpose?";
+	7:
+		"Please telephone your mother and say ~doot~.";
+
+	8:
+		"Doot! Doot! Doot! Doot! Doot! Doot! Doot! Doot!";
+
+	9:
+		"Watch out for the wild doot!";
+
+	default:
+		"Unknown doot.";
+	}
+
+];
+
+
+[ HintSub;
+	switch (parent(player)) {
+	Entrance:
+		"The secret thoughts of the skull can be yours!";
+
+	StonePassage:
+		"Look closely at the wall.";
+
+	FourWay, FireRoom, Courtyard, BanquetCorridor, Study,
+	Laboratory:
+		"You feel frustrated as you look around you.  There
+		must be a clue somewhere!";
+
+	PoolCavern:
+		"Some things have more than one use!";
+
+	WaterfallRoom:
+		"It looks like something is behind the waterfall.";
+
+	CoffinRoom:
+		"You can set things on fire with a burning torch.";
+
+	HallCloset:
+		"Try with all your might!";
+
+	EporRoom:
+		"Some things require a second glance.";
+
+	ChasmBridge:
+		"Weapons are not the only way to ~defeat~ an enemy.";
+
+	Library:
+		"As you open the bookcase...";
+
+	Garden, BanquetHall, CircularRoom, SphinxRoom, Observatory,
+	TowerPrison:
+		"Are you getting it?";
+
+	default:
+		"Don't quit now!";
+	}
+];
+
+
+[ TossCoinSub;
+	if (noun notin player) "You need to be holding the coin first.";
+
+	move noun to parent(player);
+	if (location == thedark) "You throw it away into the darkness.";
+	print "You ", (address) verb_word, " the coin, and 
+		it lands...  ";
+	if (random(2) == 1) {
+		last_toss_heads = true;
+		"Heads.";
+	} else {
+		last_toss_heads = false;
+		"Tails.";
+	}
+];
+
+
+[ RideSub;
+	print_ret "You can hardly ride ", (a) noun, ".";
+];
+
+
+[ KickSub;
+	<<attack noun>>;
+];
+
+
+[ SlideSub; 
+	<<push noun>>;
+];
+
+
+[ RollSub;
+	if (noun == nothing or player) {
+		"Rolling about doesn't seem to accomplish anything.";
+	}
+	"Rolling ", (the) noun, " doesn't seem to do anything useful.";
+];
+
+
+[ UnrollSub;
+	if (noun == player) {
+		"That doesn't seem possible.";
+	}
+	"It doesn't look like ", (the) noun, " is rolled up.";
+];
+
+
+! These two need to assume the lit torch being held by the player.
+! Work on that problem later.
+!
+[ SnuffSub;
+	<<SwitchOff noun>>;
+];
+
+[ ExtinguishSub;
+	<<SwitchOff noun>>;
+];
+
+
+[ XyzzySub;
+	"^An Implementor suddenly materializes and speaks to you with a
+	tone of boredom and annoyance.^
+	^
+	~Fool!~^
+	^
+	The Implementor vanishes.";
+];
+
+
+[ WinSub;
+	deadflag = 2;
+	"^An Implementor suddenly materializes and speaks to you with a
+	tone of boredom and annoyance.^
+	^
+	~Well, you have to defeat the Warlock Lord to win.  But, if you
+	insist...~^
+	^
+	The Implementor snaps his fingers and...";
+];
+
+
+
+! This approach isn't quite what I wanted, but seems to suffice for this
+! game.
+!
+[ WaveAtSub;
+	if (RunRoutines(second,before) ~= 0) {
+		action==##WaveAt;
+		rtrue;
+	}
+	"You look ridiculous waving at ", (the) noun, ".";
+];
+
+[ WaveSub;
+	if (noun == nothing)
+		"You wave, feeling foolish.";
+
+	if (RunRoutines(second,before) ~= 0) {
+		action=##Wave;
+		rtrue;
+	}
+	if (second == nothing) {
+		"You look ridiculous waving ", (the) noun, " around.";
+	} else {
+		"You look ridiculous waving ", (the) noun, " at ",
+		(the) second, ".";
+	}
+];
+
+
+[ PointSub;
+	if (noun == nothing)
+		"You point nowhere in particular.";
+
+	if (RunRoutines(second,before) ~= 0) {
+		action=##Point;
+		rtrue;
+	}
+
+	if (second > 1) {
+		"You look ridiculous pointing ", (the) noun, " at ",
+		(the) second, ".";
+	}
+
+	"You look ridiculous pointing at ", (the) noun, ".";
+];
+
+
+! For whatever reason, I can't catch this action in the before() or
+! after() routines like I can with other versb.
+!
+[ PutOnRugSub;
+	if (second hasnt is_rug)
+		"Error in PutOnRugSub()";
+	give noun on_rug;
+	move noun to second;
+	"You put ", (the) noun, " on ", (the) second, ".";
+];
+
+
+[ PutUnderRugSub;
+	if (second hasnt is_rug)
+		"Error in PutUnderRugSub()";
+	if (second hasnt general) {
+		give noun concealed;
+		move noun to second;
+		"You put ", (the) noun, " under ", (the) second, ".";
+	}
+	"That's difficult to do while the rug is rolled up.";
+];
+

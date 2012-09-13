@@ -14,12 +14,14 @@ Constant DIALECT_US;
 !Release 2;
 !Release 3;
 !Release 4;
-Release 5;
+!Release 5;
+Release 6;
 
 !Serial "020417";
 !Serial "030821";
 !Serial "030826";
-Serial "030828";
+!Serial "030828";
+Serial "040131";
 
 Constant Story "SHADOWGATE";
 
@@ -29,6 +31,7 @@ Constant Headline
 
 Constant DEATH_MENTION_UNDO;
 
+Constant TORCH_COUNT = 18;	! how many torches in the game (good ones)
 Constant TORCH_VARIANCE = 7;	! some randomness
 Constant TORCH_LIFE = 50;	! how many moves a torch will last
 Constant TORCH_DECLINE = 5;	! torch starts sputtering
@@ -182,6 +185,7 @@ Include "statusline1.inf";	! Displays just the room name.
 
 Include "Grammar";
 Include "help.inf";
+Include "verbsub.inf";
 Include "verbs.inf";
 Include "spells-grammar.inf";	
 

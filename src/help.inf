@@ -1,6 +1,6 @@
 Menu about_menu "Shadowgate Info";
 
-Option -> "About this game"
+Option -> "About Shadowgate"
 	with description
 "This game is an unauthorized reimplementation of Shadowgate Classic as
 it appeared on the Nintendo Entertainment System (NES) presented by ICOM
@@ -68,7 +68,12 @@ Release 4 / Serial Number 030826^
 Minor bug fixes.^
 ^
 Release 5 / Serial Number 030828^
-More bug fixes.";
+More bug fixes.^
+^
+Release 6 / Serial number 040131^
+Minor bug fixes.^
+Efficiency tweaks.^
+Final release (hopefully).";
 
 
 
@@ -78,15 +83,14 @@ Option -> "Credits"
 (dgriffi@@64cs.csubak.edu).  Please visit
 http://www.cs.csubak.edu/@@126dgriffi for more of my stuff, including
 the world-famous Frotz, which you may be using right now to play this
-game.^
+game. Portions of code used are from the 4th Edition of the Inform
+Designer's Manual and are cited where they appear in the source code.^
 ^
 Copyright is claimed on the source code, but not the name ~Shadowgate~
 nor the game content.  The latter two rest with Infinite Ventures, which
 is the company that currently owns the old ICOM games like Shadowgate,
 Deja Vu, Uninvited, and many others. You can visit their website at 
 http://www.infiniteventures.com/.";
-
-
 
 Option -> "License"
 	with description
@@ -99,6 +103,19 @@ This game may be included in a compilation (ie, a CD set
 containing the whole of the Interactive Fiction Archive), but it SHALL
 NOT be packaged on its own without prior written approval.";
 
+
+
+Option -> "URLs"
+	with description
+"http://www.cs.csubak.edu/@@126dgriffi/             (My homepage)^
+http://www.cs.csubak.edu/@@126dgriffi/proj/frotz/  (Frotz homepage)^
+http://www.cs.csubak.edu/@@126dgriffi/proj/sgate/  (Shadowgate stuff)^
+^
+http://www.ifarchive.org/                      (The I-F Archive)^
+http://www.inform-fiction.org/                 (Inform homepage)^
+^
+http://www.infiniteventures.com/               (Infinite Ventures)
+";
 
 [ HelpSub;
 	if (noun)

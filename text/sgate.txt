@@ -1,0 +1,4699 @@
+Start of a transcript of
+SHADOWGATE
+An unauthorized adaptation by David Griffith.
+Copyright and trademark of Infinite Ventures, Inc.
+Release 1 / Serial number 030707 / Inform v6.21 Library 6/10 SD
+Standard interpreter 1.0 (6F) / Library serial number 991113
+
+>open door
+You open the wooden door.
+
+>
+! no mention of directions I can travel from here; I mean it's obvious I can go north but e and w aren't mentioned
+
+>n
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+A huge pair of disembodied eyes appear high in the air above you, glaring
+angrily. The booming voice of the Warlock Lord bursts forth from nowhere.
+
+"That pitiful wizard Lakmir was a fool to send a buffoon like you to stop me.
+Your will surely regret it for the only thing here for you is a horrible death!"
+
+The eyes fade away as if made of smoke. Maniacal laughter echos in your ears.
+
+
+You can see two unlit torches here.
+
+>! 'echos' should be 'echoes'
+
+>examine torches
+You can't see any such thing.
+
+>! can't examine the torches in plural form
+
+>x torch
+(the unlit torch)
+It's a torch. An oil-soaked rag is wrapped around it.
+
+>get torches
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>verbose
+SHADOWGATE is now in its "verbose" mode, which always gives long descriptions of
+locations (even if you've been there before).
+
+>e
+(first opening the closet door)
+It seems to be locked.
+
+>i
+You are carrying:
+  two unlit torches
+  your spell book
+  a burning torch (providing light)
+
+>l in book
+You find nothing of interest.
+
+>read book
+My Spell Book
+
+gnusto spell: Copy a scroll into your spell book.
+
+>! should implement SEARCH for book so that 'look in book' maps to 'read book'
+
+>w
+You can't go that way.
+
+>l
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+>! Custom cant_go messages that list the available exits are considered
+
+>! de rigeur in most Inform pieces now, would be nice
+
+>x archways
+You can't see any such thing.
+
+>n
+(first opening the hall door)
+It seems to be locked.
+
+>enter archway
+You can't see any such thing.
+
+>x rug
+It's a beautifully woven rug.
+
+>stand on rug
+That's not something you can stand on.
+
+>! give rug supporter attribute?
+
+>s
+
+Entrance
+You are standing just south of the Castle Shadowgate. In front of you is a heavy
+wooden door set in the stone wall of the castle. A skull hangs over the door.
+
+>get skull
+The skull rattles a bit, but remains fixed to the wall.
+
+>x skull
+It's the skull of some unknown creature. Its meaning seems quite clear: death
+lurks inside.
+
+>push skull
+The skull rattles a bit, but remains fixed to the wall.
+
+>search skull
+You can see something slightly rusty behind the skull.
+
+>move skull
+As if by magic, the skull rises, revealing an iron key nestled in a tiny hollow.
+
+>get key
+Taken.
+
+>n
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+>unlock wooden door
+What do you want to unlock the wooden door with?
+
+>key
+That doesn't seem to be something you can unlock.
+
+>unlock closet door
+What do you want to unlock the closet door with?
+
+>key
+That doesn't seem to fit the lock.
+
+>e
+(first opening the closet door)
+It seems to be locked.
+
+>n
+(first opening the hall door)
+It seems to be locked.
+
+>unlock hall door with key
+You unlock the hall door.
+
+>x wooden door
+It's a heavy wooden door with iron hinges.
+
+>x closet door
+The closet door is very narrow. Even though it's only an inch thick, it is very
+sturdy.
+
+>lock hall door
+What do you want to lock the hall door with?
+
+>key
+You lock the hall door.
+
+>unlock hall door
+What do you want to unlock the hall door with?
+
+>key
+You unlock the hall door.
+
+>lock wooden door
+What do you want to lock the wooden door with?
+
+>key
+That doesn't seem to be something you can lock.
+
+>x hall door
+This wooden door is reinforced with heavy sheets of steel.
+
+>x wooden door
+It's a heavy wooden door with iron hinges.
+
+>! the door to the north is called 'wooden door' in the description but
+
+>! 'wooden door' when manipulated seems to refer to the front door; not a big
+
+>! deal, but a bit vexing as you can see above
+
+>n
+(first opening the hall door)
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Bits of stone are
+flaking off the north wall.
+
+On the shelf are a candle and an ancient tome.
+
+You can see an unlit torch here.
+
+>! Nice! I love when doors open for me automatically
+
+>get torch
+(the unlit torch)
+As you pull the torch off the wall, you notice something out of the ordinary
+about it.
+
+>x it
+There is a skull carved into the shaft of this torch. Above and below that are
+symbols representing power over the undead.
+
+>x skull
+You can't see any such thing.
+
+>get candle
+When you remove the candle from its pedestal, the floor collapses, and you fall
+to your death.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>! okay that's a tad annoying: definitely shows the game's 80s roots!
+
+>x shelf
+It's a shelf set into the west wall.
+
+On the shelf are a candle and an ancient tome.
+
+>x pedestal
+You can't see any such thing.
+
+>get tome
+When you remove the book from its pedestal, the floor collapses, and you fall to
+your death.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>get tome and candle
+ancient tome: When you remove the book from its pedestal, the floor collapses,
+and you fall to your death.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>get tome and candle at same time
+I only understood you as far as wanting to get those things.
+
+>x tome
+It's an ancient tome. It seems that no one has disturbed its pages for
+centuries.
+
+Your torch is flickering and sputtering.
+
+>open tome
+The book is opened and examined. A rectangular hole has been cut out of the
+inside of the book.
+
+In the ancient tome is a skull key.
+
+Your torch is flickering and sputtering.
+
+>get key
+(the skull key)
+Taken.
+
+Your torch is flickering and sputtering.
+
+>l
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Bits of stone are
+flaking off the north wall.
+
+On the shelf are a candle and an ancient tome (which is empty).
+
+Your torch is going out.
+
+>light candle
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+You can't burn the candle with 
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+the nothing.
+
+Your torch goes out with a fizzle.
+
+It is now pitch dark in here!
+
+>! Your "LightSub" should check if (second == nothing) before it checks if
+
+>! the second has the proper attributes
+
+[ undid one turn]
+>light candle with torch
+Which do you mean, the odd torch, an unlit torch or the burning torch?
+
+>burning
+The candle burns brightly.
+
+Your torch goes out with a fizzle.
+
+>light unlit torch
+(the odd torch)
+That's probably not a good idea right now.
+
+>light unlit torch with candle
+(the odd torch with the candle)
+(first taking the candle)
+When you remove the candle from its pedestal, the floor collapses, and you fall
+to your death.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>light unlit torch with burning torch
+(the odd torch with the burning torch)
+That's probably not a good idea right now.
+
+>drop odd torch
+Dropped.
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>get odd torch
+Taken.
+
+Your torch is flickering and sputtering.
+
+>! some annoying parsing difficulties with all these torches
+
+>l
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Bits of stone are
+flaking off the north wall.
+
+On the shelf are a candle and an ancient tome (which is empty).
+
+Your torch is going out.
+
+>light candle with burning torch
+The candle burns brightly.
+
+Your torch goes out with a fizzle.
+
+>x north wall
+There is a spot in this wall that doesn't feel particularly solid.
+
+>push wall
+Which do you mean, the north wall, the south wall, the east wall, the west wall,
+the northeast wall, the northwest wall, the southeast wall or the southwest
+wall?
+
+>n
+You are unable to.
+
+>push spot
+It is fixed in place.
+
+>x spot
+The north wall sounds hollow here.
+
+>attack spot
+A strong blow to the weak spot in the north wall knocks a couple stones loose.
+Then more stones collapse revealing a previously hidden passage.
+
+>e
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+>e
+
+Coffin Room
+This long, cold hallway is lines on either side by half a dozen coffins. Exits
+lie to the west and east.
+
+> ! 'is lines' should be 'is lined'
+
+>open coffins
+You can only manage to open one coffin at a time.
+
+>open coffin
+Which do you mean, the marble coffin, the silver coffin, the stone coffin, the
+gold coffin or the dragon scale coffin?
+
+>marble
+As you open the coffin a banshee flies out, emits an ear-shattering scream, and
+pulls the coffin closed again.
+
+You're all right, but it is very hard to hear.
+
+>open silver coffin
+A disgusting green slime flows out of the silver coffin and puddles all over the
+eastern end of this hallway.
+
+>open stone coffin
+You open the stone coffin.
+
+>l in stone coffin
+The stone coffin is empty.
+
+>open gold coffin
+You open the gold coffin, revealing three copper coins.
+
+>get coins
+copper coin: Taken.
+copper coin: Taken.
+copper coin: Taken.
+
+>open dragon scale coffin
+You open the dragon scale coffin, revealing a mummy.
+
+>x mummy
+This carefully-embalmed six-footer stands straight and still.
+
+>unwrap mummy
+There seems to be something long, thin, and metallic buried in the wrappings
+near the mummy's back, but you can't really get at it.
+
+>burn mummy
+The mummy bursts into flames, leaving behind a sceptre among the ashes.
+
+>get sceptre
+Taken.
+
+>x it
+This jewel-studded sceptre is truly made for a king.
+
+>l
+
+Coffin Room
+This long, cold hallway is lines on either side by half a dozen coffins. Exits
+lie to the west and east.  A puddle of green slime blocks the east exit.
+
+>x coffins
+You can see a marble coffin, a silver coffin, a stone coffin, a gold coffin, and
+a coffin made of dragon scales.
+
+>! description says there are six coffins but examining only shows 5
+
+>x slime
+This green slime is is very thick and is radiantly warm.
+
+>! 'is' repeated twice
+
+>burn slime
+This dangerous act would achieve little.
+
+>eat slime
+(first taking the puddle of green slime)
+The thought of doing so is revolting.
+
+>e
+You try to pass the slime but it engulfs your body, dissolving it in seconds.
+
+You die instantly. No pain. No nothing. You were slimed.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>w
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+>n
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is closed.
+
+You can also see two unlit torches here.
+
+>get torches
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>save
+Ok.
+
+>notify on
+Score notification on.
+
+>score
+There is no score. Either you defeat the Warlock Lord or you die.
+
+>! if there's no score, should consider replacing 'notify' verb to call your
+
+>! ScoreSub to just dump out the "There is no score. Either you..." line
+
+>l
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is closed.
+
+>open trap door
+You open the trap door, revealing a rickety ladder descending into the gloom.
+
+>x pedestal
+The pedestal is roughly waist height. It's carved out of granite and has iron
+trim around the edges. A shallow depression is on top.
+
+>push depression
+You can't see any such thing.
+
+>n
+(first opening the wooden door)
+
+Hot Room
+Fear grips you as you enter this hot room. This is a long north-south passage. A
+pair of reptillian eyes peer out of the darkness beyond an archway at the north
+end of the passage. A large wooden chest bound with iron stands against the east
+wall.
+
+You can see an unlit torch, a shield, a helmet, a bone, a hammer, a spear, a
+dried skull and an iron-bound chest (which is closed) here.
+
+>! spelling: should be 'reptilian'
+
+>get all
+unlit torch: 
+WOOOOOSH!!!! A jet of flame shoots out from beyond the archway. Dragon flame
+engulfs your body. You pay for your curiosity with your life.
+
+You pull the unlit torch off the wall.
+
+
+    *** You have died ***
+[ turn undone ]
+
+It's a sad thing that your adventures have ended here.
+
+>! After taking the unlit torch and dying, game still mentions pulling torch
+
+>! off the wall after the death message. Probably missing an rtrue after the
+
+>! death message
+
+>get shield
+
+WOOOOOSH!!!! A jet of flame shoots out from beyond the archway. Your raise your
+shield just in time to block the dragon flame.
+
+Taken.
+
+>get helmet
+
+Again flame spews forth. You use the shield for protection.
+The shield is getting warm.
+
+Taken.
+
+>get helmet
+
+Again flame spews forth. You use the shield for protection.
+The shield is getting warm.
+
+Taken.
+
+>get hammer
+
+Again flame spews forth. You use the shield for protection.
+The shield is getting intolerably hot. You don't know how much longer you can
+stand it.
+
+Taken.
+
+>s
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is open.
+
+>x shield
+It's a heavy shield. There are only a few dents in it.
+
+>z
+Time passes.
+
+>n
+
+Hot Room
+Fear grips you as you enter this hot room. This is a long north-south passage. A
+pair of reptillian eyes peer out of the darkness beyond an archway at the north
+end of the passage. A large wooden chest bound with iron stands against the east
+wall.
+
+You can see an unlit torch, a bone, a spear, a dried skull and an iron-bound
+chest (which is closed) here.
+
+>get torch
+(the unlit torch)
+
+WOOOOOSH!!!! A jet of flame shoots out from beyond the archway. Your raise your
+shield just in time to block the dragon flame.
+
+You pull the unlit torch off the wall.
+
+>get bone
+
+Again flame spews forth. You use the shield for protection.
+The shield is getting warm.
+
+Taken.
+
+>get spear
+
+Again flame spews forth. You use the shield for protection.
+The shield is getting intolerably hot. You don't know how much longer you can
+stand it.
+
+Taken.
+
+>s
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is open.
+
+>z
+Time passes.
+
+Your torch is beginning to flicker.
+
+>n
+
+Hot Room
+Fear grips you as you enter this hot room. This is a long north-south passage. A
+pair of reptillian eyes peer out of the darkness beyond an archway at the north
+end of the passage. A large wooden chest bound with iron stands against the east
+wall.
+
+You can see a dried skull and an iron-bound chest (which is closed) here.
+
+Your torch is flickering and sputtering.
+
+>get skull
+(the dried skull)
+
+WOOOOOSH!!!! A jet of flame shoots out from beyond the archway. Your raise your
+shield just in time to block the dragon flame.
+
+Taken.
+
+Your torch is flickering and sputtering.
+
+>s
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is open.
+
+Your torch is flickering and sputtering.
+
+>i
+You are carrying:
+  a dried skull
+  a spear
+  a bone
+  four unlit torches
+  a hammer
+  a helmet
+  a shield
+  a sceptre
+  three copper coins
+  an odd torch
+  a burning torch (providing light)
+  a skull key
+  an iron key
+  your spell book
+  a burning torch
+
+Your torch is flickering and sputtering.
+
+>drop odd torch
+Dropped.
+
+Your torch is going out.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch goes out with a fizzle.
+
+>i
+You are carrying:
+  a burning torch (providing light)
+  a dried skull
+  a spear
+  a bone
+  a hammer
+  a helmet
+  a shield
+  three unlit torches
+  a sceptre
+  three copper coins
+  two burning torches
+  a skull key
+  an iron key
+  your spell book
+
+>! Hmmm... I still have two burning torches in my inv, but they're not
+
+>! providing light. Those are the burned-out torches I guess?  Maybe they
+
+>! should be named as such
+
+>get odd torch
+Taken.
+
+>x burning torches
+You can't see any such thing.
+
+>x burning torch
+The torch throws dancing shadows about the room.
+
+>x hole
+It's a small hole in the wall some three inches deep.
+>! carriage return missing after description of hole
+
+>l in hole
+The hole is empty.
+
+>put fingers in hole
+You can't see any such thing.
+
+>d
+A broken fragment of a wooden ladder hangs from the opening.
+
+As you go down the trap door, you realize you took a big step. The fall is quite
+fatal.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>l in trap door
+In the trap door is a rickety ladder descending into the gloom.
+
+>x ladder
+It's greasy, dirty, and full of splinters.
+
+>climb ladder
+I don't think much is to be achieved by that.
+
+>s
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+>w
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Stones have fallen
+away to reveal a secret passage leading north.
+
+On the shelf are a candle (providing light) and an ancient tome (which is
+empty).
+
+You can see some stone blocks littering the passage here.
+
+>n
+
+Arrow Room
+Cold air rushes into this narrow chamber from an opening some ten feet above the
+floor on the north wall.  A ledge projects from below the opening and is just
+low enough for you to reach.  Attached to the wall, directly below the opening
+is a silver arrow pointing west.
+
+You can see an unlit torch here.
+
+>get unlit torch
+(the unlit torch)
+The torch stubbornly remains in its holder.
+
+>x unlit torch
+(the unlit torch)
+The torch is soaked in smelly water dripping from the ceiling.
+
+>light torch with burning torch
+Which do you mean, the unlit torch, the odd torch, a burning torch or an unlit
+torch?
+
+>an unlit torch
+(the odd torch with the burning torch)
+That's probably not a good idea right now.
+
+>! ARGH not the odd torch, I mean the unlit non-odd torch
+
+>s
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Stones have fallen
+away to reveal a secret passage leading north.
+
+On the shelf are a candle (providing light) and an ancient tome (which is
+empty).
+
+You can see some stone blocks littering the passage here.
+
+>drop odd torch
+Dropped.
+
+>n
+
+Arrow Room
+Cold air rushes into this narrow chamber from an opening some ten feet above the
+floor on the north wall.  A ledge projects from below the opening and is just
+low enough for you to reach.  Attached to the wall, directly below the opening
+is a silver arrow pointing west.
+
+You can see an unlit torch here.
+
+>light torch with burning torch
+(the unlit torch with the burning torch)
+The torch is wet and won't burn
+
+>s
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Stones have fallen
+away to reveal a secret passage leading north.
+
+On the shelf are a candle (providing light) and an ancient tome (which is
+empty).
+
+You can see two burning torches, three unlit torches, an odd torch and some
+stone blocks littering the passage here.
+
+>get torches
+burning torch: Taken.
+unlit torch: Taken.
+burning torch: Taken.
+unlit torch: Taken.
+unlit torch: Taken.
+odd torch: Taken.
+
+Arrow Room
+Cold air rushes into this narrow chamber from an opening some ten feet above the
+floor on the north wall.  A ledge projects from below the opening and is just
+low enough for you to reach.  Attached to the wall, directly below the opening
+is a silver arrow pointing west.
+
+You can see an unlit torch here.
+
+>x arrow
+A finely-crafted siver arrow. Such things are not uncommon in these elvish
+lands.
+
+>! whoops! Should be 'silver' not 'siver'
+
+>get arrow
+You pull the arrow off the wall. It's not clear how it was stuck on there.
+
+>u
+The ledge wasn't strong enough to hold you. You fall to the ground and land hard
+on your rump. The ledge is smashed to pieces.
+
+>x torch
+(the unlit torch)
+The torch is soaked in smelly water dripping from the ceiling.
+
+>use torch
+That's not a verb I recognise.
+
+>move torch
+(the unlit torch)
+Nothing happens.
+
+>push torch
+(the unlit torch)
+Nothing happens.
+
+>move unlit torch
+(the unlit torch)
+Nothing happens.
+
+>pull unlit torch
+You pull on the torch, which swings downward with a loud click. A door hidden in
+the stonework opens up to the west. Through the doorway is a spiral staircase
+leading down
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the odd torch with the burning torch)
+That's probably not a good idea right now.
+
+Your torch is flickering and sputtering.
+
+>drop odd torch
+Dropped.
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>get odd torch
+Taken.
+
+Your torch is going out.
+
+>w
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+Your torch goes out with a fizzle.
+
+>! spelling: should be 'separate' not 'seperate'
+
+>w
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge. A rather plain-looking
+cloak hangs near the door. A wraith is standing in your way, barring your path.
+
+You can see a wraith, a cloak and two unlit torches here.
+
+>point odd torch at wraith
+You look ridiculous pointing the odd torch at the wraith.
+
+>light odd torch
+The odd-looking torch burns with a strange white flame.
+
+>show odd torch to wraith
+The wraith hisses at you and motions at you to get rid of it.
+
+>get cloak
+You're afraid to get near it. The wraith hisses at you.
+
+>throw odd torch at wraith
+The wraith hisses at you as you brandish the odd torch.
+
+The wraith recoils in horror at the magical torch. With a blinding flash, the
+white flame engulfs the undead apparition. The wraith vanishes in an inky wisp
+of smoke and a faint scream.
+
+>get cloak
+Taken.
+
+>x it
+This heavy cloak contains no frivolous adornments such as pockets or a hood.
+
+>wear it
+You put on the cloak.
+
+>get unlit torches
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>w
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A coil of rope lies on the
+floor.  A slight draft can be felt coming from the west.
+
+On the shelf are a dusty scroll, a smelly bottle (which is closed) and a shiny
+bottle (which is closed).
+
+You can see an unlit torch here.
+
+>get torch
+(the unlit torch)
+You pull the unlit torch off the wall.
+
+>epor
+That's not a verb I recognise.
+
+>say "epor"
+(to yourself)
+There is no reply.
+
+>get all
+There are none at all available!
+
+>! a custom ChooseObjects could be used if you want 'take all' to take stuff
+
+>! from supporters, not necessary though, just a thought
+
+>take all from shelf
+dusty scroll: Removed.
+smelly bottle: Removed.
+shiny bottle: Removed.
+
+>x dusty scroll
+The scroll reads:
+
+"Five to find, three are one.
+One gives access, the bladed sun.
+The silver orb, to banish below.
+The Staff of Ages, to vanquish the foe.
+Joining two, the golden blade.
+The last to invoke, the platinum horn."
+
+>x smelly bottle
+It's a small silver bottle. It sure smells terrible!
+
+>open smelly bottle
+You open the smelly bottle, revealing a smelly potion.
+
+>smell it
+You smell nothing unexpected.
+
+>drink it
+There's nothing suitable to drink here.
+
+>smell smelly potion
+It smells like sewage.
+
+>smell smelly bottle
+You smell nothing unexpected.
+
+>! perhaps if the bottle is smelly it should smell of something
+
+>drink potion
+As you consume the liquid in the vial, your body convulses and death spasms
+quickly follow.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>get rope
+It's too heavy.
+
+>x rope
+The rope is about as thick as your wrist and is coiled up on the floor.
+
+>x w wall
+Damp air is blowing out of a gap in the stone wall. Hmm.. It looks like there's
+a hidden door here.
+
+>open hidden door
+You open the secret passage.
+
+>w
+
+Sculpted Rock Room
+Cold water from the limestone drips on your neck, sending shivers down your
+spine. A huge, man-made slab of granite seals the north end of the cavern. On
+the floor is a raised stone square carefully carved into the stone floor. In the
+middle of the square is a small hole.
+
+>l in hole
+The hole is empty.
+
+>x slab
+It looks like it might be movable, but it's far too heavy for you to move
+yourself.
+
+>x square
+Surrounding the hole in the middle are some fancy scrollwork and runes that you
+don't understand.
+
+>put sceptre in hole
+It doesn't seem to fit.
+
+>e
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A coil of rope lies on the
+floor.
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>x sign
+This sign reads "EPOR". It's a strange sounding word, indeed!
+
+>x sign
+EPOR. EPOR. EPOR... You got it! It seems to be some sort of magic word!
+
+You've learned a magic spell.
+
+>x book
+My Spell Book
+
+gnusto spell: Copy a scroll into your spell book.
+epor spell: unknown
+
+>learn epor
+You always know that spell.
+
+>epor rope
+The rope stretches up through the hole in the ceiling.
+
+Ah! So that's what the Epor spell does!
+
+>u
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  A puddle of green slime blocks the west exit.  In the floor is a hole
+from which a rope about as thick as your wrist is sticking out.  A broom is
+propped up against the wall.
+
+You can see two unlit torches and a broom here.
+
+>get torches
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>get broom
+Taken.
+
+>x it
+This broom looks like the one owned by the Sirens of the Isle of Yeklum Iret.
+
+>sit on broom
+You mount the broom and try to kick off and take to the air. Unfortunately, this
+isn't a magic broom, so you dismount it.
+
+>! heh, nice touch
+
+>x mirrors
+There are three mirrors side-by-side on the north wall here.
+
+>open mirrors
+That's not something you can open.
+
+>push mirrors
+You are unable to.
+
+>move mirrors
+You are unable to.
+
+>wear helmet
+You put on the helmet.
+
+>x helmet
+This seems to be a helmet of the sort commonly worn by hobgoblins.
+
+>smash mirrors
+Violence isn't the answer to this one.
+
+>smash mirrors with hammer
+Violence isn't the answer to this one.
+
+>use hammer on mirrors
+That's not a verb I recognise.
+
+>use hammer
+That's not a verb I recognise.
+
+>break mirrors
+Violence isn't the answer to this one.
+
+>break mirrors with hammer
+Violence isn't the answer to this one.
+
+>x hammer
+It's an ancient dwarvish war hammer. This weapon does not show the signs of
+battle.
+
+>throw hammer at mirrors
+Futile.
+
+>break mirror with hammer
+Which do you mean, the left mirror, the right mirror or the middle mirror?
+
+>left
+As soon as you break the mirror, shards of glass fly through the air and slice
+into your body!
+
+Blood pours from your wounds and your body slumps to the floor.
+
+    *** You have died ***
+[ turn undone ]
+
+>break right mirror with hammer
+By smashing the mirror, you have opened a magic portal into deep space. You are
+immediately sucked through.
+
+The lack of air causes you to quickly lose consciousness.
+
+The Grim Reaper quickly embraces you!
+
+
+    *** You have died ***
+[ turn undone ]
+
+>break middle mirror with hammer
+Bellowing like some Norse god, you smash the hammer into the mirror. You shatter
+the mirror revealing an iron door!
+
+>! when I tried to 'break mirrors with hammer' I was told that violence wasn't
+
+>! the answer. Perhaps 'break mirrors with hammer' should trigger 'break mirror
+
+>! with hammer' resulting in the "Which do you mean..." question
+
+>open iron door with iron key
+That doesn't seem to fit the lock.
+
+>unlock iron door with iron key
+That doesn't seem to fit the lock.
+
+>unlock iron door
+What do you want to unlock the iron door with?
+
+>key
+Which do you mean, the skull key or the iron key?
+
+>skull
+That doesn't seem to fit the lock.
+
+>d
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+>e
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+>e
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+>n
+As you reach the middle of the bridge, it collapses under your feet!
+
+The bridge won't hold you. You can't cross unless you lose some weight!
+
+
+    *** You have died ***
+[ turn undone ]
+
+>e
+
+Arrow Room
+Cold air rushes into this narrow chamber from an opening some ten feet above the
+floor on the north wall.  A ledge projects from below the opening and is just
+low enough for you to reach.
+
+The secret door leading down and to the west is open.
+
+You can also see an unlit torch here.
+
+Your torch is beginning to flicker.
+
+>s
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Stones have fallen
+away to reveal a secret passage leading north.
+
+On the shelf are a candle (providing light) and an ancient tome (which is
+empty).
+
+You can see some stone blocks littering the passage here.
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>e
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+Your torch is flickering and sputtering.
+
+>s
+
+Subterranean Pool
+This subterranean cavern has been carved by centuries of supernatural erosion.
+You are on the north shore of a large pool filling the entire cavern.  A
+humanoid skeleton is draped over a spiky rock out in the middle of the pool.  It
+seems to be holding a key of some sort.  Exits lie to the north and east.
+
+A shark swims by as if patrolling this calm pool.
+
+Your torch is going out.
+
+>x skeleton
+You can't see any such thing.
+
+>x humanoid
+You can't see any such thing.
+
+>s
+Swimming in the shark-infested pool would be suicidal.
+
+Your torch goes out with a fizzle.
+
+>e
+
+Waterfall
+Water cascades over a subterranean cliff to the east and into a cool, clean
+stream which flows west into a large pool.  A stairway cut into the cliff beside
+the waterfall is obstructed by a landslide.
+
+You can see a huge pile of rubble and five stones here.
+
+>x rubble
+This landslide looks like it occurred ages ago. It would take months to clear it
+away.
+
+>x stones
+You can't see any such thing.
+
+>! Hmmm, similar to problem with torches
+
+>get stones
+small stone: Taken.
+small stone: Taken.
+small stone: Taken.
+small stone: Taken.
+small stone: Taken.
+
+>x stone
+This stone would not be good for skipping.
+
+>e
+The stairway is blocked by a landslide.
+
+>x waterfall
+Cold water cascades down a cliff and into a small stream.
+
+>l behind waterfall
+I only understood you as far as wanting to look.
+
+>enter waterfall
+
+Behind the falls
+The damp walls of this tiny cave are rough and irregular.  A small boulder
+sticks out from the wall.
+
+>! would be nice if examine waterfall give you SOME kind of clue that you can
+
+>! go behind it
+
+>x boulder
+It sits right beneath the niche in the wall.
+
+>get boulder
+That's hardly portable.
+
+>x niche
+You can't see any such thing.
+
+>push boulder
+It rocks back and forth a bit.
+
+>g
+It rocks back and forth a bit.
+
+>move boulder
+It rocks back and forth a bit.
+
+>search boulder
+You find nothing of interest.
+
+>pull boulder
+You are unable to.
+
+>kick boulder
+You hit the rock as hard as you can. The loose rock falls down as if hinged to
+the wall. In the niche, you see a dirty leather pouch partially buried in wet
+gravel.
+
+>get pouch
+Taken.
+
+>open it
+You open the leather pouch, revealing a white gem, a red gem and a blue gem.
+
+>w
+
+Waterfall
+Water cascades over a subterranean cliff to the east and into a cool, clean
+stream which flows west into a large pool.  A stairway cut into the cliff beside
+the waterfall is obstructed by a landslide.
+
+You can see a huge pile of rubble here.
+
+>w
+
+Subterranean Pool
+This subterranean cavern has been carved by centuries of supernatural erosion.
+You are on the north shore of a large pool filling the entire cavern.  A
+humanoid skeleton is draped over a spiky rock out in the middle of the pool.  It
+seems to be holding a key of some sort.  Exits lie to the north and east.
+
+A shark swims by as if patrolling this calm pool.
+
+>n
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+>n
+
+Cold Room
+You enter a cold room. The stench of flesh in decay pervades the chamber. You
+begin to shiver. This room is really cold! In the north wall is a finely-crafted
+wooden door. Next to it is a stone pedestal about waist height. In the wall,
+between the door and pedestal is a small hole. In the northeast corner is a
+small metal trap door.
+
+The trap door is open.
+
+>get white gem
+Taken.
+
+>put it in hole
+The gem fits perfectly. A small crystal sphere magically appears on the
+pedestal.
+
+>get sphere
+Taken.
+
+>x it
+This crystal sphere is as cold as ice.
+
+>s
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+>s
+
+Subterranean Pool
+This subterranean cavern has been carved by centuries of supernatural erosion.
+You are on the north shore of a large pool filling the entire cavern.  A
+humanoid skeleton is draped over a spiky rock out in the middle of the pool.  It
+seems to be holding a key of some sort.  Exits lie to the north and east.
+
+A shark swims by as if patrolling this calm pool.
+
+>put sphere in pool
+You throw the crystal sphere into the pool and notice the ripples disappear as
+the water turns to ice.
+
+>s
+
+Frozen pool
+The pool has become a solid sheet of ice. It's a bit difficult to walk here. The
+shore is to the north.
+
+A lime-covered skeleton is perched on a rocky spike sticking out of the ice.  It
+clutches a brass key.
+
+>get brass key
+Taken.
+
+>x skeleton
+The lime-covered skeleton stares at your through eyeless sockets.
+
+>get skeleton
+That's fixed in place.
+
+>! a different message when trying to take the skeleton might be better
+
+>! eg something like "Leave him to rest in peace" or whatever
+
+>! you'd want to capture push pull pushdir transfer take in a before routine
+
+>n
+
+Subterranean Pool
+This subterranean cavern has been carved by centuries of supernatural erosion.
+You are on the north shore of a large pool filling the entire cavern.  A
+humanoid skeleton is draped over a spiky rock out in the middle of the pool. 
+Exits lie to the north and east.
+
+The pool is frozen solid.
+
+>n
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+>w
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Stones have fallen
+away to reveal a secret passage leading north.
+
+On the shelf are a candle (providing light) and an ancient tome (which is
+empty).
+
+You can see some stone blocks littering the passage here.
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>n
+
+Arrow Room
+Cold air rushes into this narrow chamber from an opening some ten feet above the
+floor on the north wall.  A ledge projects from below the opening and is just
+low enough for you to reach.
+
+The secret door leading down and to the west is open.
+
+You can also see an unlit torch here.
+
+Your torch is flickering and sputtering.
+
+>w
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+Your torch is flickering and sputtering.
+
+>w
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+Your torch is going out.
+
+>w
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+Your torch goes out with a fizzle.
+
+>w
+
+Sculpted Rock Room
+Cold water from the limestone drips on your neck, sending shivers down your
+spine. A huge, man-made slab of granite seals the north end of the cavern. On
+the floor is a raised stone square carefully carved into the stone floor. In the
+middle of the square is a small hole.
+
+>x square
+Surrounding the hole in the middle are some fancy scrollwork and runes that you
+don't understand.
+
+>get red gem
+Taken.
+
+>get blue gem
+Taken.
+
+>put red gem in hole
+The gem seems to fit, but nothing happens.
+
+>get red gem
+You already have that.
+
+>! cosmetic: maybe mention "nothing happens, so you take it back out again."
+
+>! if the red gem is going to stay with the player in this situation
+
+>put blue gem in hole
+As soon as you place the blue gem in the hole, you hear the sound of grinding
+stone.
+
+The granite wall slowly rises to reveal a magical image of an old wizard.
+
+"Listen, warrior! The Warlock Lord can only be defeated by thy courage and the
+Staff of Ages. Remember, five to find. Three for the staff, one to be the key,
+and one to be thy pathway. Have thy wits about thee, warrior! Fare thee well."
+
+The wall slides back into place, hinding the image from your sight. A scroll
+appears!
+
+>! spelling: should be 'hiding' not 'hinding'
+
+>x scroll
+(the crumpled scroll)
+The scroll reads "humana spell: As the shadow of the wind, thou shalt be!".
+
+>get it
+Taken.
+
+>gnusto humana
+Your spell book begins to glow softly. Slowly, ornately, the words of the humana
+spell are inscribed, glowing even more brightly then the book itself. The book's
+brightness fades, but the spell remains! However, the scroll on which it was
+written vanishes as the last word is copied.
+
+>e
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+>e
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+>e
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+>learn humana
+Using your best study habits, you commit the humana spell to memory.
+
+>humana me
+Uh oh, the wind has suddenly died down. Nothing happens. There must be something
+missing.
+
+>w
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+>w
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+>u
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  A puddle of green slime blocks the west exit.  In the floor is a hole
+from which a rope about as thick as your wrist is sticking out..
+
+>n
+(first opening the iron door)
+It seems to be locked.
+
+>unlock iron door with brass key
+You unlock the iron door.
+
+>n
+(first opening the iron door)
+
+Fire Room
+This room is incredibly hot. This must be what the lower levels of Gehenna are
+like.
+
+Except for the long, thin bridge in the middle of this room, the floor of this
+room is covered in roaring flames. To the north is a heavy wooden door. To the
+south is the iron door leading back to the mirror room.
+
+>n
+(first opening the door)
+Suddenly, you feel a gust of wind. A searing blast of heat knocks you across the
+room. A flaming horror in the form of a fire drake bursts through the open
+doorway and eyes you menacingly.
+The fire drake blocks your path.
+
+>learn humana
+Using your best study habits, you commit the humana spell to memory.
+
+>humana me
+Uh oh, the wind has suddenly died down. Nothing happens. There must be something
+missing.
+
+>s
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  A puddle of green slime blocks the west exit.  In the floor is a hole
+from which a rope about as thick as your wrist is sticking out..
+
+>d
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+>e
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+Your torch is beginning to flicker.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>e
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+Your torch is flickering and sputtering.
+
+>e
+
+Arrow Room
+Cold air rushes into this narrow chamber from an opening some ten feet above the
+floor on the north wall.  A ledge projects from below the opening and is just
+low enough for you to reach.
+
+The secret door leading down and to the west is open.
+
+You can also see an unlit torch here.
+
+Your torch is flickering and sputtering.
+
+>s
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Stones have fallen
+away to reveal a secret passage leading north.
+
+On the shelf are a candle (providing light) and an ancient tome (which is
+empty).
+
+You can see some stone blocks littering the passage here.
+
+Your torch is going out.
+
+>e
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+Your torch goes out with a fizzle.
+
+>s
+
+Subterranean Pool
+This subterranean cavern has been carved by centuries of supernatural erosion.
+You are on the north shore of a large pool filling the entire cavern.  A
+humanoid skeleton is draped over a spiky rock out in the middle of the pool. 
+Exits lie to the north and east.
+
+The pool is frozen solid.
+
+>x pool
+The lake is a solid sheet of ice. A crystal sphere is embedded in it.
+
+>get sphere
+The sphere is embedded in the ice just below the surface.
+
+>burn lake with torch
+(the unlit torch)
+You can't burn the pool with the unlit torch.
+
+>! Argh I'm going to kill these torches!
+
+>burn lake with burning torch
+You put the burning torch close to the surface of the frozen pool. The torch
+melts away the ice over the sphere, allowing it to float to the surface. Not
+surprisingly, the pool quickly refreezes.
+
+>get sphere
+You pull the sphere out of surface of the ice.
+
+>n
+
+Four-way Passage
+The stones in these walls were probably cut by the hands of enslaved dwarves. 
+
+There are four exits: north, south, east, and west.
+
+>w
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Stones have fallen
+away to reveal a secret passage leading north.
+
+On the shelf are a candle (providing light) and an ancient tome (which is
+empty).
+
+You can see some stone blocks littering the passage here.
+
+>n
+
+Arrow Room
+Cold air rushes into this narrow chamber from an opening some ten feet above the
+floor on the north wall.  A ledge projects from below the opening and is just
+low enough for you to reach.
+
+The secret door leading down and to the west is open.
+
+You can also see an unlit torch here.
+
+>w
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+>w
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+>w
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+>u
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  A puddle of green slime blocks the west exit.  In the floor is a hole
+from which a rope about as thick as your wrist is sticking out..
+
+>n
+
+Fire Room
+Except for the long, thin bridge in the middle of this room, the floor of this
+room is covered in roaring flames. To the north is a heavy wooden door. To the
+south is the iron door leading back to the mirror room.
+
+You can see a fire drake here.
+
+>throw sphere at drake
+The fire drake vanishes as soon as the ice-cold sphere touches it. The sphere
+then bounces off the wall into the flames below which then vanish.
+
+>n
+
+Chasm Bridge
+You are standing on a sturdy wooden bridge that spans a deep, dark chasm. A
+sharp, cold wind whips up over the ledge.
+
+>n
+As you step forward, a troll appears and blocks your path.
+
+"This bridge is mine! It'll cost you a gold coin to cross!"
+
+The troll holds out a hand expectantly.
+
+>ask troll about lakmir
+"Oh, that oaf? He's robably dead by now. Who knows? Why should I care?"
+
+>! spelling: should be 'probably'
+
+>give copper coin to troll
+The troll snorts distainfully and pockets the coin.
+
+"The toll has just been raised to two gold coins."
+
+>! spelling mistake; should be "disdainfully"
+That's not a verb I recognise.
+
+>attack troll
+You swing 
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+
+[** Programming error: tried to test "has" or "hasnt" of nothing **]
+the nothing at the troll and miss. 
+
+The troll cries, "You can't trick me!"
+
+The troll then picks up the bridge causing you to fall into the chasm. The Grim
+Reaper stands below, waiting to catch you.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>! Whoops looks like your attacksub doesn't check "if second == nothing" first
+
+>! which it should do before checking if second is a weapon, otherwise you'll
+
+>! get that "you swing the nothing at the troll"
+
+>! Also, why does troll say "You can't trick me" when I try to attack him
+
+>! this way?
+
+>attack troll with spear
+The spear hits the troll with a glancing blow and he falls silently into the
+dark cavern. You listen, but do not hear him crash.
+
+>! okay I undid a number of times to get my copper coin back : )
+
+>attack troll with spear
+The spear hits the troll with a glancing blow and he falls silently into the
+dark cavern. You listen, but do not hear him crash.
+
+>n
+The troll watches as you pass.
+
+Courtyard
+The moon casts a brilliant shadow over the grounds of the courtyard. In the
+middle of the courtyard is a stone well. There are exits to the north and south.
+
+A cyclops is standing here in front of the north exit.
+
+>! how did the troll watch as I passed if he had fallen into the cavern?
+
+>! A cyclops? Where's my hot pepper lunch? Heh
+
+>x cyclops
+The cyclops stands before you, ready for battle!
+
+>give smelly bottle to cyclops
+The cyclops doesn't seem interested.
+
+>talk to cyclops
+That's not a verb I recognise.
+
+>kill cyclops
+You raise an angry fist at the cyclops and move forward.
+
+A battle cry dies in your throat as the cyclops crushes your skull with his
+club.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>attack cyclops with hammer
+You raise the hammer and move forward.
+
+A battle cry dies in your throat as the cyclops crushes your skull with his
+club.
+
+
+    *** You have died ***
+[turn undone ]
+
+>s
+
+Chasm Bridge
+You are standing on a sturdy wooden bridge that spans a deep, dark chasm. A
+sharp, cold wind whips up over the ledge.
+
+>s
+
+Fire Room
+You are on a long, thin bridge which spans a floor covered in a thick, black
+oil.
+
+>s
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  A puddle of green slime blocks the west exit.  In the floor is a hole
+from which a rope about as thick as your wrist is sticking out..
+
+>d
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+>e
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+>e
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+>n
+As you reach the middle of the bridge, it collapses under your feet!
+
+The bridge won't hold you. You can't cross unless you lose some weight!
+
+
+    *** You have died ***
+[ turn undone ]
+
+>i
+You are carrying:
+  a burning torch (providing light)
+  a crystal sphere
+  eight burning torches
+  a red gem
+  a brass key
+  a leather pouch (which is open but empty)
+  five stones
+  a broom
+  a shiny bottle (which is closed)
+  a smelly bottle (which is open)
+    a smelly potion
+  a dusty scroll
+  a cloak (being worn)
+  two unlit torches
+  a silver arrow
+  a dried skull
+  a bone
+  a hammer
+  a helmet (being worn)
+  a shield
+  a sceptre
+  three copper coins
+  a skull key
+  an iron key
+  your spell book
+
+>open shiny bottle
+You open the shiny bottle, revealing a shiny potion.
+
+>drink it
+There's nothing suitable to drink here.
+
+>drink shiny potion
+You drink the liquid and immediately begin to rise in the air.
+
+>n
+
+Snake Room
+A giant snake confronts you in this small cave. The only exit is south.
+
+You can see a large green snake here.
+
+>x snake
+It doesn't move. Perhaps it's getting ready to strike.
+
+>throw stone at snake
+As you strike the snake, you notice it's not a real snake at all, but an
+extremely lifelike stone statue.
+
+>x statue
+You can't see any such thing.
+
+>! statue should become a synonym for the snake
+
+>x snake
+This huge statue is carved in the shape of a giant snake. It is extremely
+lifelike.
+
+>push snake
+It is fixed in place.
+
+>move snake
+It is fixed in place.
+
+>s
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+>e
+
+Arrow Room
+Cold air rushes into this narrow chamber from an opening some ten feet above the
+floor on the north wall.  A ledge projects from below the opening and is just
+low enough for you to reach.
+
+The secret door leading down and to the west is open.
+
+You can also see an unlit torch here.
+
+>s
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Stones have fallen
+away to reveal a secret passage leading north.
+
+On the shelf are a candle (providing light) and an ancient tome (which is
+empty).
+
+You can see some stone blocks littering the passage here.
+
+>s
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+>unlock closet with skull key
+You unlock the closet door.
+
+>e
+(first opening the closet door)
+
+Hall Closet
+You are in a small, cramped closet.
+
+You can see a sword and a sling here.
+
+>get sword and sling
+sword: Taken.
+sling: Taken.
+
+>w
+
+Hall
+You stand in a long corridor. Huge stone archways line the entire hall. A large
+wooden door covered with sheets of steel is at the north end of the hall. A
+small closet is to the east. A beautifully woven rug is in the middle of the
+room.
+
+>n
+
+Stone passage
+This is an L-shaped stone passage which winds off to the east. To the south is
+the entry hall. Set into the west wall is a small shelf.  Stones have fallen
+away to reveal a secret passage leading north.
+
+On the shelf are a candle (providing light) and an ancient tome (which is
+empty).
+
+You can see some stone blocks littering the passage here.
+
+>n
+
+Arrow Room
+Cold air rushes into this narrow chamber from an opening some ten feet above the
+floor on the north wall.  A ledge projects from below the opening and is just
+low enough for you to reach.
+
+The secret door leading down and to the west is open.
+
+You can also see an unlit torch here.
+
+>w
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+>w
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+>w
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+>u
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  A puddle of green slime blocks the west exit.  In the floor is a hole
+from which a rope about as thick as your wrist is sticking out..
+
+>n
+
+Fire Room
+You are on a long, thin bridge which spans a floor covered in a thick, black
+oil.
+
+>n
+
+Chasm Bridge
+You are standing on a sturdy wooden bridge that spans a deep, dark chasm. A
+sharp, cold wind whips up over the ledge.
+
+>n
+As you step forward, the troll reappears and blocks your path. He is holding the
+spear you tried to kill him with.
+
+"I have nothing more to say to you."
+
+>n
+The troll blows up like a volcano and throws his spear at your chest. The spear
+pierces your chest and exits through your back.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>attack troll with sword
+You swing the sword at the troll and miss. 
+
+The troll cries, "You can't trick me!"
+
+The troll then picks up the bridge causing you to fall into the chasm. The Grim
+Reaper stands below, waiting to catch you.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>give coins to troll
+You can only do that to something animate.
+
+>! oops! More problems with plural objects
+
+>give coin to troll
+The troll snorts distainfully and pockets the coin.
+
+"The toll has just been raised to two gold coins."
+
+Your torch is beginning to flicker.
+
+>give coin to troll
+"Hey! What's this? This isn't gold!!! Are you trying to cheat me?"
+
+The troll then picks up the bridge, causing you to fall into the chasm.
+
+The Grim Reaper stands below, waiting to catch you.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>learn humana
+Using your best study habits, you commit the humana spell to memory.
+
+>humana me
+As soon as the magic is invoked, you lose sight of yourself. You're as invisible
+as the wind!
+
+Courtyard
+The moon casts a brilliant shadow over the grounds of the courtyard. In the
+middle of the courtyard is a stone well. There are exits to the north and south.
+
+A cyclops is standing here in front of the north exit.
+
+Your torch is beginning to flicker.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>kill cyclops with sword
+You raise the sword and move forward.
+
+A battle cry dies in your throat as the cyclops crushes your skull with his
+club.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>put stone in sling
+You put the small stone in the sling.
+
+Your torch is flickering and sputtering.
+
+>attack cyclops with sling
+As soon as you start twirling the sling, a magical influence takes over your
+body!
+
+You cry out, "Death to the Philistine!", and release the small stone.
+
+Bull's-eye!
+
+The cyclops staggers, then falls flat on his back.
+
+Your torch is flickering and sputtering.
+
+>! Woohoo.  Cute Biblical reference too.
+
+>x cyclops
+You can almost see the stars revolving around the cyclops' head. He is down, but
+not out.
+
+Your torch is going out.
+
+>put stone in sling
+You put the small stone in the sling.
+
+Your torch goes out with a fizzle.
+
+>attack cyclops with sling
+You smack the cyclops once again with a small stone from your sling, but he's
+still not dead.
+
+>get stone
+(the small stone)
+Taken.
+
+>attack cyclops with sword
+You raise the sword and move forward.
+
+You drive the sword deep into the cyclops. Blood pours out of the wound and onto
+the grass.
+
+>x cyclops
+It's a dead cyclops. What do you expect after stabbing him with your sword?
+
+>x well
+It's a finely crafted well made of stone and mortar. A weathered rope, nibbled
+by water rats, hangs from the windlass down into the well.
+
+>get rope
+The rope is loose. You reach out for it, but as you do, you slip and fall down
+the well!
+
+
+    *** You have died ***
+[ turn undone ]
+
+>d
+With a mighty leap, you jump head first into the well. On the way down, you see
+no water below.
+
+The well was deeper than you imagined. You have just broken every bone in your
+body.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>climb down rope
+I only understood you as far as wanting to climb down.
+
+>climb rope
+I don't think much is to be achieved by that.
+
+>turn windlass
+The crank turns rather easily. At the end of the rope is a bucket.
+
+>get bucket
+You pull in the bucket and remove it from the rope.
+
+>x bucket
+This small bucket is used to fetch water from the depths.
+
+>n
+
+Banquet Corridor
+This is a north-south corridor connecting the banquet hall to the central
+courtyard. Doorways branch off to the east and west. A beautifully woven rug
+runs down the middle of this corridor.
+
+You can see an unlit torch here.
+
+>get unlit torch
+(the unlit torch)
+You pull the unlit torch off the wall.
+
+>x rug
+It's a beautifully woven rug.
+
+>move rug
+You are unable to.
+
+>l under rug
+You find nothing of interest.
+
+>stand on rug
+That's not something you can stand on.
+
+>! should be able to stand on rug maybe
+
+>e
+
+Laboratory
+It smells like a kennel in here and there are no windows through which to
+circulate fresh air. A stairway leads down. A steel mesh cage door is set in the
+wall beneath a large shelf. Next to these is a large green pot. One of the
+stones in the floor has a steel ring embedded in it. To the north is a staircase
+leading down.  Over that staircase hangs a horseshoe.  You may also exit to the
+west.
+
+On the shelf are a shiny bottle (which is closed), a shiny bottle (which is
+closed), a slimy bottle (which is closed) and a test tube (which is empty).
+
+>get horseshoe
+You pull the horseshoe off the wall.
+
+>x ring
+Lab animals can be chained to this ring while performing experiements on them.
+
+>! spelling: should be 'experiments'
+
+>pull ring
+As you pull the ring, the stone rises slowly out of the floor.  A shining vial
+is inside it.
+
+>get vial
+Taken.
+The stone descends back into place.
+
+>x it
+The glass vial is filled with clear liquid. The sign of the cross is on it.
+
+>x cage
+This steel mesh cage rattles constantly. A simple latch secures it.
+
+>x pot
+It's a large green pot.
+
+>l in pot
+In the pot is a blue potion.
+
+>x shiny bottle
+(the shiny bottle)
+This small silver bottle glows with a lustrous shine.  You notice that the
+bottle is impossibly light.
+
+>get shiny bottles
+shiny bottle: Taken.
+shiny bottle: Taken.
+
+>get slimy bottle
+Taken.
+
+>x it
+This bottle is extremely slimy.
+
+>smell it
+You smell nothing unexpected.
+
+>x test tube
+It's an ordinary test tube.
+
+>get it
+Taken.
+
+>open cage
+You remove the latch and a mutated dog pounces on you!
+
+It looks like the doctor put something strange in the dog's water.
+
+Before you can do anything else, the mutation quickly rips you apart!
+
+
+    *** You have died ***
+[ turn undone ]
+
+>n
+
+Garden
+You stand in a small garden. The only sound is of falling water in the night. In
+the center of the garden is a small tree with golden leaves and an exquisite
+marble fountain.  A small wooden flute is bobbing up and down atop a stream of
+water in fountain.
+
+>get flute
+As you reach for the wooden flute, you touch the water and pain explodes through
+your hand. The water is extremely acidic and obviously not good for drinking.
+
+>i
+You are carrying:
+  a test tube
+  a slimy bottle (which is closed)
+  a shiny bottle (which is closed)
+  a shiny bottle (which is closed)
+  a shining vial (which is closed)
+    some holy water
+  a horseshoe
+  two unlit torches
+  a bucket
+    a gauntlet
+  four stones
+  a burning torch (providing light)
+  a sling (loaded with a small stone)
+  a sword
+  nine burning torches
+  a crystal sphere
+  a red gem
+  a brass key
+  a leather pouch (which is open but empty)
+  a broom
+  a shiny bottle (which is open)
+    a shiny potion
+  a smelly bottle (which is open)
+    a smelly potion
+  a dusty scroll
+  a cloak (being worn)
+  a silver arrow
+  a dried skull
+  a bone
+  a hammer
+  a helmet (being worn)
+  a shield
+  a sceptre
+  three copper coins
+  a skull key
+  an iron key
+  your spell book
+
+>x bucket
+This small bucket is used to fetch water from the depths.
+
+>l in bucket
+In the bucket is a gauntlet.
+
+> ! yikes I didn't realise there was anything in the bucket until I saw the
+
+>! gauntlet in my inventory. I assumed, it being a bucket, that examining it
+
+>! would be enough to tell me if there was something in it.  Might be nice if
+
+>! examining the bucket did a: if(child(self) ~= 0) WriteListFrom(.... etc)
+That's not a verb I recognise.
+
+> put broom in bucket
+You put the broom in the bucket.
+
+>! Whoops. Further experimentation reveals that the sword, blade, staff and so
+
+>! on can all be placed in the bucket.  It must be a magic bucket, right? : )
+
+>get broom
+Taken.
+
+>get gauntlet
+Taken.
+
+Your torch is beginning to flicker.
+
+>wear it
+You put on the gauntlet.
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>get flute
+Taken.
+
+Your torch is flickering and sputtering.
+
+>! maybe make some mention that the gauntlet protects you from the acid
+
+>! instead of just spitting out the default 'Taken'
+
+>x it
+It's a small wooden flute. It looks like it could make wonderful music.
+
+Your torch is flickering and sputtering.
+
+>play flute
+The sound of the flute is very pretty, indeed. It seems like you wake from a
+dream only to find a hole in the tree! Is it real? The flute's music is like
+magic.
+
+Your torch is going out.
+
+>get ring
+Taken.
+
+Your torch goes out with a fizzle.
+
+>x ring
+It's a ring set with a large, black sapphire.
+
+>wear ring
+You put on the sapphire ring.
+
+>u
+
+Laboratory
+It smells like a kennel in here and there are no windows through which to
+circulate fresh air. A stairway leads down. A steel mesh cage door is set in the
+wall beneath a large shelf. Next to these is a large green pot. One of the
+stones in the floor has a steel ring embedded in it. To the north is a staircase
+leading down.  You may also exit to the west.
+
+>w
+
+Banquet Corridor
+This is a north-south corridor connecting the banquet hall to the central
+courtyard. Doorways branch off to the east and west. A beautifully woven rug
+runs down the middle of this corridor.
+
+>w
+
+Library
+You stand in a small library. A desk is pushed up against the north wall.  Above
+that hangs a map.  Most of the west wall is covered by a bookcase. Just to the
+right of the bookcase is a small hole.
+
+On the bookcase are a skull, a red book entitled "The Castle Shadowgate" and a
+green book entitled "The Circle of Twelve".
+
+On the desk is a blue book entitled "The Prophecy".
+
+>! no mention of exits from this room
+
+>put red gem in hole
+The gem fits perfectly. The bookcase slowly slides open revealing a hidden
+passage.
+
+>w
+You can't go that way.
+
+>! the bookcase is on the west wall but passage doesn't appear there?
+
+>x desk
+It's a strong wooden desk fit for a king. There are two drawers in it: one on
+the left and one on the right.
+
+>open left drawer
+You open the left drawer, revealing a pair of glasses and a tarnished key.
+
+>get glasses and key
+glasses: Taken.
+tarnished key: Taken.
+
+>open right drawer
+You open the right drawer, revealing a shiny scroll and a dirty scroll.
+
+>get shiny scroll and dirty scroll
+shiny scroll: Taken.
+dirty scroll: Taken.
+
+>wear glasses
+The glasses fit perfectly. It seems as if you can see much better than a normal
+person should.
+
+>read blue book
+
+"The light grows faint, the path winds round.
+Where life is lost, wisdom is found.
+The seed of the dream, for the evil is free.
+Where the sword is hung, he must place the key.
+A bridge from, amidst burning death.
+A demon to guard.
+
+Motari Riseth"
+
+You've learned a magic spell.
+
+>read red book
+You open the book and read it.
+
+"The Castle Shadowgate is not the largest castle on Tarkus, but it is the most
+powerful. The castle is surrounded by an impenetrable mountain known as
+Gatekeeper. Only members of the now lost circle of twelve can enter it. It is
+said that the walls of Shadowgate themselves are quite alive."
+
+>read green book
+This book's title is "The Circle of Twelve". You open the book and read it.
+
+"The Circle of Twelve was formed before most things began to be. Their names
+are... Framas, Garolin, Talotin, Ronlin, Talimar, Magnas, Wontave, Bitwik,
+Tenmakk, Sharnir, Lakmir, and Turgor. The circle was broken when Talimar took a
+new name: The Warlock Lord!"
+
+>x skull
+Which do you mean, the skull, the dried skull or the skull key?
+
+>skull
+Which do you mean, the skull, the dried skull or the skull key?
+
+>! OOPS parse_name problems
+
+>n
+
+Study
+This room is dominated by a large fireplace set in a red brick wall. A window
+faces north. The only exit is south.  A beautifully woven rug is in the middle
+of the room. A globe on a stand is in the middle of it.
+
+On the mantelpiece are a pewter goblet, a bellows and a poker.
+
+>get all
+There are none at all available!
+
+>get goblet and bellows and poker
+pewter goblet: Taken.
+bellows: Taken.
+poker: Taken.
+
+>gnusto shiny scroll
+Your spell book begins to glow softly. Slowly, ornately, the words of the
+illumina spell are inscribed, glowing even more brightly then the book itself.
+The book's brightness fades, but the spell remains! However, the scroll on which
+it was written vanishes as the last word is copied.
+
+>gnusto dirty scroll
+Your spell book begins to glow softly. Slowly, ornately, the words of the
+terrakk spell are inscribed, glowing even more brightly then the book itself.
+The book's brightness fades, but the spell remains! However, the scroll on which
+it was written vanishes as the last word is copied.
+
+>read spell book
+My Spell Book
+
+gnusto spell: Copy a scroll into your spell book.
+epor spell: animate rope
+humana spell: As the shadow of the wind, thou shalt be!
+motari spell: A bridge from, amidst burning death. A demon to guard.
+illumina spell: To move the sun from far to near, light is what the darkness
+fears.
+terrakk spell: Lands under the heavens; the key to the world.
+
+>learn terrakk
+Using your best study habits, you commit the terrakk spell to memory.
+
+>terrakk globe
+As you chant the spell, a large crack appears around the equator of the globe.
+
+>open globe
+You open the globe, revealing a black key and a black bottle.
+
+>get black key and bottle
+black key: Taken.
+black bottle: Taken.
+
+>s
+
+Library
+You stand in a small library. A desk is pushed up against the north wall.  Above
+that hangs a map.  Most of the west wall is covered by a bookcase. Just to the
+right of the bookcase is a small hole which contains a red gem. The bookcase has
+slid open revealing a hidden passage.
+
+On the bookcase are a skull, a red book entitled "The Castle Shadowgate" and a
+green book entitled "The Circle of Twelve".
+
+On the desk is a blue book entitled "The Prophecy".
+
+>get map
+Taken.
+
+>e
+
+Banquet Corridor
+This is a north-south corridor connecting the banquet hall to the central
+courtyard. Doorways branch off to the east and west. A beautifully woven rug
+runs down the middle of this corridor.
+
+>n
+
+Banquet Hall
+You are awed by the majestic beauty of this immense banquet hall. Tables,
+chairs, and benches are oddly missing. A small door is in the north wall. A
+staircase leads up to a balcony overlooking the hall.  A beautifully woven rug
+lies in front of where the lord's table should be.  A silk tapestry hangs over
+the stairs.
+
+>x rug
+It's a beautifully woven rug. It seems that something is underneath.
+
+>move rug
+You are unable to.
+
+>l under rug
+You find nothing of interest.
+
+>search rug
+You find nothing of interest.
+
+>pull rug
+You are unable to.
+
+>push rug
+You are unable to.
+
+>burn rug
+The rug quickly catches fire and burns away.
+
+Ah! It looks as if a rusty key was hidden underneath the rug. Fortunately the
+rusty key wasn't damaged by the fire.
+
+>get key
+(the rusty key)
+Taken.
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>u
+
+Banquet Hall Balcony
+You are standing on a balcony stretching across the north end of the banquet
+hall. As big as this hall is, you don't see much more than you did on the floor.
+Stairs leading down to the floor are to the east. To the west is more balcony.
+To the north is a large wooden door. A family crest of some sort hangs by the
+door. A silk tapestry hangs over the stairs.
+
+Your torch is flickering and sputtering.
+
+>e
+
+Banquet Hall
+You are awed by the majestic beauty of this immense banquet hall. Tables,
+chairs, and benches are oddly missing. A small door is in the north wall. A
+staircase leads up to a balcony overlooking the hall.  A silk tapestry hangs
+over the stairs.
+
+Your torch is flickering and sputtering.
+
+>! two spaces after "overlooking the hall.  A silk"  One space usual in IF
+
+>n
+(first opening the banquet hall door)
+It seems to be locked.
+
+Your torch is going out.
+
+>unlock north door with rusty key
+I didn't understand that sentence.
+
+>unlock door with rusty key
+You unlock the banquet hall door.
+
+Your torch goes out with a fizzle.
+
+>n
+(first opening the banquet hall door)
+
+Small Corridor
+You have entered a small corridor. Two arched doorways to the east and west wait
+patiently for you.
+
+You can see two unlit torches here.
+
+>! no mention that you can go back south from here
+
+>get torches
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>e
+
+Throne Room
+You're in a small throne room. A skeleton wearing a gold crown sits on a throne
+in front of you between two pillars.
+
+On the throne is a skeleton.
+
+>x skeleton
+(the skeleton)
+Although he looks dead enough, this royal skeleton sends shivers down your
+spine.There seems to be something in his hand.
+
+>! no space after spine
+
+>x hand
+The hand is empty. It appears as if this fellow was clutching something before
+he died.
+
+>x crown
+You can't see any such thing.
+
+>give sceptre to king
+You can only do that to something animate.
+
+>put sceptre in hand
+As soon as you give the sceptre to the skeleton, the seal on the pillar lowers,
+revealing a ring-shaped hole.
+
+>put ring in hole
+(the sapphire ring in the ring-shaped hole)
+The ring fits perfectly. The throne magically rises, revealing a secret
+passageway.
+
+>! no mention if which way the passage heads
+>d
+
+Stone Tunnel
+This hallway is made of large granite slabs. There are exits up, west, and
+north.
+
+You can see four unlit torches here.
+
+>get torches
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+unlit torch: You pull the unlit torch off the wall.
+
+>n
+
+Gargoyle Room
+A pair of stone beasts perched on the wall are guarding a dark archway to the
+north. A small path leads northeast.
+
+>n
+Suddenly the beasts begin to shudder and their eyes begin to glow red. The
+gargoyles, angered at your presence, spring from their frozen state and rip you
+to pieces. There's not enough left of you to even feed the birds.
+
+
+    *** You have died ***
+[ turn undone ]
+>s
+
+Stone Tunnel
+This hallway is made of large granite slabs. There are exits up, west, and
+north.
+
+>w
+Without thinking, you jump through the openening and immediately hear a loud
+click. Suddenly, the granite slab above you gives way and crushes you beneath
+it. It breaks every bone in your body.
+
+[turn undone]
+>!spelling: should be 'opening'
+
+>n
+
+Gargoyle Room
+A pair of stone beasts perched on the wall are guarding a dark archway to the
+north. A small path leads northeast.
+
+>x gargoyles
+You can't see any such thing.
+
+>x gargoyle
+This stone statue is some three and a half feet tall and ugly as all heck. It is
+very cold to the touch.
+
+>! gargoyles should perhaps work as a synonym seeing the description
+
+>! mentions a pair of them
+
+>! also "ugly as all heck" seems a sudden change in game tone
+
+>! it's been very serious and lyrical until now, but that phrase smacks of a
+
+>! parody or light-hearted piece
+
+>ne
+
+Lava Chamber
+Sulfurous fumes rise from the hot molten lava some thirty feet below you.
+Swimming would not be wise. A narrow, stone bridgeway extends halfway across the
+lava ending in a ring. A huge grotesque statue stands in the middle of the ring.
+A doorway is on the north wall,surrounded by lava and inaccesable. You can go
+back the way you came by going south.
+
+>! space needed after "wall,"; spelling: should be "inaccessible"
+
+>x statue
+This huge statue is made of precious metals. It holds a basin of smoldering
+coals.
+>! carriage return missing after statue description
+
+>read spell book
+My Spell Book
+
+gnusto spell: Copy a scroll into your spell book.
+epor spell: animate rope
+humana spell: As the shadow of the wind, thou shalt be!
+motari spell: A bridge from, amidst burning death. A demon to guard.
+illumina spell: To move the sun from far to near, light is what the darkness
+fears.
+terrakk spell: Lands under the heavens; the key to the world.
+
+>learn motari
+You always know that spell.
+
+>motari lava
+You can't see any such thing.
+
+>motari statue
+The statue lowers and a large platform rises out of the lava. You now have a way
+across.
+
+>n
+
+Lever Room
+Stalagmites surround this room like the cavernous jaws of a huge beast. A chain
+hangs from the ceiling ending in a strong-looking metal cylinder on the floor.
+Beside the cylinder on one side is a pit. On the other side are three wooden
+levers side by side on a mechanism of some sort.
+
+The left lever is in the up position.
+The middle lever is in the up position.
+The right lever is in the up position.
+
+The metal cylinder is closed.
+
+>open cylinder
+That's not something you can open.
+
+>! okay it's closed but it's not an openable object
+That's not a verb I recognise.
+
+>use right lever
+That's not a verb I recognise.
+
+>pull right lever
+You pulled the right lever down.
+
+>pull middle lever
+You pulled the middle lever down.
+
+>pull left lever
+You pulled the left lever down.
+
+>get cylinder
+That's fixed in place.
+
+>! when moving the levers past tense is used, which kind of violates usual
+
+>! IF-style
+
+>
+Hot key -- Undo one turn
+Lever Room
+[Previous turn undone.]
+
+>
+Hot key -- Undo one turn
+Lever Room
+[Previous turn undone.]
+
+>pull right lever
+But it's already been pulled down.
+
+>l in cylinder
+You can't see inside, since the metal cylinder is closed.
+
+>open cylinder
+That's not something you can open.
+
+>x pit
+It looks like a large, very deep pit.
+
+>l in pit
+The pit is too dark to see anything within.
+
+>pull right lever
+But it's already been pulled down.
+
+>pull left lever
+You pulled the left lever down.
+
+>raise right lever
+That's not a verb I recognise.
+
+>lift right lever
+That's not a verb I recognise.
+
+>push right lever
+You pushed the right lever up.
+
+>get on cylinder
+That's not something you can enter.
+
+>l
+
+Lever Room
+Stalagmites surround this room like the cavernous jaws of a huge beast. A chain
+hangs from the ceiling ending in a strong-looking metal cylinder on the floor.
+Beside the cylinder on one side is a pit. On the other side are three wooden
+levers side by side on a mechanism of some sort.
+
+The left lever is in the down position.
+The middle lever is in the down position.
+The right lever is in the up position.
+
+The metal cylinder is closed.
+
+Your torch is beginning to flicker.
+
+>x chain
+It's a heavy chain suspended from some sort of mechanism in the ceiling and
+connected to the top of the metal cylinder.
+
+Your torch is flickering and sputtering.
+
+>x mechanism
+Three wooden levers side by side
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>move cylinder
+It is fixed in place.
+
+>x cylinder
+It's a strong-looking metal cylinder.
+
+>l in cylinder
+You can't see inside, since the metal cylinder is closed.
+
+>unlock cylinder
+What do you want to unlock the metal cylinder with?
+
+>key
+Which do you mean, the rusty key, the black key, the tarnished key, the brass
+key, the skull key or the iron key?
+
+>brass
+That doesn't seem to be something you can unlock.
+
+>l under cylinder
+You find nothing of interest.
+
+>l
+
+Lever Room
+Stalagmites surround this room like the cavernous jaws of a huge beast. A chain
+hangs from the ceiling ending in a strong-looking metal cylinder on the floor.
+Beside the cylinder on one side is a pit. On the other side are three wooden
+levers side by side on a mechanism of some sort.
+
+The left lever is in the down position.
+The middle lever is in the down position.
+The right lever is in the up position.
+
+The metal cylinder is closed.
+
+>s
+
+Lava Chamber
+Sulfurous fumes rise from the hot molten lava some thirty feet below you.
+Swimming would not be wise. A narrow, stone bridgeway extends halfway across the
+lava ending in a ring. A huge grotesque statue stands in the middle of the ring
+and has sunk nearly up to its eyes. A doorway is on the north wall with a
+bridgeway leading from the ring to it. You can go back the way you came by going
+south.
+
+>x ring
+You can't see any such thing.
+
+>sw
+
+Gargoyle Room
+A pair of stone beasts perched on the wall are guarding a dark archway to the
+north. A small path leads northeast.
+
+>
+Hot key -- Undo one turn
+Lava Chamber
+[Previous turn undone.]
+
+>s
+
+Gargoyle Room
+A pair of stone beasts perched on the wall are guarding a dark archway to the
+north. A small path leads northeast.
+
+>illumina
+Suddenly the cavern is so bright that you have to shade your eyes. It takes you
+a few moments to regain your senses from the nova burst. It seems that the
+gargoyles were also affected and haven't yet recovered from the spell.
+
+>n
+
+Well Room
+This room seems to be made solely for the purpose of housing a well. An archway
+leads south and a door leads west.
+
+A wooden lid covers the well.
+
+>open lid
+You open the well.
+
+>l in well
+It goes a long way down.
+
+>d
+With a mighty leap, you jump head first into the well. On the way down, you see
+no water below. The well was deeper than you imagined. You have just broken
+every bone in your body.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>w
+(first opening the door)
+It seems to be locked.
+
+>s
+
+Gargoyle Room
+A pair of stone beasts perched on the wall are guarding a dark archway to the
+north. A small path leads northeast.
+
+>s
+
+Stone Tunnel
+This hallway is made of large granite slabs. There are exits up, west, and
+north.
+
+>u
+
+Throne Room
+You're in a small throne room. A skeleton wearing a gold crown sits on a throne
+in front of you between two pillars. Some mechanism has lifted the throne off
+the floor revealing a hidden passageway.
+
+On the throne is a skeleton.
+
+>! no mention of exits or directions in throne room
+
+>w
+
+Small Corridor
+You have entered a small corridor. Two arched doorways to the east and west wait
+patiently for you.
+
+>w
+
+Balcony
+>From this windy ledge you can get an idea of the size and strength of the
+castle. A low, wide wall runs about the perimeter of the balcony. It continues
+on to the west.
+
+On the wall is a small stone.
+
+>! no mention of exits other than 'west'
+
+>get stone
+(the small stone)
+As you pick up the small stone you notice it was concealing a small hole.
+
+>x hole
+This appears to be a mount of some sort, perhaps for a flagpole. It points
+straight up.
+
+>w
+
+Lookout Point
+Lighting lights up the countryside as you stand on a lookout point. You can
+return to the castle by going east.
+
+You can see a canvas pouch (which is closed) and a pot of gold (in which are
+thirteen gold coins) here.
+
+>get pouch
+(the canvas pouch)
+Taken.
+
+>open it
+You open the canvas pouch, revealing three gold coins and a big gold coin.
+
+>get pot
+As you reach for the pot, you realize that you have fallen for the oldest trick
+in the book. The balcony floor beneath you gives way and you fall into the moat.
+It seems that the alligators really enjoy your company.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>e
+
+Balcony
+>From this windy ledge you can get an idea of the size and strength of the
+castle. A low, wide wall runs about the perimeter of the balcony. It continues
+on to the west.
+
+In a corner of the wall, you can see a small hole.
+
+>e
+
+Small Corridor
+You have entered a small corridor. Two arched doorways to the east and west wait
+patiently for you.
+
+>s
+
+Banquet Hall
+You are awed by the majestic beauty of this immense banquet hall. Tables,
+chairs, and benches are oddly missing. A small door is in the north wall. A
+staircase leads up to a balcony overlooking the hall.  A silk tapestry hangs
+over the stairs.
+
+>u
+
+Banquet Hall Balcony
+You are standing on a balcony stretching across the north end of the banquet
+hall. As big as this hall is, you don't see much more than you did on the floor.
+Stairs leading down to the floor are to the east. To the west is more balcony.
+To the north is a large wooden door. A family crest of some sort hangs by the
+door. A silk tapestry hangs over the stairs.
+
+>w
+
+West End of Balcony
+This is the extreme west end of the balcony overlooking the banquet hall. It
+ends at a large wooden door leading north.  A smallish mirror hangs on the wall
+here.
+
+>n
+(first opening the door)
+It seems to be locked.
+
+>unlock door with black key
+You unlock the door.
+
+>n
+(first opening the door)
+
+Circular Room
+Although the evening air is cool, this small circular room radiates a fervent
+heat. A ladder leads up. A door to the south leads back to the banquet hall.
+
+You can see a platinum horn here.
+
+Your torch is beginning to flicker.
+
+>get horn
+As you step forward to pick up the horn, a large fireball suddenly appears in
+the room and causes you to shield your eyes. When you open them, you notice that
+the fire has changed into something far more menacing.
+
+A hellhound is standing in the middle of the room in front of the platinum horn.
+The beast doesn't seem very friendly.
+
+Your torch is flickering and sputtering.
+
+>throw vial at hellhound
+You hurl the holy water at the beast. In a burst of flame, the hellhound is sent
+back to the place where it was spawned. The room is now quiet as though nothing
+had happened.
+
+Your torch is flickering and sputtering.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>get horn
+Taken.
+
+Your torch is flickering and sputtering.
+
+>u
+
+Wyvern Tower
+As you stand on the turret, an eerie blue dragon (a wyvern!) appears in the
+clear starry sky. There is a low metal pedestal standing near the wall of the
+turret.
+
+On the pedestal is a talisman.
+
+You can see a wyvern here.
+
+Your torch is going out.
+
+>i
+You are carrying:
+  a platinum horn
+  two burning torches (providing light)
+  a canvas pouch (which is open)
+    three gold coins
+    a big gold coin
+  six stones
+  five unlit torches
+  eleven burning torches
+  a rusty key
+  a map
+  a black bottle (which is closed)
+  a black key
+  a poker
+  a bellows
+  a pewter goblet
+  a tarnished key
+  a pair of glasses (being worn)
+  a wooden flute
+  a gauntlet (being worn)
+  a bucket
+  a horseshoe
+  a shining vial (which is closed)
+    some holy water
+  a test tube
+  a slimy bottle (which is closed)
+  a shiny bottle (which is closed)
+  a shiny bottle (which is closed)
+  a sling
+  a sword
+  a crystal sphere
+  a brass key
+  a leather pouch (which is open but empty)
+  a broom
+  a shiny bottle (which is closed)
+  a smelly bottle (which is open)
+    a smelly potion
+  a dusty scroll
+  a cloak (being worn)
+  a silver arrow
+  a dried skull
+  a bone
+  a hammer
+  a helmet (being worn)
+  a shield
+  three copper coins
+  a skull key
+  an iron key
+  your spell book
+
+Your torch goes out with a fizzle.
+
+>! shouldn't the vial be gone now that I used it on the hellhound?
+
+>get talisman
+The wyvern sees you reach for the talisman.
+
+With the speed of lightning, the wyvern wraps its tail around your neck.
+
+You die screaming silently.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>x talisman
+This rather heavy talisman is in the shape of a stretched six-pointed star. It's
+made of gold and is extremely sharp along its edges. It shines with an
+incredible brilliance.
+
+>d
+
+Circular Room
+Although the evening air is cool, this small circular room radiates a fervent
+heat. A ladder leads up. A door to the south leads back to the banquet hall.
+
+>s
+
+West End of Balcony
+This is the extreme west end of the balcony overlooking the banquet hall. It
+ends at a large wooden door leading north.  A smallish mirror hangs on the wall
+here.
+
+>e
+
+Banquet Hall Balcony
+You are standing on a balcony stretching across the north end of the banquet
+hall. As big as this hall is, you don't see much more than you did on the floor.
+Stairs leading down to the floor are to the east. To the west is more balcony.
+To the north is a large wooden door. A family crest of some sort hangs by the
+door. A silk tapestry hangs over the stairs.
+
+>e
+
+Banquet Hall
+You are awed by the majestic beauty of this immense banquet hall. Tables,
+chairs, and benches are oddly missing. A small door is in the north wall. A
+staircase leads up to a balcony overlooking the hall.  A silk tapestry hangs
+over the stairs.
+
+>u
+
+Banquet Hall Balcony
+You are standing on a balcony stretching across the north end of the banquet
+hall. As big as this hall is, you don't see much more than you did on the floor.
+Stairs leading down to the floor are to the east. To the west is more balcony.
+To the north is a large wooden door. A family crest of some sort hangs by the
+door. A silk tapestry hangs over the stairs.
+
+>n
+(first opening the door)
+It seems to be locked.
+
+>unlock door with tarnished key
+You unlock the door.
+
+>n
+(first opening the door)
+
+Sphinx Room
+You are in a small circular room. A narrow stairway leads up. The banquet hall
+is south.
+
+You can see a sphinx here.
+
+>x sphinx
+This is a sphinx. It has the body of a lion and the head of a man. It looks at
+you indifferently.
+
+>u
+As you move, the sphinx speaks:
+
+"Who are you? No one may pass without my permission. To pass, you must answer a
+riddle!"
+
+"It has towns, but no houses. Forests, but no trees. Rivers, but no fish."
+
+"Dost thou know? Bring me the answer to my riddle and I shall let thee pass."
+
+>! one of the sphinx's other riddles, which I saw on a second playthrough
+
+>! used the word 'drowned' but it was misspelled as 'drowened'
+
+>give map to sphinx
+The sphinx doesn't seem interested.
+
+>show map to sphinx
+"You have correctly answered my riddle, warrior. Thou may now pass."
+
+>u
+As you climb the stairs, you notice odd markings scratched on them.
+
+Observatory
+A telescope is beside the window. A star map is on the wall beside the ladder. A
+silver ornament of some sort is hanging in front of the map. A round wooden
+table is in the middle of the room. Stairs lead down and a ladder leads up.
+
+On the table is a folded scroll.
+
+>get scroll
+(the folded scroll)
+Taken.
+
+>read it
+The scroll reads:
+
+"Observing the stars:
+The Throne contellation appears once every five summers. Legend says that it is
+a portal to another land."
+
+>! spelling: should be 'constellation'
+
+>x star map
+It's a map of the known galaxy. You can see billions and billions of stars. The
+map seems to be only loosely attached to the wall.
+
+>! Wow, just had a Carl Sagan flashback
+
+>get map
+(the star map)
+The map is actually fastened quite firmly to the wall on only one edge.
+
+>move star map
+You pull back a corner of the map revealing a cast iron rod.
+
+>get rod
+Taken.
+
+>get ornament
+Taken.
+
+>x it
+It's an ornate carving of a shooting star. The object is made of silver and is
+extremely heavy.
+
+>d
+
+Sphinx Room
+You are in a small circular room. A narrow stairway leads up. The banquet hall
+is south.
+
+You can see a sphinx here.
+
+>s
+
+Banquet Hall Balcony
+You are standing on a balcony stretching across the north end of the banquet
+hall. As big as this hall is, you don't see much more than you did on the floor.
+Stairs leading down to the floor are to the east. To the west is more balcony.
+To the north is a large wooden door. A family crest of some sort hangs by the
+door. A silk tapestry hangs over the stairs.
+
+>d
+
+Banquet Hall
+You are awed by the majestic beauty of this immense banquet hall. Tables,
+chairs, and benches are oddly missing. A small door is in the north wall. A
+staircase leads up to a balcony overlooking the hall.  A silk tapestry hangs
+over the stairs.
+
+>n
+
+Small Corridor
+You have entered a small corridor. Two arched doorways to the east and west wait
+patiently for you.
+
+>w
+
+Balcony
+>From this windy ledge you can get an idea of the size and strength of the
+castle. A low, wide wall runs about the perimeter of the balcony. It continues
+on to the west.
+
+In a corner of the wall, you can see a small hole.
+
+>put rod in hole
+You put the iron rod into the hole.
+
+Suddenly the sky seems to be on fire as a bolt of pure lightning strikes the
+rod.
+
+You are startled to see a skeletal hand holding a wand rise from a hole that has
+formed at your feet.
+
+>get wand
+As you take the wand from the skeletal hand, it begins to descend. The hole then
+closes up as if it had never been.
+
+>e
+
+Small Corridor
+You have entered a small corridor. Two arched doorways to the east and west wait
+patiently for you.
+
+>s
+
+Banquet Hall
+You are awed by the majestic beauty of this immense banquet hall. Tables,
+chairs, and benches are oddly missing. A small door is in the north wall. A
+staircase leads up to a balcony overlooking the hall.  A silk tapestry hangs
+over the stairs.
+
+>u
+
+Banquet Hall Balcony
+You are standing on a balcony stretching across the north end of the banquet
+hall. As big as this hall is, you don't see much more than you did on the floor.
+Stairs leading down to the floor are to the east. To the west is more balcony.
+To the north is a large wooden door. A family crest of some sort hangs by the
+door. A silk tapestry hangs over the stairs.
+
+Your torch is beginning to flicker.
+
+>w
+
+West End of Balcony
+This is the extreme west end of the balcony overlooking the banquet hall. It
+ends at a large wooden door leading north.  A smallish mirror hangs on the wall
+here.
+
+Your torch is flickering and sputtering.
+
+>n
+
+Circular Room
+Although the evening air is cool, this small circular room radiates a fervent
+heat. A ladder leads up. A door to the south leads back to the banquet hall.
+
+Your torch is flickering and sputtering.
+
+>u
+
+Wyvern Tower
+As you stand on the turret, an eerie blue dragon (a wyvern!) appears in the
+clear starry sky. There is a low metal pedestal standing near the wall of the
+turret.
+
+On the pedestal is a talisman.
+
+You can see a wyvern here.
+
+Your torch is flickering and sputtering.
+
+>throw star at wyvern
+The star becomes a flash of light as you launch it. It strikes the wyvern and it
+explodes into a million pieces!
+
+Your torch is flickering and sputtering.
+
+>get talisman
+Taken.
+
+Your torch is going out.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch goes out with a fizzle.
+
+>d
+
+Circular Room
+Although the evening air is cool, this small circular room radiates a fervent
+heat. A ladder leads up. A door to the south leads back to the banquet hall.
+
+>s
+
+West End of Balcony
+This is the extreme west end of the balcony overlooking the banquet hall. It
+ends at a large wooden door leading north.  A smallish mirror hangs on the wall
+here.
+
+>e
+
+Banquet Hall Balcony
+You are standing on a balcony stretching across the north end of the banquet
+hall. As big as this hall is, you don't see much more than you did on the floor.
+Stairs leading down to the floor are to the east. To the west is more balcony.
+To the north is a large wooden door. A family crest of some sort hangs by the
+door. A silk tapestry hangs over the stairs.
+
+>d
+
+Banquet Hall
+You are awed by the majestic beauty of this immense banquet hall. Tables,
+chairs, and benches are oddly missing. A small door is in the north wall. A
+staircase leads up to a balcony overlooking the hall.  A silk tapestry hangs
+over the stairs.
+
+>s
+
+Banquet Corridor
+This is a north-south corridor connecting the banquet hall to the central
+courtyard. Doorways branch off to the east and west. A beautifully woven rug
+runs down the middle of this corridor.
+
+>s
+
+Courtyard
+The moon casts a brilliant shadow over the grounds of the courtyard. In the
+middle of the courtyard is a stone well. There are exits to the north and south.
+
+A cyclops is lying flat on his back in a pool of blood
+
+>s
+
+Chasm Bridge
+You are standing on a sturdy wooden bridge that spans a deep, dark chasm. A
+sharp, cold wind whips up over the ledge.
+
+>s
+
+Fire Room
+You are on a long, thin bridge which spans a floor covered in a thick, black
+oil.
+
+>s
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  A puddle of green slime blocks the west exit.  In the floor is a hole
+from which a rope about as thick as your wrist is sticking out..
+
+>d
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+>e
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+>e
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+>n
+As you reach the middle of the bridge, it collapses under your feet!
+
+The bridge won't hold you. You can't cross unless you lose some weight!
+
+
+    *** You have died ***
+[ turn undone ]
+
+>open shiny bottle
+You open the shiny bottle, revealing a shiny potion.
+
+>drink shiny potion
+You drink the liquid and immediately begin to rise in the air.
+
+>n
+
+Snake Room
+A giant snake confronts you in this small cave. The only exit is south.
+
+You can see a large green snake here.
+
+>point wand at snake
+The snake begins to shake and shudder. Is it just your eyes or is it shrinking?
+The serpentine statue begins to change! It grows smaller and smaller! It
+dematerializes and forms anew as a staff of tremendous beauty!
+
+>get staff
+Taken.
+
+>s
+
+Two Bridges
+You stand in a small cave roughly hewn at the edge of a deep chasm. From the
+darkness below arise the screams of the undead. Two bridges, one leading west,
+the other leading north, and lead to seperate passages. The one to the west is
+made of stone. The other, to the north is a rickety suspension bridge made of
+rope and planks.
+
+>w
+
+Wraith Room
+A stone archway opens into a small chamber. This room is very cold. To the west
+is a small wooden door. To the east is the stone bridge.
+
+>w
+
+EPOR room
+This small stone chamber is lined on one side by a low barred portal. Above the
+portal is a long shelf carved into the wall. To the right of the shelf is a sign
+that reads "EPOR". There is a hole in the ceiling.  A thick rope hangs from the
+hole.
+
+>u
+
+Mirror Room
+This room full of mirrors reminds you of the elvish fun house at King Otto's
+fair.  A puddle of green slime blocks the west exit.  In the floor is a hole
+from which a rope about as thick as your wrist is sticking out..
+
+>n
+
+Fire Room
+You are on a long, thin bridge which spans a floor covered in a thick, black
+oil.
+
+>n
+
+Chasm Bridge
+You are standing on a sturdy wooden bridge that spans a deep, dark chasm. A
+sharp, cold wind whips up over the ledge.
+
+>n
+As you step forward, the troll reappears and blocks your path. He is holding the
+spear you tried to kill him with.
+
+"I have nothing more to say to you."
+
+>learn humana
+Using your best study habits, you commit the humana spell to memory.
+
+>humana me
+As soon as the magic is invoked, you lose sight of yourself. You're as invisible
+as the wind!
+
+Courtyard
+The moon casts a brilliant shadow over the grounds of the courtyard. In the
+middle of the courtyard is a stone well. There are exits to the north and south.
+
+A cyclops is lying flat on his back in a pool of blood
+
+>n
+
+Banquet Corridor
+This is a north-south corridor connecting the banquet hall to the central
+courtyard. Doorways branch off to the east and west. A beautifully woven rug
+runs down the middle of this corridor.
+
+>n
+
+Banquet Hall
+You are awed by the majestic beauty of this immense banquet hall. Tables,
+chairs, and benches are oddly missing. A small door is in the north wall. A
+staircase leads up to a balcony overlooking the hall.  A silk tapestry hangs
+over the stairs.
+
+>u
+
+Banquet Hall Balcony
+You are standing on a balcony stretching across the north end of the banquet
+hall. As big as this hall is, you don't see much more than you did on the floor.
+Stairs leading down to the floor are to the east. To the west is more balcony.
+To the north is a large wooden door. A family crest of some sort hangs by the
+door. A silk tapestry hangs over the stairs.
+
+>n
+
+Sphinx Room
+You are in a small circular room. A narrow stairway leads up. The banquet hall
+is south.
+
+You can see a sphinx here.
+
+>u
+As you move, the sphinx speaks:
+
+"Who are you? No one may pass without my permission. To pass, you must answer a
+riddle!"
+
+"It has towns, but no houses. Forests, but no trees. Rivers, but no fish."
+
+"Dost thou know? Bring me the answer to my riddle and I shall let thee pass."
+
+>! I have to do this every time?
+
+>show map to sphinx
+"You have correctly answered my riddle, warrior. Thou may now pass."
+
+>u
+As you climb the stairs, you notice odd markings scratched on them.
+
+Observatory
+A telescope is beside the window. A star map is on the wall beside the ladder. A
+round wooden table is in the middle of the room. Stairs lead down and a ladder
+leads up.
+
+>u
+
+Tower Prison
+You are in a bare, round room. A beautiful woman is chained to the wall.
+Moonlight streams in from a window.
+
+You can see a golden blade and a beautiful woman here.
+
+>x blade
+It's some sort of spike that is made of precious metals. The tips are as sharp
+as needles.
+
+>x woman
+This fine lass lies upon the floor, chained to the wall. She is extremely
+beautiful.
+
+Your torch is beginning to flicker.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>unchain woman
+That's not a verb I recognise.
+
+>free woman
+That's not a verb I recognise.
+
+>help woman
+I only understood you as far as wanting to help.
+
+>kiss woman
+She says nothing, but her expression pleads you to free her.
+
+Your torch is flickering and sputtering.
+
+>get blade
+As you reach for the golden blade the beautiful lady suddenly transforms into a
+wolf! With a load roar, the wolf pounces on you, taking your life! The wolf's
+powerful jaws rip your throat out!
+
+
+    *** You have died ***
+[ turn undone ]
+
+>attack woman with arrow
+Your aim is true as you plunge the silver arrow into the beautiful woman. Her
+scream is oddly lupine. She changes into a wolf; a dead one.
+
+Your torch is flickering and sputtering.
+
+>get blade
+Taken.
+
+Your torch is going out.
+
+>get arrow
+Taken.
+
+Your torch goes out with a fizzle.
+
+>d
+
+Observatory
+A telescope is beside the window. A star map is on the wall beside the ladder. A
+round wooden table is in the middle of the room. Stairs lead down and a ladder
+leads up.
+
+>d
+
+Sphinx Room
+You are in a small circular room. A narrow stairway leads up. The banquet hall
+is south.
+
+You can see a sphinx here.
+
+>s
+
+Banquet Hall Balcony
+You are standing on a balcony stretching across the north end of the banquet
+hall. As big as this hall is, you don't see much more than you did on the floor.
+Stairs leading down to the floor are to the east. To the west is more balcony.
+To the north is a large wooden door. A family crest of some sort hangs by the
+door. A silk tapestry hangs over the stairs.
+
+>d
+
+Banquet Hall
+You are awed by the majestic beauty of this immense banquet hall. Tables,
+chairs, and benches are oddly missing. A small door is in the north wall. A
+staircase leads up to a balcony overlooking the hall.  A silk tapestry hangs
+over the stairs.
+
+>n
+
+Small Corridor
+You have entered a small corridor. Two arched doorways to the east and west wait
+patiently for you.
+
+>e
+
+Throne Room
+You're in a small throne room. A skeleton wearing a gold crown sits on a throne
+in front of you between two pillars. Some mechanism has lifted the throne off
+the floor revealing a hidden passageway.
+
+On the throne is a skeleton.
+
+>d
+
+Stone Tunnel
+This hallway is made of large granite slabs. There are exits up, west, and
+north.
+
+>n
+
+Gargoyle Room
+A pair of stone beasts perched on the wall are guarding a dark archway to the
+north. A small path leads northeast.
+
+>n
+Suddenly the beasts begin to shudder and their eyes begin to glow red. The
+gargoyles, angered at your presence, spring from their frozen state and rip you
+to pieces. There's not enough left of you to even feed the birds.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>learn illumina
+Using your best study habits, you commit the illumina spell to memory.
+
+>illumina
+Suddenly the cavern is so bright that you have to shade your eyes. It takes you
+a few moments to regain your senses from the nova burst. It seems that the
+gargoyles were also affected and haven't yet recovered from the spell.
+
+>n
+
+Well Room
+This room seems to be made solely for the purpose of housing a well. An archway
+leads south and a door leads west.
+
+The well's wooden lid has been lifted.
+
+>open pouch
+Which do you mean, the canvas pouch or the leather pouch?
+
+>canvas
+That's already open.
+
+>l in canvas pouch
+In the canvas pouch are three gold coins and a big gold coin.
+
+>x big coin
+This is a large gold coin with a well engraved on it.
+
+>get large coin
+You can't see any such thing.
+
+>! large should be added as a synonym, it's in the description
+
+>get big coin
+Taken.
+
+>drop big coin in well
+As soon as you drop the coin down the well, a huge wind erupts from within it.
+It reminds you of the small "dust devils" you see in the autumn months.
+
+>d
+The swirling winds carry you down the deep well and set you gently into the
+cavern below.
+
+River Styx
+You're standing on the bank of the River Styx. Its still waters support no life.
+
+You can see a gong and a mallet here.
+
+>! no mention of exits from this room
+
+>get gong
+It's far too heavy to carry.
+
+>get mallet
+Taken.
+
+>hit gong with mallet
+After the gong sounds, a spectre piloting a tiny wooden raft materializes before
+your eyes.
+
+The ghostly ferryman doesn't look friendly. You hear a faint voice ask for a
+fare.
+
+>give gold coin to ferryman
+(first taking the gold coin)
+The ferryman takes the coin and gestures you to board quickly.
+
+>board
+You can't go that way.
+
+>get on raft
+You climb aboard the tiny raft. The ferryman pushes off the shore. Soon you
+reach the opposite bank.
+
+Skull Gate
+A stone skull stands against the west wall, screaming silently. For some reason,
+you get the feeling you are standing on sacred ground. Three stone slabs hang on
+the north wall. Above them are three symbols. The River Styx lies to the south.
+
+The skull gate is closed.
+
+>x slabs
+Polished stone slabs side by side, each with a star-shaped niche cut out of it.
+Above each is a carved symbol.
+
+>x symbol
+Which do you mean, the left slab, the middle slab or the right slab?
+
+>left
+It's a polished stone slab with a star-shaped niche cut out of it. A carving of
+a sword is above the niche.
+
+>x talisman
+This rather heavy talisman is in the shape of a stretched six-pointed star. It's
+made of gold and is extremely sharp along its edges. It shines with an
+incredible brilliance.
+
+>l at middle slab
+It's a polished stone slab with a star-shaped niche cut out of it. A carving of
+a crown is above the niche.
+
+>put talisman in middle slab
+You have placed the bladed sun in the wrong hole.
+
+You did not heed the warnings and now the Warlock Lord's defenses end your life. Shafts of red light light shoot out of the eye sockets of the skull and burn you to a crisp.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>! repeated word: 'red light light'
+
+>put talisman in left slab
+The artifact, known as the Bladed Sun, is now secured and in place.
+
+>x blade
+It's some sort of spike that is made of precious metals. The tips are as sharp
+as needles.
+
+Your torch is beginning to flicker.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>n
+You can't go that way.
+
+Your torch is flickering and sputtering.
+
+>l
+
+Skull Gate
+A stone skull stands against the west wall, screaming silently. For some reason,
+you get the feeling you are standing on sacred ground. Three stone slabs hang on
+the north wall. Above them are three symbols. The River Styx lies to the south.
+
+The skull gate is closed.
+
+Your torch is flickering and sputtering.
+
+>open gate
+While it's obviously a door, it isn't obvious how to open it.
+
+Your torch is flickering and sputtering.
+
+>x right slab
+It's a polished stone slab with a star-shaped niche cut out of it. A carving of
+a jewel is above the niche.
+
+Your torch is going out.
+
+>read scroll
+Which do you mean, the folded scroll or the dusty scroll?
+
+>dusty
+The scroll reads:
+
+"Five to find, three are one.
+One gives access, the bladed sun.
+The silver orb, to banish below.
+The Staff of Ages, to vanquish the foe.
+Joining two, the golden blade.
+The last to invoke, the platinum horn."
+
+Your torch goes out with a fizzle.
+
+>x staff
+Druidic script winds its way around this staff. You can feel power emenating
+from it!
+
+>!spelling: should be 'emanating'
+
+>x blade
+It's some sort of spike that is made of precious metals. The tips are as sharp
+as needles.
+
+>attach blade to staff
+You would achieve nothing by this.
+
+>attach staff to blade
+You would achieve nothing by this.
+
+>s
+
+River Styx
+You're standing on the bank of the River Styx. Its still waters support no life.
+
+You can see a raft (on which is a spectral ferryman) and a gong here.
+
+>u
+
+Well Room
+This room seems to be made solely for the purpose of housing a well. An archway
+leads south and a door leads west.
+
+The well's wooden lid has been lifted.
+
+>s
+
+Gargoyle Room
+A pair of stone beasts perched on the wall are guarding a dark archway to the
+north. A small path leads northeast.
+
+>ne
+
+Lava Chamber
+Sulfurous fumes rise from the hot molten lava some thirty feet below you.
+Swimming would not be wise. A narrow, stone bridgeway extends halfway across the
+lava ending in a ring. A huge grotesque statue stands in the middle of the ring
+and has sunk nearly up to its eyes. A doorway is on the north wall with a
+bridgeway leading from the ring to it. You can go back the way you came by going
+south.
+
+>n
+
+Lever Room
+Stalagmites surround this room like the cavernous jaws of a huge beast. A chain
+hangs from the ceiling ending in a strong-looking metal cylinder on the floor.
+Beside the cylinder on one side is a pit. On the other side are three wooden
+levers side by side on a mechanism of some sort.
+
+The left lever is in the down position.
+The middle lever is in the down position.
+The right lever is in the up position.
+
+The metal cylinder is closed.
+
+>pull middle lever
+But it's already been pulled down.
+
+>push right lever
+But it's already been pushed up.
+
+>pull right lever
+You pulled the right lever down.
+
+>push right lever
+You pushed the right lever up.
+
+>push middle lever
+You pushed the middle lever up.
+
+>push left lever
+You pushed the left lever up.
+
+>purloin silver orb
+[Purloined.]
+
+>! sorry, but I couldn't get the levers to do the right thing and I'd messed
+
+>! with them so much that I wasn't sure how to reset them
+
+>s
+
+Lava Chamber
+Sulfurous fumes rise from the hot molten lava some thirty feet below you.
+Swimming would not be wise. A narrow, stone bridgeway extends halfway across the
+lava ending in a ring. A huge grotesque statue stands in the middle of the ring
+and has sunk nearly up to its eyes. A doorway is on the north wall with a
+bridgeway leading from the ring to it. You can go back the way you came by going
+south.
+
+>sw
+
+Gargoyle Room
+A pair of stone beasts perched on the wall are guarding a dark archway to the
+north. A small path leads northeast.
+
+>n
+Suddenly the beasts begin to shudder and their eyes begin to glow red. The
+gargoyles, angered at your presence, spring from their frozen state and rip you
+to pieces. There's not enough left of you to even feed the birds.
+
+
+    *** You have died ***
+[ turn undone ]
+
+>learn illumina
+Using your best study habits, you commit the illumina spell to memory.
+
+>illumina
+Suddenly the cavern is so bright that you have to shade your eyes. It takes you
+a few moments to regain your senses from the nova burst. It seems that the
+gargoyles were also affected and haven't yet recovered from the spell.
+
+>n
+
+Well Room
+This room seems to be made solely for the purpose of housing a well. An archway
+leads south and a door leads west.
+
+The well's wooden lid has been lifted.
+
+>d
+The swirling winds carry you down the deep well and set you gently into the
+cavern below.
+
+River Styx
+You're standing on the bank of the River Styx. Its still waters support no life.
+
+You can see a raft (on which is a spectral ferryman) and a gong here.
+
+>get on raft
+You climb aboard the tiny raft. The ferryman pushes off the shore. Soon you
+reach the opposite bank.
+
+Skull Gate
+A stone skull stands against the west wall, screaming silently. For some reason,
+you get the feeling you are standing on sacred ground. Three stone slabs hang on
+the north wall. Above them are three symbols. The River Styx lies to the south.
+
+The skull gate is closed.
+
+>x orb
+Aha! It's an orb made of silver. Its glowing surface causes your skin to tingle.
+
+>put blade on staff
+The golden spike slides smoothly onto the staff and locks into place.
+
+>put orb on staff
+Light cascades through the room as the staff becomes a living entity! The Staff
+of Ages is now complete.
+
+>blow horn
+You can't usefully blow that.
+
+>x horn
+This horn is forged of flawless platinum. Its beauty is unbelievable.
+
+>read dusty scroll
+The scroll reads:
+
+"Five to find, three are one.
+One gives access, the bladed sun.
+The silver orb, to banish below.
+The Staff of Ages, to vanquish the foe.
+Joining two, the golden blade.
+The last to invoke, the platinum horn."
+
+>invoke horn
+That's not a verb I recognise.
+
+>use horn
+That's not a verb I recognise.
+
+>wind horn
+That's not a verb I recognise.
+
+>light unlit torch with burning torch
+(the unlit torch with the burning torch)
+The torch burns brightly.
+
+Your torch is flickering and sputtering.
+
+>l
+
+Skull Gate
+A stone skull stands against the west wall, screaming silently. For some reason,
+you get the feeling you are standing on sacred ground. Three stone slabs hang on
+the north wall. Above them are three symbols. The River Styx lies to the south.
+
+The skull gate is closed.
+
+Your torch is going out.
+
+>wield staff
+That's not a verb I recognise.
+
+>use staff
+That's not a verb I recognise.
+
+>point staff at door
+You can't see any such thing.
+
+>point staff at middle slab
+You look ridiculous pointing the Staff of Ages at the middle slab.
+
+Your torch goes out with a fizzle.
+
+>point staff at right slab
+You look ridiculous pointing the Staff of Ages at the right slab.
+
+>x right slab
+It's a polished stone slab with a star-shaped niche cut out of it. A carving of
+a jewel is above the niche.
+
+>x middle slab
+It's a polished stone slab with a star-shaped niche cut out of it. A carving of
+a crown is above the niche.
+
+>x skull
+(the skull gate)
+The jaw of the skull is made of polished stone and forms a door. Hot, dry air
+emanates from the eye sockets and nose.
+
+>put horn in skull
+(the skull gate)
+That can't contain things.
+
+>enter jaw
+You can't see any such thing.
+
+>enter skull
+(the skull gate)
+You can't, since the skull gate is in the way.
+
+>point staff at skull
+(the skull gate)
+You look ridiculous pointing the Staff of Ages at the skull gate.
+
+>enter mouth
+You can't see any such thing.
+
+>play horn
+The sound of the horn echos loudly in your ears. Suddenly, you hear the sound of
+grinding rock. The jaw of the skull begins to descend. Hot wind erupts from the
+mouth creating the illusion that the skull is alive.
+
+>! spelling: should be 'echoes'
+
+>! blow horn should probably work
+
+>enter mouth
+You can't see any such thing.
+
+>enter gate
+
+Warlock Cave
+The cavern that you have entered is by far the largest your eyes have ever gazed
+upon. A path and steps lined with flaming braziers leads to a stone platform
+jutting out over an enormous pit.
+
+>From the depths rises the most powerful creature that has ever existed: The
+Behemoth! Your stomach knots up as you stare at this new horror. The beast is
+indeed incredible. You wonder, for a moment, how you can defeat such a creature
+as this.
+
+The Warlock Lord is on a huge stone platform that extends into the pit. He
+stands with his arms outstretched holding his staff aloft and facing the
+Behemoth.
+
+You can see the Behemoth and the Warlock Lord here.
+
+>point staff at lord
+The Warlock Lord feels your presence and knows that you are the seed that must
+be destroyed. Flame shoots forth from his staff and engulfs your body. You have
+failed!
+
+
+    *** You have died ***
+
+
+It's a sad thing that your adventures have ended here.
+
+Would you like to RESTART, RESTORE a saved game, UNDO your last move or QUIT?
+> 
+Hot key -- Undo one turn
+Warlock Cave
+[Previous turn undone.]
+
+>point staff at behemoth
+
+You pray, as you raise the Staff of Ages, that it has the power that the
+prophets claimed.
+
+The staff pulsates with power and a beam of light explodes from it striking the
+behemoth. The creature screams in agony, thrashing back and forth in great pain!
+In his rage, he grabs the Warlock Lord, and descends into the depths forever.
+You can hear the Warlock Lord's screams fade into silence. Suddenly it is very
+quiet.
+
+A beautiful light seems to fill the cavern. "The morning sun," you say to
+yourself, "It is over."
+
+Although exhausted, you lean on the Staff of Ages and begin your long journey
+home.
+
+Word of your historic quest has already reached the farthest parts of the land!
+
+You are triumphantly greeted as you enter the royal city of Stormhaven.
+
+Moments later, you are ushered into the royal palace where you are greeted by
+the King!
+
+"I know what thou hast done, brave one. The world would be dark forever without
+thee!"
+
+You are bestowed a kingdom to rule and the king's fair daughter's hand!
+
+As you leave the throne room, you know that although this quest is over, others
+await.
+
+After all, the bards will need new legends to sing of and new tales to tell!
+
+The first story's end.
+
+
+
+    *** You have won ***
+
+End of transcript.
+

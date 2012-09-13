@@ -89,10 +89,8 @@ Object -> Wraith "wraith"
 	],
 	life [;
 	Show:
-		if (noun == OddTorch) {
-			"The wraith hisses at you and motions at you to
-			get rid of it.";
-		}
+		if (noun == OddTorch)
+			self.getrid();
 		self.moan();
 	Tell, Ask:
 		self.moan();
@@ -102,6 +100,10 @@ Object -> Wraith "wraith"
 		"The wraith shakes its head at you.";
 	NotUnderstood:
 		self.moan();
+	],
+	getrid [;
+		"The wraith hisses at you and motions at you to get rid
+		of it.";
 	],
 	moan [;
 		"The wraith moans unintelligibly.";

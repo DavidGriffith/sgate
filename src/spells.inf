@@ -19,8 +19,7 @@ Class Spell
 		word_name
 		[;  
 			print (address) (self.&name)-->0;
-		],
-       
+		],       
 	short_name [;  
 		self.word_name(); print " spell";
 		give self known_about;
@@ -54,7 +53,6 @@ Object memory
 			if (j==1) print " spell is"; else print " spells are";
 			print " yours forever.  Other than that, y";
 		} else print "Y";
-
 		print "ou have ";
 		j=0; k=0;
 		objectloop (i in self) if (i.number<100) j++;
@@ -112,31 +110,25 @@ Spell -> gnusto_spell
 			"Unlike scrolls, spell books are magically guarded 
 			against the 'theft' of their lore.";
 		}
-
 		if (second == 0 || ~~(second ofclass Scroll)) {
 			"Your spell fizzles vaguely out.";
 		}
-
 		if (second notin player) {
 			"A gnusto spell would require close scrutiny of 
 			the scroll it is to copy: which you do not seem 
 			to be holding.";
 		}
-
 		objectloop (i in player) {
 			if (i ofclass SpellBook) a_book = i;
 		}
-
 		if (a_book == 0) {
 			"Your spell fails, as you have no spell book.";
 		}
 		i = child(second);
-
 		if (second has nonmagic) {
 			print_ret "You spell fails, as ", (the) second,
 				" isn't actually magical.";
 		}
-
 		if (i == 0 || ~~(i ofclass Spell)) {
 			print_ret "Your spell fails, as ", (the) second,
 				" is illegible.";
@@ -187,6 +179,7 @@ Class SpellBook
 	],
 	has float;
 
+
 class Scroll
 	with parse_name [ i j k;
 		j = -1;
@@ -229,6 +222,7 @@ class Scroll
 	],
 	has float;
 
+
 [ ReadableSpell i j k;
 	if (scope_stage == 1) {
 		if (action_to_be == ##Examine) rfalse;
@@ -270,9 +264,11 @@ class Scroll
 !	! ParserError routine handles that case instead
 !];
 
+
 [ SpellsSub;
 	memory.describe_contents();
 ];
+
 
 [ LearnSub;
 	if (location==thedark) {
@@ -282,7 +278,9 @@ class Scroll
 	memory.learn_spell(noun);
 ];
 
+
 Global the_spell_was = gnusto_spell;
+
 
 [ CastOneSub; <Cast the_spell_was noun>; ];
 
@@ -302,6 +300,7 @@ Global the_spell_was = gnusto_spell;
 	if (noun.magic() ~= 0) return;
 	"Nothing happens.";
 ];
+
 
 [ InScope i ;
 	if (verb_word == 'c, cast' or 'cast') {
@@ -386,6 +385,7 @@ Global the_spell_was = gnusto_spell;
 	rfalse;
 ];
 
+
 ! Duplicated in objects.inf
 !
 ![ ChooseObjects code;
@@ -449,12 +449,5 @@ Spell epor_spell
 			}
 		}
 		"Nothing happens.";
-	];
-
-Spell kickle_spell
-	with name "kickle",
-	purpose "kickle",
-	magic [;
-		"Kickle effect goes here.";
 	];
 

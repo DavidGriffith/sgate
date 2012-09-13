@@ -1,0 +1,163 @@
+====================
+About Shadowgate  ||
+====================
+
+This game is an unauthorized reimplementation of Shadowgate Classic as
+it appeared on the Nintendo Entertainment System (NES) presented by ICOM
+in 1989. No source code to Shadowgate was used (I've never seen it), nor
+was any decompilation done. The NES version was repeatedly played and
+referred to in the process of creating the Inform code that creates this
+reimplementation. Every effort has been made to make sure this version
+remains faithful to the NES version. Hints and walkthroughs prepared for
+the NES version will, for the most part, work on this one. Hints and
+walkthroughs for other versions may work, but are untested. No
+Invisiclues-style hints are included in this version.
+
+This game was written in Inform (http://www.inform-fiction.org/)
+compiled from the package (version 6.21.4) created by Glenn Hutchings.
+That package is available from the Interactive Fiction Archive
+(http://www.ifarchive.org/). The primary development machine was an x86
+machine with an AMD Athlon 1.2GHz and 768 megabytes of main memory
+running NetBSD 1.6.1. Development began in July of 2002.
+
+Here is a list of how this version of Shadowgate differs from the NES
+version.
+
+1) Descriptions have been expanded and/or completely rewritten to
+compensate for lack of graphics.
+
+2) Grammatical errors such as "It's a hemp of rope." have been
+corrected.
+
+3) Some room exits have been moved around to make it easier for the
+player to visualize and for the author to describe in words.
+
+4) The exact solutions to some puzzles have been randomized.
+
+5) The NES version prints a hint if the SELECT button is pressed. Type
+"HINT" for the same function here.
+
+
+======================
+Playing Shadowgate  ||
+======================
+
+Assuming that you already know how to play Interactive Fiction, there
+really isn't anything more you need to know. Just make sure you examine
+EVERYTHING. The solutions to puzzles are usually hidden in the scenery.
+If you get stuck, any of the assorted walkthroughs for Shadowgate one
+can find on the Internet will work as long as you keep in mind that some
+directions have changed and that some solutions have been randomized.
+That, however, will not detract from the game. Spells are implemented as
+the Enchanter-style spellbook, that is, you first "gnusto" a scroll into
+your book, then learn the spell in order to cast it.
+
+
+
+===================
+Release History  ||
+===================
+
+Release 1 / Serial number 030707
+Initial beta release.
+     
+Release 2 / Serial Number 030808
+Second beta release.
+     
+Release 3 / Serial Number 030821
+First public release.
+
+Release 4 / Serial Number 030826
+Minor bug fixes.
+
+Release 5 / Serial Number 030828
+More bug fixes.
+
+Release 6 / Serial number 040131
+Minor bug fixes.
+Efficiency tweaks.
+Final release (hopefully).
+
+
+===========
+Credits  ||
+===========
+
+The Inform version of Shadowgate was created by David Griffith
+(dgriffi@cs.csubak.edu). Please visit http://www.cs.csubak.edu/~dgriffi
+for more of my stuff, including the world-famous Frotz, which you may be
+using right now to play this game. Portions of code used are from the
+4th Edition of the Inform Designer's Manual and are cited where they
+appear in the source code.
+     
+Copyright is claimed on the source code, but not the name "Shadowgate"
+nor the game content. The latter two rest with Infinite Ventures, which
+is the company that currently owns the old ICOM games like Shadowgate,
+Deja Vu, Uninvited, and many others. You can visit their website at
+http://www.infiniteventures.com/.
+
+
+===========
+License  ||
+===========
+
+The source code to this Inform reimplementation of Shadowgate is freely
+redistributable. Do with it what you will, but don't go about claiming
+you wrote it. I do not appreciate plagarism. Give credit where credit is
+due.
+     
+This game may be included in a compilation (ie, a CD set containing the
+whole of the Interactive Fiction Archive), but it SHALL NOT be packaged
+on its own without prior written approval.
+
+
+========================
+Compiling Shadowgate  ||
+========================
+
+A Unix-style Makefile is provided. This was done mainly as a
+convenience for myself while writing the game. If, for whatever reason,
+you can't use it or don't want to, simply invoke the Inform compiler on
+src/sgate.inf. Type "make" to build Shadowgate with the debug code
+included. Type "make nodebug" to build without the debug code.
+
+
+=========
+Files  ||
+=========
+
+Makefile	For compiling the game.
+README		You're reading it.
+TODO		Stuff that I would have liked to have implemented.
+src/		Inform source code of Shadowgate.
+text/		Notes used in creating the games, a walthrough, and
+		 playtesting transcripts.
+
+===============================
+Notes on Writing Shadowgate  ||
+===============================
+
+In order to keep things organized, I gave each room a seperate source
+file. These files are tied together with rooms.inf which does an
+"include" of all the room source files. There are also seperate files
+for verbs, spells, spell grammar, the help files, and objects.  At the
+top of this is sgate.inf, which contains the usual beginnings and
+headers of an Inform program as well as the Initialize() function.
+
+The code implementing torches (unlit, burning, and dead) is quite
+complex and may still have undetected bugs in it. Keep this in mind if
+you decide to put it in your own game.
+
+
+========
+URLs  ||
+========
+
+http://www.cs.csubak.edu/~dgriffi/		(My homepage)
+http://www.cs.csubak.edu/~dgriffi/proj/frotz	(Frotz stuff)
+http://www.cs.csubak.edu/~dgriffi/proj/sgate	(Shadowgate stuff)
+
+
+David Griffith
+dgriffi@cs.csubak.edu
+Sunday January 25, 2004

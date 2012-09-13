@@ -16,12 +16,8 @@ Inside CoffinRoom "Coffin Room"
 	w_to FourWay,
 	e_to [;
 		if (CoffinSlime in self) {
-			deadflag = 1;
-			"You try to pass the slime but it engulfs your
-			body, dissolving it in seconds.^
-			^
-			You die instantly.  No pain.  No nothing.  You
-			were slimed.";
+			CoffinSlime.death();
+			rtrue;
 		}
 		return MirrorRoom;
 	],
@@ -183,9 +179,6 @@ Object -> -> CoffinMummy "mummy"
 		if (second == Sword)
 			<<cut self>>;
 
-!		if (second has weapon)
-!			<<cut self>>;
-
 		if (second ofclass Torch && second has light)
 			<<burn self>>;
 
@@ -218,8 +211,7 @@ Object -> -> CoffinMummy "mummy"
 
 Object -> -> -> sceptre "sceptre"
 	with name "jeweled" "sceptre" "scepter",
-	description "This jewel-studded sceptre is truly made for a
-		king.";
+	description "This jewel-studded sceptre is truly made for a king.";
 
 	
 Object CoffinSlime "puddle of green slime"
@@ -234,6 +226,14 @@ Object CoffinSlime "puddle of green slime"
 			touches it.";
 	Listen:
 		"It makes a faint bubbling sound.";
+	],
+	death [;
+		deadflag = 1;
+		"You try to pass the slime but it engulfs your body,
+		dissolving it in seconds.^
+		^
+		You die instantly. No pain. No nothing.
+		You were slimed.";
 	],
 	has scenery;
 

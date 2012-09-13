@@ -18,14 +18,12 @@ Inside SphinxRoom "Sphinx Room"
 	cant_go "You can only go south or up the stairs.";
 
 
+! Lever pattern is set when player enters the Banquet Hall.
+!
 Object -> SphinxStairs "stairs"
 	with name "stairs" "stair" "stairway" "steps",
 	lever_pattern 1,
 	description [;
-!		if (self hasnt general) {
-!			give self general;
-!			self.lever_pattern = random(4);
-!		}
 		if (self notin SphinxRoom) {
 			"You can see odd markings on the sides, but not
 			very easily from here.";
@@ -154,14 +152,14 @@ Object -> Sphinx "sphinx"
 	Show:
 		if (noun == self.riddle_obj || 
 			(self.riddle_obj == Skull && noun ofclass Skull)) {
-
 			give self general;
 			self.repeat = false;
 			"~You have correctly answered my riddle,
 			warrior.  Thou may now pass.~";
 		}
 	Give:
-		if (noun == self.riddle_obj) {
+		if (noun == self.riddle_obj ||
+			(self.riddle_obj == Skull && noun ofclass Skull)) {
 			give self general;
 			self.repeat = false;
 			"~You have correctly answered my riddle,

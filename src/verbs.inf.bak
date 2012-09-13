@@ -1,0 +1,483 @@
+! Great for bugtesting
+!
+[ CommentSub; ];
+Verb meta '!'
+	*	-> Comment
+	* topic -> Comment;
+
+
+[ TasteSub;
+	"The thought of doing so is revolting.";
+];
+
+
+[ UnchainSub;
+	if (noun)
+		"But ", (the) noun, " isn't chained to anything.";
+	"Unchaining nothing. Brilliant.";
+];
+Verb "unchain"
+	*			-> Unchain
+	* noun			-> Unchain;
+
+
+[ FreeSub;
+	if (noun)
+		"But ", (the) noun, " doesn't seem to need freeing.";
+	"Freeing nothing. Brilliant.";
+];
+Verb "free"
+	*			-> Free
+	* noun			-> Free;
+
+[ UseSub;
+	if (noun)
+		"You'll have to say how you want to use ", (the) noun, ".";
+	"I beg your pardon?";
+];
+Verb 'use'
+	* noun			->	Use
+	* noun 'on' noun	->	Use;
+
+
+[ TalkSub;
+	if (noun == player)
+		"Talking to yourself is said to be a sign of impending
+			mental collapse.";
+
+	if (noun)
+		"Try ~", (object) noun, ", hello~ instead.";
+	"You babble incoherently.";
+];
+Verb 'talk'
+	*			->	Talk
+	* noun			->	Talk
+	* 'with' noun		->	Talk
+	* 'at' noun		->	Talk
+	* 'to' noun		->	Talk;
+
+Verb 'babble' = 'talk';
+
+[ FooSub;
+	"Bar.";
+];
+Verb 'foo'
+	* 	->	Foo;
+
+[ BarSub;
+	"Baz.";
+];
+Verb 'bar'
+	*	->	Bar;
+
+[ BazSub;
+	"Foo.";
+];
+Verb 'baz'
+	*	->	Baz;
+
+
+[ PlaySub;
+	if (noun == nothing)
+		"Aren't you doing that already?";
+
+	print_ret (The) noun, " isn't something you can play.";
+];
+
+
+[ UntieSub;
+	if (noun == nothing)
+		"Untying nothing.  Brilliant.";
+	"But ", (the) noun, " isn't tied to anything.";
+];
+
+
+[ FlipOffSub;
+	"Real adventurers do not use such gestures.";
+];
+
+
+[ FlipSub;
+	if (noun == nothing or player)
+		"Now is not the time for acrobatics.";
+
+	"Flipping ", (the) noun, " doesn't seem to accomplish
+		anything.";
+];
+
+
+[ BurnSub;
+	print_ret "This dangerous act would achieve little.";
+];
+
+
+[ MeltSub;
+	print_ret "You can't melt ", (the) noun, ".";
+];
+
+
+[ LoadSub;
+	print_ret (The) noun, " isn't something that can be loaded.";
+];
+
+
+[ UnloadSub;
+	print_ret (The) noun, " isn't something that can be unloaded.";
+];
+
+
+Global dootflag = 0;
+[ DootSub;
+
+	dootflag = random(9);
+
+	switch (dootflag) {
+	1:
+		"Look!  A doot!";
+	2:
+print "#####    ####    ####    #####   ###^
+#    #  #    #  #    #     #     ###^
+#    #  #    #  #    #     #     ###^
+#    #  #    #  #    #     #      #^
+#    #  #    #  #    #     #^
+#    #  #    #  #    #     #     ###^
+#####    ####    ####      #     ###^";
+	3:
+		"Reading Erma Bombeck again, eh?";
+	4:
+		"Cheating at Scrabble again, eh?";
+	5:
+		"Using infodump to see what's in the dictionary, eh?";
+	6:
+		"Don't you just love these trick verbs that serve
+			absolutely no useful purpose?";
+	7:
+		"Please telephone your mother and say ~doot~.";
+
+	8:
+		"Doot! Doot! Doot! Doot! Doot! Doot! Doot! Doot!";
+
+	9:
+		"Watch out for the wild doot!";
+
+	default:
+		"Unknown doot.";
+	}
+
+];
+Verb 'doot'	* -> Doot;
+
+
+[ HintSub;
+	switch (parent(player)) {
+	Entrance:
+		"The secret thoughts of the skull can be yours!";
+
+	StonePassage:
+		"Look closely at the wall.";
+
+	FourWay, FireRoom, Courtyard, BanquetCorridor, Study,
+	Laboratory:
+		"You feel frustrated as you look around you.  There
+		must be a clue somewhere!";
+
+	PoolCavern:
+		"Some things have more than one use!";
+
+	WaterfallRoom:
+		"It looks like something is behind the waterfall.";
+
+	CoffinRoom:
+		"You can set things on fire with a burning torch.";
+
+	HallCloset:
+		"Try with all your might!";
+
+	EporRoom:
+		"Some things require a second glance.";
+
+	ChasmBridge:
+		"Weapons are not the only way to ~defeat~ an enemy.";
+
+	Library:
+		"As you open the bookcase...";
+
+	Garden, BanquetHall, CircularRoom, SphinxRoom, Observatory,
+	TowerPrison:
+		"Are you getting it?";
+
+	default:
+		"Don't quit now!";
+	}
+];
+Verb 'hint'	* -> Hint;
+
+
+[ TossCoinSub;
+	if (noun notin player) "You need to be holding the coin first.";
+
+	move noun to parent(player);
+	if (location == thedark) "You throw it away into the darkness.";
+	print "You ", (address) verb_word, " the coin, and 
+		it lands...  ";
+	if (random(2) == 1) {
+		last_toss_heads = true;
+		"Heads.";
+	} else {
+		last_toss_heads = false;
+		"Tails.";
+	}
+];
+
+
+[ RideSub;
+	print_ret "You can hardly ride ", (a) noun, ".";
+];
+
+[ KickSub;
+	<<attack noun>>;
+];
+Verb 'kick'
+	* noun -> kick;
+
+[ SlideSub; 
+	<<push noun>>;
+];
+Verb 'slide'
+	* noun -> Slide;
+
+
+[ RollSub;
+	if (noun == nothing or player) {
+		"Rolling about doesn't seem to accomplish anything.";
+	}
+	"Rolling ", (the) noun, " doesn't seem to do anything useful.";
+];
+Verb 'roll'
+	* 		->	Roll
+	* noun 		->	Roll
+	* "up" noun 	->	Roll
+	* noun "up" 	->	Roll;
+
+[ UnrollSub;
+	if (noun == player) {
+		"That doesn't seem possible.";
+	}
+	"It doesn't look like ", (the) noun, " is rolled up.";
+];
+Verb 'unroll'
+	* noun -> Unroll;
+
+! These two need to assume the lit torch being held by the player.
+! Work on that problem later.
+!
+[ SnuffSub;
+	<<SwitchOff noun>>;
+];
+
+[ ExtinguishSub;
+	<<SwitchOff noun>>;
+];
+Verb 'extinguish' * noun -> Extinguish;
+
+
+[ XyzzySub;
+	"^An Implementor suddenly materializes and speaks to you with a
+	tone of boredom and annoyance.^
+	^
+	~Fool!~^
+	^
+	The Implementor vanishes.";
+];
+Verb 'xyzzy'	* -> Xyzzy;
+Verb 'plugh'	* -> Xyzzy;
+
+
+[ WinSub;
+	deadflag = 2;
+	"^An Implementor suddenly materializes and speaks to you with a
+	tone of boredom and annoyance.^
+	^
+	~Well, you have to defeat the Warlock Lord to win.  But, if you
+	insist...~^
+	^
+	The Implementor snaps his fingers and...";
+];
+Verb 'win'	* -> Win;
+
+
+
+! This approach isn't quite what I wanted, but seems to suffice for this
+! game.
+!
+[ WaveAtSub;
+	if (RunRoutines(second,before) ~= 0) {
+		action==##WaveAt;
+		rtrue;
+	}
+	"You look ridiculous waving at ", (the) noun, ".";
+];
+
+[ WaveSub;
+	if (noun == nothing)
+		"You wave, feeling foolish.";
+
+	if (RunRoutines(second,before) ~= 0) {
+		action=##Wave;
+		rtrue;
+	}
+	if (second == nothing) {
+		"You look ridiculous waving ", (the) noun, " around.";
+	} else {
+		"You look ridiculous waving ", (the) noun, " at ",
+		(the) second, ".";
+	}
+];
+
+Extend 'wave' first
+	*			-> Wave
+	* 'at' noun		-> WaveAt
+	* held			-> Wave reverse
+	* held 'at' noun	-> Wave;
+
+[ PointSub;
+	if (noun == nothing)
+		"You point nowhere in particular.";
+
+	if (RunRoutines(second,before) ~= 0) {
+		action=##Point;
+		rtrue;
+	}
+
+	if (second > 1) {
+		"You look ridiculous pointing ", (the) noun, " at ",
+		(the) second, ".";
+	}
+
+	"You look ridiculous pointing at ", (the) noun, ".";
+];
+
+Verb "point"
+	*			-> Point
+	* 'at' noun		-> Point reverse
+	* held 'at' noun	-> Point;
+
+Verb "aim"
+	* held 'at' noun	-> Point;
+
+Verb 'snuff' 
+	* noun		-> Snuff
+	* "out" noun	-> Snuff
+	* noun "out"	-> Snuff;
+
+Verb "ride" "mount" "straddle"
+	* creature		-> Ride
+	* noun			-> Enter;
+
+Verb 'ignite' = 'burn';
+Verb 'toss' = 'throw';
+Verb 'board' = 'enter';
+
+Verb 'flip'
+	* is_coin		-> TossCoin
+	*			-> Flip
+	* noun			-> Flip
+	* "off"			-> FlipOff
+	* "off"	noun		-> FlipOff;
+
+Extend 'throw' first
+	* is_coin		-> TossCoin;
+
+Extend 'toss' first
+	* is_coin		-> TossCoin;
+
+!Extend 'toss' last
+!	* noun 'at' noun	-> TossAt
+!	* noun 'to' noun	-> TossAt;
+
+Extend 'hit' last
+	* noun 'with' held 	-> Attack;
+
+!Extend 'shit' last
+!	* 'on' noun		-> Attack;
+
+!Extend only 'look' last
+
+Extend 'look'
+	* 'behind' noun 	-> Search;
+
+!Extend only 'look' last
+
+Verb "load"
+	* held 'with' held	-> Load;
+
+Verb "unload"
+	* held			-> Unload;
+
+Verb "twirl" "whirl" "spin"
+	* noun			-> Swing;
+
+Verb "melt"
+	* noun			-> Melt
+	* noun 'with' held	-> Melt;
+
+Verb "untie"
+	*			-> Untie
+	* noun			-> Untie;
+
+Extend "tie" last
+	* noun 'around' noun	-> Tie;
+
+
+! For whatever reason, I can't catch this action in the before() or
+! after() routines like I can with other versb.
+!
+[ PutOnRugSub;
+	if (second hasnt is_rug)
+		"Error in PutOnRugSub()";
+	give noun on_rug;
+	move noun to second;
+	"You put ", (the) noun, " on ", (the) second, ".";
+];
+
+Extend "put" first
+	* noun 'on' is_rug	-> PutOnRug;
+
+[ PutUnderRugSub;
+	if (second hasnt is_rug)
+		"Error in PutUnderRugSub()";
+	if (second hasnt general) {
+		give noun concealed;
+		move noun to second;
+		"You put ", (the) noun, " under ", (the) second, ".";
+	}
+	"That's difficult to do while the rug is rolled up.";
+];
+
+Extend "put" first
+	* noun 'under' is_rug	-> PutUnderRug;
+
+Extend "put" last
+	* noun 'in' noun	-> Drop;
+
+Verb "play"
+	*			-> Play
+	* held			-> Play;
+
+Extend "burn" replace
+	* noun 'with' held	-> Burn;
+
+Extend "notify" replace
+	*			-> Score
+	* 'on'			-> Score
+	* 'off'			-> Score;
+
+Extend 'examine' first
+	* multi			-> Examine;
+
+Extend 'drop' first
+	* held			-> Drop;
+
+Extend 'give' first
+	* multiheld 'to' animate	-> Give;
+

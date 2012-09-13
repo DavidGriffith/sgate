@@ -113,7 +113,6 @@ Object -> Pool "pool"
 			give self general;
 			give CrystalSphere general;
 !			move CrystalSphere to self;
-
 			" and notice the ripples disappear as
 			the water turns to ice.";
 		}
@@ -121,6 +120,7 @@ Object -> Pool "pool"
 		if (noun ofclass Torch) {
 			remove noun;
 			newthing = DeadTorch.create();
+			give newthing moved;
 			move newthing to self;
 		}
 

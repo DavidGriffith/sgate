@@ -38,7 +38,6 @@ Rug -> BanquetRug "rug"
 	with description [;
 		if (self hasnt general) {
 			print "It's a beautifully woven rug.";
-
 			if (child(self)) 
 				" It seems that something is underneath.";
 			"";

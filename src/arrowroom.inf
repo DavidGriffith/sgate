@@ -7,18 +7,18 @@ Inside ArrowRoom "Arrow Room"
 	with name "room",
 	description [;
 		print "Cold air rushes into this narrow chamber from an 
-		opening some ten feet above the floor on the north wall.";
+		opening some ten feet above the floor on the north wall. ";
 
 		if (BrokenLedge in self) {
-			print "  A broken stone ledge lies in pieces on 
+			print "A broken stone ledge lies in pieces on 
 			the floor directly beneath the opening.";
 		} else {
-			print "  A ledge projects from below the 
+			print "A ledge projects from below the 
 			opening and is just low enough for you to reach.";
 		}
 
 		if (SilverArrow in self && SilverArrow hasnt moved) {
-			"  Attached to the wall, directly below the 
+			" Attached to the wall, directly below the 
 			opening is a silver arrow pointing west.";
 		} else {
 			"";

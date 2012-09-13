@@ -2,9 +2,9 @@ Inside RiverStyx "River Styx"
 	with name "river",
 !	description "You stand above a beach, looking down upon a
 !		river.",
-	description "You're standing on the bank of the River Styx.
-		Its still waters support no life.  You can go back up
-		the well, if you wish.",
+	description "You're standing on the south bank of the River
+		Styx. Its still waters support no life. You can go
+		back up the well, if you wish.",
 	u_to WellRoom,
 	cant_go [;
 		print "It looks like you can only go up";
@@ -16,7 +16,7 @@ Inside RiverStyx "River Styx"
 
 Object -> Gong "gong"
 	with name "gong",
-	description "It's a great gold gong.  Its beauty is enhanced by
+	description "It's a great gold gong. Its beauty is enhanced by
 		the intricate stand that supports it.",
 	before [;
 	Take:
@@ -31,7 +31,7 @@ Object -> Gong "gong"
 				before your eyes.^
 				^
 				The ghostly ferryman doesn't look
-				friendly.  You hear a faint voice ask
+				friendly. You hear a faint voice ask
 				for a fare.";
 			Sword, Hammer:
 				"The gong makes a faint ringing sound.";
@@ -60,8 +60,25 @@ Object -> Mallet "mallet"
 		centaur hide.";
 
 Object -> River "river"
-	with name "river" "styx",
+	with name "river" "styx" "water",
 	description "The river's water is dead calm.",
+	before [;
+	Search:
+		"You see nothing but dark and still water.";
+	Smell:
+		"It smells faintly of death.";
+	Touch:
+		"Its coldness doesn't seem natural.";
+	Take, Transfer:
+		"That's probably not a good idea.";
+
+	Enter:
+		"That's not a very good idea.";
+	Receive:
+		remove noun;
+		"You throw ", (the) noun, " into the river,
+		never to be seen again.";	
+	],
 	has scenery;
 
 
@@ -82,11 +99,18 @@ Object Raft "raft"
 	],
 	has static supporter enterable;
 
+
 Object -> Spectre "spectral ferryman"
 	with name "spectre" "specter" "spectral" "ferryman"
 		"ferry" "charon" "man" "skeleton",
 	description "The spectral ferryman is wrapped in tattered rags.
 		You can see a skeleton within the cloak.",
+	before [;
+	Smell:
+		"He smells faintly of death.";
+	Touch:
+		"That's probably not a good idea.";
+	],
 	life [;
 	Show:
 		if (noun ofclass GoldCoin) {
