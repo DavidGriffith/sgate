@@ -24,13 +24,6 @@
 		return retval;
 	}
 
-!	if (action_to_be == ##LetGo) {
-!		retval = 1;
-!		if (obj in player) retval++;
-!		if (obj notin player) retval--;
-!		return retval;
-!	}
-
 	! Prefer to take a non-held object
 	!
 	if (action_to_be == ##Take) {
@@ -48,8 +41,6 @@
 		if (obj in player) retval++;
 
 		if (parameters == 0) {	! obj is noun
-!			if (obj has good) retval++;
-!			if (obj provides status && obj.status == "unlit")
 			if (obj ofclass UnlitTorch)
 				retval++;
 		} else {		! obj is second

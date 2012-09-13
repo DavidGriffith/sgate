@@ -34,6 +34,7 @@ Object -> BalconyWall "wall"
 
 Stone -> ->;
 
+
 Object -> RodHole "hole"
 	with name "hole" "mount" "corner",
 	describe [;
@@ -87,6 +88,7 @@ Object SkelHand "skeletal hand"
 	],
 	capacity 0,
 	has static container open;
+
 
 Object -> Wand "wand"
 	with name "wand",

@@ -206,9 +206,6 @@ Object Troll "troll"
 	],
 	life [;
 	Show:
-!		if (self.angry)
-!			"~I have nothing to say to you.~";
-
 		if (noun ofclass CopperCoin)
 			"~I said gold, not copper, you idiot!~";
 
@@ -228,9 +225,6 @@ Object Troll "troll"
 			"The troll laughs at you.";
 
 	Give:
-!		if (self.angry)
-!			rfalse;
-
 		if (noun ofclass CopperCoin) {
 			if (self.copper_count == 0 && self.bridge_toll < 2) {
 				self.copper_count++;
@@ -337,9 +331,6 @@ Object Troll "troll"
 		}
 	],
 	orders [;
-!		if (self.angry)
-!			"~Shut up!~";
-
 		print "The troll peers down his nose at you";
 		if (verb_word == 'fuck' or 'blow' or 'suck')
 			print " and makes an obscene gesture";

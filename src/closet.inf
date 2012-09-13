@@ -5,10 +5,11 @@ Inside HallCloset "Hall Closet"
 	w_to HallClosetDoor,
 	cant_go "The only exit seems to be west.";
 
+
 Object -> Sword "sword"
 	with name "sword" "broadsword" "weapon" "weapons",
 	description
-		"It's a double-edged broadsword.  The handle has
+		"It's a double-edged broadsword.  The hilt has
 		Druidic script written upon it.",
 	before [;
 	Examine:
@@ -16,6 +17,7 @@ Object -> Sword "sword"
 			<<examine SwordScript>>;
 	],
 	has transparent;
+
 
 Object -> -> SwordScript "druidic script"
 	with name "druidic" "script",

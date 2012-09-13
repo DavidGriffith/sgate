@@ -4,9 +4,8 @@ Inside CoffinRoom "Coffin Room"
 		print "This long, cold hallway is lined on either side
 		by five coffins propped against the walls.  Exits lie to
 		the west and east.";
-		if (CoffinSlime in self) {
+		if (CoffinSlime in self)
 			"  A puddle of green slime blocks the east exit.";
-		}
 		"";
 	],
 	before [;
@@ -66,6 +65,7 @@ Object -> MarbleCoffin "marble coffin"
 		You're all right, but it is very hard to hear.";
 	],
 	has scenery container openable;
+
 
 ! Slime
 !

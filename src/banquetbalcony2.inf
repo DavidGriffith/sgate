@@ -4,7 +4,6 @@ Inside BanquetBalcony2 "West End of Balcony"
 		print "This is the extreme west end of the balcony
 		overlooking the banquet hall.  It ends at a large
 		wooden door leading north.";
-
 		if (Mirror in self && Mirror hasnt moved)
 			"  A smallish mirror hangs on the wall here.";
 		"";
@@ -13,6 +12,7 @@ Inside BanquetBalcony2 "West End of Balcony"
 	n_to HellhoundDoor,
 	cant_go "You can only go east or through the door to the
 		north.";
+
 
 Object -> Mirror "mirror"
 	with name "hall" "mirror",
@@ -23,13 +23,14 @@ Object -> Mirror "mirror"
 		"In the mirror you see a handsome warrior.";
 	],
 	after [;
-	Take:
+	Take, Transfer:
 		give self ~concealed;
 	],
 	has concealed;
 
+
 ObligingDoor -> HellhoundDoor "door"
-	with name "door",
+	with name "solid" "oak" "door",
 	description "This door seems to be made of solid oak.",
 	door_to [;
 		if (self in BanquetBalcony2)

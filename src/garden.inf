@@ -35,7 +35,7 @@ Object -> Leaves "leaves"
 	with name "leaf" "leaves",
 	description "The leaves are almost the same hue as real gold.",
 	before [;
-	Take:
+	Take, Transfer:
 		"Leave the leaves alone.";
 	],
 	has scenery;
@@ -100,14 +100,6 @@ Object TreeNiche "niche in the tree"
 	],
 	capacity 1,
 	has static container open;
-
-
-!Clothes -> SapphireRing "sapphire ring"
-!	with name "sapphire" "ring",
-!	description "It's a ring set with a large, black sapphire.",
-!	area 5
-!	level 0,
-!	has is_tiny;
 
 Object -> SapphireRing "sapphire ring"
 	with name "sapphire" "ring",

@@ -23,18 +23,18 @@ Inside BanquetBalcony1 "Banquet Hall Balcony"
 		along the balcony, or east to go back downstairs.";
 
 
-Object -> Crest "crest"
-	with name "crest",
+Object -> Crest "family crest"
+	with name "family" "crest",
 	description "It's the family crest of Sir Dugan himself.",
 	after [;
-	Take:
+	Take, Transfer:
 		give self ~concealed;
 	],
 	has concealed;
 	
 
 ObligingDoor -> SphinxDoor "door"
-	with name "door",
+	with name "heavy" "wooden" "door",
 	description "It's a heavy wooden door with iron hinges.",
 	door_to [;
 		if (self in BanquetBalcony1)

@@ -161,6 +161,9 @@ Class Torch
 		<<SwitchOn self>>;
 
 	SwitchOff:
+		if (verb_word == 'turn' or 'switch')
+			"Perhaps snuffing the torch would be more useful.";
+
 		if (self ofclass UnlitTorch or DeadTorch)
 			"But it's not burning.";
 
@@ -178,6 +181,9 @@ Class Torch
 		if (self hasnt moved)
 			"You pull ", (the) noun, " off the wall.";
 	SwitchOn: 
+		if (second == nothing)
+			"Perhaps lighting the torch with something
+			would be more useful.";
 
 		if (self ofclass UnlitTorch) {
 			newthing = BurningTorch.create();
@@ -196,15 +202,16 @@ Class Torch
 			"But it's already burning.";
 
 		if (self ofclass DeadTorch) {
-			print "The dead torch sputters a bit, but
+			give self ~on;
+			"The dead torch sputters a bit, but
 				refuses to light.";
-			<<SwitchOff self>>;
 		}
 		"error in Torch class (SwitchOn)^";
 	],
 	has switchable float;
 
-Class UnlitTorch (18)
+!Class UnlitTorch (18)
+Class UnlitTorch
 	class Torch
 	with name "unlit" "good" "torch",
 	short_name "unlit torch",

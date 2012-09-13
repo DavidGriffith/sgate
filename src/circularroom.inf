@@ -60,6 +60,7 @@ Object -> PlatinumHorn "platinum horn"
 		"Toot toot!";
 	];
 
+
 Object Hellhound "hellhound"
 	with name "dog" "hound" "hellhound" "beast",
 	description "The hellhound makes this hot room even hotter.",

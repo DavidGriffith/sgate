@@ -1,11 +1,11 @@
 INFORM = inform
 SLAG = slag
 
-DEBUG = "-~S"
+DEBUG = -~S
 
-GLULX = "-~G"
+GLULX = -~G
 
-VERSION = r3
+VERSION = r4
 
 BINNAME = sgate
 EXTENSION = .z5
@@ -19,6 +19,9 @@ $(BINNAME):
 
 nodebug:
 	cd src ; $(INFORM) $(SWITCHES) $(DEBUG) $(BINNAME).inf ../$(BINNAME)$(EXTENSION)
+
+abbrev:
+	cd src ; $(INFORM) $(SWITCHES) $(DEBUG) -u $(BINNAME).inf ../$(BINNAME)$(EXTENSION)
 
 #glulx:
 #	$(INFORM) $(GLULX) src/$(BINNAME).inf $(BINNAME).ulx

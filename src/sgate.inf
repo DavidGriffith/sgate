@@ -6,23 +6,22 @@
 !Switches xv5sd2;
 Switches d2;
 
+Constant DIALECT_US;
+
 !Constant DEBUG;
 
 !Release 1;
 !Release 2;
-Release 3;
+!Release 3;
+Release 4;
 
 !Serial "020417";
-Serial "030821";
+!Serial "030821";
+Serial "030826";
 
 Constant Story "SHADOWGATE";
-!Reimplemented in Inform by David Griffith in 2002.
-! "^Inform reimplementation by David Griffith.
 
 Constant Headline
-!	"^Copyright (c) 1989 by Icom.^";
-!~Shadowgate~ is copyright and trademark of Infinite Ventures, Inc.^
-
 "^An unauthorized adaptation by David Griffith.^
 (Type ~about~ for more information. For a hint, type ~hint~.)^";
 
@@ -45,9 +44,9 @@ replace WaveSub;
 replace NotifySub;
 replace TasteSub;
 
-Include "Parser";
+Include "abbreviations.inf";
 
-!Include "clothing";
+Include "Parser";
 
 [ ScoreSub;
 	if (deadflag == 0)
@@ -99,9 +98,7 @@ The first story's end.^";
 ];
 
 
-
-
-! Fix a stupid problem.
+! Fixes a stupid problem.
 !#ifndef DEBUG;
 !Global debug_flag;
 !#endif;
@@ -126,10 +123,6 @@ Include "rooms.inf";
 Include "statusline1.inf";	! Displays just the room name.
 !Include "statusline2.inf";	! Displays the room name and move count.
 
-!Include "center.h";
-!Include "altmenu.h";
-!Include "domenu.h";
-
 
 [ DarkToDark;
 	deadflag = 1;
@@ -146,6 +139,7 @@ Include "statusline1.inf";	! Displays just the room name.
 		"deadflag 3. You should not see this.";
 	}
 ];
+
 
 [ Initialise dummy;
 

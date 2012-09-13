@@ -124,6 +124,20 @@ Object -> OuterDoor "wooden door"
 			print " (currently open)";
 		".";
 	],
+	react_before [;
+	Go:
+		if (noun.door_dir() == self.door_dir())
+			return self.open_by_myself();
+
+		if (noun.door_dir() == in_to && player in Entrance)
+			return self.open_by_myself();
+
+		if (noun.door_dir() == out_to && player in Hall)
+			return self.open_by_myself();
+	Enter:
+		if (noun == self) 
+			return self.open_by_myself();
+	],
 	door_to [;
 		if (self in Entrance) {
 			return Hall;

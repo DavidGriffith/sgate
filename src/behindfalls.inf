@@ -14,33 +14,34 @@ Inside BehindFalls "Behind the falls"
 	w_to WaterfallRoom,
 	cant_go "The only exit seems to be west.";
 
+
 Object -> fallsgravel "wet gravel"
 	with name "wet" "gravel" "pebbles" "pebble",
 	description "These pea-sized pebbles have been smoothed and
 		rounded by centuries of being churned by the
 		waterfall.",
 	before [;
-	Take:
+	Take, Transfer:
 		"The gravel is too slippery to get a decent handful.";
 	],
 	has scenery;
 
+
 Object -> FallRock "small boulder"
 	with name "small" "rock" "boulder" "stone",
 	description [;
-		if (FallsNiche in BehindFalls) {
+		if (FallsNiche in BehindFalls)
 			"It seems to sit loosely in the wall.";
-		} else {
+		else
 			"It sits right beneath the niche in the wall.";
-		}
 	],
 	before [;
 	Slide, Push, Pull:
 		"It rocks back and forth a bit.";
 	Attack:
-		if (verb_word == 'kill') {
+		if (verb_word == 'kill')
 			"It's not alive.";
-		}
+
 		move FallsNiche to BehindFalls;
 		"You hit the rock as hard as you can.  The loose rock 
 		falls down as if hinged to the wall.  In the niche, you
@@ -66,12 +67,12 @@ Object FallsNiche "niche"
 	],
 	before [;
 	Receive:
-		if (noun hasnt is_tiny) {
+		if (noun hasnt is_tiny)
 			"It won't fit.";
-		}
 	],
 	capacity 1,
 	has static container open;
+
 
 Object -> GemPouch "leather pouch"
 	with name "leather" "pouch",
