@@ -15,21 +15,21 @@ Inside MirrorRoom "Mirror Room"
 			print "  A puddle of green slime blocks the
 			west exit.";
 		} else {
-			print "  An exit lies to the west.";
+			print " An exit lies to the west.";
 		}
 
-		print "  In the floor is a hole";
+		print " In the floor is a hole";
 
 		if (rope has general) {
 			print " from which a rope about as
-			thick as your wrist is sticking out.";
+			thick as your wrist is sticking out";
 		}
+		print ".";
 
 		if (Broom hasnt moved) {
-			"  A broom is propped up against the wall.";
+			" A broom is propped up against the wall.";
 		}
 
-		".";
 	],
 	d_to MirrorHole,
 	w_to [;
@@ -53,6 +53,12 @@ Inside MirrorRoom "Mirror Room"
 			return MirrorDoor;
 		}
 		rfalse;
+	],
+	cant_go [;
+		print "You can only go west";
+		if (MirrorDoor in self)
+			print ", north, ";
+		" or down the hole.";
 	];
 
 
@@ -66,15 +72,16 @@ Object -> Broom "broom"
 	before [;
 	Enter:
 		"You mount the broom and try to take to the air.
-		Unfortunately, this isn't a magic broom, so you
-		dismount.";
+		Unfortunately, this isn't a magic broom, so you instead 
+		gallop around a bit with it. You dismount, feeling
+		rather foolish.";
 	],
 	has float;
 
 
 Object -> MirrorHole "hole"
 	with name "hole",
-	description "It is very dark",
+	description "It is very dark.",
 	door_to [;
 		if (rope has general) {
 			return EporRoom;
@@ -108,6 +115,8 @@ Object -> Mirrors "mirrors"
 	before [;
 	Attack, ThrownAt:
 		"All of them?";
+	Search:
+		"In all three mirrors you can see a warrior.";
 	],
 	has scenery;
 
@@ -127,6 +136,8 @@ Object -> LeftMirror "left mirror"
 			slumps to the floor.";
 		}
 		"The mirror doesn't break.";
+	Search:
+		"A familliar face looks back at you.";
 	],
 	has scenery;
 
@@ -148,6 +159,8 @@ Object -> RightMirror "right mirror"
 			The Grim Reaper quickly embraces you!";
 		}
 		"The mirror doesn't break.";
+	Search:
+		"A familliar face looks back at you.";
 	],
 	has scenery;
 
@@ -173,6 +186,10 @@ Object -> MiddleMirror "middle mirror"
 			the mirror revealing an iron door!";
 		}
 		"The mirror doesn't break.";
+	Search:
+		if (self hasnt general)
+			"A familliar face looks back at you.";
+		"Familiar faces look back at you from the shards on the floor.";
 	],
 	has scenery;
 

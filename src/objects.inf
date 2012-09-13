@@ -1,76 +1,22 @@
-Attribute is_key;
+
+! Err, using attributes like this isn't really the best way to do
+! things.
+!
 Attribute is_tiny;
 Attribute is_coin;
-Attribute is_torch;
-Attribute good;
-Attribute bad;
-Attribute weapon;
 Attribute liquid;
 Attribute nonmagic;
 Attribute float;
-Attribute ignition;
+Attribute is_rug;	! necessary because of verb stuff
+Attribute on_rug;
 
+Include "chooseobjects.inf";
 
-
-! See _The Inform Designer's Manual, Fourth Edition_, pages 239 and 431.
-!
-[ ChooseObjects obj code retval;
-	if (code < 2) { 
-		if (obj has scenery) return 2; 
-		if (obj has static) return 2;
-		rfalse;
-	}
-
-	if (action_to_be == ##Eat && obj has edible) {
-		 return 3;
-	}
-
-	! Prefer to take a non-held object
-	!
-	if (action_to_be == ##Take) {
-		retval = 1;
-		if (obj notin player) retval++;
-		return retval;
-	}
-
-	! Prefer to light a held torch.
-	!
-	if (action_to_be == ##Burn && obj has is_torch) {
-		retval = 1;
-		if (obj hasnt on) retval++;
-		if (obj has good) retval++;
-		if (obj in player) retval++;
-		return retval;
-	}
-
-	! Prefer to snuff a burning torch that's being held.
-	!
-	if (action_to_be == ##SwitchOff or 
-			##Snuff or ##Extinguish && obj has is_torch) {
-		retval = 1;
-		if (obj has on) retval++;
-		if (obj in player) retval++;
-		return retval;
-	}
-
-!	if (obj == PoolIce)
-!		return 5;
-
-	if (obj == Pool)
-		return 2;
-
-	! In the firey room, we need to make sure the player can examine
-	! the flames when the fire drake is present.
-	!
-	if (obj == FireDrake)
-		return 1;
-	if (obj == RoomFire)
-		return 3;
-
-	if (obj hasnt scenery) return 2;
-	if (obj hasnt static) return 2;
-	return 1;
-];
+Object Moon "moon"   
+	with name "moon",
+	description "It's full and bright.",
+	found_in Courtyard Entrance Study TowerPrison,
+	has scenery;
 
 ! From exercise 3 in the Inform Designers Manual 4th ed.
 !
@@ -113,12 +59,6 @@ Class ObligingDoor
 ! drag.  Torch creation and removal is also rather clunky.
 !
 
-! Since it looks like there's a chance that something will fall through
-! the cracks...
-!
-[ abnormal_torch;
-	print "--- Unexpected attribute on torch.  Check objects.inf.^";
-];
 
 ! Since you're dead if your torch goes out, checking to make sure we
 ! have one in hand before allowing one to be lit is superfluous.
@@ -130,20 +70,6 @@ Class ObligingDoor
 Class Torch
 	with name "torch",
 	power,
-	short_name [;
-		if (self has good) print "unlit";
-		if (self has bad) print "dead";
-		if (self has on) print "burning";
-		print " torch";
-		rtrue;
-	],
-	plural [;
-		if (self has good) print "unlit";
-		if (self has bad) print "dead";
-		if (self has on) print "burning";
-		print " torches";
-		rtrue;
-	],
 	parse_name [ i j w;
 		if (parser_action == ##TheSame) {
 			if ((parser_one.&name)-->0 == (parser_two.&name)-->0) {
@@ -158,15 +84,22 @@ Class Torch
 			else if (j~='torch' or w) return i;
 		}
 	],
-	daemon [ t newthing; 
+	daemon [ t newthing i;
 		t = --(self.power);
 		if (t == 0) {
-			give self ~on ~light ~good bad;
+			give self ~on ~light;
 			newthing = DeadTorch.create();
 			move newthing to parent(self);
 			remove self;
 		}
 		if (self in player || self in location) {
+			objectloop (i in player) {
+				if (i ofclass BurningTorch) {
+					if (i.power > TORCH_DECLINE) {
+						rtrue;
+					}
+				}
+			}
 			if (t == TORCH_DECLINE + 1) {
 				"^Your torch is beginning to flicker.";
 			}
@@ -183,57 +116,74 @@ Class Torch
 	],
 	before [newthing;
 	Smell:
-		print "Smells like ";
-		if (self has good) print "oil and dirt";
-		if (self has bad) print "oily soot";
-		if (self has on) print "burning oil and dirt";
-		".";
+		print "It smells like ";
+
+		if (self ofclass UnlitTorch)
+			"oil and dirt.";
+
+		if (self ofclass BurningTorch)
+			"burning oil and dirt.";
+
+		if (self ofclass DeadTorch)
+			"oily soot.";
+
+		"Error in Torch class (Smell)^";
+
 	Examine:
-		if (self has good) { 
-			"It's a torch.  An oil-soaked rag is wrapped
-			around it.";
-		}
-		if (self has bad) "It's a burned out and useless torch.";
-		if (self has on) {
+		if (self ofclass UnlitTorch)
+			"It's a torch. An oil-soaked rag is wrapped around it.";
+
+		if (self ofclass DeadTorch)
+			"It's a burned out and useless torch.";
+
+		if (self ofclass BurningTorch) {
 			print "The torch throws ";
 			if (self.power < TORCH_DECLINE) {
 				print "feeble";
 			} else {
 				print "dancing";
 			}
-			" shadows about the room.";
+			print " shadows about the ";
+
+			if (parent(player) ofclass Outside)
+				"ground.";
+			"room.";
 		}
-		abnormal_torch();
+		"error in Torch class (Examine)^";
+
 	Burn:
 		if (second ~= nothing) {
-			if (second hasnt ignition) 
+			if (second hasnt on) 
 				"You can't burn ", (the) self, " with ", (the)
 				second, ".";
 		}
 		if (self has on) "But it's already lit!";
 		<<SwitchOn self>>;
+
 	SwitchOff:
-		if (self has good)	"But it's not burning.";
-		if (self has bad)	"";
-		if (self has on or light) {
-			give self ~good ~light bad;
+		if (self ofclass UnlitTorch or DeadTorch)
+			"But it's not burning.";
+
+		if (self ofclass BurningTorch) {
 			newthing = DeadTorch.create();
 			move newthing to parent(self);
 			remove self;
 			"You snuff out the torch.";
-		}
-		abnormal_torch();
+		}	
+
+		"error in Torch class (SwitchOff)^";
 	],
 	after [newthing;
 	Take:
 		if (self hasnt moved)
 			"You pull ", (the) noun, " off the wall.";
 	SwitchOn: 
-		if (self has good) {
-			give self ~good on light;
+
+		if (self ofclass UnlitTorch) {
 			newthing = BurningTorch.create();
 			if (newthing == nothing) {
-				"Can't light the torch.";
+				"Programming error!
+				Can't light the torch.";
 			}
 			move newthing to parent(self);
 			newthing.power = TORCH_LIFE + random(TORCH_VARIANCE);
@@ -241,35 +191,37 @@ Class Torch
 			StartDaemon(newthing);
 			"The torch burns brightly.";
 		}
-		if (self has bad) {
-			print "The dead torch sputters a bit but
-			refuses to light.";
+
+		if (self ofclass BurningTorch)
+			"But it's already burning.";
+
+		if (self ofclass DeadTorch) {
+			print "The dead torch sputters a bit, but
+				refuses to light.";
 			<<SwitchOff self>>;
 		}
-		abnormal_torch();
+		"error in Torch class (SwitchOn)^";
 	],
-	has switchable is_torch float;
+	has switchable float;
 
-Class UnlitTorch (20)
+Class UnlitTorch (18)
 	class Torch
 	with name "unlit" "good" "torch",
 	short_name "unlit torch",
-	plural "unlit torches",
-	has good;
+	plural "unlit torches";
 
-Class BurningTorch (20)
+Class BurningTorch (18)
 	class Torch
 	with name "burning" "torch",
 	short_name "burning torch",
 	plural "burning torches",
-	has on light ignition;
+	has on light;
 
-Class DeadTorch (20)
+Class DeadTorch (18)
 	class Torch
 	with name "dead" "bad" "torch",
 	short_name "dead torch",
-	plural "dead torches",
-	has bad;
+	plural "dead torches";
 
 Class Stone
 	with name "small" "stone" "rock",
@@ -287,8 +239,7 @@ Class Stone
 			if (j == 'stones') parser_action=##PluralFound;
 			else if (j~='stone' or w) return i;
 		}
-	],
-	has weapon;
+	];
 
 
 Class Bottle
@@ -381,7 +332,8 @@ Class Coin
 	parse_name
 	[ i j w;
 		if (parser_action == ##TheSame) {
-			if ((parser_one.&name)-->0 == (parser_two.&name)-->0) return -1;
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0)
+				return -1;
 			return -2;
 		}
 		w = (self.&name)-->0;
@@ -421,14 +373,13 @@ Class Key
 			if (j == 'keys') parser_action=##PluralFound;
 			else if (j~='key' or w) return i;
 		}
-	],
-	has is_key;
+	];
 
 Class Burnable
 	with name "burnable",
 	before [;
 	Burn:
-		if (second hasnt ignition)
+		if (second hasnt on)
 			"You can't burn ", (the) self, " with ", (the)
 			second, ".";
 		remove self;
@@ -452,8 +403,8 @@ Class Book
 		}
 	];
 
-! It would be nice if the player could put objects under the rug.
-! Stuff hidden under the rug must be given concealed.
+
+! Putting stuff on and under the rug is handled in verbs.inf
 !
 Class Rug
 	with name "rug" "carpet",
@@ -463,63 +414,116 @@ Class Rug
 		else
 			"It's a rolled up rug.";
 	],
+	describe [ i thing_on_rug;
+		if (self hasnt general)
+			print "^A beautifully woven";
+		else
+			print "^A rolled up";
+		print " rug is in the middle of the room.^";
+
+		thing_on_rug = false;
+		objectloop (i in self) {
+			if (i has on_rug)
+				thing_on_rug = true;
+		}
+		if (thing_on_rug) {
+			print "^On the rug you see:^";
+			objectloop (i in self) {
+				if (i has on_rug)
+					print " ", (a) i;
+			}
+			"";
+		}
+		rtrue;
+	],
 	before [;
 	Enter:
 		"You walk around on the rug a bit.";
-	Burn:
-		if (player in self)
-			print "(First getting off the rug).^";
 
+	Receive:
+		if (self hasnt general) {
+			move noun to self;
+			give noun concealed;
+			"You put ", (the) noun, " under ", (the) self, ".";
+		}
+		"That's difficult to do while the rug is rolled up.";
+
+	Burn:
 		if (second ~= nothing) {
-			if (second hasnt ignition)
-				"You can't burn ", (the) self, 
+			if (second hasnt on) {
+				"You can't burn ", (the) self,
 				" with ", (the) second, ".";
+			}
+		} else {
+			"You can't burn ", (the) self, " without
+				something that burns.";
 		}
 		print "The rug quickly catches fire and burns away.";
-		if (child(self)) {
-			print "^^Ah!  It looks as if ", 
-			(a) child(self), " was hidden
-			underneath ",
-			(the) self, ".  Fortunately ", (the)
-			child(self), " wasn't damaged by the fire.";
-			give child(self) ~concealed;
-			move child(self) to parent(self);
-		}
+		self.reveal_contents();
 		remove self;
-		"";
+		rtrue;
+
 	Transfer, Take:
 		print "The rug is far too heavy and cumbersome for one
 		person to carry";
 		if (self has general)
 			print ", even when rolled up";
 		".";
-	Roll:
-		if (player in self)
-			"That's hard to do when you're standing on the rug.";
 
+	Search, LookUnder, Roll:
 		if (self hasnt general) {
 			print "You roll up the rug.";
-			if (child(self)) {
-				print "^^Ah!  It looks as if ", 
-				(a) child(self), " was hidden
-				underneath ",
-				(the) self, ".";
-				move child(self) to parent(self);
-			}
+			self.reveal_contents();
 			give self general;
-			"";
+			rtrue;
 		}
 		"It's already rolled up.";
+
 	Open, Unroll:
-		if (player in self)
-			"That's hard to do when you're standing on the rug.";
 		if (self has general) {
 			give self ~general;
 			"You unroll the rug.";
 		}
 		"It's already unrolled.";
 	],
-	has scenery supporter enterable;
+	reveal_contents [objcount i;
+		objcount = 0;
+		objectloop (i in self) {
+			if (i hasnt on_rug)
+				objcount++;
+		}
+
+		switch (objcount) {
+		0:
+			" You find nothing underneath.";
+		1:
+			print ".^^Ah! It looks like ";
+			objectloop (i in self) {
+				if (i hasnt on_rug) {
+					print (a) i, " was hidden
+					underneath ", (the) self, ".^";
+				}
+			}
+		default:
+			print ".^^Ah! It looks like there were^";
+			objectloop (i in self) {
+
+				if (i hasnt on_rug) {
+					give i ~concealed;
+					print " ", (a) i, "^";
+				}
+			}
+			print "hidden underneath ", (the) self, ".^";
+		}
+
+		! When the rug is rolled up, stuff on top falls off.
+		!
+		while (child(self)) {
+			give child(self) ~concealed;
+			move child(self) to parent(self);
+		}
+	],	
+	has is_rug static container enterable;
 
 
 Class ShinyBottle
@@ -664,3 +668,21 @@ Class Lever
 		"But it's already been pushed up.";
 	],
 	has static;
+
+
+Class Skull
+	with name "skull",
+	parse_name
+	[ i j w;
+		if (parser_action == ##TheSame) {
+			if ((parser_one.&name)-->0 == (parser_two.&name)-->0) return -1;
+			return -2;
+		}
+		w = (self.&name)-->0;
+		for (::i++) {
+			j = NextWord();
+			if (j == 'skulls') parser_action=##PluralFound;
+			else if (j~='skull' or w) return i;
+		}
+	],
+	has float;

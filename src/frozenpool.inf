@@ -3,8 +3,8 @@ Inside FrozenPool "Frozen pool"
 	description "The pool has become a solid sheet of ice.  It's a 
 		bit difficult to walk here.  The shore is to the
 		north.",
-
-	n_to PoolCavern;
+	n_to PoolCavern,
+	cant_go "There's nowhere else to go but north.";
 
 Object -> Ice "ice"
 	with name "ice",
@@ -14,15 +14,17 @@ Object -> Ice "ice"
 Object -> IceShore "shore"
 	with name "shore" "beach",
 	description "A coarse, sandy beach.",
+	found_in FrozenPool PoolCavern,
 	has scenery;
 
 Object -> IceSpike "spike"
 	with name "spike",
 	description "It's a rocky spike sticking out of the ice.  A
 		lime-covered skeleton is perched upon it.",
-	has scenery;
+	capacity 1,
+	has supporter scenery;
 
-Object -> LimeSkeleton "skeleton"
+Object -> -> LimeSkeleton "skeleton"
 	with name "lime-covered" "lime" "covered" "skeleton",
 	describe [;
 		if (parent(self) hasnt general) {
@@ -41,6 +43,8 @@ Object -> LimeSkeleton "skeleton"
 	before [;
 	Take, Transfer, Push, Pull, Slide:
 		"Leave him to rest in peace.";
+	LetGo:
+		remove PoolKey;
 	],
 	has supporter static;
 

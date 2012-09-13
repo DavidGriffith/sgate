@@ -9,13 +9,26 @@ Inside ThroneRoom "Throne Room"
 			floor revealing a hidden passageway in the floor.";
 		"";
 	],
+	before [;
+	Smell:
+		if (noun == nothing)
+			"The occupant of the throne has been dead long
+			enough for all the smell of rot to go away.";
+	],
 	d_to [;
 		if (Throne has general)
 			return StoneTunnel;
 		rfalse;
 	],
-	w_to SmallCorridor;
-
+	w_to SmallCorridor,
+	cant_go [;
+		print "The only exit";
+		if (Throne has general)
+			print "s are down and";
+		else
+			print " is";
+		" west.";
+	];
 
 Object -> Throne "throne"
 	with name "throne",
@@ -31,70 +44,127 @@ Object -> Throne "throne"
 	
 
 Object -> -> ThroneSkeleton "skeleton"
-	with name "skeleton" "king",
+	with name "skeleton" "king" "hand" "hands",
+	hands false,
+	short_name [;
+		print "skeleton";
+		if (Sceptre in self)
+			print " holding a sceptre";
+		rtrue;
+	],
+	describe [;
+		if (Sceptre in self) {
+			"The skeleton is holding a sceptre.";
+		}
+		rtrue;
+	],
+
 	description [;
+
+		if (self.hands)
+			<<search self>>;
+
 		print "Although he looks dead enough, this royal
 		skeleton sends shivers down your spine. ";
 		if (Sceptre in self)
 			"The skeleton is holding a sceptre.";
-		"There seems to be something in his hand.";
+		"There seems to be something in one of his hands.";
 	],
-	before [;
-	Receive, Give:
-		if (noun == Sceptre) {
-			move noun to self;
-			move RingHole to ThroneRoom;
-			"As soon as you give the sceptre to the
-			skeleton, the seal on the pillar lowers,
-			revealing a ring-shaped hole.";
+
+	parse_name [ myname retval;
+		retval = 0;
+		self.hands = false;
+		myname = NextWord();
+		while (myname ~= nothing) {
+			if (myname == 'hand' or 'hands') {
+				retval++;
+				self.hands = true;
+			}
+
+			if (myname == 'skeleton') {
+				retval++;
+			}
+
+			myname = NextWord();
 		}
+		return retval;
+	],
+
+	before [;
+	Search:
+		if (~child(self))
+			"The skeleton's hands are actually quite empty.
+			It appears as if this fellow was clutching
+			something before he died.";
+		else
+			"The skeleton is clutching a sceptre.";
+	Receive, Give:
+		if (self.hands) {
+			if (noun == Sceptre) {
+				move noun to self;
+				move RingHole to ThroneRoom;
+				"As soon as you give the sceptre to the
+				skeleton, the seal on the pillar lowers,
+				revealing a ring-shaped hole.";
+			}
+
+			move noun to parent(self);
+			print_ret (The) noun, " falls out of ", (the)
+			self, "'s hand and onto the floor";
+		}
+		"Putting things inside the skeleton like that isn't
+		very respectful of the dead.";
 	],
 	life [;
 	Give:
-		if (noun == Sceptre) {
-			move noun to self;
-			move RingHole to ThroneRoom;
-			"As soon as you give the sceptre to the
-			skeleton, the seal on the pillar lowers,
-			revealing a ring-shaped hole.";
+		if (~self.hands) {
+			if (noun == Sceptre) {
+				move noun to self;
+				move RingHole to ThroneRoom;
+				"As soon as you give the sceptre to the
+				skeleton, the seal on the right pillar lowers,
+				revealing a ring-shaped hole.";
+			}
+			move noun to parent(self);
+			print_ret (The) noun, " falls out of ", (the)
+			self, "'s hand and onto the floor";
 		}
+		"Try giving it to the skeleton instead.";
 	],
-	has animate static;
+	has animate transparent static;
 
-Object -> -> SkeletonCrown "crown"
-	with name "skeletons" "skeleton^s" "crown",
-	description "Pure beaten gold and rubies.",
-	before [;
-	Take, Transfer:
-		"It seems glued to the skeleton's skull by time and rot.";
-	],
-	has scenery;
 
-Object -> -> SkeletonHand "hand"
-	with name "skeletons" "skeleton^s" "hand" "hands",
+Object -> fofofof "foo"
+	with name "foobar",
 	description [;
-		if (~child(self))
-			"The hand is empty.  It appears as if this
-			fellow was clutching something before he died.";
-		else
-			"A sceptre is clutched in a hand.";
+		<<search self>>;
 	],
 	before [;
 	Search:
 		if (~child(self))
-			"The hand is empty.  It appears as if this
+			"The hands are empty.  It appears as if this
 			fellow was clutching something before he died.";
 		else
 			"A sceptre is clutched in a hand.";
-
 	Receive:
 		if (noun == Sceptre) {
 			move noun to ThroneSkeleton;
 			move RingHole to ThroneRoom;
 			"As soon as you give the sceptre to the
-			skeleton, the seal on the pillar lowers,
+			skeleton, the seal on the right pillar lowers,
 			revealing a ring-shaped hole.";
 		}
+		"It doesn't seem to fit anywhere.";
+	],
+	has concealed scenery;
+
+
+Object -> SkeletonCrown "crown"
+	with name "crown",
+	description "Pure beaten gold and rubies.",
+	before [;
+	Take, Transfer:
+		"It's glued to the skeleton's skull by time and rot.";
 	],
 	has scenery;
 
@@ -118,6 +188,15 @@ Object -> PillarLeft "left pillar"
 	description "A carving of a sword is on this pillar.",
 	has scenery;
 
+Object -> ThroneSeal "royal seal"
+	with name "royal" "seal",
+	description [;
+		print "It's a carving of Sir Dugan's royal seal.";
+		if (PillarRight has supporter)
+			" The seal has slid down revealing a
+			ring-shaped hole.";
+	],
+	has scenery;
 
 Object -> PillarRight "right pillar"
 	with name "pillar" "right",

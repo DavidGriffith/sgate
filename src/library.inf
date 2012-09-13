@@ -39,11 +39,21 @@ Inside Library "Library"
 	Examine:
 		if (noun == n_obj)
 			<<examine Bookcase>>;
+	Smell:
+		if (noun == nothing)
+			"Old books.";
 	],
 	e_to	BanquetCorridor,
 	n_to [;
 		if (GemRed in RedHole)
 			return Study;
+		"It's a bookcase, not a door.";
+	],
+	cant_go [;
+		print "You can only go";
+		if (GemRed in RedHole)
+			print " north or";
+		" east.";
 	];
 
 
@@ -101,11 +111,10 @@ Object -> Bookcase "bookcase"
 	],
 	has supporter scenery;
 
-Object -> -> Skull "skull"
-	with name "white" "skull",
+Skull -> -> LibrarySkull "white skull"
+	with name "white",
 	description "It seems to be the skull of some unfortunate
-		individual.",
-	has float;
+		individual.  It looks like it was bleached white.";
 
 Book -> -> "red book entitled ~The Castle Shadowgate~"
 	with name "red" "castle" "shadowgate",

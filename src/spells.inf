@@ -153,6 +153,7 @@ Spell -> gnusto_spell
 
 
 Class SpellBook
+	class Burnable
 	with array_of_spells 0 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0,
 	capacity 16,
 	learn_spell [ sp p i;
@@ -336,8 +337,13 @@ Global the_spell_was = gnusto_spell;
 		print "comma^";
 	}
 
+
+! Hans Fugal <hans@fugal.net> noticed a spew of errors would occur if
+! one entered only a period.  Adding the "rfalse" below seems to fix the
+! problem.
 	if (x == THEN1__WD) {
 		print "full stop^";
+		rfalse;
 	}
 
 	for (i = player + 1: i <= top_object: i++) {

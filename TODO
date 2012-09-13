@@ -1,57 +1,11 @@
-If you burn or roll up the rug in the banquet hall and something else
-has been put on the rug, we can't get the rusty key.
+"PUT noun IN SKELETON'S HAND" doesn't work, but I think most players can
+figure out the other ways to do this.
 
-Implement custom cant_go messages for all rooms.
+It would be nice to be able to put the dragon blast message
+AFTER the result of actions done in the Hot Room.
 
-ATTACH BLADE TO STAFF should be a synonym for PUT BLADE ON STAFF.
+When the player returns to get the Staff of Ages, the troll could
+probably be a bit more talkative rather that just plain pissed off.
 
-BOARD after giving the ferryman a coin should work.
-
-UNCHAIN, FREE, and HELP woman should work.
-
-"Ugly as all heck" describing the gargoyles appeared in the original
-game.
-
-"LOOK UNDER RUG" and "SEARCH RUG" should do something.
-
-More parse_name trouble with the skulls.
-
-Examining the bucket should reveal its contents.
-
-Trouble referring to "torches" and "stones" (at the Waterfall).
-
-Trouble with "give coins to troll"
-
-"look behind waterfall" doesn't seem to work.
-
-Manipulating the wet torch in the arrow room needs a lot of work.
-Trying to light a torch here shouldn't default to the odd torch.  We
-should ALWAYS default to a normal torch unless "odd torch" is specified.
-
-Require a burning torch to be held in order to burn something.
-
-When burning something with a torch, assume a BURNING TORCH!
-
-Supress messages about the torch flickering when another torch has been
-lit.
-
-"ATTACK TROLL" causes errors.
-
-Should the player have fingers?
-
-Consider removing the "shallow depression" from the pedestal in the cold
-room.
-
-
-Figure out how long to make torches last.  Right now it's 50 moves +
-random(7);
-
-The troll when returning to get the Staff of Ages could probably be a
-bit more talkative rather that just plain pissed off.
-
-Go over sgate.inf (Initialise()) and statusline1.inf to remove Z-Machine
-specific stuff to allow compilation to Glulx.
-
-The skeleton code in the throne room is a bit odd.  "give sceptre to
-skeleton" returns "(the skeleton)" then the expected text.
+Torches last 50 + random(7) moves.  Should this be changed?
 

@@ -21,9 +21,15 @@ Inside Laboratory "Laboratory"
 
 		"  You may also exit to the west.";
 	],
+	before [;
+	Smell:
+		"The assorted acrid smells of a laboratory and animal 
+		waste.";
+	],
 	w_to BanquetCorridor,
 	n_to Garden,
-	d_to Garden;
+	d_to Garden,
+	cant_go "You can only go west or north (er, down).";
 
 Object -> LabStone "stone"
 	with name "steel" "ring" "stone",
@@ -103,7 +109,7 @@ with name "blue" "potion",
 	Drop:      
 		remove self;
 		"The potion dribbles all over the ground.";
-	Take:
+	Take, Transfer:
 		"The potion dribbles all over the ground.";
 	Taste, Eat, Drink:
 		"Slurp!  You taste the poisonous-looking liquid in the

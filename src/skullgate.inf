@@ -5,8 +5,21 @@ Inside SkullGate "Skull Gate"
 		feeling you are standing on sacred ground.  Three
 		stone slabs hang on the north wall.  Above them are
 		three symbols.  The River Styx lies to the south.",
+	before [;
+	Smell:
+		if (noun == nothing)
+			"A strong volcanic smell is coming out of the
+		eye sockets and nose of the skull gate.";
+	],
 	s_to RiverStyx,
-	w_to GateDoor;
+	w_to GateDoor,
+	cant_go [;
+		if (GateDoor has open)
+			"You can go either west or south.";
+
+		"The only obvious exit is south.";
+	];
+
 
 ! This chamber has been hewn out of solid rock and is very hot.
 

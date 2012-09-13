@@ -14,7 +14,8 @@ Inside Observatory "Observatory"
 			"";
 	],
 	d_to SphinxRoom,
-	u_to TowerPrison;
+	u_to TowerPrison,
+	cant_go "There is nowhere else to go but up or down.";
 
 Object -> ObservatoryLadder "ladder"
 	with name "ladder",

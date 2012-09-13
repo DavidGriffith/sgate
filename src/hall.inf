@@ -2,18 +2,9 @@ Inside Hall "Hall"
 	with name "hall",
 	description [;
 		print "You stand in a long corridor.  Huge stone
-		archways line the entire hall.  A large wooden door
-		covered with sheets of steel is at the north end of the
-		hall.  A small closet is to the east.  ";
-
-		if (HallRug in self) {
-			if (HallRug hasnt general) {
-				print "A beautifully woven";
-			} else {
-				print "A rolled up";
-			}
-			print " rug is in the middle of the room.";
-		}
+		archways line the entire hall.  At the north end of
+		this room is an impressive hall door covered with
+		sheets of steel.  A small door is to the east. ";
 
 		if (self hasnt visited) {
 "^^A huge pair of disembodied eyes appear high in the air above
@@ -25,7 +16,7 @@ stop me.  You will surely regret it for the only thing here for you is
 a horrible death!~^
 ^
 The eyes fade away as if made of smoke.  Maniacal laughter echos in your
-ears.^";
+ears.";
 		}
 		"";
 	],
@@ -34,15 +25,21 @@ ears.^";
 	s_to OuterDoor,
 	cant_go "You can only go north, east, or south.";
 
+UnlitTorch ->;
+UnlitTorch ->;
 
-UnlitTorch ->;
-UnlitTorch ->;
 Rug -> HallRug "rug";
 
 
-ObligingDoor -> HallClosetDoor "closet door"
+Object -> HallArches "archways"
+	with name "huge" "stone" "archway" "archways" "arch" "arches",
+	description "They're quite impressive.",
+	has scenery pluralname;
+
+
+ObligingDoor -> HallClosetDoor "small door"
 	with name "closet" "door" "small" "narrow",
-	description "The closet door is very narrow.  Even
+	description "The small door is very narrow.  Even
 		though it's only an inch thick, it is very sturdy.",
 	door_to [;
 		if (self in Hall) {
@@ -56,26 +53,20 @@ ObligingDoor -> HallClosetDoor "closet door"
 		}
 		return w_to;
 	],
+	before [;
+	Search, LookUnder:
+		"Perhaps entering the closet with be more
+		useful (it's actually a walk-in closet).";
+	],
 	found_in Hall HallCloset,
 	with_key skullkey,
-	has scenery static door openable lockable locked;
+	has scenery door openable lockable locked;
 
 
 ObligingDoor -> HallDoor "hall door"
-	with name "door" "hall" "steel",
+	with name "hall" "door" "steel",
 	description "This door is reinforced with heavy sheets 
 		of steel.",
-
-!	when_open [;
-!		if (self in Hall)
-!			"The hall door is open.";
-!		"The door leading back to the hall is open.";
-!	],
-!	when_closed [;
-!		if (self in Hall)
-!			"The hall door is closed.";
-!		"The door leading back to the hall is closed.";
-!	],
 	door_to [;
 		if (self in Hall)
 			return StonePassage;
@@ -88,6 +79,6 @@ ObligingDoor -> HallDoor "hall door"
 	],
 	found_in Hall StonePassage,
 	with_key ironkey,
-	has scenery static door openable lockable locked;
+	has scenery door openable lockable locked;
 
 

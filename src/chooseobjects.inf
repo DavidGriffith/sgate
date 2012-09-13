@@ -1,0 +1,89 @@
+! See _The Inform Designer's Manual, Fourth Edition_, pages 239 and 431.
+!
+[ ChooseObjects obj code retval;
+
+	if (indef_wanted==100 && code==2) rfalse;
+	if (code < 2) { 
+		if (obj has scenery) return 2; 
+		if (obj has static) return 2;
+		rfalse;
+	}
+
+	if (action_to_be == ##Eat && obj has edible) {
+		 return 3;
+	}
+
+	retval = 1;
+
+
+	! Prefer to drop a held object
+	!
+	if (action_to_be == ##Drop) {
+		retval = 1;
+		if (obj in player) retval++;
+		return retval;
+	}
+
+!	if (action_to_be == ##LetGo) {
+!		retval = 1;
+!		if (obj in player) retval++;
+!		if (obj notin player) retval--;
+!		return retval;
+!	}
+
+	! Prefer to take a non-held object
+	!
+	if (action_to_be == ##Take) {
+		retval = 1;
+		if (obj notin player) retval++;
+		return retval;
+	}
+
+	! Prefer to light a held torch and to burn something with a
+	! burning torch.
+	!
+	if (action_to_be == ##Burn && obj ofclass Torch) {
+		retval = 1;
+
+		if (obj in player) retval++;
+
+		if (parameters == 0) {	! obj is noun
+!			if (obj has good) retval++;
+!			if (obj provides status && obj.status == "unlit")
+			if (obj ofclass UnlitTorch)
+				retval++;
+		} else {		! obj is second
+			if (obj ofclass BurningTorch) retval++;
+
+		}
+		return retval;
+	}
+
+
+
+	! Prefer to snuff a burning torch that's being held.
+	!
+	if (action_to_be == ##SwitchOff or 
+			##Snuff or ##Extinguish && obj ofclass Torch) {
+		retval = 1;
+		if (obj has on) retval++;
+		if (obj in player) retval++;
+		return retval;
+	}
+
+	if (obj == Pool)
+		return 2;
+
+	! In the firey room, we need to make sure the player can examine
+	! the flames when the fire drake is present.
+	!
+	if (obj == FireDrake)
+		return 1;
+	if (obj == RoomFire)
+		return 3;
+
+	if (obj hasnt scenery) return 2;
+	if (obj hasnt static) return 2;
+
+	return 1;
+];

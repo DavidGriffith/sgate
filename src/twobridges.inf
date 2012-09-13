@@ -17,8 +17,8 @@ Inside TwoBridges "Two Bridges"
 		The bridge won't hold you.  You can't cross unless
 		you lose some weight!";
 	],
-
-	e_to ArrowRoom;
+	e_to ArrowRoom,
+	cant_go "You can only go north, east, or west.";
 
 
 Object -> StoneBridge "stone bridge"

@@ -11,8 +11,15 @@ Outside Garden "Garden"
 
 		"  The sound of the water splashing is music to your ears.";
 	],
+	before [;
+	Smell:
+		if (noun == nothing)
+			"The delightful scent of a garden.";
+	],
 	u_to	Laboratory,
-	s_to	Laboratory;
+	s_to	Laboratory,
+	cant_go	"The only way out of the garden is back up the
+		stairs to the south.";
 
 
 Object -> Tree "tree"
@@ -67,8 +74,8 @@ Object -> -> Flute "wooden flute"
 	description "It's a small wooden flute.  It looks like it could
 		make wonderful music.",
 	before [;
-	Play:
-		if (player in Garden) {
+	Play, Blow:
+		if (player in Garden && TreeNiche notin Garden) {
 			move TreeNiche to Garden;
 			"The sound of the flute is very pretty,
 			indeed.  It seems like you wake from a dream

@@ -23,11 +23,17 @@ Inside GargoyleRoom "Gargoyle Room"
 		}
 		give Gargoyle ~general;
 		return WellRoom;
-	];
+	],
+	cant_go "You can only go north, northeast, or south.";
 
 Object -> Gargoyle "gargoyle"
-	with name "gargoyle" "gargoyles",
-	description "This stone statue is some three and a half feet
-	tall and ugly as all heck.  It is very cold to the touch.",
+	with name "gargoyle" "gargoyles" "stone" "beast" "beasts"
+		"statue" "statues",
+!	description "This stone statue is some three and a half feet
+!	tall and ugly as all heck.  It is very cold to the touch.",
+	description "This pair of stone statues are each some three and
+		a half feet tall and quite ugly.  They are very cold to
+		the touch.",
 	has scenery;
+
 

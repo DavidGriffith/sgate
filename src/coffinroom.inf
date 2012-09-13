@@ -1,12 +1,18 @@
 Inside CoffinRoom "Coffin Room"
-	with name "room",
+	with name "room" "hall" "hallway",
 	description [;
 		print "This long, cold hallway is lined on either side
-		by five coffins.  Exits lie to the west and east.";
+		by five coffins propped against the walls.  Exits lie to
+		the west and east.";
 		if (CoffinSlime in self) {
 			"  A puddle of green slime blocks the east exit.";
 		}
 		"";
+	],
+	before [;
+	Smell:
+		if (noun == nothing)
+			"You detect a faint acidic odor.";
 	],
 	w_to FourWay,
 	e_to [;
@@ -19,7 +25,9 @@ Inside CoffinRoom "Coffin Room"
 			were slimed.";
 		}
 		return MirrorRoom;
-	];
+	],
+	cant_go "You can only go east or west.";
+
 
 Object -> Coffins "coffins"
 	with name "coffins",
@@ -31,6 +39,8 @@ Object -> Coffins "coffins"
 	before [;
 	Open:
 		"You can only manage to open one coffin at a time.";
+	Close:
+		"You can only manage to close one coffin at a time.";
 	],
 	has scenery pluralname;
 
@@ -74,7 +84,6 @@ Object -> SilverCoffin "silver coffin"
 		if (self has open)
 			"You can't close the coffin with all that slime
 			in the way.";
-
 	Open:
 		if (self hasnt open) {
 			give self open;
@@ -99,14 +108,15 @@ Object -> StoneCoffin "stone coffin"
 	has scenery container openable;
 
 
-! contains leather pouch which contains three copper coins
+! Contains leather pouch which contains three copper coins.
+! Pouch is omitted.
 !
 Object -> GoldCoffin "gold coffin"
 	with name "coffin" "gold" "golden",
 	description [;
 		if (self hasnt open) {
-			"The lid of this coffin is made of solid
-			gold.  It must be worth a fortune.";
+			"The lid of this coffin is made of solid gold.
+			It must be worth a fortune.";
 		}
 		<<search self>>;
 	],
@@ -120,7 +130,8 @@ CopperCoin -> ->;
 ! Mummy with sceptre
 !
 Object -> DragonscaleCoffin "dragon scale coffin"
-	with name "coffin" "dragon" "scale" "dragonscale",
+	with name "coffin" "dragon" "scale" "scales" "dragonscale"
+		"dragonscales",
 	description [;
 		if (self hasnt open) {
 			"This standing sarcophagus is sealed with a
@@ -145,7 +156,7 @@ Object -> -> CoffinMummy "mummy"
 			and still.",
 	before [;
 	Burn:
-		if (second ~= nothing && second hasnt ignition)
+		if (second ~= nothing && second hasnt on)
 			"You can't burn ", (the) self, " with ", (the)
 			second, ".";
 
@@ -169,18 +180,18 @@ Object -> -> CoffinMummy "mummy"
 			"The mummy is already dead, nor does it
 			seem to be undead.  It just lies there.";
 
-		if (second has weapon)
+		if (second == Sword)
 			<<cut self>>;
+
+!		if (second has weapon)
+!			<<cut self>>;
 
 		if (second ofclass Torch && second has light)
 			<<burn self>>;
 
-		if (second == Sword)
-			<<cut self>>;
-
-		if (second) 
+		if (second) {
 			print "Hitting the mummy with ", (the) second;
-		else {
+		} else {
 			print "Simply ";
 			switch (verb_word) {
 			'punch':
@@ -191,27 +202,25 @@ Object -> -> CoffinMummy "mummy"
 				print "hitting";
 			default:
 				print "attacking";
-
 			}
 			print " the mummy like that";
 		}
 		" won't do any good.";
-
 	Search, Open:
 		"There seems to be something long, thin, and metallic
 		buried in the wrappings near the mummy's back, but you
 		can't really get at it.";
-
 	Cut:
 		"The resin-soaked wrappings are tougher than they look.";
-
 	],
 	has animate;
+
 
 Object -> -> -> sceptre "sceptre"
 	with name "jeweled" "sceptre" "scepter",
 	description "This jewel-studded sceptre is truly made for a
 		king.";
+
 	
 Object CoffinSlime "puddle of green slime"
 	with name "green" "slime" "puddle",
@@ -220,8 +229,9 @@ Object CoffinSlime "puddle of green slime"
 	before [;
 	Smell:
 		"It smells of rotting flesh and acid.";
-	Take, Taste, Touch:
-		"The thought of doing so is revolting.";
+	Take, Touch, Transfer, Taste:
+		"The slime would very likely dissolve anything that
+			touches it.";
 	Listen:
 		"It makes a faint bubbling sound.";
 	],

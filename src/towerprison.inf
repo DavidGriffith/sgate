@@ -8,7 +8,13 @@ Inside TowerPrison "Tower Prison"
 		}
 		" Moonlight streams in from a window.";
 	],
-	d_to Observatory;
+	before [;
+	Smell:
+		"Wet dog???";
+	],
+	d_to Observatory,
+	cant_go "Unless you can fly, the only direction you can go is
+		down.";
 
 Object -> Blade "golden blade"
 	with name "golden" "gold" "blade" "spike",
@@ -24,6 +30,13 @@ Object -> Blade "golden blade"
 			Woman.attack_msg();
 			rtrue;
 		}
+	Tie:
+		if (verb_word == 'tie')
+			rfalse;
+		if (second ~= Staff)
+			rfalse;
+
+		<<PutOn self Staff>>;
 	];
 ! when blade is placed on the staff:
 !
@@ -45,7 +58,7 @@ Object -> Woman "beautiful woman"
 			weapon = noun;
 		if (weapon == SilverArrow) {
 			move DeadWolf to parent(self);
-			move self to NullRoom;
+			remove self;
 			move weapon to DeadWolf;
 			"Your aim is true as you plunge the silver
 			arrow into the beautiful woman.  Her scream is 
@@ -61,6 +74,14 @@ Object -> Woman "beautiful woman"
 		suddenly transforms into a wolf!";
 		self.attack_msg();
 		rtrue;
+	Help, Free, Unchain:
+		deadflag = 1;
+		print "As you step forward to ";
+		print  (address) verb_word;
+		print " ", (the) Woman, ", she suddenly transforms
+			into a wolf!";
+		self.attack_msg();
+		rtrue;
 	],
 	attack_msg [;
 		" With a load roar, the wolf pounces on you,
@@ -71,7 +92,7 @@ Object -> Woman "beautiful woman"
 		"She says nothing, but her expression pleads you to
 		free her.";
 	],
-	has animate;
+	has animate female;
 
 
 ! You are so captivated by the woman's beauty that you momentarily

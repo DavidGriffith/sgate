@@ -18,7 +18,9 @@ Inside BanquetBalcony1 "Banquet Hall Balcony"
 	n_to	SphinxDoor,
 	w_to	BanquetBalcony2,
 	e_to	BanquetHall,
-	d_to	BanquetHall;
+	d_to	BanquetHall,
+	cant_go "You can only go through the door to the north, west
+		along the balcony, or east to go back downstairs.";
 
 
 Object -> Crest "crest"

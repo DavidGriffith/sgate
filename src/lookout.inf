@@ -5,10 +5,11 @@ Outside LookoutPoint "Lookout Point"
 		on a lookout point.  You can return to the castle by
 		going east.^";
 	],
-	e_to Balcony;
+	e_to Balcony,
+	cant_go "East is the only exit.";
 
-Object -> CanvasPouch "canvas pouch"
-	with name "canvas" "pouch" "bag",
+Object -> CanvasBag "canvas bag"
+	with name "canvas" "bag",
 	description "This canvas bag looks to be quite light.  Close
 		inspection reveals some Druidic script on it.",
 	has container openable;

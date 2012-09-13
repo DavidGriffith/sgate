@@ -6,8 +6,14 @@ Outside Balcony "Balcony"
 		runs about the perimeter of the balcony.  It continues
 		on to the west. You can enter the castle by going east.";
 	],
+	before [;
+	Smell:
+		if (noun == nothing)
+			"It smells like rain.";
+	],
 	e_to SmallCorridor,
-	w_to LookoutPoint;
+	w_to LookoutPoint,
+	cant_go "You can only go east or west.";
 
 
 Object -> BalconyWall "wall"

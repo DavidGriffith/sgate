@@ -10,7 +10,9 @@ Inside BanquetBalcony2 "West End of Balcony"
 		"";
 	],
 	e_to BanquetBalcony1,
-	n_to HellhoundDoor;
+	n_to HellhoundDoor,
+	cant_go "You can only go east or through the door to the
+		north.";
 
 Object -> Mirror "mirror"
 	with name "hall" "mirror",

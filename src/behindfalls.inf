@@ -11,7 +11,8 @@ Inside BehindFalls "Behind the falls"
 		}
 	],
 	out_to WaterfallRoom,
-	w_to WaterfallRoom;
+	w_to WaterfallRoom,
+	cant_go "The only exit seems to be west.";
 
 Object -> fallsgravel "wet gravel"
 	with name "wet" "gravel" "pebbles" "pebble",
@@ -73,7 +74,7 @@ Object FallsNiche "niche"
 	has static container open;
 
 Object -> GemPouch "leather pouch"
-	with name "leather" "pouch" "bag",
+	with name "leather" "pouch",
 	capacity 3,
 	description "It's a leather pouch.",
 	has container openable;

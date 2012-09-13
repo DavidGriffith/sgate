@@ -24,30 +24,57 @@ Inside WarlockCave "Warlock Cave"
 		outstretched holding his staff aloft and facing the
 		Behemoth.";
 	],
+	before [;
+	Smell:
+		if (noun == nothing)
+			"There is a strong sulfurous smell coming from
+			the pit.";
+	],
 	e_to SkullGate,
 	n_to [;
 		print "You step forward through the braziers and onto
-		the steps leading to the stone platform.  ";
+		the steps leading to the stone platform.^^";
 		Warlock.killplayer();
 		rtrue;
-	];
+	],
+	u_to [;
+		print "You step forward through the braziers and onto
+		the steps leading to the stone platform.^^";
+		Warlock.killplayer();
+		rtrue;
+	],
+	cant_go "You can either exit this cave to the east or go up the
+		stairs to the north.";
 
 
 Object -> Behemoth "Behemoth"
-	with name "behemoth",
+	with name "behemoth" "beast" "monster" "titan",
 	description "Your jaw drops and you stare in awed silence at
 		the sight of the great titan.  Acid drips from his
 		jaws and sizzles on the ledge below.",
 	before [ weapon;
+	Smell:
+		"The beast smells of volcanic fumes.";
+
 	Attack:
 		if (noun == self)
 			weapon = second;
 		else
 			weapon = noun;	
 
-		if (weapon == Staff && Staff has general)
+		if (weapon == Staff && Staff has general) {
 			self.victory();
 			rtrue;
+		}
+
+		print "You step forward ";
+		if (weapon)
+			print "wielding ", (the) weapon, ".^^";
+		else
+			print "shaking a fist.^^";
+
+		Warlock.killplayer();
+		rtrue;
 	],
 	victory [;
 		deadflag = 2;
@@ -93,6 +120,8 @@ Object -> WarlockStairs "stairs"
 		to the stone platform.",
 	before [;
 	Climb, Enter:
+		print "You step forward through the braziers and onto
+		the steps leading to the stone platform.^^";
 		Warlock.killplayer();
 		rtrue;
 	],

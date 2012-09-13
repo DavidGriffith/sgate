@@ -5,7 +5,7 @@ DEBUG = "-~S"
 
 GLULX = "-~G"
 
-VERSION = r1pre4
+VERSION = r3
 
 BINNAME = sgate
 EXTENSION = .z5
@@ -39,6 +39,7 @@ dist: distclean
 
 clean:
 	rm -f *core
+	rm -f *.sav
 	rm -f $(BINNAME)$(EXTENSION)
 #	rm -f *.ulx
 

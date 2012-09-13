@@ -1,3 +1,58 @@
+[ TasteSub;
+	"The thought of doing so is revolting.";
+];
+
+
+[ UnchainSub;
+	if (noun)
+		"But ", (the) noun, " isn't chained to anything.";
+	"Unchaining nothing. Brilliant.";
+];
+
+Verb "unchain"
+	*			-> Unchain
+	* noun			-> Unchain;
+
+
+[ FreeSub;
+	if (noun)
+		"But ", (the) noun, " doesn't seem to need freeing.";
+	"Freeing nothing. Brilliant.";
+];
+
+Verb "free"
+	*			-> Free
+	* noun			-> Free;
+
+[ UseSub;
+	if (noun)
+		"You'll have to say how you want to use ", (the) noun, ".";
+	"I beg your pardon?";
+];
+
+Verb 'use'
+	* noun			->	Use
+	* noun 'on' noun	->	Use;
+
+[ TalkSub;
+	if (noun == player)
+		"Talking to yourself is said to be a sign of impending
+			mental collapse.";
+
+	if (noun)
+		"Try ~", (object) noun, ", hello~ instead.";
+	"You babble incoherently.";
+];
+
+Verb 'talk'
+	*			->	Talk
+	* noun			->	Talk
+	* 'with' noun		->	Talk
+	* 'at' noun		->	Talk
+	* 'to' noun		->	Talk;
+
+Verb 'babble' = 'talk';
+
 [ FooSub;
 	"Bar.";
 ];
@@ -16,11 +71,11 @@ Verb 'bar'
 Verb 'baz'
 	*	->	Baz;
 
-[ NullSub;
-	rtrue;
-];
-Verb '!'
-	* noun	->	Null;
+![ NullSub;
+!	rtrue;
+!];
+!Verb '!'
+!	* noun	->	Null;
 
 
 [ PlaySub;
@@ -69,11 +124,7 @@ Verb '!'
 Global dootflag = 0;
 [ DootSub;
 
-!	dootflag = random(4);
-
-	dootflag++;
-	if (dootflag > 4)
-		dootflag = 1;
+	dootflag = random(9);
 
 	switch (dootflag) {
 	1:
@@ -87,9 +138,25 @@ print "#####    ####    ####    #####   ###^
 #    #  #    #  #    #     #     ###^
 #####    ####    ####      #     ###^";
 	3:
-		"Been reading Erma Bombeck again, eh?";
+		"Reading Erma Bombeck again, eh?";
 	4:
-		"Been playing Scrabble again, eh?";
+		"Cheating at Scrabble again, eh?";
+	5:
+		"Using infodump to see what's in the dictionary, eh?";
+	6:
+		"Don't you just love these trick verbs that serve
+			absolutely no useful purpose?";
+	7:
+		"Please telephone your mother and say ~doot~.";
+
+	8:
+		"Doot! Doot! Doot! Doot! Doot! Doot! Doot! Doot!";
+
+	9:
+		"Watch out for the wild doot!";
+
+	default:
+		"Unknown doot.";
 	}
 
 ];
@@ -336,8 +403,12 @@ Extend 'hit' last
 !Extend 'shit' last
 !	* 'on' noun		-> Attack;
 
-Extend only 'look' last
+!Extend only 'look' last
+
+Extend 'look'
 	* 'behind' noun 	-> Search;
+
+!Extend only 'look' last
 
 Verb "load"
 	* held 'with' held	-> Load;
@@ -359,14 +430,58 @@ Verb "untie"
 Extend "tie" last
 	* noun 'around' noun	-> Tie;
 
+
+! For whatever reason, I can't catch this action in the before() or
+! after() routines like I can with other versb.
+!
+[ PutOnRugSub;
+	if (second hasnt is_rug)
+		"Error in PutOnRugSub()";
+	give noun on_rug;
+	move noun to second;
+	"You put ", (the) noun, " on ", (the) second, ".";
+];
+
+
+Extend "put" first
+	* noun 'on' is_rug	-> PutOnRug;
+
+[ PutUnderRugSub;
+	if (second hasnt is_rug)
+		"Error in PutUnderRugSub()";
+	if (second hasnt general) {
+		give noun concealed;
+		move noun to second;
+		"You put ", (the) noun, " under ", (the) second, ".";
+	}
+	"That's difficult to do while the rug is rolled up.";
+];
+
+Extend "put" first
+	* noun 'under' is_rug	-> PutUnderRug;
+
 Extend "put" last
 	* noun 'in' noun	-> Drop;
+
+
 
 Verb "play"
 	*			-> Play
 	* held			-> Play;
 
+Extend "burn" replace
+	* noun 'with' held	-> Burn;
+
 Extend "notify" replace
 	*			-> Score
 	* 'on'			-> Score
 	* 'off'			-> Score;
+
+Extend 'examine' first
+	* multi			-> Examine;
+
+Extend 'drop' first
+	* held			-> Drop;
+
+Extend 'give' first
+	* multiheld 'to' animate	-> Give;

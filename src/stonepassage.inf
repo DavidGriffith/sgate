@@ -13,6 +13,11 @@ Inside StonePassage "Stone passage"
 		}
 	],
 	before [;
+	Push, Pull, Slide:
+		if (noun == n_obj) {
+			"It seems to give a little, 
+			but the wall remains intact.";
+		}
 	Examine:
 		if (noun == n_obj) {
 			if (StoneSecret has concealed) {
@@ -24,13 +29,17 @@ Inside StonePassage "Stone passage"
 			passage leading north.";
 		}
 	Attack:
+		if (noun == n_obj) {
 			if (verb_word == 'kill') {
 				"It's not alive.";
 			}
 			if (noun ~= WeakSpot) {
-				"The wall remains standing.";
+				"The wall shudders a bit, but
+					remains standing.";
 			}
+		}
 	],
+	out_to HallDoor,
 	s_to HallDoor,
 	e_to FourWay,
 	n_to [;
@@ -39,8 +48,12 @@ Inside StonePassage "Stone passage"
 		}
 		rfalse;
 	],
-
-	out_to HallDoor;
+	cant_go [;
+		print "You can only go ";
+		if (StoneSecret in self)
+			print "north,";
+		" south, or east.";
+	];
 
 !UnlitTorch ->;
 
@@ -50,9 +63,9 @@ Torch -> OddTorch "odd torch"
 	before [;
 	Examine:
 		self.short_name = "odd torch";
-		print "There is a skull carved into the shaft of this
-		torch.  Above and below that are symbols representing
-		power over the undead";
+		print "There is a symbol of a skull carved into the
+		shaft of this torch.  Above and below that are glyphs
+		representing power over the undead";
 		if (self has light) {
 			".  The torch burns with a strange white light";
 		}
@@ -60,7 +73,7 @@ Torch -> OddTorch "odd torch"
 
 	Burn:
 		if (second ~= nothing) {
-			if (second hasnt ignition)
+			if (second hasnt on)
 				"You can't burn ", (the) self, " with ", (the)
 				second, ".";
 		}
@@ -97,17 +110,19 @@ Torch -> OddTorch "odd torch"
 	SwitchOff:
 		"But it's not burning.";
 	],
-	has good transparent;
+	has transparent;
 
-Object -> -> OddSkull "skull"
-	with name "skull",
+Object -> -> OddSkull "skull symbol"
+	with name "skull" "symbol",
 	description "It's a stylized picture of a skull carved into the
 		shaft of the torch.",
 	has scenery;
 
-Object -> -> OddSymbols "symbols"
-	with name "symbols" "glyphs",
-	description "Assorted holy symbols and symbols of fire.",
+Object -> -> OddGlyphs "glyphs"
+	with name "glyphs" "glyph",
+	description "The glyphs are a composition of angelic sigels,
+		fire symbols, references to holy things, commands
+		to return to the netherworld, and so on.",
 	has scenery pluralname;
 
 Object -> Shelf "shelf"
@@ -138,27 +153,27 @@ Object -> -> TrapCandle "candle"
 			candle was last lit.";
 		}
 
-	Burn:	
-		if (second) {
-			if (second hasnt ignition)
-				"You can't burn ", (the) self, " with ", (the)
-				second, ".";
-		}
-		<<SwitchOn self>>;
-	],
-	after [;
 	Take:
 		deadflag = 1;
 		"When you remove the candle from the shelf, the floor
 		collapses, and you fall to your death.";
 
-	SwitchOn:
+	SwitchOn, Burn:	
+		if (second) {
+			if (second hasnt on)
+				"You can't burn ", (the) self, " with ", (the)
+				second, ".";
+		} else
+			"You can't light the candle with nothing.";
+		
 		give self light;
+		give self on;
 		give self general;
 		"The candle burns brightly.";
 
 	SwitchOff:
 		give self ~light;
+		give self ~on;
 		"The candle is extinguished.";
 	],
 	has switchable;
@@ -167,15 +182,26 @@ Object -> -> TrapCandle "candle"
 Object -> -> trapbook "ancient tome"
 	with name "old" "ancient" "book" "tome",
 	description [;
-		print "It's an ancient tome.  It seems that no one";
+		print "It's an ancient tome";
+
+		if (self has open)
+			print ", lying open.";
+		else
+			print ".";
+
+		print " It seems that no one";
 		if (self has general) {
 			print ", except for you,";
 		}
 		print " has disturbed its pages for centuries.";
 
-		if (self has open && child(self)) {
-			print "^^In ", (the) self, " is ", (a)
-			child(self), ".^";
+		if (self has open) {
+			print " A rectangular hole has been cut out of
+			the inside of the book.";
+			if (child(self) && child(self) hasnt scenery) {
+				print "^^In ", (the) self, " is ", (a)
+				child(self), ".";
+			}
 		}
 		"";
 	],
@@ -190,11 +216,11 @@ Object -> -> trapbook "ancient tome"
 		give self general;
 		give self container;
 		give self open;
-		print "The book is opened and examined.  A
+		print "The book is opened and examined. A
 		rectangular hole has been cut out of the
 		inside of the book.";
 
-		if (child(self)) {
+		if (child(self) && child(self) hasnt scenery) {
 			"^^In ", (the) self, " is ", 
 			(a) child(self), ".";
 		}
@@ -203,16 +229,15 @@ Object -> -> trapbook "ancient tome"
 			"There is no room in ", (the) noun, ".";
 		}
 	],
-	invent [;
-		switch (inventory_stage) {
-		1:	"my ancient tome";
-		2:	if (self has open)
-				print " (which is open)";
-			else
-				print " (wibble)";
-		}
-
-	],
+!	invent [;
+!		switch (inventory_stage) {
+!		1:	"my ancient tome";
+!		2:	if (self has open)
+!				print " (which is open)";
+!			else
+!				print " (wibble)";
+!		}
+!	],
 	capacity 1,
 !	has container openable;
 	has openable;
@@ -222,6 +247,12 @@ Key -> -> -> skullkey "skull key"
 	short_name "skull key",
 	description "This key bears a skull.  This must be a skeleton key."
 	has is_tiny;	
+
+Object -> -> -> StoneHole "hole"
+	with name "rectangular" "hole",
+	description "Apparently the book was more useful to hide things.",
+	has scenery;
+
 
 Object -> WallBits "bits of stone"
 	with name "bits" "of" "stone",
@@ -239,6 +270,8 @@ Object WeakSpot "weak spot"
 	short name "weak spot",
 	description "The north wall sounds hollow here.",
 	before [;
+	Push, Pull, Slide:
+		"It seems to give a little, but the wall remains intact.";
 	Attack:
 		if (verb_word == 'kill') {
 			"It's not alive.";

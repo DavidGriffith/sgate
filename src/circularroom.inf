@@ -4,6 +4,9 @@ Inside CircularRoom "Circular Room"
 		circular room radiates a fervent heat.  A ladder leads 
 		up.  A door to the south leads back to the banquet hall.",
 	before [;
+	Smell:
+		if (noun == nothing)
+			"You smell the burning charcoal from the braziers.";
 	Take, Transfer:
 		if (Hellhound in self) {
 			Hellhound.killplayer();
@@ -22,7 +25,9 @@ Inside CircularRoom "Circular Room"
 		}
 		return WyvernTower;
 	],
-	s_to	HellhoundDoor;
+	s_to	HellhoundDoor,
+	cant_go "The only apparent exits are up and south.";
+
 
 ! There must be a way to cool the room off before you roast!
 
@@ -31,7 +36,12 @@ Object -> HoundBrazier "brazier"
 	with name "brazier",
 	description "A flame burns within this brazier, lighting the
 		entire room.",
-	has light scenery;
+	has light scenery transparent;
+
+Object -> -> HoundCharcoal "charcoal"
+	with name "charcoal",
+	description "Burning charcoal.",
+	has scenery;
 
 Object -> PlatinumHorn "platinum horn"
 	with name "platinum" "horn",

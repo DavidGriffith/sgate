@@ -2,8 +2,8 @@ Inside HallCloset "Hall Closet"
 	with name "hall" "closet",
 	description "You are in a small, cramped closet.",
 	out_to HallClosetDoor,
-	w_to HallClosetDoor;
-
+	w_to HallClosetDoor,
+	cant_go "The only exit seems to be west.";
 
 Object -> Sword "sword"
 	with name "sword" "broadsword" "weapon" "weapons",
@@ -13,15 +13,16 @@ Object -> Sword "sword"
 	before [;
 	Examine:
 		if (verb_word == 'read')
-			"You can't read the writing.  Lakmir probably
-			could.";
+			<<examine SwordScript>>;
 	],
-	has weapon;
+	has transparent;
+
+Object -> -> SwordScript "druidic script"
+	with name "druidic" "script",
+	description "You can't read the script. Lakmir probably could.",
+	has scenery;
 
 
-! Need to code the wraith, troll, and other creatures to react properly
-! to this weapon.
-!
 Object -> Sling "sling"
 	with name "sling" "slingshot" "weapon" "weapons",
 	capacity 1,
@@ -98,4 +99,4 @@ Object -> Sling "sling"
 		}
 		"";
 	],
-	has float weapon transparent;
+	has float transparent;

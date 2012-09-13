@@ -3,14 +3,26 @@ Inside ChasmBridge "Chasm Bridge"
 	description "You are standing on a sturdy wooden bridge that
 		 spans a deep, dark chasm.  A sharp, cold wind whips up
 		over the ledge.",
+	before [;
+	Smell:
+		if (noun == nothing)
+			"Something smells really nasty.";
+	],
 	s_to [;
 		if (Cloak hasnt worn && RoomFire in FireRoom)
 			"The heat is unbearable.";
-		move Troll to NullRoom;
+
+		if (Troll.paid == true && Troll.attacked == false) {
+			print "~No refunds!~^";
+			Troll.paid = false;
+			Troll.attacked = false;
+		}
+		remove Troll;
 		return FireRoom;
 	],
 	n_to [;
 		if (Spear in Troll && Troll.attacked == true) {
+			Troll.paid = false;
 			Troll.attacked = false;
 			return Courtyard;
 		}
@@ -49,7 +61,10 @@ Inside ChasmBridge "Chasm Bridge"
 				holding ", (the) child(Troll), " you
 				tried to kill him with.^
 				^			
-				~I have nothing more to say to you.~";
+				~Two gold coins. I have nothing more to
+				say to you.~^
+				^
+				The troll holds out a hand expectantly.";
 			}
 		} else {
 			deadflag = 1;
@@ -69,7 +84,12 @@ Inside ChasmBridge "Chasm Bridge"
 				through your back.";
  			}
 		}
-	];
+	],
+	d_to "The steep walls of the chasm provide no safe way down.",
+	u_to "Unless you can fly, you can't go that way.",
+	cant_go "Try north or south instead.";
+
+
 
 Object -> Chasm "chasm"
 	with name "chasm" "gorge",
@@ -110,7 +130,7 @@ Object Troll "troll"
 			weapon = noun;
 
 		if (weapon ofclass CopperCoin) {
-			if (self.copper_count == 0) {
+			if (self.copper_count == 0 && self.bridge_toll < 2) {
 				self.copper_count++;
 				self.bridge_toll = 2;
 				remove weapon;
@@ -156,10 +176,11 @@ Object Troll "troll"
 
 		if (weapon == Spear) {
 			self.attacked = true;
+			self.bridge_toll = 2;
 			self.paid = true;
 			self.angry = true;
 			move weapon to Troll;
-			move Troll to NullRoom;
+			remove Troll;
 			"The spear hits the troll with a glancing blow
 			and he falls silently into the dark chasm.  You
 			listen, but do not hear him crash.";
@@ -167,7 +188,7 @@ Object Troll "troll"
 
 		deadflag = 1;
 
-		if (weapon == troll) {
+		if (weapon == nothing) {
 			print "You raise an angry fist at the troll and 
 			move forward. ";
 		} else {
@@ -183,11 +204,10 @@ Object Troll "troll"
 		chasm. The Grim Reaper stands below,
 		waiting to catch you.";
 	],
-
 	life [;
 	Show:
-		if (self.angry)
-			"~I have nothing to say to you.~";
+!		if (self.angry)
+!			"~I have nothing to say to you.~";
 
 		if (noun ofclass CopperCoin)
 			"~I said gold, not copper, you idiot!~";
@@ -204,12 +224,15 @@ Object Troll "troll"
 			" that and I'll let you pass.~";
 		}
 
+		if (noun == Sword or Sling or Hammer or Spear)
+			"The troll laughs at you.";
+
 	Give:
 !		if (self.angry)
 !			rfalse;
 
 		if (noun ofclass CopperCoin) {
-			if (self.copper_count == 0) {
+			if (self.copper_count == 0 && self.bridge_toll < 2) {
 				self.copper_count++;
 				self.bridge_toll = 2;
 				remove noun;
@@ -254,7 +277,8 @@ Object Troll "troll"
 			"~I have nothing to say to you.~";
 
 		switch (second) {
-		'bridge', 'bridges', 'coin', 'coins': 
+		'bridge', 'bridges', 'coin', 'coins', 'toll', 'fare',
+		'charge': 
 			if (self.bridge_toll == 1) {
 				print "~One gold coin";
 
@@ -293,7 +317,8 @@ Object Troll "troll"
 			"~None of your business.~";
 
 		'shit', 'piss', 'urine', 'stink', 'smell', 'stench',
-		'odor', 'scent', 'crap', 'poo', 'poop', 'feces':
+		'odor', 'scent', 'crap', 'poo', 'poop', 'feces',
+		'faeces', 'fart':
 			"~What?  You don't like the scent?~^
 			^
 			The troll indicates a smear of some foul-looking
@@ -303,7 +328,7 @@ Object Troll "troll"
 		'xyzzy', 'plugh':
 			"~Fool!~";
 
-		'fuck':
+		'fuck', 'suck', 'blow':
 			"The troll laughs at you and makes an
 			obscene gesture.";
 
@@ -312,15 +337,13 @@ Object Troll "troll"
 		}
 	],
 	orders [;
-		if (self.angry)
-			"~Shut up!~";
+!		if (self.angry)
+!			"~Shut up!~";
 
 		print "The troll peers down his nose at you";
-		if (verb_word == 'fuck')
-			print " and makes an obscene gesture.";
-		else
-			".";
-		"^^~No toll, no bridge!~";
+		if (verb_word == 'fuck' or 'blow' or 'suck')
+			print " and makes an obscene gesture";
+		".^^~No toll, no cross!~";
 	],
 	has animate transparent;
 
@@ -329,12 +352,12 @@ Object -> TrollHand "hand"
 	short_name "troll's hand",
 	mangle_count 0,
 	description "Whatever that troll has been up to, it's all over
-	his hands and smells disgusting.",
+		his hands and smells disgusting.",
 	before [;
 	Smell:
 		"Ugh!  What stench!";
 
-	Take, Taste, Touch, Push, Pull:
+	Take, Touch, Push, Pull:
 		if (self.mangle_count == 1) {
 			deadflag = 1;
 			"You bravely stride forward, intent on

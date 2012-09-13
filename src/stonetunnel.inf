@@ -10,7 +10,8 @@ Inside StoneTunnel "Stone Tunnel"
 		slab above you gives way and crushes you beneath it.
 		It breaks every bone in your body.";
 	],
-	n_to	GargoyleRoom;
+	n_to	GargoyleRoom,
+	cant_go "You can only go north, west, or up.";
 
 UnlitTorch ->;
 UnlitTorch ->;

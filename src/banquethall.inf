@@ -27,7 +27,11 @@ Inside BanquetHall "Banquet Hall"
 	],
 	n_to	BanquetDoor,
 	s_to	BanquetCorridor,
-	u_to	BanquetBalcony1;
+	u_to	BanquetBalcony1,
+	cant_go	"You can only go through the door to the north, south, 
+		or up the stairs.";
+
+
 
 ! Key 4 is found here
 Rug -> BanquetRug "rug"
@@ -58,10 +62,9 @@ Object -> Tapestry "silk tapestry"
 		print (The) self, " is too high to reach.";
 		"";
 	Burn:
-		if (second ~= nothing) {
-			if (second hasnt ignition)
-				"You can't burn ", (the) self,
-				" with", (the) second, ".";
+		if (second hasnt on) {
+			"You can't burn ", (the) self,
+			" with", (the) second, ".";
 		}
 		remove self;
 		"You've torched the tapestry.";

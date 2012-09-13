@@ -24,6 +24,11 @@ Inside ArrowRoom "Arrow Room"
 			"";
 		}
 	],
+	before [;
+	Smell:
+		if (noun == nothing)
+			"The faint scent of rotting vegetation.";
+	],
 	to_ledge [;
 		if (BrokenLedge in self) {
 			"The opening is too high for you to reach.";
@@ -65,7 +70,15 @@ Inside ArrowRoom "Arrow Room"
 			suddenly find yourself in...^";
 		}
 			return StonePassage;
+	],
+	cant_go [;
+		print "You can only go north, ";
+
+		if (ArrowSecretDoor in self)
+			print "west,";
+		" or south.";
 	];
+
 
 Object -> Ledge "ledge"
 	with name "ledge",
@@ -74,8 +87,8 @@ Object -> Ledge "ledge"
 
 
 ! Yes, I know there were two torches here originally.
-!Object -> ArrowTorch "wet torch"
-Object -> ArrowTorch "unlit torch"
+Object -> ArrowTorch "wet torch"
+!Object -> ArrowTorch "unlit torch"
 	with name "wet" "torch" "soaked" "soaking" "handle",
 	before [;
 	Examine:
@@ -88,16 +101,13 @@ Object -> ArrowTorch "unlit torch"
 	Take:
 		"The torch stubbornly remains in its holder.";
 	Burn:
-		if (second hasnt ignition)
+		if (second hasnt on)
 			"You can't burn ", (the) self, " with ", (the)
 			second, ".";
 		<<SwitchOn self>>;
 
 	Smell:
 		"It smells like rotting vegetation.";
-
-	Taste:
-		"The thought of doing so repels you.";
 
 	Pull:
 		if (ArrowSecretDoor notin self) {

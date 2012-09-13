@@ -26,6 +26,10 @@ Inside EporRoom "EPOR room"
 			wall.  Hmm..  It looks like there's a hidden
 			door here.";
 		}
+
+	Smell:
+		if (noun == nothing)
+			"There's an animal of some sort beyond the bars.";
 	],
 	u_to [;
 		if (Rope hasnt general) {
@@ -39,7 +43,15 @@ Inside EporRoom "EPOR room"
 		}
 		rfalse;
 	],
-	e_to WraithDoor;
+	e_to WraithDoor,
+	cant_go [;
+		print "You can only go up";
+		if (EporSecret in self)
+			print ", west";
+		else
+			" or east";
+		", or east.";
+	];
 
 UnlitTorch ->;
 
@@ -134,104 +146,11 @@ Scroll -> -> Scroll1 "dusty scroll"
 	],
 	has float nonmagic;
 
-
-!Bottle -> -> SmellyBottle "smelly bottle"
-!	with name "smelly",
-!	description "It's a small silver bottle.  It sure smells
-!	terrible!",
-!	before [;
-!	Empty:
-!		if (self hasnt open) {
-!			give self open;
-!			print "(first opening ", (the) self, ")^";
-!		}
-!		remove SmellyPotion;
-!		"The contents dribble out and evaporates.";
-!	Receive:
-!		if (noun hasnt liquid or is_tiny) {
-!			print (The) noun, " is too big to fit in ",
-!			(the) self, ".";
-!			rtrue;
-!		}
-!	],
-!	capacity 1;
-
-!Object -> -> -> SmellyPotion "smelly potion"
-!	with name "smelly" "potion",
-!	description "The potion is a nauseating mixture of brown and
-!			yellow.",
-!	before [;
-!	Smell:
-!		"It smells like sewage.";
-!	Drop, Take:
-!		remove self;
-!		"The potion dribbles all over the ground.";
-!	Taste, Eat, Drink:
-!		deadflag = 1;
-!		"As you consume the liquid in the vial, your body
-!		convulses and death spasms quickly follow.";
-!	],
-!	has liquid edible;
-
 SmellyBottle -> ->;
 SmellyPotion -> -> ->;
 
 ShinyBottle -> ->;
 ShinyPotion -> -> ->;
-
-
-
-!Bottle -> -> ShinyBottle "shiny bottle"
-!	with name "shiny" "light" "bottle",
-!	description [;
-!		print "This small silver bottle glows with a lustrous
-!		shine.";
-!		if (ShinyPotion in self) {
-!			"  You notice that the bottle is impossibly
-!			light.";
-!		}
-!		rtrue;
-!	],
-!	before [;
-!	Empty:
-!		if (self hasnt open) {
-!			give self open;
-!			print "(first opening ", (the) self, ")^";
-!		}
-!		remove ShinyPotion;
-!		"The contents dribble out and evaporates.";
-!	Receive:
-!		if (noun hasnt liquid or is_tiny) {
-!			print (The) noun, " is too big to fit in ",
-!			(the) self, ".";
-!			rtrue;
-!		}
-!	],
-!	capacity 1;
-
-!Object -> -> -> ShinyPotion "shiny potion"
-!	with name "shiny" "potion",
-!	description "It looks like faintly-glowing water.",
-!	before [;
-!	Smell:
-!		"It doesn't seem to have a smell.";
-!	Drop, Take:
-!		remove self;
-!		"The potion dribbles all over the ground.";
-!	Taste:
-!		"Tasting the potion makes you feel a bit like you're
-!		floating in the air.";
-!	Eat, Drink:
-!		levitating = true; StartTimer(self, 5);
-!		"You drink the liquid and immediately begin to rise in 
-!		the air.";
-!	],
-!	time_left 0,
-!	time_out [;
-!		levitating = false;
-!		"You slowly sink back to the floor.";
-!	],
-!	has liquid edible;
 
 
 Object EporSecret "secret passage"

@@ -17,7 +17,18 @@ Inside WaterfallRoom "Waterfall"
 	],
 	in_to FallCave,
 	w_to PoolCavern,
-	e_to "The stairway is blocked by a landslide.";
+	e_to "The stairway is blocked by a landslide.",
+	cant_go "The only exit seems to be west.";
+
+Object -> FallStair "stairs"
+	with name "stairway" "stairs" "stair",
+	description "Ancient and blocked.",
+	has scenery;
+
+Object -> FallsPool "pool"
+	with name "pool" "lake",
+	description "There's not much to see from here.",
+	has scenery;
 
 Object -> FallCave "small cave"
 	with name "small" "cave",
@@ -58,10 +69,16 @@ Stone ->;
 Stone ->;
 Stone ->;
 
+Object -> FallsCliff "cliff"
+	with name "cliff",
+	description "It appears to be made of some sort of igneous
+		rock.",
+	has scenery;
+
 Object -> Falls "falls"
 	with name "cascade" "falls" "waterfall" "small" "cold" "stream" "fall" "water",
-	description "Cold water cascades down a cliff and into a small
-	stream.",
+	description "Cold water cascades down a low cliff and into a
+	small stream.",
 	door_dir [;
 		return in_to;
 		],
@@ -80,13 +97,12 @@ Object -> Falls "falls"
 
 		print "You throw ", (the) noun, " into the water";	
 		
-
-		if (noun has is_torch && noun has on) {
+		if (noun ofclass BurningTorch) {
 			remove noun;
 			newthing = DeadTorch.create();
-			move newthing to Pool;
+			move newthing to parent(Pool);
 			" which is snuffed out.  The stream deposits
-			the torch into the pool.";
+			the now useless torch into the pool.";
 		}
 
 		if (noun == CrystalSphere) {
@@ -97,7 +113,7 @@ Object -> Falls "falls"
 			".  The waterfall turns instantly to ice.  The sphere
 			freezes the stream as it travels down to the pool.  A
 			few seconds after the sphere disappears through the 
-			west passage, the pool freezes.";
+			west passage, the entire pool freezes.";
 		}
 		if (noun has float) {
 			give noun ~worn;
@@ -108,7 +124,7 @@ Object -> Falls "falls"
 			move noun to Pool;
 		}
 
-		print ".  The stream carries away ", (the) noun, " and
+		print ".  The stream carries ", (the) noun, " away and
 			deposits";
 		if (noun has pluralname)
 			print " them";

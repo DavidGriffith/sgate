@@ -17,7 +17,8 @@ Inside LeverRoom "Lever Room"
 		"You woke the sleeping guard from his beauty sleep.  He
 		decides to eat you for breakfast.";
 	],
-	s_to LavaChamber;
+	s_to LavaChamber,
+	cant_go "The only exits are south and down the pit.";
 
 Object -> LeverPit "pit"
 	with name "pit",
@@ -204,4 +205,13 @@ Object -> LeverCylinder "metal cylinder"
 Object -> -> SilverOrb "silver orb"
 	with name "silver" "orb",
 	description "Aha!  It's an orb made of silver.  Its glowing
-		surface causes your skin to tingle.";
+		surface causes your skin to tingle.",
+	before [;
+	Tie:
+		if (verb_word == 'tie')
+			rfalse;
+		if (second ~= Staff)
+			rfalse;
+
+		<<PutOn self Staff>>;
+	];

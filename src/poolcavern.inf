@@ -2,21 +2,19 @@ Inside PoolCavern "Subterranean Pool"
 	with name "cavern",
 	description [;
 		print "This subterranean cavern has been carved by
-		centuries of supernatural erosion.  You are on the
-		north shore of a large pool filling the entire cavern.";
-		print "  A humanoid skeleton is draped over a spiky rock
-		out in the middle of the pool.";
+		centuries of supernatural erosion. You are on the
+		north shore of a large pool filling the entire cavern.
+		A humanoid skeleton is perched a spiky rock out in
+		the middle of the pool.";
 
 		if (BrassKey in LimeSkeleton) {
 			print "  It seems to be holding a key of some
 			sort.";
 		}
 		"  Exits lie to the north and east.";
-
 	],
 	e_to WaterfallRoom,
 	n_to FourWay,
-
 	s_to [;
 		if (pool hasnt general) {
 			"Swimming in the shark-infested pool would
@@ -24,12 +22,8 @@ Inside PoolCavern "Subterranean Pool"
 		} else {
 			return FrozenPool;
 		}
-	];
-
-!Object -> PoolIce "ice"
-!	with name "ice",
-!	description "You can't see any such thing.",
-!	has scenery;
+	],
+	cant_go "You can only go north, south, or east.";
 
 
 ! I'd like that "ice" to be valid only if the pool is actually frozen.
@@ -90,12 +84,11 @@ Object -> Pool "pool"
 
 	Melt:
 		if (self has general) {
-			if (second has is_torch && second has on) {
+			if (second ofclass BurningTorch) {
 				self.release_sphere();
 				"";
 			}
 		}
-
 	Attack:
 		if (self has general) {
 			if (verb_word == 'kill')
@@ -106,7 +99,7 @@ Object -> Pool "pool"
 		}
 	Receive:
 		if (self has general) {
-			if (noun has is_torch && noun has on) {
+			if (noun ofclass BurningTorch) {
 				self.release_sphere();
 				"";
 			}
@@ -124,20 +117,22 @@ Object -> Pool "pool"
 			" and notice the ripples disappear as
 			the water turns to ice.";
 		}
-		if (noun has is_torch) {
+
+		if (noun ofclass Torch) {
 			remove noun;
 			newthing = DeadTorch.create();
 			move newthing to self;
 		}
+
 		if (noun hasnt float)
 			" and it sinks to the bottom.";
 		else {
 			move noun to parent(self);
-			" and it gradually floats to the shore.";
+			" and it floats back to the shore.";
 		}
 
 	Burn:
-		if (second hasnt ignition)
+		if (second hasnt on)
 			"You can't burn ", (the) self, " with ", (the)
 			second, ".";
 		if (self hasnt general) {
@@ -161,27 +156,44 @@ Object -> -> Shark "shark"
 
 
 Object -> PoolSpike "spike"
-	with name "spike",
+	with name "spike" "spiky" "rock" "crag",
 	description [;
 		print "It's a rocky spike sticking out of the ";
 		if (Pool has general)
 			print "ice";
 		else
 			print "water";
-
 		". A lime-covered skeleton is perched upon it.";
 	],
-	has scenery;
+	before [;
+	Search:
+		"On the spike is a lime-covered skeleton.";
+	],
+	capacity 0,
+	has supporter scenery;
 
-
-Object -> PoolSkeleton "skeleton"
+Object -> -> PoolSkeleton "skeleton"
 	with name "lime-covered" "lime" "covered" "skeleton" "humanoid",
 	description [;
-		if (BrassKey in LimeSkeleton)
-			"It's holding a key of some sort.";
-		"It's encrusted with decades or perhaps centuries 
+		print "It's encrusted with decades or perhaps centuries 
 		of lime deposits.";
+		if (BrassKey in LimeSkeleton)
+			" It's holding a key of some sort.";
+		"";
 	],
+	before [;
+	Take, Transfer:
+		"It's too far away.";
+	Search:
+		if (BrassKey in LimeSkeleton)
+			"The skeleton is holding a key of some sort.";
+	],
+	capacity 0,
+	has supporter scenery;
+
+Key -> -> -> PoolKey "pool key"
+	with name  "key",
+	description "It appears to be made of brass.",
 	before [;
 	Take, Transfer:
 		"It's too far away.";

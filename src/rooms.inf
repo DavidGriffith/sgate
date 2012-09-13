@@ -1,11 +1,4 @@
-Inside NullRoom "Null Room"
-	with name "null" "room",
-	description "You should not be here.";
-
 Include "entrance.inf";
-Include "eastwall.inf";
-Include "westwall.inf";
-Include "northwall.inf";
 Include "hall.inf";
 Include "closet.inf";
 Include "stonepassage.inf";
@@ -25,9 +18,9 @@ Include "coffinroom.inf";
 Include "mirrorroom.inf";
 Include "fireroom.inf";
 Include "chasmbridge.inf";	! still needs extra testing
-Include "courtyard.inf";	! the well still needs work.
+Include "courtyard.inf";
 Include "banquetcorridor.inf";
-Include "library.inf";		! need to add Motori spell effects
+Include "library.inf";
 Include "study.inf";
 Include "laboratory.inf";
 Include "garden.inf";
@@ -35,15 +28,15 @@ Include "banquethall.inf";
 Include "banquetbalcony1.inf";
 Include "banquetbalcony2.inf";
 Include "circularroom.inf";
-Include "sphinxroom.inf";	! check back here when doing the lever room
+Include "sphinxroom.inf";
 Include "wyverntower.inf";
 Include "observatory.inf";
 Include "towerprison.inf";
 Include "smallcorridor.inf";
 Include "balcony.inf";
-Include "lookout.inf";		! Maybe need to add more coins.
+Include "lookout.inf";
 Include "snakeroom.inf";
-Include "throneroom.inf";	! probably done
+Include "throneroom.inf";
 Include "stonetunnel.inf";
 Include "gargoyleroom.inf";
 Include "lavachamber.inf";

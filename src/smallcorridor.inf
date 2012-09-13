@@ -5,7 +5,8 @@ Inside SmallCorridor "Small Corridor"
 		The banquet hall is to the south.",
 	s_to BanquetDoor,
 	e_to ThroneRoom,
-	w_to Balcony;
+	w_to Balcony,
+	cant_go "You can only go north, south, east, or west.";
 
 UnlitTorch ->;
 UnlitTorch ->;

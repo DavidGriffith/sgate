@@ -1,5 +1,5 @@
 Inside FireRoom "Fire Room"
-	with name "fire" "room",
+	with name "room",
 	description [;
 		if (self hasnt visited) {
 			print "This room is incredibly hot.  This must
@@ -29,6 +29,10 @@ Inside FireRoom "Fire Room"
 			"The fire drake blocks your path.";
 		else
 			return FireDoor;
+	],
+	cant_go[;
+		"Any way besides north or south is very likely fatal.";
+
 	];
 
 
@@ -133,7 +137,7 @@ Object FireDrake "fire drake"
 		}
 	Smell:
 		"The thing smells of burning sulphur.";
-	Take, Touch, Taste:
+	Take, Touch:
 		deadflag = 1;
 		"The fire drake screams and triumphantly gives you an
 		eternal sunburn.";

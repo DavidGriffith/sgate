@@ -16,12 +16,17 @@ Inside WraithRoom "Wraith Room"
 		}
 		"";
 	],
+	before [;
+	Smell:
+		"The smell of death.";
+	],
 	w_to [;
 		if (Wraith in self)
 			"You're afraid to go past the wraith.";
 		return WraithDoor;
 	],
-	e_to TwoBridges;
+	e_to TwoBridges,
+	cant_go "You can only go east or west.";
 
 Object -> WraithDoor "wooden door"
 	class ObligingDoor,

@@ -14,10 +14,15 @@ Inside ColdRoom "Cold Room"
 		".  In the northeast corner is a small metal trap
 		door.";
 	],
+	before [;
+	Smell:
+		"This room stinks of decaying flesh.";
+	],
 	n_to ColdRoomDoor,
 	s_to FourWay,
 	in_to ColdTrapDoor,
-	d_to ColdTrapDoor;
+	d_to ColdTrapDoor,
+	cant_go "You can only go north, south, or down.";
 
 
 ! After the first entrance, we see "This room stinks of rotten meat."
@@ -25,13 +30,17 @@ Inside ColdRoom "Cold Room"
 UnlitTorch ->;
 UnlitTorch ->;
 
+Object -> ColdStench "stench"
+	with name "stink" "stench" "smell",
+	description "The putrid aroma of decaying flesh.",
+	has scenery;
+
 ! A small crystal sphere magically appears on the stand.
 !
 Object -> Pedestal "pedestal"
 	with name "pedestal",
 	description "The pedestal is roughly waist height.  It's carved
-	out of granite and has iron trim around the edges.  A shallow
-	depression is on top.",
+	out of granite and has iron trim around the edges.",
 	capacity 1,
 	has supporter scenery;
 
@@ -115,6 +124,7 @@ Object -> ColdTrapDoor "trap door"
 	],
 	has static door openable container;
 
+
 Object -> -> ColdRoomLadder "rickety ladder descending into the gloom"
 	with name "rickety" "ladder",
 	description "It's greasy, dirty, and full of splinters.",
@@ -128,6 +138,14 @@ Object -> -> ColdRoomLadder "rickety ladder descending into the gloom"
 		you took a big step.  The fall is quite fatal.";
 	],
 	has static;
+
+Object -> -> ColdRoomShaft "shaft"
+	with name "shaft" "gloom",
+	before [;
+	Examine, Search:
+		"Just darkness.";
+	],
+	has scenery;
 
 
 ! If a torch is used on the sphere, the torch will be snuffed out.

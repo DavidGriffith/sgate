@@ -14,7 +14,8 @@ Inside SphinxRoom "Sphinx Room"
 		print "As you climb the stairs, you notice odd
 		markings scratched on them.^";
 		return Observatory;
-	];
+	],
+	cant_go "You can only go south or up the stairs.";
 
 
 Object -> SphinxStairs "stairs"
@@ -151,7 +152,9 @@ Object -> Sphinx "sphinx"
 	],
 	life [;
 	Show:
-		if (noun == self.riddle_obj) {
+		if (noun == self.riddle_obj || 
+			(self.riddle_obj == Skull && noun ofclass Skull)) {
+
 			give self general;
 			self.repeat = false;
 			"~You have correctly answered my riddle,
@@ -166,11 +169,5 @@ Object -> Sphinx "sphinx"
 			^
 			The sphinx gives back ", (the) noun, ".";
 		}
-
-
-
 	],
 	has animate;
-
-
-

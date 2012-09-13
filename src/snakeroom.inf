@@ -21,7 +21,8 @@ Inside SnakeRoom "Snake Room"
 			print "You are in a small cave.";
 		" The only exit is south.";
 	],
-	s_to TwoBridges;
+	s_to TwoBridges,
+	cant_go "You can only go south.";
 
 
 ! You wait for the creature to kill you, but it still has yet to move.
@@ -76,15 +77,21 @@ Object Staff "staff"
 		You can feel power emanating from it!";
 	],
 	before [;
-	Receive:
-		if (noun == Blade) {
-			move noun to self;
+	Receive, Tie:
+		if (verb_word == 'tie')
+			rfalse;
+		if ((noun == Blade && second == self) ||
+			(noun == self && second == Blade)) {
+			move Blade to self;
 			"The golden spike slides smoothly onto the
 			staff and locks into place.";
 		}
-		if (noun == SilverOrb) {
+		if ((noun == SilverOrb  && second == self) ||
+			(noun == self && second == SilverOrb)) {
+
 			if (Blade notin self) {
-				"It doesn't fit.";
+				"The orb doesn't fit quite right, so
+				you take it off the staff again.";
 			}
 			move noun to self;
 			self.short_name = "Staff of Ages";
@@ -94,7 +101,7 @@ Object Staff "staff"
 			becomes a living entity!  The Staff of Ages is 
 			now complete.";
 		}
-		"It doesn't fit.";
+		rfalse;
 	Wave, Point:
 		if (second ~= Behemoth && Behemoth in parent(player)) {
 			Warlock.killplayer();

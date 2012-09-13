@@ -18,8 +18,13 @@ Inside Study "Study"
 	Examine:
 		if (noun == n_obj)
 			<<examine StudyWindow>>;
+	Smell:
+		if (noun == nothing)
+			"Old books.";
 	],
-	s_to	Library;
+	s_to	Library,
+	cant_go	"The only exit is south.";
+
 	
 Rug -> StudyRug "rug";
 

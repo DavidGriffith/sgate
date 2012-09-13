@@ -5,7 +5,8 @@ Inside WellRoom "Well Room"
 		a door leads west.",
 	w_to WellDoor,
 	s_to GargoyleRoom,
-	d_to WishingWell;
+	d_to WishingWell,
+	cant_go "The only obvious exits are south and west.";
 
 Object -> WishingWell "well"
 	with name "well" "lid" "cover",

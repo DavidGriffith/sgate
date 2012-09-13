@@ -6,9 +6,14 @@
 !Switches xv5sd2;
 Switches d2;
 
-Release 1;
+!Constant DEBUG;
+
+!Release 1;
+!Release 2;
+Release 3;
+
 !Serial "020417";
-Serial "030707";
+Serial "030821";
 
 Constant Story "SHADOWGATE";
 !Reimplemented in Inform by David Griffith in 2002.
@@ -16,8 +21,10 @@ Constant Story "SHADOWGATE";
 
 Constant Headline
 !	"^Copyright (c) 1989 by Icom.^";
-	"^An unauthorized adaptation by David Griffith.^
-Copyright and trademark of Infinite Ventures, Inc.^";
+!~Shadowgate~ is copyright and trademark of Infinite Ventures, Inc.^
+
+"^An unauthorized adaptation by David Griffith.^
+(Type ~about~ for more information. For a hint, type ~hint~.)^";
 
 Constant DEATH_MENTION_UNDO;
 
@@ -26,7 +33,7 @@ Constant TORCH_LIFE = 50;	! how many moves a torch will last
 Constant TORCH_DECLINE = 5;	! torch starts sputtering
 Constant TORCH_DYING = 1;	! torch is about to go out
 
-Global last_toss_heads = false;	! fun with coins.
+Global last_toss_heads = false;	! fun with coins.  no use of this yet.
 
 Global levitating = false;	! Is the player levitating?
 
@@ -35,8 +42,8 @@ replace ScoreSub;
 replace FullScoreSub;
 replace BurnSub;
 replace WaveSub;
-
 replace NotifySub;
+replace TasteSub;
 
 Include "Parser";
 
@@ -60,8 +67,8 @@ Include "Parser";
 ];
 
 [ WinMessage;
-"^You pray, as you raise the Staff of Ages, that
-it has the power that the prophets claimed.^
+"^You pray, as you raise the Staff of Ages, that it has the power that
+the prophets claimed.^
 ^
 The staff pulsates with power and a beam of light explodes from it
 striking the behemoth.  The creature screams in agony, thrashing back
@@ -73,29 +80,24 @@ A beautiful light seems to fill the cavern.  ~The morning sun,~ you say
 to yourself, ~It is over.~^
 ^
 Although exhausted, you lean on the Staff of Ages and begin your long
-journey home.^
+journey home. Word of your historic quest has already reached the
+farthest parts of the land!^
 ^
-Word of your historic quest has already reached the farthest parts of
-the land!^
-^
-You are triumphantly greeted as you enter the royal city of Stormhaven.^
-^
-Moments later, you are ushered into the royal palace where you are
+You are triumphantly greeted as you enter the royal city of Stormhaven. 
+Moments later, you are ushered into the royal palace where you are 
 greeted by the King!^
 ^
 ~I know what thou hast done, brave one.  The world would be dark forever
 without thee!~^
 ^
-You are bestowed a kingdom to rule and the king's fair daughter's hand!^
-^
-As you leave the throne room, you know that although this quest is over,
-others await.^
-^
-After all, the bards will need new legends to sing of and new tales to
-tell!^
+You are bestowed a kingdom to rule and the king's fair daughter's hand! 
+As you leave the throne room, you know that although this quest is
+over, others await. After all, the bards will need new legends to sing
+of and new tales to tell!^
 ^
 The first story's end.^";
 ];
+
 
 
 
@@ -104,10 +106,8 @@ The first story's end.^";
 !Global debug_flag;
 !#endif;
 
-
 Include "VerbLib";
 Include "Menus";
-!Include "hints";
 
 Class Outside
 	has light;
@@ -143,7 +143,7 @@ Include "statusline1.inf";	! Displays just the room name.
 
 [ DeathMessage;
 	if (deadflag == 3) {
-		"deadflag 3";
+		"deadflag 3. You should not see this.";
 	}
 ];
 
@@ -159,7 +159,6 @@ Include "statusline1.inf";	! Displays just the room name.
 
 	players_book.learn_spell(gnusto_spell);
 	give gnusto_spell known_about;
-
 
 	print "The last thing that you remember is standing before the
 	wizard Lakmir as he waved his hands.  Now you find yourself

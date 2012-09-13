@@ -7,21 +7,37 @@ Outside Entrance "Entrance"
 		skull hangs over the door.",
 	before [;
 	Examine:
-		if (noun == n_obj || noun == ne_obj || noun == nw_obj) {
+		if (noun == n_obj || noun == ne_obj || noun == nw_obj)
 			"It's a stone wall.";
-		}
+
+		if (noun == u_obj)
+			"The moon shines bright.";
+
+		if (noun == e_obj or w_obj or se_obj or sw_obj or s_obj)
+			"This tiny valley is ringed with impenetrable
+			mountains.";
+
+		if (noun == d_obj)
+			"The ground is hard-packed.";
+
+	Climb:
+		if (noun == n_obj or ne_obj or nw_obj)
+			"Scaling the wall is impossible.";
+
 	],
 	in_to OuterDoor,
 	n_to OuterDoor,
-	e_to EastWall,
-	ne_to EastWall,
-	w_to WestWall,
-	nw_to WestWall,
 	u_to "Scaling the wall is impossible.",
 	d_to "The ground is hard-packed and you don't have a shovel.",
 	cant_go "You have no idea what's out there.  Besides, your job
 		involves being inside the castle.",
 	has scenery;
+
+Object -> EntranceCastle "castle"
+	with name "castle" "shadowgate",
+	description "The Castle Shadowgate looms above you.",
+	has scenery;
+
 
 Object -> DoorSkull "skull"
 	with name "skull" "tiny" "hollow",
@@ -58,9 +74,9 @@ Object -> DoorSkull "skull"
 	Turn, Take, Pull:
 		"The skull rattles a bit, but remains fixed to the wall.";
 	Receive:
-		if (noun has is_key && ironkey notin self) {
-			"It's not clear how even a key fit in
-			there.";
+		if (noun ofclass Key && ironkey notin self) {
+			"It won't fit.  It's not clear how even a key
+			once fit in there.";
 		}
 		"The hollow is far too small to accept ", (the) noun, ".";
 	],
@@ -102,18 +118,11 @@ Object -> -> dust "dust"
 Object -> OuterDoor "wooden door"
 	class ObligingDoor,
 	with name "wood" "wooden" "door" "heavy",
-	description "It's a heavy wooden door with iron hinges.",
-	when_open [;
-		if (self in Entrance) {
-			"The door is open.";
-		}
-!		"The door leading outside is open.";
-	],
-	when_closed [;
-		if (self in Entrance) {
-			"The door is closed.";
-		}
-!		"The door leading outside is closed.";
+	description [;
+		print "It's a heavy wooden door with iron hinges";
+		if (self has open)
+			print " (currently open)";
+		".";
 	],
 	door_to [;
 		if (self in Entrance) {
@@ -128,4 +137,10 @@ Object -> OuterDoor "wooden door"
 		return s_to;
 	],
 	found_in Entrance Hall,
-	has scenery static door openable;
+	capacity 0,
+	has scenery static door openable supporter;
+
+Object -> -> EntranceHinges "hinges"
+	with name "stout" "iron" "hinge" "hinges",
+	description "Stout iron hinges.",
+	has scenery pluralname;

@@ -26,7 +26,9 @@ Inside SculptedRoom "Sculpted Rock Room"
 			you suddenly find yourself in...^";
 		}
 			return EporRoom;
-	];
+	],
+	cant_go "Unless you figure out how to move that slab, you can
+		only go east.";
 
 
 Object -> SculptedSlab "granite slab"
@@ -108,7 +110,9 @@ Spell -> humana_spell
 	with name "humana",
 	purpose "As the shadow of the wind, thou shalt be!",
 	magic [;
-		if (player in ChasmBridge && Troll.angry == true) {
+		if (player in ChasmBridge && Troll in ChasmBridge &&
+			Troll.angry == true) {
+			remove Troll;
 			print "As soon as the magic is invoked, you
 			lose sight of yourself.  You're as invisible
 			as the wind!^";

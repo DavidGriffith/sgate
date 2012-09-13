@@ -21,9 +21,13 @@ Inside LavaChamber "Lava Chamber"
 			to it.";
 		" You can go back the way you came by going south.";
 	],
+	before [;
+	Smell:
+		if (noun == nothing)
+			"You can barely tolerate volcanic fumes.";
+	],
 	s_to GargoyleRoom,
 	sw_to GargoyleRoom,
-!	e_to LeverRoom,
 	n_to [;
 		if (LavaStatue hasnt general) {
 			deadflag = 1;
@@ -34,6 +38,13 @@ Inside LavaChamber "Lava Chamber"
 		}
 		StartDaemon(LeverCylinder);
 		return LeverRoom;
+	],
+	cant_go [;
+		print "You can only go southwest";
+
+		if (LavaStatue has general)
+			" or north.";
+		".";
 	];
 
 Object -> LavaStatue "statue"

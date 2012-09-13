@@ -1,24 +1,13 @@
 Inside BanquetCorridor "Banquet Corridor"
 	with name "banquet" "corridor",
-	description [;
-		print "This is a north-south corridor connecting the
-		banquet hall to the central courtyard.  Doorways
-		branch off to the east and west.  ";
-		if (CorridorRug in self) {
-			if (CorridorRug hasnt general)
-				print "A beautifully woven rug runs
-				down";
-			else
-				print "A rolled up rug is in";
-
-			print " the middle of this corridor.";
-		}
-		"";
-	],
+	description "This is a north-south corridor connecting the
+		banquet hall to the central courtyard. Doorways
+		branch off to the east and west.",
 	w_to	Library,
 	e_to	Laboratory,
 	s_to	Courtyard,
-	n_to	BanquetHall;
+	n_to	BanquetHall,
+	cant_go "North, south, east, or west.  Take your pick.";
 
 UnlitTorch ->;
 

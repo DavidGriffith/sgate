@@ -5,7 +5,14 @@ Inside RiverStyx "River Styx"
 	description "You're standing on the bank of the River Styx.
 		Its still waters support no life.  You can go back up
 		the well, if you wish.",
-	u_to WellRoom;
+	u_to WellRoom,
+	cant_go [;
+		print "It looks like you can only go up";
+		if (Raft in self)
+			" or board the raft.";
+		".";
+	];
+
 
 Object -> Gong "gong"
 	with name "gong",

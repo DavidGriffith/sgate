@@ -5,6 +5,11 @@ Inside HotRoom "Hot Room"
 	of the darkness beyond an archway at the north end of the 
 	passage.  A large wooden chest bound with iron stands against
 	the east wall.",
+	before [;
+	Smell:
+		if (noun == nothing)
+		"Burning sulfur.";
+	],
 	s_to [;
 		Dragon.power = 0;
 		return ColdRoom;
@@ -15,14 +20,29 @@ Inside HotRoom "Hot Room"
 		none-too-happy dragon.  Flames shoot from the dragon's
 		mouth and engulf your body.  You pay for your curiosity
 		with your life.";
-	];
+	],
+	cant_go "You can only go north or south.";
 
+Object -> HotArch "archway"
+	with name "archway" "arch",
+	description "Its underside it stained with soot.",
+	has scenery;
 
 ! This code is rather clunky, but does work as intended.
 !
 ! Player has three moves to do anything.  Not even "TAKE ALL" will
 ! thwart this rule.  However, the player can exit the room and reenter,
 ! just like in the original game.
+
+Object -> DragonEyes "eyes"
+	with name "eye" "eyes",
+	description "The dragon's eyes are yellow with vertical-slit
+	pupils. They are focused intently on you.",
+	before [;
+	Smell:
+		<<smell Dragon>>;
+	],
+	has scenery;
 
 Object -> Dragon "hall dragon"
 	with name "hall" "dragon",
@@ -50,7 +70,7 @@ Object -> Dragon "hall dragon"
 			rtrue;
 		}
 
-		if (shield notin player) {
+		if (Shield notin player) {
 			deadflag = 1;
 			"^WOOOOOSH!!!!  A jet of flame shoots out
 			from beyond the archway.  Dragon flame engulfs
@@ -60,15 +80,15 @@ Object -> Dragon "hall dragon"
 		switch (self.power++) {
 		2:
 			"^WOOOOOSH!!!!  A jet of flame shoots out
-			from beyond the archway.  Your raise your
-			shield just in time to block the dragon flame.^";
+			from beyond the archway.  You grab and raise
+			the shield just in time to block the dragon
+			flame.";
 		3:
 			"^Again flame spews forth.  You use the shield
-			for protection.^
-			The shield is getting warm.^";
+			for protection. The shield is getting warm.^";
 		4:	
 			"^Again flame spews forth.  You use the shield
-			for protection.^
+			for protection.
 			The shield is getting intolerably hot.  You
 			don't know how much longer you can stand it.^";
 		5:
@@ -84,6 +104,7 @@ Object -> Dragon "hall dragon"
 			"You should not have survived that blast.
 			There is a serious bug in hotroom.inf.^";
 		}
+		rtrue;
 	],
 	has animate scenery;
 
@@ -91,16 +112,17 @@ UnlitTorch ->;
 
 Object -> Shield "shield"
 	with name "shield",
-	description "It's a heavy shield.  There are only a few dents in it.";
+	description "It's a heavy shield.  There are only a few dents
+	in it.",
+	after [;
+	Take:
+		if (self hasnt general) {
+			give self general;
+			move self to player;
+			rtrue;
+		}
+	];
 	
-!Clothes -> Helmet "helmet"
-!	with name "helmet" "helm",
-!	area 0,
-!	level 4,
-!	conceal false,
-!	description "This seems to be a helmet of the sort commonly worn 
-!	by hobgoblins.";
-
 Object -> Helmet "helmet"
 	with name "helmet" "helm",
 	description "This seems to be a helmet of the sort commonly worn 
@@ -115,21 +137,18 @@ Object -> Bone "bone"
 Object -> Hammer "hammer"
 	with name "hammer",
 	description "It's an ancient dwarvish war hammer.  This weapon
-	does not show the signs of battle.",
-	has weapon;
+	does not show the signs of battle.";
 
 Object -> Spear "spear"
 	with name "spear",
 	description "This spear is some seven feet long.  The tip seems to 
-	be made of finely forged silver.",
-	has weapon;
+	be made of finely forged silver.";
 
-Object -> DriedSkull "dried skull"
-	with name "skull" "dried",
+Skull -> DriedSkull "dried skull"
+	with name "dried",
 	description "It seems to be the skull of some unfortunate 
-	individual.  It looks like it has been dried and cracked by 
-	extreme heat.",
-	has float;
+		individual.  It looks like it has been dried and
+		cracked by extreme heat.";
 
 Object -> DummyChest "iron-bound chest"
 	with name "chest" "iron" "bound" "iron-bound",

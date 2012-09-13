@@ -12,7 +12,9 @@ Outside WyvernTower "Wyvern Tower"
 		" There is a low metal pedestal standing near the
 			wall of the turret.";
 	],
-	d_to CircularRoom;
+	d_to CircularRoom,
+	cant_go "Unless you can fly, the only direction you can go is
+		down.";
 
 
 Object -> Wyvern "wyvern"
