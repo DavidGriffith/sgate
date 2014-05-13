@@ -112,14 +112,8 @@ http://www.infiniteventures.com/.
 License  ||
 ===========
 
-The source code to this Inform reimplementation of Shadowgate is freely
-redistributable. Do with it what you will, but don't go about claiming
-you wrote it. I do not appreciate plagarism. Give credit where credit is
-due.
-     
-This game may be included in a compilation (ie, a CD set containing the
-whole of the Interactive Fiction Archive), but it SHALL NOT be packaged
-on its own without prior written approval.
+This reimplementation of Shadowgate is licensed under the Artistic 
+License 2.0.  See the file ARTISTIC in this archive.
 
 
 ========================
